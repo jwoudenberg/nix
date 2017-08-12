@@ -45,13 +45,7 @@
           '';
       };
     };
-  pinentry = pkgs.pinentry.override {
-    ncurses = pkgs.ncurses;
-  };
-  gpg = pkgs.gnupg.override {
-    libusb = pkgs.libusb;
-    pinentry = pinentry;
-  };
+    gpg = (import ./pkgs/gnupg.nix) { inherit pkgs; };
   pass = pkgs.pass.override {
     xclip = pkgs.xclip;
     xdotool = pkgs.xdotool;

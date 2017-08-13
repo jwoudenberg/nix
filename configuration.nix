@@ -46,6 +46,7 @@
     git
     i3
     i3status
+    nodePackages.node2nix
     python27Packages.neovim
     python35Packages.neovim
     ripgrep

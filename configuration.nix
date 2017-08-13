@@ -33,31 +33,26 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages =
-  let
-    neovim = (import ./pkgs/neovim.nix) { inherit pkgs; };
-    gnupg = (import ./pkgs/gnupg.nix) { inherit pkgs; };
-    pass = (import ./pkgs/pass.nix) { inherit pkgs; };
-  in
     with pkgs; [
-      ripgrep
-      fish
-      fzf
-      neovim
-      python35Packages.neovim
-      python27Packages.neovim
-      xsel
-      efibootmgr
-      i3
-      i3status
-      dmenu
-      pass
-      gnupg
-      git
-      chromium
-      xclip
-      unzip
-      calibre
-    ];
+    ((import ./pkgs/gnupg.nix) { inherit pkgs; })
+    ((import ./pkgs/neovim.nix) { inherit pkgs; })
+    ((import ./pkgs/pass.nix) { inherit pkgs; })
+    calibre
+    chromium
+    dmenu
+    efibootmgr
+    fish
+    fzf
+    git
+    i3
+    i3status
+    python27Packages.neovim
+    python35Packages.neovim
+    ripgrep
+    unzip
+    xclip
+    xsel
+  ];
 
   programs.fish.enable = true;
 

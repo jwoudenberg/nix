@@ -33,31 +33,16 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages =
-    let
-    nvim = pkgs.neovim.override {
-      vimAlias = true;
-      withPython = true;
-      withPython3 = true;
-      withRuby = true;
-      configure = {
-        customRC = ''
-          source ~/.config/nvim/init.vim
-          '';
-      };
-    };
-    gpg = (import ./pkgs/gnupg.nix) { inherit pkgs; };
-  pass = pkgs.pass.override {
-    xclip = pkgs.xclip;
-    xdotool = pkgs.xdotool;
-    dmenu = pkgs.dmenu;
-    gnupg = gpg;
-  };
+  let
+    neovim = (import ./pkgs/neovim.nix) { inherit pkgs; };
+    gnupg = (import ./pkgs/gnupg.nix) { inherit pkgs; };
+    pass = (import ./pkgs/pass.nix) { inherit pkgs; };
   in
     with pkgs; [
       ripgrep
       fish
       fzf
-      nvim
+      neovim
       python35Packages.neovim
       python27Packages.neovim
       xsel
@@ -66,7 +51,7 @@
       i3status
       dmenu
       pass
-      gpg
+      gnupg
       git
       chromium
       xclip

@@ -74,6 +74,8 @@
       calibre
     ];
 
+  programs.fish.enable = true;
+
   environment.variables.EDITOR = "nvim";
   environment.variables.FZF_DEFAULT_COMMAND = "rg --files";
   # List services that you want to enable:

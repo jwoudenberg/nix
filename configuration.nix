@@ -34,23 +34,28 @@
   # $ nix-env -qaP | grep wget
   environment.systemPackages =
     with pkgs; [
-    ((import ./pkgs/gnupg.nix) { inherit pkgs; })
-    ((import ./pkgs/neovim.nix) { inherit pkgs; })
-    ((import ./pkgs/pass.nix) { inherit pkgs; })
+    (callPackage ./pkgs/gnupg.nix { })
+    (callPackage ./pkgs/neovim.nix { })
+    (callPackage ./pkgs/pass.nix { })
+    cabal2nix
     calibre
-    chromium
     dmenu
     efibootmgr
+    feh
+    firefox
     fish
     fzf
     git
+    handbrake
     i3
     i3status
     nodePackages.node2nix
     python27Packages.neovim
     python35Packages.neovim
     ripgrep
+    sakura
     unzip
+    vlc
     xclip
     xsel
   ];
@@ -86,6 +91,6 @@
   };
 
   # The NixOS release to be compatible with for stateful data such as databases.
-  system.stateVersion = "17.03";
+  system.stateVersion = "18.03";
   system.autoUpgrade.enable = true;
 }

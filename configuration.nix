@@ -50,6 +50,7 @@
     i3
     i3status
     nodePackages.node2nix
+    pavucontrol
     python27Packages.neovim
     python35Packages.neovim
     ripgrep

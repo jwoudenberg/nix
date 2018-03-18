@@ -42,7 +42,7 @@
     cabal2nix
     calibre
     docker
-    dmenu
+    rofi
     efibootmgr
     feh
     firefox

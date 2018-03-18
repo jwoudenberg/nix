@@ -17,9 +17,15 @@
       fsType = "ext4";
     };
 
+  fileSystems."/var/lib/docker/plugins" =
+    { device = "/var/lib/docker/plugins";
+      fsType = "none";
+      options = [ "bind" ];
+    };
+
   fileSystems."/boot" =
-    { device = "systemd-1";
-      fsType = "autofs";
+    { device = "/dev/disk/by-uuid/D114-214D";
+      fsType = "vfat";
     };
 
   swapDevices = [ ];

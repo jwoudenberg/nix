@@ -39,6 +39,7 @@
     (callPackage ./pkgs/pass.nix { })
     cabal2nix
     calibre
+    docker
     dmenu
     efibootmgr
     feh
@@ -83,11 +84,14 @@
   # Enable pcscd for Yubikey support.
   services.pcscd.enable = true;
 
+  # Enable docker.
+  virtualisation.docker.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.jasper = {
     isNormalUser = true;
     home = "/home/jasper";
-    extraGroups = [ "wheel" "rslsync" ];
+    extraGroups = [ "wheel" "rslsync" "docker" ];
     uid = 1000;
   };
 

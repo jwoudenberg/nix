@@ -32,6 +32,10 @@
   time.timeZone = "Europe/Amsterdam";
 
   nixpkgs.config.allowUnfree = true;
+  nix.nixPath = [
+    "nixpkgs=http://nixos.org/channels/nixos-18.09/nixexprs.tar.xz"
+    "nixos-config=/etc/nixos/configuration.nix"
+  ];
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget

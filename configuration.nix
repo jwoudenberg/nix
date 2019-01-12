@@ -53,8 +53,8 @@
     firefox
     fish
     fzf
-    git
     handbrake
+    home-manager
     i3
     i3status
     keybase

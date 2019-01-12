@@ -11,6 +11,7 @@
     ];
 
   hardware.cpu.intel.updateMicrocode = true;
+  hardware.pulseaudio.enable = true;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -39,10 +40,10 @@
     (callPackage ./pkgs/gnupg.nix { })
     (callPackage ./pkgs/neovim.nix { })
     (callPackage ./pkgs/pass.nix { })
+    alacritty
     cabal2nix
     calibre
     docker
-    rofi
     efibootmgr
     feh
     firefox
@@ -52,12 +53,13 @@
     handbrake
     i3
     i3status
+    keybase
     nodePackages.node2nix
     pavucontrol
     python27Packages.neovim
-    python35Packages.neovim
+    # python35Packages.neovim
     ripgrep
-    sakura
+    rofi
     unzip
     vlc
     xclip
@@ -65,6 +67,8 @@
   ];
 
   programs.fish.enable = true;
+
+  fonts.fonts = [ pkgs.fira-code ];
 
   environment.variables.EDITOR = "nvim";
   environment.variables.FZF_DEFAULT_COMMAND = "rg --files";
@@ -98,6 +102,6 @@
   };
 
   # The NixOS release to be compatible with for stateful data such as databases.
-  system.stateVersion = "18.03";
+  system.stateVersion = "18.09";
   system.autoUpgrade.enable = true;
 }

@@ -21,4 +21,8 @@
     ./programs/i3.nix
     ./programs/rofi.nix
   ];
+
+  home.sessionVariables = {
+    EDITOR = "nvim";
+  };
 }

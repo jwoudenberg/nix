@@ -64,10 +64,6 @@
 
   fonts.fonts = [ pkgs.fira-code ];
 
-  environment.variables.EDITOR = "nvim";
-  environment.variables.FZF_DEFAULT_COMMAND = "rg --files";
-  # List services that you want to enable:
-
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.layout = "us";

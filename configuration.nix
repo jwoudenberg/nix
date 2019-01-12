@@ -29,7 +29,7 @@
   };
 
   # Set your time zone.
-  time.timeZone = "Europe/Amsterdam";
+  time.timeZone = "Europe/London";
 
   nixpkgs.config.allowUnfree = true;
   nix.nixPath = [

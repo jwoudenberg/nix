@@ -44,17 +44,13 @@
     (callPackage ./pkgs/gnupg.nix { })
     (callPackage ./pkgs/neovim.nix { })
     (callPackage ./pkgs/pass.nix { })
-    alacritty
     cabal2nix
     calibre
     docker
     efibootmgr
-    feh
     firefox
     handbrake
     home-manager
-    i3
-    i3status
     keybase
     nodePackages.node2nix
     pavucontrol
@@ -77,7 +73,6 @@
   services.xserver.layout = "us";
   services.xserver.xkbOptions = "ctrl:nocaps";
   services.xserver.videoDrivers = [ "nvidia" ];
-  services.xserver.windowManager.i3.enable = true;
 
   # Enable resilio sync
   services.resilio.enable = true;

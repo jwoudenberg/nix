@@ -51,8 +51,6 @@
     efibootmgr
     feh
     firefox
-    fish
-    fzf
     handbrake
     home-manager
     i3
@@ -62,15 +60,11 @@
     pavucontrol
     python27Packages.neovim
     # python35Packages.neovim
-    ripgrep
-    rofi
     unzip
     vlc
     xclip
     xsel
   ];
-
-  programs.fish.enable = true;
 
   fonts.fonts = [ pkgs.fira-code ];
 

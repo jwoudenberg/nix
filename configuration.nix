@@ -42,7 +42,6 @@
   environment.systemPackages =
     with pkgs; [
     (callPackage ./pkgs/gnupg.nix { })
-    (callPackage ./pkgs/neovim.nix { })
     (callPackage ./pkgs/pass.nix { })
     cabal2nix
     calibre
@@ -54,8 +53,6 @@
     keybase
     nodePackages.node2nix
     pavucontrol
-    python27Packages.neovim
-    # python35Packages.neovim
     unzip
     vlc
     xclip

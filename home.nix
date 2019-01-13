@@ -19,6 +19,7 @@
     ./programs/git.nix
     ./programs/home-manager.nix
     ./programs/i3.nix
+    ./programs/i3status/default.nix
     ./programs/rofi.nix
   ];
 

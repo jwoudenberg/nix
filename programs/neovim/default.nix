@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  customPlugins = pkgs.callPackage ./custom-plugins.nix {};
+  plugins = pkgs.vimPlugins // pkgs.callPackage ./custom-plugins.nix {};
 in
 {
   programs.neovim = {
@@ -13,31 +13,30 @@ in
     configure = {
       customRC = builtins.readFile ./vimrc;
 
-      vam.knownPlugins = pkgs.vimPlugins // customPlugins;
-      vam.pluginDictionaries = [
-        { name = "ale"; }
-        { name = "cursor-line-current-window"; }
-        { name = "dracula"; }
-        { name = "fzf-vim"; }
-        { name = "gitgutter"; }
-        { name = "lightline-vim"; }
-        { name = "neoformat"; }
-        { name = "polyglot"; }
-        { name = "quickfix-reflector"; }
-        { name = "todo"; }
-        { name = "unimpaired"; }
-        { name = "vim-abolish"; }
-        { name = "vim-commentary"; }
-        { name = "vim-eunuch"; }
-        { name = "vim-fugitive"; }
-        { name = "vim-highlightedyank"; }
-        { name = "vim-localvimrc"; }
-        { name = "vim-rhubarb"; }
-        { name = "vim-speeddating"; }
-        { name = "vim-surround"; }
-        { name = "vim-test"; }
-        { name = "vim-vinegar"; }
-        { name = "visual-star-search"; }
+      packages.plugins.start = with plugins; [
+        ale
+        cursor-line-current-window
+        dracula
+        fzf-vim
+        gitgutter
+        lightline-vim
+        neoformat
+        polyglot
+        quickfix-reflector
+        todo
+        unimpaired
+        vim-abolish
+        vim-commentary
+        vim-eunuch
+        vim-fugitive
+        vim-highlightedyank
+        vim-localvimrc
+        vim-rhubarb
+        vim-speeddating
+        vim-surround
+        vim-test
+        vim-vinegar
+        visual-star-search
       ];
     };
   };

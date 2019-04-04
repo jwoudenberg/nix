@@ -93,11 +93,6 @@ tnoremap <C-[> <C-\><C-n>
 tnoremap <C-O> <C-\><C-n>`N
 
 
-" Hightlight all incremental search results
-map /  <plug>(incsearch-forward)
-map ?  <plug>(incsearch-backward)
-map g/ <plug>(incsearch-stay)
-
 " git
 nnoremap <C-g> :MagitOnly<cr>
 nnoremap <C-h> :MerginalToggle<cr>

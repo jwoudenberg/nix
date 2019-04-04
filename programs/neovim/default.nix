@@ -17,6 +17,7 @@ in
         ale
         cursor-line-current-window
         dracula
+        fzfWrapper
         fzf-vim
         gitgutter
         lightline-vim

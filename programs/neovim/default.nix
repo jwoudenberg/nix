@@ -32,6 +32,7 @@ in
         vim-fugitive
         vim-highlightedyank
         vim-localvimrc
+        vim-repeat
         vim-rhubarb
         vim-speeddating
         vim-surround

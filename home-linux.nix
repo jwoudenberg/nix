@@ -3,6 +3,7 @@
 {
   home.packages = [
     pkgs.alacritty
+    pkgs.direnv
     pkgs.feh
     pkgs.fish
     pkgs.fzf
@@ -15,6 +16,7 @@
   ];
 
   imports = [
+    ./programs/direnv.nix
     ./programs/fish/default.nix
     ./programs/fzf.nix
     ./programs/git.nix

@@ -2,6 +2,7 @@
 
 {
   home.packages = [
+    pkgs.direnv
     pkgs.fish
     pkgs.fzf
     pkgs.git
@@ -10,6 +11,7 @@
   ];
 
   imports = [
+    ./programs/direnv.nix
     ./programs/fish/default.nix
     ./programs/fzf.nix
     ./programs/git.nix

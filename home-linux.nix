@@ -3,7 +3,6 @@
 {
   home.packages = [
     pkgs.alacritty
-    pkgs.gitAndTools.diff-so-fancy
     pkgs.feh
     pkgs.nix-prefetch-github
     pkgs.ripgrep

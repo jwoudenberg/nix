@@ -6,6 +6,8 @@
     pkgs.feh
     pkgs.nix-prefetch-github
     pkgs.ripgrep
+    (pkgs.callPackage ./pkgs/gnupg.nix { })
+    (pkgs.callPackage ./pkgs/pass.nix { })
   ];
 
   imports = [

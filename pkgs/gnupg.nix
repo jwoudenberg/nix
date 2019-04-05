@@ -2,14 +2,11 @@
 
 let
   pinentry = pkgs.pinentry.override {
-    ncurses = pkgs.ncurses;
+    gcr = null;
+    gtk2 = null;
+    qt = null;
   };
-  gnupg = pkgs.gnupg.overrideAttrs(oldAttrs: rec {
-    pinentryBinaryPath = "bin/pinentry-curses";
-    configureFlags = "--with-pinentry-pgm=${pinentry}/${pinentryBinaryPath}";
-  });
 in
-gnupg.override {
-  libusb = pkgs.libusb;
-  pinentry = pinentry;
-}
+pkgs.gnupg.overrideAttrs(oldAttrs: {
+  configureFlags = "--with-pinentry-pgm=${pinentry}/bin/pinentry-curses";
+})

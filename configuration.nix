@@ -41,8 +41,6 @@
   # $ nix-env -qaP | grep wget
   environment.systemPackages =
     with pkgs; [
-    (callPackage ./pkgs/gnupg.nix { })
-    (callPackage ./pkgs/pass.nix { })
     cabal2nix
     calibre
     docker

@@ -1,8 +1,9 @@
 { pkgs }:
-
-pkgs.pass.override {
-  xclip = pkgs.xclip;
-  xdotool = pkgs.xdotool;
-  dmenu = pkgs.dmenu;
+let
+  pass = pkgs.pass.overrideAttrs(oldAttrs: {
+    doInstallCheck = false;
+  });
+in
+pass.override {
   gnupg = (import ./gnupg.nix) { inherit pkgs; };
 }

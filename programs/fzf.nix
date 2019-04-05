@@ -2,6 +2,6 @@
 {
   programs.fzf = {
     enable = true;
-    defaultCommand = "rg --files";
+    defaultCommand = "${pkgs.ripgrep}/bin/rg --files";
   };
 }

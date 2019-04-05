@@ -1,11 +1,11 @@
 { pkgs, ... }:
-
 {
   home.packages = [
     pkgs.nix-prefetch-github
     pkgs.ripgrep
     (pkgs.callPackage ./pkgs/gnupg.nix { })
     (pkgs.callPackage ./pkgs/pass.nix { })
+    (pkgs.callPackage ./pkgs/lorri.nix { })
   ];
 
   imports = [

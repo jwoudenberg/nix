@@ -3,16 +3,10 @@
 {
   home.packages = [
     pkgs.alacritty
-    pkgs.direnv
+    pkgs.gitAndTools.diff-so-fancy
     pkgs.feh
-    pkgs.fish
-    pkgs.fzf
-    pkgs.git
-    pkgs.i3
-    pkgs.i3status
     pkgs.nix-prefetch-github
     pkgs.ripgrep
-    pkgs.rofi
   ];
 
   imports = [

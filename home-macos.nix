@@ -2,6 +2,7 @@
 
 {
   home.packages = [
+    pkgs.gitAndTools.diff-so-fancy
     pkgs.direnv
     pkgs.fish
     pkgs.fzf

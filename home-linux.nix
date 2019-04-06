@@ -3,7 +3,6 @@
 {
   home.packages = [
     pkgs.alacritty
-    pkgs.feh
     pkgs.gnupg
     pkgs.lorri
     pkgs.nix-prefetch-github

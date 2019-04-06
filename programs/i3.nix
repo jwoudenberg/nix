@@ -15,7 +15,7 @@
 
     startup = [
       {
-        command = "feh --bg-fill $HOME/docs/wallpaper.png";
+        command = "${pkgs.feh}/bin/feh --bg-fill $HOME/docs/wallpaper.png";
         always = true;
         notification = false;
       }

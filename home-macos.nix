@@ -5,6 +5,7 @@
     pkgs.lorri
     pkgs.nix-prefetch-github
     pkgs.pass
+    pkgs.random-colors
     pkgs.ripgrep
     pkgs.shellcheck
   ];

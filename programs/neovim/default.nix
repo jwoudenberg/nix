@@ -10,6 +10,8 @@ in
     withPython3 = true;
     withRuby = true;
 
+    vimAlias = true;
+
     configure = {
       customRC = builtins.readFile ./vimrc;
 

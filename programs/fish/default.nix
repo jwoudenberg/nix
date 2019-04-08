@@ -17,8 +17,6 @@ in
     shellInit = shellInit;
     shellAliases = {
       "xclip" = "xclip -selection keyboard";
-      "vimrc" = "eval $EDITOR ~/.config/nvim/init.vim";
-      "vim" = "nvim";
       "todo" = "eval $EDITOR ~/docs/todo.txt";
     };
   };

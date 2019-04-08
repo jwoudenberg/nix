@@ -10,6 +10,7 @@
     pkgs.random-colors
     pkgs.ripgrep
     pkgs.shellcheck
+    pkgs.vale
   ];
 
   imports = [
@@ -22,6 +23,7 @@
     ./programs/i3status/default.nix
     ./programs/rofi.nix
     ./programs/neovim/default.nix
+    ./programs/vale/default.nix
   ];
 
   home.sessionVariables = {

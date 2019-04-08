@@ -8,6 +8,7 @@
     pkgs.random-colors
     pkgs.ripgrep
     pkgs.shellcheck
+    pkgs.vale
   ];
 
   imports = [
@@ -17,6 +18,7 @@
     ./programs/git.nix
     ./programs/home-manager.nix
     ./programs/neovim/default.nix
+    ./programs/vale/default.nix
   ];
 
   home.sessionVariables = {

@@ -15,8 +15,8 @@ in
 
       packages.plugins.start = with plugins; [
         ale
+        base2-tone
         cursor-line-current-window
-        dracula
         fzfWrapper
         fzf-vim
         gitgutter

@@ -1,5 +1,15 @@
 { pkgs }:
 {
+  base2-tone = pkgs.vimUtils.buildVimPlugin {
+    name = "base2-tone";
+    src = pkgs.fetchFromGitHub {
+      owner = "atelierbram";
+      repo = "Base2Tone-vim";
+      rev = "37675fb1f3a0f6de991fee37a5db3d32011c2240";
+      sha256 = "0v9azp819ywj8aqvm0nzx5zv8lj1nl8swzbkgl1c1mibwayqyrn1";
+    };
+  };
+
   cursor-line-current-window = pkgs.vimUtils.buildVimPlugin {
     name = "cursor-line-current-window";
     src = pkgs.fetchFromGitHub {
@@ -7,16 +17,6 @@
       repo = "CursorLineCurrentWindow";
       rev = "b4eeea98b0d139772969fd243a8802a9883fd2a8";
       sha256 = "17pz4xv58rd89lxqbazlhwyz0vv273ajsx9d6ay5ibpp1wv4adzy";
-    };
-  };
-
-  dracula = pkgs.vimUtils.buildVimPlugin {
-    name = "dracula";
-    src = pkgs.fetchFromGitHub {
-      owner = "dracula";
-      repo = "vim";
-      rev = "a70e2c06b220c1a66244d113665baf0bdc9677ee";
-      sha256 = "01nph2lpvci1538c65a94jjnillaasiab85m4fq8nvqsfbn10d40";
     };
   };
 

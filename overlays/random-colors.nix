@@ -4,8 +4,8 @@ let
   src = super.fetchFromGitHub {
     owner = "jwoudenberg";
     repo = "random-colors";
-    rev = "4fc8c71cffa91a34a7330d8f368e46fabed6b939";
-    sha256 = "1diq954rshbp2mbjifhgifng993vbn3g7ndqc0nz653myzykc1mn";
+    rev = "f1ad08f7699a613dd73575b7cc4df5eecff10edf";
+    sha256 = "1rhcmn02l0j69b25qpnkqp3fn544a2phf3fpll1r4vx5q795ndi2";
   };
 in
 {

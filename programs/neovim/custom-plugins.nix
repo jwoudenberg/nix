@@ -1,5 +1,16 @@
 { pkgs }:
 {
+
+  flatwhite = pkgs.vimUtils.buildVimPlugin {
+    name = "flatwhite";
+    src = pkgs.fetchFromGitHub {
+    owner = "kamwitsta";
+    repo = "flatwhite-vim";
+    rev = "534c6f2f524c8444fd9d712ff995365e6d3f2f32";
+    sha256 = "04r0y7kq7lr98gks090w6i6wm3kv7vrjyd0kh836qf2fwkqajljr";
+    };
+  };
+
   base2-tone = pkgs.vimUtils.buildVimPlugin {
     name = "base2-tone";
     src = pkgs.fetchFromGitHub {

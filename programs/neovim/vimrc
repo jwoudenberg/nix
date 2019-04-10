@@ -135,13 +135,6 @@ command! -bang -nargs=* Rg
 command! -bang -nargs=? -complete=dir Files
   \ call fzf#vim#files(<q-args>, { 'options': '--bind ctrl-a:select-all,ctrl-d:deselect-all' }, <bang>0)
 
-" Colors
-colorscheme Base2Tone_SpaceDark
-let g:lightline = {
-  \ 'colorscheme': 'Base2Tone_Space'
-  \ }
-set background=light
-
 " Personal settings
 let g:neoterm_shell = 'fish'
 set colorcolumn=81
@@ -151,3 +144,10 @@ let g:neoformat_enabled_sql = []
 let g:neoformat_enabled_yaml = []
 let g:neoformat_enabled_json = []
 set spell spelllang=en_us
+
+" Colors
+let g:lightline = {
+  \ 'colorscheme': 'flatwhite'
+  \ }
+colorscheme flatwhite
+hi SpellBad cterm=bold gui=bold ctermbg=NONE guifg=NONE guibg=NONE guisp=NONE

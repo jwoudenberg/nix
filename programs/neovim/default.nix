@@ -19,6 +19,7 @@ in
         ale
         base2-tone
         cursor-line-current-window
+        flatwhite
         fzfWrapper
         fzf-vim
         gitgutter

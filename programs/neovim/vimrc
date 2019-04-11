@@ -146,4 +146,3 @@ let g:lightline = {
   \ 'colorscheme': 'flatwhite'
   \ }
 colorscheme flatwhite
-hi SpellBad cterm=bold gui=bold ctermbg=NONE guifg=NONE guibg=NONE guisp=NONE

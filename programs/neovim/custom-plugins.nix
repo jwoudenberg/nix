@@ -6,16 +6,6 @@
     src = ./flatwhite;
   };
 
-  base2-tone = pkgs.vimUtils.buildVimPlugin {
-    name = "base2-tone";
-    src = pkgs.fetchFromGitHub {
-      owner = "atelierbram";
-      repo = "Base2Tone-vim";
-      rev = "37675fb1f3a0f6de991fee37a5db3d32011c2240";
-      sha256 = "0v9azp819ywj8aqvm0nzx5zv8lj1nl8swzbkgl1c1mibwayqyrn1";
-    };
-  };
-
   cursor-line-current-window = pkgs.vimUtils.buildVimPlugin {
     name = "cursor-line-current-window";
     src = pkgs.fetchFromGitHub {

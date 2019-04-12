@@ -120,6 +120,8 @@ augroup customCommands
   nmap <silent> <localleader>l :TestLast<CR>
   nmap <silent> <localleader>g :TestVisit<CR>
   autocmd BufWritePre * Neoformat
+  " Remove trailing whitespace upon saveing.
+  autocmd BufWritePre * :%s/\s\+$//e 
 augroup END
 
 command! -bang -nargs=* Rg

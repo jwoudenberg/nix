@@ -33,7 +33,7 @@
 
   nixpkgs.config.allowUnfree = true;
   nix.nixPath = [
-    "nixpkgs=http://nixos.org/channels/nixos-18.09/nixexprs.tar.xz"
+    "nixpkgs=http://nixos.org/channels/nixos-19.03/nixexprs.tar.xz"
     "nixos-config=/etc/nixos/configuration.nix"
   ];
 
@@ -86,6 +86,6 @@
   };
 
   # The NixOS release to be compatible with for stateful data such as databases.
-  system.stateVersion = "18.09";
+  system.stateVersion = "19.03";
   system.autoUpgrade.enable = true;
 }

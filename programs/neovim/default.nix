@@ -36,6 +36,7 @@ in
         vim-localvimrc
         vim-repeat
         vim-rhubarb
+        vim-signature
         vim-speeddating
         vim-surround
         vim-test

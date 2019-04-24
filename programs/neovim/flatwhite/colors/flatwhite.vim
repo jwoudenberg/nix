@@ -4,7 +4,7 @@
 " author		   kamil.stachowski@gmail.com							                "
 " license		   GPLv3+												                          "
 
-" - preamble 
+" - preamble
 
 let colors_name = "flatwhite"
 set background=light
@@ -34,7 +34,7 @@ function! s:hi(group, fg, bg, gui)
 	execute l:res
 endfunction
 
-" - palette 
+" - palette
 
 let s:base1				      = "#605a52"
 let s:base2				      = "#93836c"
@@ -66,7 +66,7 @@ let s:diff_delete		    = "#ff1414"
 let s:diff_renamed		  = "#52aeff"
 let s:white				      = "#ffffff"
 
-" - definitions 
+" - definitions
 
 call s:hi ("Comment",		    s:base3,			      s:base7,		    "italic")
 call s:hi ("Constant",		  s:teal_text,		    s:teal_bg,		  "none")

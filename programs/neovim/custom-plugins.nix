@@ -6,16 +6,6 @@
     src = ./flatwhite;
   };
 
-  cursor-line-current-window = pkgs.vimUtils.buildVimPlugin {
-    name = "cursor-line-current-window";
-    src = pkgs.fetchFromGitHub {
-      owner = "vim-scripts";
-      repo = "CursorLineCurrentWindow";
-      rev = "b4eeea98b0d139772969fd243a8802a9883fd2a8";
-      sha256 = "17pz4xv58rd89lxqbazlhwyz0vv273ajsx9d6ay5ibpp1wv4adzy";
-    };
-  };
-
   quickfix-reflector = pkgs.vimUtils.buildVimPlugin {
     name = "quickfix-reflector";
     src = pkgs.fetchFromGitHub {

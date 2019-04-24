@@ -17,7 +17,6 @@ in
 
       packages.plugins.start = with plugins; [
         ale
-        cursor-line-current-window
         flatwhite
         fzfWrapper
         fzf-vim

@@ -121,7 +121,7 @@ augroup customCommands
   nmap <silent> <localleader>g :TestVisit<CR>
   autocmd BufWritePre * Neoformat
   " Remove trailing whitespace upon saveing.
-  autocmd BufWritePre * :%s/\s\+$//e 
+  autocmd BufWritePre * :%s/\s\+$//e
 augroup END
 
 command! -bang -nargs=* Rg
@@ -144,7 +144,4 @@ let g:neoformat_enabled_json = []
 set spell spelllang=en_us
 
 " Colors
-let g:lightline = {
-  \ 'colorscheme': 'flatwhite'
-  \ }
 colorscheme flatwhite

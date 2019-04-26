@@ -5,6 +5,7 @@
     pkgs.lorri
     pkgs.nix-prefetch-github
     pkgs.pass
+    pkgs.nodePackages.prettier
     pkgs.random-colors
     pkgs.ripgrep
     pkgs.shellcheck

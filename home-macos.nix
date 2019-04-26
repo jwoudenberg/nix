@@ -24,5 +24,6 @@
 
   home.sessionVariables = {
     EDITOR = "nvim";
+    SSL_CERT_FILE = "/usr/local/etc/openssl/cert.pem";
   };
 }

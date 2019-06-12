@@ -21,6 +21,7 @@ in
         fzfWrapper
         fzf-vim
         gitgutter
+        goyo
         lightline-vim
         neoformat
         polyglot

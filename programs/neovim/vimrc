@@ -11,6 +11,7 @@ set completeopt-=preview
 set cursorline
 set expandtab
 set hidden
+set lbr
 set mouse=a
 set noswapfile
 set number

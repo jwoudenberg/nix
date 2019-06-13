@@ -13,6 +13,7 @@ set expandtab
 set hidden
 set lbr
 set mouse=a
+set nomodeline
 set noswapfile
 set number
 set path=**

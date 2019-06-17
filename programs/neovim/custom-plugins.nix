@@ -6,6 +6,27 @@
     src = ./flatwhite;
   };
 
+  coc-nvim = pkgs.vimUtils.buildVimPlugin {
+    name = "coc-nvim";
+    src = pkgs.fetchFromGitHub {
+      owner = "neoclide";
+      repo = "coc.nvim";
+      rev = "9dffef7e0870706f59806606dbc16de2523afd6f";
+      sha256 = "1mkczzjdy6jqz5r21i92qdpgpppgifai7zwn83kbv65hvp2g25sl";
+    };
+    postInstall =
+      let
+        version = "0.0.71";
+        index_js = pkgs.fetchzip {
+          url = "https://github.com/neoclide/coc.nvim/releases/download/v${version}/coc.tar.gz";
+          sha256 = "1qnznpb39bbhimzbhsvpsdkg87dv3yxzs1vr3kaikl3kpakik9p8";
+        };
+      in ''
+        mkdir -p $out/share/vim-plugins/coc-nvim/build
+        cp ${index_js}/index.js $out/share/vim-plugins/coc-nvim/build/
+      '';
+  };
+
   quickfix-reflector = pkgs.vimUtils.buildVimPlugin {
     name = "quickfix-reflector";
     src = pkgs.fetchFromGitHub {

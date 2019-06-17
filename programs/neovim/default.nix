@@ -9,6 +9,7 @@ in
     withPython = true;
     withPython3 = true;
     withRuby = true;
+    withNodeJs = true;
 
     vimAlias = true;
 
@@ -17,6 +18,7 @@ in
 
       packages.plugins.start = with plugins; [
         ale
+        coc-nvim
         flatwhite
         fzfWrapper
         fzf-vim

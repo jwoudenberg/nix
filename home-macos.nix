@@ -9,6 +9,7 @@
     pkgs.random-colors
     pkgs.ripgrep
     pkgs.shellcheck
+    pkgs.todo
     pkgs.vale
   ];
 
@@ -24,6 +25,7 @@
 
   home.sessionVariables = {
     EDITOR = "nvim";
+    DEFAULT_TODO_TXT = "~/docs/todo.txt";
     SSL_CERT_FILE = "/usr/local/etc/openssl/cert.pem";
   };
 }

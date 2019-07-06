@@ -1,0 +1,27 @@
+name:                todo
+version:             0.1.0.0
+github:              "jwoudenberg/todo"
+license:             BSD3
+author:              "Jasper Woudenberg"
+maintainer:          "mail@jasperwoudenberg.com"
+copyright:           "2019 Jasper Woudenberg"
+
+extra-source-files:
+- README.md
+
+synopsis:            Open the closest todo.txt
+description:         Please see the README on GitHub at <https://github.com/jwoudenberg/todo#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- transformers
+- turtle
+
+executables:
+  todo:
+    main:                Main.hs
+    source-dirs:         src
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N

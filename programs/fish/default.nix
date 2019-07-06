@@ -17,7 +17,6 @@ in
     shellInit = shellInit;
     shellAliases = {
       "xclip" = "xclip -selection keyboard";
-      "todo" = "eval $EDITOR ~/docs/todo.txt";
     };
   };
 }

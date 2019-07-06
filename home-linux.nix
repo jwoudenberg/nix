@@ -10,6 +10,7 @@
     pkgs.random-colors
     pkgs.ripgrep
     pkgs.shellcheck
+    pkgs.todo
     pkgs.vale
   ];
 
@@ -28,5 +29,6 @@
 
   home.sessionVariables = {
     EDITOR = "nvim";
+    DEFAULT_TODO_TXT = "~/docs/todo.txt";
   };
 }

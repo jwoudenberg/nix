@@ -5,10 +5,10 @@ src =
   super.fetchFromGitHub {
     owner = "target";
     repo = "lorri";
-    rev = "a1e2a9c217432596be2036f4482d26a7c4ae85b6";
-    sha256 = "0amhx366d5hgm9q0yfi0kg7sjyldpchnaj1ks59q8423xawy2kcl";
+    rev = "d3e452ebc2b24ab86aec18af44c8217b2e469b2a";
+    sha256 = "07yf3gl9sixh7acxayq4q8h7z4q8a66412z0r49sr69yxb7b4q89";
   };
 in
 {
-  lorri = super.callPackage src { inherit src; };
+  lorri = import src {};
 }

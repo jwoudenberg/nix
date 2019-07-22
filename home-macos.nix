@@ -20,6 +20,7 @@
     ./programs/fzf.nix
     ./programs/git.nix
     ./programs/home-manager.nix
+    ./programs/lorri-daemon.nix
     ./programs/neovim/default.nix
     ./programs/vale/default.nix
   ];

@@ -18,7 +18,7 @@ in
 
       packages.plugins.start = with plugins; [
         ale
-        coc-nvim
+        tabnine
         flatwhite
         fzfWrapper
         fzf-vim

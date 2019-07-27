@@ -18,8 +18,7 @@ in
 
       packages.plugins.start = with plugins; [
         ale
-        tabnine
-        flatwhite
+        candid
         fzfWrapper
         fzf-vim
         gitgutter
@@ -29,6 +28,7 @@ in
         neoformat
         polyglot
         quickfix-reflector
+        tabnine
         todo
         unimpaired
         vim-abolish

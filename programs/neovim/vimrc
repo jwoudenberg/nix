@@ -8,7 +8,6 @@ set clipboard=unnamed
 set completefunc=emoji#complete
 set completeopt+=longest
 set completeopt-=preview
-set cursorline
 set expandtab
 set hidden
 set lbr
@@ -146,4 +145,6 @@ let g:neoformat_enabled_json = []
 set spell spelllang=en_us
 
 " Colors
-colorscheme flatwhite
+colorscheme candid
+set background=dark
+let g:lightline = { 'colorscheme': 'candid' }

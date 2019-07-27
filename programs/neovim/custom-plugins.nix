@@ -1,9 +1,14 @@
 { pkgs }:
 {
 
-  flatwhite = pkgs.vimUtils.buildVimPlugin {
-    name = "flatwhite";
-    src = ./flatwhite;
+  candid = pkgs.vimUtils.buildVimPlugin {
+    name = "candid";
+    src = pkgs.fetchFromGitHub {
+      owner = "flrnprz";
+      repo = "candid.vim";
+      rev = "5a614129ada95130898486e3b4e5932024193d1f";
+      sha256 = "0wl59nkh5jym6p70iip7kyrz27ndhnn2rbvvwlgsgwx905slns7s";
+    };
   };
 
   gv = pkgs.vimUtils.buildVimPlugin {

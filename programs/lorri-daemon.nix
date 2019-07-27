@@ -4,9 +4,9 @@ let
 in
 {
   home.file.lorri-daemon = {
-    target = target;
+    target = target + ".link";
     executable = false;
-    onChange = "launchctl unload -w ${target}; launchctl load -w ${target}; launchctl start lorri.daemon";
+    onChange = "rm -f ${target}; cp $(readlink ${target + ".link"}) ${target}; launchctl unload -w ${target}; launchctl load -w ${target}";
     text = ''
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -16,12 +16,12 @@ in
     <string>lorri.daemon</string>
     <key>KeepAlive</key>
     <true/>
-    <key>RunAtLoad</key>
-    <true/>
     <key>EnvironmentVariables</key>
     <dict>
         <key>PATH</key>
         <string>${pkgs.nix}/bin</string>
+        <key>NIX_PATH</key>
+        <string>nixpkgs=${pkgs.path}</string>
     </dict>
     <key>ProgramArguments</key>
     <array>
@@ -29,9 +29,9 @@ in
         <string>daemon</string>
     </array>
     <key>StandardErrorPath</key>
-    <string>/Users/jasper/Library/Logs/lorri.start.log</string>
+    <string>/Users/jasper/Library/Logs/lorri.err.log</string>
     <key>StandardOutPath</key>
-    <string>/Users/jasper/Library/Logs/lorri.start.log</string>
+    <string>/Users/jasper/Library/Logs/lorri.out.log</string>
 </dict>
 </plist>
 '';

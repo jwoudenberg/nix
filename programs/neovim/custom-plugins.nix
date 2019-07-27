@@ -6,6 +6,16 @@
     src = ./flatwhite;
   };
 
+  gv = pkgs.vimUtils.buildVimPlugin {
+    name = "gv.vim";
+    src = pkgs.fetchFromGitHub {
+      owner = "junegunn";
+      repo = "gv.vim";
+      rev = "023b315ea1fb92aba20c71ef54f806d2903cfc9e";
+      sha256 = "0m6ikvdnngiscdk3bdyr4hpja16dlvi5d8bq4z1iprvw40sqb2zq";
+    };
+  };
+
   tabnine = pkgs.vimUtils.buildVimPlugin {
     name = "tabnine";
     src = pkgs.fetchFromGitHub {

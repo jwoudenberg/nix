@@ -24,6 +24,7 @@ in
         fzf-vim
         gitgutter
         goyo
+        gv
         lightline-vim
         neoformat
         polyglot

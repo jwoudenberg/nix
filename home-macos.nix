@@ -1,3 +1,10 @@
+# Setup on MacOS:
+#
+# Create the following symbolic links:
+# ~/.config/nixpkgs/home.nix -> home-macos.nix
+# ~/.config/nixpkgs/overlays -> overlays
+#
+# Then follow home-manager setup instructions like normal.
 { pkgs, ... }:
 {
   home.packages = [

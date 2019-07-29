@@ -5,6 +5,7 @@
     pkgs.lorri
     pkgs.nix-prefetch-github
     pkgs.pass
+    pkgs.pdfrg
     pkgs.magic-wormhole
     pkgs.nodePackages.prettier
     pkgs.random-colors

@@ -7,6 +7,7 @@
     pkgs.lorri
     pkgs.nix-prefetch-github
     pkgs.pass
+    pkgs.pdfrg
     pkgs.random-colors
     pkgs.ripgrep
     pkgs.shellcheck

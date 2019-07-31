@@ -4,9 +4,9 @@
   candid = pkgs.vimUtils.buildVimPlugin {
     name = "candid";
     src = pkgs.fetchFromGitHub {
-      owner = "jwoudenberg";
+      owner = "flrnprz";
       repo = "candid.vim";
-      rev = "85ace1a7bac04a92c5cd6b9eac602b5d252b38a0";
+      rev = "a1b688256f474821d3ac8c905c02666e343484b5";
       sha256 = "0cvixd3q9cxka3jvsjywkjdw4cr3jhacxji4fc7yx0wxgbpbb3ps";
     };
   };

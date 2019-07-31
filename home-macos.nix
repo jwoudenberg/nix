@@ -8,6 +8,7 @@
 { pkgs, ... }:
 {
   home.packages = [
+    pkgs.cachix
     pkgs.gnupg
     pkgs.lorri
     pkgs.nix-prefetch-github

@@ -24,10 +24,10 @@
   tabnine = pkgs.vimUtils.buildVimPlugin {
     name = "tabnine";
     src = pkgs.fetchFromGitHub {
-        owner = "zxqfl";
-        repo = "tabnine-vim";
-        rev = "b9f7b52e8d42f868c31399f92783b721b5851363";
-        sha256 = "0qpi11r07yh72v1hb5ylw45inm08iml1ncfr3h4gbjmlnq8fx5iw";
+      owner = "zxqfl";
+      repo = "tabnine-vim";
+      rev = "f7be9252afe46fa480593bebdd154278b39baa06";
+      sha256 = "1jzpsrrdv53gji3sns1xaj3pq8f6bwssw5wwh9sccr9qdz6i6fwa";
     };
   };
 

@@ -18,6 +18,7 @@ in
     shellAliases = {
       "xclip" = "xclip -selection keyboard";
       "ls" = "${pkgs.exa}/bin/exa";
+      "cat" = "${pkgs.bat}/bin/bat";
     };
   };
 }

@@ -17,6 +17,7 @@ in
     shellInit = shellInit;
     shellAliases = {
       "xclip" = "xclip -selection keyboard";
+      "ls" = "${pkgs.exa}/bin/exa";
     };
   };
 }

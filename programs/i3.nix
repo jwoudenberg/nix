@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
 
   xsession.enable = true;
   xsession.windowManager.i3.enable = true;
@@ -13,22 +12,18 @@
       titlebar = false;
     };
 
-    startup = [
-      {
-        command = "${pkgs.feh}/bin/feh --bg-fill $HOME/docs/wallpaper.png";
-        always = true;
-        notification = false;
-      }
-    ];
+    startup = [{
+      command = "${pkgs.feh}/bin/feh --bg-fill $HOME/docs/wallpaper.png";
+      always = true;
+      notification = false;
+    }];
 
-    bars = [
-      {
-        position = "top";
-        statusCommand = "i3status";
-        mode = "hide";
-        fonts = [ "FiraCode 12" ];
-      }
-    ];
+    bars = [{
+      position = "top";
+      statusCommand = "i3status";
+      mode = "hide";
+      fonts = [ "FiraCode 12" ];
+    }];
 
     modifier = "Mod4";
 

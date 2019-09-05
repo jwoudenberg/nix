@@ -1,5 +1,4 @@
-{ pkgs }:
-{
+{ pkgs }: {
 
   candid = pkgs.vimUtils.buildVimPlugin {
     name = "candid";

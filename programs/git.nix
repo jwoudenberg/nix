@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   programs.git = {
     enable = true;
     userName = "Jasper Woudenberg";
@@ -7,13 +6,11 @@
 
     lfs.enable = true;
 
-    ignores = [
-      "todo.txt"
-      "lorri.log"
-    ];
+    ignores = [ "todo.txt" "lorri.log" ];
 
     extraConfig = {
-      core.pager = "${pkgs.gitAndTools.diff-so-fancy}/bin/diff-so-fancy | less --tabs=4 -RFX";
+      core.pager =
+        "${pkgs.gitAndTools.diff-so-fancy}/bin/diff-so-fancy | less --tabs=4 -RFX";
       branch.sort = "-committerdate";
     };
   };

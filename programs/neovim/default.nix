@@ -1,8 +1,6 @@
 { pkgs, ... }:
-let
-  allPlugins = pkgs.vimPlugins // pkgs.callPackage ./custom-plugins.nix {};
-in
-{
+let allPlugins = pkgs.vimPlugins // pkgs.callPackage ./custom-plugins.nix { };
+in {
   programs.neovim = {
     enable = true;
 

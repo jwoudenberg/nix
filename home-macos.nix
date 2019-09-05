@@ -15,6 +15,7 @@
     pkgs.pass
     pkgs.pdfrg
     pkgs.magic-wormhole
+    pkgs.nixfmt
     pkgs.nodePackages.prettier
     pkgs.random-colors
     pkgs.ripgrep

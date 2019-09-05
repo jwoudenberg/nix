@@ -5,10 +5,9 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
+  imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ];
+  ];
 
   hardware.cpu.intel.updateMicrocode = true;
   hardware.pulseaudio.enable = true;
@@ -32,15 +31,12 @@
   time.timeZone = "Europe/London";
 
   nixpkgs.config.allowUnfree = true;
-  nix.nixPath = [
-    "nixpkgs=http://nixos.org/channels/nixos-19.03/nixexprs.tar.xz"
-    "nixos-config=/etc/nixos/configuration.nix"
-  ];
+  nix.nixPath =
+    [ "nixpkgs=http://nixos.org/channels/nixos-19.03/nixexprs.tar.xz" "nixos-config=/etc/nixos/configuration.nix" ];
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
-  environment.systemPackages =
-    with pkgs; [
+  environment.systemPackages = with pkgs; [
     cabal2nix
     calibre
     docker

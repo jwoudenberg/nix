@@ -58,6 +58,13 @@ if !isdirectory(expand(&undodir))
    call mkdir(expand(&undodir), 'p')
 endif
 
+let g:neoformat_nix_nixfmt = {
+  \ 'exe': 'nixfmt',
+  \ 'args': ['--width', '120'],
+  \ 'stdin': 1,
+  \ }
+let g:neoformat_enabled_nix = ['nixfmt']
+
 " # Mappings
 let g:mapleader=' '
 let g:maplocalleader='\'

@@ -4,29 +4,28 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports =
-    [ <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
-    ];
+  imports = [ <nixpkgs/nixos/modules/installer/scan/not-detected.nix> ];
 
-  boot.initrd.availableKernelModules = [ "ehci_pci" "ahci" "usbhid" "sd_mod" "sr_mod" ];
+  boot.initrd.availableKernelModules =
+    [ "ehci_pci" "ahci" "usbhid" "sd_mod" "sr_mod" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/6d5e4f48-9ef2-4ae3-af97-ff8f0cac0db7";
-      fsType = "ext4";
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/6d5e4f48-9ef2-4ae3-af97-ff8f0cac0db7";
+    fsType = "ext4";
+  };
 
-  fileSystems."/var/lib/docker/plugins" =
-    { device = "/var/lib/docker/plugins";
-      fsType = "none";
-      options = [ "bind" ];
-    };
+  fileSystems."/var/lib/docker/plugins" = {
+    device = "/var/lib/docker/plugins";
+    fsType = "none";
+    options = [ "bind" ];
+  };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/D114-214D";
-      fsType = "vfat";
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/D114-214D";
+    fsType = "vfat";
+  };
 
   swapDevices = [ ];
 

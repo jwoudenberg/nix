@@ -5,8 +5,7 @@
 # ~/.config/nixpkgs/overlays -> overlays
 #
 # Then follow home-manager setup instructions like normal.
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   home.packages = [
     pkgs.cachix
     pkgs.gnupg

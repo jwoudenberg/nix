@@ -16,8 +16,8 @@ in {
     plugins = with allPlugins; [
       ale
       candid
-      fzfWrapper
       fzf-vim
+      fzfWrapper
       gitgutter
       goyo
       gv
@@ -27,9 +27,9 @@ in {
       quickfix-reflector-vim
       tabnine
       todo
-      vim-unimpaired
       vim-abolish
       vim-commentary
+      vim-dirvish
       vim-eunuch
       vim-fugitive
       vim-repeat
@@ -37,7 +37,7 @@ in {
       vim-signature
       vim-speeddating
       vim-surround
-      vim-vinegar
+      vim-unimpaired
       visual-star-search
     ];
   };

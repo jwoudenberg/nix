@@ -68,8 +68,8 @@ let g:mapleader=' '
 let g:maplocalleader='\'
 
 " Perform fuzzy file searching
-nnoremap <C-P> Files<cr>
-nnoremap <C-B> Buffers<CR>
+nnoremap <C-P> :Files<cr>
+nnoremap <C-B> :Buffers<CR>
 
 " # Autocmds
 augroup customCommands

@@ -5,7 +5,6 @@ syntax on
 :scriptencoding utf-8
 let &showbreak = '↪ '
 set clipboard=unnamed
-set completefunc=emoji#complete
 set completeopt+=longest
 set completeopt-=preview
 set expandtab
@@ -24,7 +23,6 @@ set splitbelow
 set splitright
 set tabstop=2
 set termguicolors
-set ttyfast " removed in nvim
 set undodir=~/tmp/vim/undo
 set undofile
 set wildignorecase
@@ -60,7 +58,7 @@ endif
 
 let g:neoformat_nix_nixfmt = {
   \ 'exe': 'nixfmt',
-  \ 'args': ['--width', '120'],
+  \ 'args': [],
   \ 'stdin': 1,
   \ }
 let g:neoformat_enabled_nix = ['nixfmt']
@@ -69,64 +67,14 @@ let g:neoformat_enabled_nix = ['nixfmt']
 let g:mapleader=' '
 let g:maplocalleader='\'
 
-" global search
-nnoremap <C-S> :Rg <C-R><C-W><CR>
-vnoremap <C-S> "yy<esc>:Rg <C-R>y<CR>
-
 " Perform fuzzy file searching
-nnoremap <C-P> mN:Files<cr>
-nnoremap <C-B> mN:Buffers<CR>
-nnoremap <C-/> mN:Lines<cr>
-nnoremap <leader><leader> mN:Commands<cr>
-nnoremap <leader>/ mN:History/<cr>
-nnoremap <leader>: mN:History:<cr>
-nnoremap <leader>? mN:Helptags<cr>
-
-" Autocompletion fzf
-imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-imap <c-x><c-l> <plug>(fzf-complete-line)
-
-" fzf yank
-nnoremap <leader>y :FZFNeoyank<cr>
-nnoremap <leader>Y :FZFNeoyank " P<cr>
-vnoremap <leader>y :FZFNeoyankSelection<cr>
-
-" Terminal mappings
-nnoremap <silent> <C-T> :<c-u>exec v:count.'Ttoggle'<cr>
-tnoremap <silent> <C-T> <C-\><C-n>:<c-u>exec v:count.'Ttoggle'<cr>
-tnoremap <C-[> <C-\><C-n>
-tnoremap <C-O> <C-\><C-n>`N
-
-
-" git
-nnoremap <C-g> :MagitOnly<cr>
-nnoremap <C-h> :MerginalToggle<cr>
-
-" nvim-completion-manager
-" use <TAB> to select the popup menu
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+nnoremap <C-P> Files<cr>
+nnoremap <C-B> Buffers<CR>
 
 " # Autocmds
 augroup customCommands
   autocmd!
-  " Elm key bindings
-  autocmd FileType elm nmap <buffer> <localleader>m :ElmMake<cr>
-  autocmd FileType elm nmap <buffer> <localleader>M :ElmMakeMain<cr>
-  autocmd FileType elm nmap <buffer> <localleader>t :ElmTest<cr>
-  autocmd FileType elm nmap <buffer> <localleader>r :ElmRepl<cr>
-  autocmd FileType elm nmap <buffer> <localleader>d :ElmShowDocs<cr>
-  autocmd FileType elm nmap <buffer> <localleader>D :ElmBrowseDocs<cr>
-  autocmd FileType elm set tabstop=4
-  autocmd FileType elm set shiftwidth=4
   nmap <silent> <localleader>e <Plug>(ale_detail)
-  nmap <silent> <localleader>s :TestNearest<CR>
-  nmap <silent> <localleader>t :TestFile<CR>
-  nmap <silent> <localleader>a :TestSuite<CR>
-  nmap <silent> <localleader>l :TestLast<CR>
-  nmap <silent> <localleader>g :TestVisit<CR>
   autocmd BufWritePre * Neoformat
   " Remove trailing whitespace upon saveing.
   autocmd BufWritePre * :%s/\s\+$//e

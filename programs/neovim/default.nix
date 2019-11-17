@@ -24,22 +24,19 @@ in {
       lightline-vim
       neoformat
       polyglot
-      quickfix-reflector
+      quickfix-reflector-vim
       tabnine
       todo
-      unimpaired
+      vim-unimpaired
       vim-abolish
       vim-commentary
       vim-eunuch
       vim-fugitive
-      vim-highlightedyank
-      vim-localvimrc
       vim-repeat
       vim-rhubarb
       vim-signature
       vim-speeddating
       vim-surround
-      vim-test
       vim-vinegar
       visual-star-search
     ];

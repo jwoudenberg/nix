@@ -38,7 +38,6 @@ in {
       vim-speeddating
       vim-surround
       vim-unimpaired
-      visual-star-search
     ];
   };
 }

@@ -39,14 +39,4 @@
       sha256 = "1b182w084zpp384b07k68kf58fs7crv0gfss57ay58v8s9ppkbqd";
     };
   };
-
-  visual-star-search = pkgs.vimUtils.buildVimPlugin {
-    name = "visual-star-search";
-    src = pkgs.fetchFromGitHub {
-      owner = "tpope";
-      repo = "vim-unimpaired";
-      rev = "b3f0f752d7563d24753b23698d073632267af3d1";
-      sha256 = "01s4fb4yj960qjdrakyw3v08jrsajqidx8335c1z9c9j1736svj8";
-    };
-  };
 }

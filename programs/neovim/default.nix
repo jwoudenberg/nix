@@ -32,6 +32,7 @@ in {
       vim-dirvish
       vim-eunuch
       vim-fugitive
+      vim-highlightedyank
       vim-repeat
       vim-rhubarb
       vim-signature

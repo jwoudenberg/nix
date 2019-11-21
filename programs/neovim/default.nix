@@ -29,7 +29,6 @@ in {
       todo
       vim-abolish
       vim-commentary
-      vim-dirvish
       vim-eunuch
       vim-fugitive
       vim-highlightedyank
@@ -39,6 +38,7 @@ in {
       vim-speeddating
       vim-surround
       vim-unimpaired
+      vim-vinegar
     ];
   };
 }

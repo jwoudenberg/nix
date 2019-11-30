@@ -39,6 +39,7 @@ in {
       vim-surround
       vim-unimpaired
       vim-vinegar
+      vim-visualstar
     ];
   };
 }

@@ -72,8 +72,7 @@ nnoremap <C-P> :Files<cr>
 nnoremap <C-B> :Buffers<CR>
 
 " Terminal mappings
-tnoremap <C-[> <C-\><C-n>
-tnoremap <C-O> <C-\><C-n>`N
+tnoremap <C-O> <C-\><C-n><C-O>
 
 " # Autocmds
 augroup customCommands
@@ -95,7 +94,10 @@ command! -bang -nargs=* Rg
   \   <bang>0)
 
 command! -bang -nargs=? -complete=dir Files
-  \ call fzf#vim#files(<q-args>, { 'options': '--bind ctrl-a:select-all,ctrl-d:deselect-all' }, <bang>0)
+  \ call fzf#run(fzf#wrap({"source": "rg --hidden --files \| similar-sort " . @%,
+                         \ "sink": "edit",
+                         \ "options": "--tiebreak index"
+                         \ }))<CR>
 
 " Personal settings
 let g:neoterm_shell = 'fish'

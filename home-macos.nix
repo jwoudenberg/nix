@@ -19,6 +19,7 @@
     pkgs.random-colors
     pkgs.ripgrep
     pkgs.shellcheck
+    pkgs.similar-sort
     pkgs.todo
     pkgs.vale
   ];

@@ -71,6 +71,10 @@ let g:maplocalleader='\'
 nnoremap <C-P> :Files<cr>
 nnoremap <C-B> :Buffers<CR>
 
+" Terminal mappings
+tnoremap <C-[> <C-\><C-n>
+tnoremap <C-O> <C-\><C-n>`N
+
 " # Autocmds
 augroup customCommands
   autocmd!

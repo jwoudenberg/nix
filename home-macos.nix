@@ -32,6 +32,7 @@
     ./programs/home-manager.nix
     ./programs/lorri-daemon.nix
     ./programs/neovim/default.nix
+    ./programs/readline.nix
     ./programs/vale/default.nix
   ];
 

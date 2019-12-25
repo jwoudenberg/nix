@@ -82,8 +82,6 @@ augroup customCommands
   autocmd!
   nmap <silent> <localleader>e <Plug>(ale_detail)
   autocmd BufWritePre * Neoformat
-  " Remove trailing whitespace upon saveing.
-  autocmd BufWritePre * :%s/\s\+$//e
 
   " don't show fzf statusline
   autocmd  FileType fzf set laststatus=0 noshowmode noruler
@@ -112,6 +110,8 @@ let g:neoformat_enabled_yaml = []
 let g:neoformat_enabled_json = []
 let g:neoformat_enabled_haskell = ['ormolu']
 let g:neoformat_enabled_nix = ['nixfmt']
+let g:neoformat_basic_format_retab = 1
+let g:neoformat_basic_format_trim = 1
 set spell spelllang=en_us
 
 " Colors

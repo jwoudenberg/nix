@@ -58,10 +58,13 @@ endif
 
 let g:neoformat_nix_nixfmt = {
   \ 'exe': 'nixfmt',
-  \ 'args': [],
   \ 'stdin': 1,
   \ }
-let g:neoformat_enabled_nix = ['nixfmt']
+
+let g:neoformat_haskell_ormolu = {
+  \ 'exe': 'ormolu',
+  \ 'stdin': 1,
+  \ }
 
 " # Mappings
 let g:mapleader=' '
@@ -107,6 +110,8 @@ let g:neoformat_enabled_rust = []
 let g:neoformat_enabled_sql = []
 let g:neoformat_enabled_yaml = []
 let g:neoformat_enabled_json = []
+let g:neoformat_enabled_haskell = ['ormolu']
+let g:neoformat_enabled_nix = ['nixfmt']
 set spell spelllang=en_us
 
 " Colors

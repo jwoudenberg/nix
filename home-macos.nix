@@ -42,4 +42,6 @@
     DEFAULT_TODO_TXT = "~/docs/todo.txt";
     SSL_CERT_FILE = "/usr/local/etc/openssl/cert.pem";
   };
+
+  nixpkgs.config.allowUnfree = true;
 }

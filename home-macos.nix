@@ -32,7 +32,8 @@
     ./programs/home-manager.nix
     ./programs/lorri-daemon.nix
     ./programs/neovim/default.nix
-    ./programs/readline.nix
+    # Not supported yet in current stable version of home-manager.
+    # ./programs/readline.nix
     ./programs/vale/default.nix
   ];
 

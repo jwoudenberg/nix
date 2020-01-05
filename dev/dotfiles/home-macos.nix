@@ -1,9 +1,3 @@
-# Setup on MacOS:
-#
-# Create the following symbolic links:
-# ~/.config/nixpkgs/home.nix -> home-macos.nix
-#
-# Then follow home-manager setup instructions like normal.
 { pkgs, ... }: {
   home.packages = [
     pkgs.cachix

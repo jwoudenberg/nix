@@ -1,1 +1,9 @@
+# Ignore files by default
 *
+
+# Un-ignore specific project directories
+!/dev/
+!/dev/home/
+!/dev/home/**
+!/dev/todo/
+!/dev/todo/**

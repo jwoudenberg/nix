@@ -1,1 +1,1 @@
-import ../../dev/dotfiles/home.nix
+import ../../dev/home/home.nix

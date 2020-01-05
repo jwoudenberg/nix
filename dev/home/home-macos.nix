@@ -47,6 +47,6 @@
     (import ./overlays/pinentry.nix)
     (import ./overlays/random-colors.nix)
     (import ./overlays/similar-sort.nix)
-    (import ./overlays/todo/default.nix)
+    (import ./overlays/todo.nix)
   ];
 }

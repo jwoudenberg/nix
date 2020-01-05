@@ -1,1 +1,1 @@
-import ../../dev/home/home.nix
+import ../../dev/nix/home.nix

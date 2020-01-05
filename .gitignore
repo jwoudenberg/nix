@@ -3,7 +3,7 @@
 
 # Un-ignore specific project directories
 !/dev/
-!/dev/home/
-!/dev/home/**
+!/dev/nix/
+!/dev/nix/**
 !/dev/todo/
 !/dev/todo/**

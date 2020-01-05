@@ -2,7 +2,6 @@
 #
 # Create the following symbolic links:
 # ~/.config/nixpkgs/home.nix -> home-macos.nix
-# ~/.config/nixpkgs/overlays -> overlays
 #
 # Then follow home-manager setup instructions like normal.
 { pkgs, ... }: {
@@ -44,4 +43,16 @@
   };
 
   nixpkgs.config.allowUnfree = true;
+
+  nixpkgs.overlays = [
+    (import ./overlays/gnupg.nix)
+    (import ./overlays/lorri.nix)
+    (import ./overlays/nixfmt.nix)
+    (import ./overlays/pass.nix)
+    (import ./overlays/pdfrg.nix)
+    (import ./overlays/pinentry.nix)
+    (import ./overlays/random-colors.nix)
+    (import ./overlays/similar-sort.nix)
+    (import ./overlays/todo/default.nix)
+  ];
 }

@@ -1,7 +1,11 @@
 self: super:
 
-{
+let
+  print-pdf-text = super.writeShellScriptBin "print-pdf-text" ''
+    exec ${super.xpdf}/bin/pdftotext "$1" -
+  '';
+in {
   pdfrg = super.writeShellScriptBin "pdfrg" ''
-    rg --pre-glob '*.pdf' --pre ${super.xpdf}/bin/pdftotext "$@"
+    exec rg --pre-glob '*.pdf' --pre "${print-pdf-text}/bin/print-pdf-text" "$@"
   '';
 }

@@ -22,6 +22,7 @@ in {
       goyo
       gv
       lightline-vim
+      limelight-vim
       neoformat
       polyglot
       quickfix-reflector-vim

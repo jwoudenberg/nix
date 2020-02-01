@@ -8,12 +8,17 @@ function fish_prompt --description 'Write out the prompt'
 
     set -l prompt_path
     if test "$PWD" = ~
-        set prompt_path (set_color -o (prompt_color)) "~"
+        set prompt_path "~"
     else
-        set prompt_path (set_color -o (prompt_color)) (basename "$PWD")
+        set prompt_path (basename "$PWD")
     end
 
-    echo -n -s \n $prompt_status $prompt_path (set_color normal) " "
+    set -l all_jobs (jobs -c | tail -n +1 | grep -v random-colors)
+    for job in $all_jobs
+        set prompt_jobs $prompt_jobs (basename $job) " "
+    end
+
+    echo -n -s \n $prompt_status (set_color -o (prompt_color)) $prompt_jobs $prompt_path (set_color normal) " "
 end
 
 function fish_right_prompt --description 'Write out the right prompt'

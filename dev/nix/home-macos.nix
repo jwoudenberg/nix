@@ -2,7 +2,6 @@
   home.packages = [
     pkgs.cachix
     pkgs.gnupg
-    pkgs.lorri
     pkgs.nix-prefetch-github
     pkgs.pass
     pkgs.pdfrg
@@ -23,7 +22,6 @@
     ./programs/fzf.nix
     ./programs/git.nix
     ./programs/home-manager.nix
-    ./programs/lorri-daemon.nix
     ./programs/neovim/default.nix
     # Not supported yet in current stable version of home-manager.
     # ./programs/readline.nix
@@ -40,7 +38,6 @@
 
   nixpkgs.overlays = [
     (import ./overlays/gnupg.nix)
-    (import ./overlays/lorri.nix)
     (import ./overlays/nixfmt.nix)
     (import ./overlays/pass.nix)
     (import ./overlays/pdfrg.nix)

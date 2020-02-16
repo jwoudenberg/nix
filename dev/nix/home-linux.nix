@@ -4,7 +4,6 @@
   home.packages = [
     pkgs.alacritty
     pkgs.gnupg
-    pkgs.lorri
     pkgs.nix-prefetch-github
     pkgs.pass
     pkgs.pdfrg

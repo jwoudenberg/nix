@@ -3,7 +3,6 @@
 {
   home.packages = [
     pkgs.cachix
-    pkgs.alacritty
     pkgs.gnupg
     pkgs.nix-prefetch-github
     pkgs.pass
@@ -20,6 +19,7 @@
   ];
 
   imports = [
+    ./programs/alacritty.nix
     ./programs/direnv.nix
     ./programs/fish/default.nix
     ./programs/fzf.nix

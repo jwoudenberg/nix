@@ -10,14 +10,12 @@ let
       ${builtins.readFile x}'') "" fish_init_files}
     source ${pkgs.fzf}/share/fish/vendor_functions.d/fzf_key_bindings.fish
     source ${pkgs.fzf}/share/fish/vendor_conf.d/load-fzf-key-bindings.fish
-    ${pkgs.random-colors}/bin/random-colors --hook=fish | source
   '';
 in {
   programs.fish = {
     enable = true;
     shellInit = shellInit;
     shellAliases = {
-      "xclip" = "xclip -selection keyboard";
       "ls" = "${pkgs.exa}/bin/exa";
       "cat" = "${pkgs.bat}/bin/bat";
     };

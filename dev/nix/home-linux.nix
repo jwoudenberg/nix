@@ -2,14 +2,19 @@
 
 {
   home.packages = [
+    pkgs.cachix
     pkgs.alacritty
     pkgs.gnupg
     pkgs.nix-prefetch-github
     pkgs.pass
     pkgs.pdfrg
+    pkgs.magic-wormhole
+    pkgs.nixfmt
+    pkgs.nodePackages.prettier
     pkgs.random-colors
     pkgs.ripgrep
     pkgs.shellcheck
+    pkgs.similar-sort
     pkgs.todo
     pkgs.vale
   ];
@@ -31,4 +36,15 @@
     EDITOR = "nvim";
     DEFAULT_TODO_TXT = "~/docs/todo.txt";
   };
+
+  nixpkgs.overlays = [
+    (import ./overlays/gnupg.nix)
+    (import ./overlays/nixfmt.nix)
+    (import ./overlays/pass.nix)
+    (import ./overlays/pdfrg.nix)
+    (import ./overlays/pinentry.nix)
+    (import ./overlays/random-colors.nix)
+    (import ./overlays/similar-sort.nix)
+    (import ./overlays/todo.nix)
+  ];
 }

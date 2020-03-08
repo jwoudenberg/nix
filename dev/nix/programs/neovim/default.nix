@@ -22,6 +22,7 @@ in {
       goyo
       gv
       lightline-vim
+      limelight-vim
       neoformat
       polyglot
       quickfix-reflector-vim
@@ -32,6 +33,7 @@ in {
       vim-eunuch
       vim-fugitive
       vim-highlightedyank
+      vim-illuminate
       vim-repeat
       vim-rhubarb
       vim-signature

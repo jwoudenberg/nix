@@ -20,6 +20,16 @@
     };
   };
 
+  vim-illuminate = pkgs.vimUtils.buildVimPlugin {
+    name = "vim-illuminate";
+    src = pkgs.fetchFromGitHub {
+      owner = "RRethy";
+      repo = "vim-illuminate";
+      rev = "80dafb9b0e7b9f4ce7c843d4104f455c8c5b1f42";
+      sha256 = "1yijaj1dqfmw4dsdmgj01sxizyraisxwjqh2hhbq93pdln4lm51f";
+    };
+  };
+
   tabnine = pkgs.vimUtils.buildVimPlugin {
     name = "tabnine";
     src = pkgs.fetchFromGitHub {

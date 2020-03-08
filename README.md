@@ -1,6 +1,6 @@
-# Dotfiles
+# ~ Home
 
-My 'dotfiles', which are nix configuration files.
+My home directory.
 
 - Configuration files for my [NixOS][] system.
 - Configuration files for [home-manager][] setup on Linux and MacOS.

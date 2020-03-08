@@ -6,7 +6,7 @@
 
     lfs.enable = true;
 
-    ignores = [ "todo.txt" "lorri.log" ];
+    ignores = [ "todo.txt" ];
 
     extraConfig = {
       core.pager =

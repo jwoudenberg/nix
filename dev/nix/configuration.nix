@@ -39,20 +39,10 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-    cabal2nix
-    calibre
     docker
     efibootmgr
-    firefox
-    handbrake
     home-manager
-    keybase
-    nodePackages.node2nix
     pavucontrol
-    unzip
-    vlc
-    xclip
-    xsel
   ];
 
   fonts.fonts = [ pkgs.fira-code ];

@@ -2,8 +2,11 @@
 
 {
   home.packages = [
+    pkgs.calibre
     pkgs.cachix
+    pkgs.firefox
     pkgs.gnupg
+    pkgs.keybase
     pkgs.nix-prefetch-github
     pkgs.pass
     pkgs.pdfrg

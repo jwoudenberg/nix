@@ -4,7 +4,7 @@
   home.packages = [
     pkgs.calibre
     pkgs.cachix
-    pkgs.firefox
+    pkgs.firefox-wayland
     pkgs.gnupg
     pkgs.keybase
     pkgs.nix-prefetch-github

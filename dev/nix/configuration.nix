@@ -52,11 +52,7 @@
 
   fonts.fonts = [ pkgs.fira-code ];
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.layout = "us";
-  services.xserver.xkbOptions = "ctrl:nocaps";
-  services.xserver.videoDrivers = [ "nvidia" ];
+  programs.sway.enable = true;
 
   # Enable resilio sync
   services.resilio.enable = true;
@@ -74,7 +70,7 @@
   users.extraUsers.jasper = {
     isNormalUser = true;
     home = "/home/jasper";
-    extraGroups = [ "wheel" "rslsync" "docker" ];
+    extraGroups = [ "wheel" "rslsync" "docker" "sway" ];
     uid = 1000;
   };
 

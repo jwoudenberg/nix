@@ -15,7 +15,7 @@ in {
 
     plugins = with allPlugins; [
       ale
-      candid
+      vim-dogrun
       fzf-vim
       fzfWrapper
       gitgutter

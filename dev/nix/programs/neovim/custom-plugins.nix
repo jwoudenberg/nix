@@ -1,12 +1,12 @@
 { pkgs }: {
 
-  candid = pkgs.vimUtils.buildVimPlugin {
-    name = "candid";
+  vim-dogrun = pkgs.vimUtils.buildVimPlugin {
+    name = "vim-dogrun";
     src = pkgs.fetchFromGitHub {
-      owner = "flrnprz";
-      repo = "candid.vim";
-      rev = "a1b688256f474821d3ac8c905c02666e343484b5";
-      sha256 = "0cvixd3q9cxka3jvsjywkjdw4cr3jhacxji4fc7yx0wxgbpbb3ps";
+      owner = "wadackel";
+      repo = "vim-dogrun";
+      rev = "155aff4b4ae432e3360027dee7a7aa5da2877676";
+      sha256 = "1hyr5f5f2qbiar4j5511r3sgwx2qji0y9qlfrj724bh1l5rdcaa9";
     };
   };
 

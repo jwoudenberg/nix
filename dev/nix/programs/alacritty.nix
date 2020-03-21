@@ -9,15 +9,9 @@
       };
 
       font = {
-        normal = {
-          family = "FiraCode";
-        };
-        bold = {
-          family = "FiraCode";
-        };
-        italic = {
-          family = "FiraCode";
-        };
+        normal = { family = "Fira Code"; };
+        bold = { family = "Fira Code"; };
+        italic = { family = "Fira Code"; };
         size = 13;
       };
     };

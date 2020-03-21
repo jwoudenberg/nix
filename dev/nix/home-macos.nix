@@ -17,6 +17,7 @@
   ];
 
   imports = [
+    ./programs/alacritty.nix
     ./programs/direnv.nix
     ./programs/fish/default.nix
     ./programs/fzf.nix

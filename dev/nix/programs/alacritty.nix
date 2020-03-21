@@ -2,6 +2,8 @@
   programs.alacritty = {
     enable = true;
 
+    shell.program = "${pkgs.fish}/bin/fish";
+
     settings = {
       window = {
         dynamic_padding = true;
@@ -12,7 +14,7 @@
         normal = { family = "Fira Code"; };
         bold = { family = "Fira Code"; };
         italic = { family = "Fira Code"; };
-        size = 13;
+        size = if builtins.currentSystem == "x86_64-darwin" then 16 else 13;
       };
     };
   };

@@ -2,9 +2,9 @@
   programs.alacritty = {
     enable = true;
 
-    shell.program = "${pkgs.fish}/bin/fish";
-
     settings = {
+      shell.program = "${pkgs.fish}/bin/fish";
+
       window = {
         dynamic_padding = true;
         startup_mode = "Maximized";

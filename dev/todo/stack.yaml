@@ -1,7 +1,0 @@
-resolver: lts-13.27
-
-packages:
-- .
-
-nix:
-  enable: true

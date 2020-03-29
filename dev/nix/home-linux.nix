@@ -28,8 +28,7 @@
     ./programs/fzf.nix
     ./programs/git.nix
     ./programs/home-manager.nix
-    ./programs/i3.nix
-    ./programs/i3status/default.nix
+    ./programs/sway.nix
     ./programs/rofi.nix
     ./programs/neovim/default.nix
     ./programs/vale/default.nix

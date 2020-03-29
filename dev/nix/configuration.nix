@@ -10,7 +10,10 @@
   ];
 
   hardware.cpu.intel.updateMicrocode = true;
+  hardware.opengl.driSupport32Bit = true;
+  hardware.opengl.extraPackages32 = [ pkgs.pkgsi686Linux.libva ];
   hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.support32Bit = true;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -44,6 +47,7 @@
     efibootmgr
     home-manager
     pavucontrol
+    steam
   ];
 
   fonts.fonts = [ pkgs.fira-code ];

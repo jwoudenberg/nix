@@ -6,6 +6,7 @@
     pkgs.cachix
     pkgs.firefox-wayland
     pkgs.gnupg
+    pkgs.i3status
     pkgs.keybase
     pkgs.nix-prefetch-github
     pkgs.pass
@@ -28,6 +29,7 @@
     ./programs/fzf.nix
     ./programs/git.nix
     ./programs/home-manager.nix
+    ./programs/i3status/default.nix
     ./programs/sway.nix
     ./programs/rofi.nix
     ./programs/neovim/default.nix

@@ -96,10 +96,9 @@
 
     }
 
-
-
-
-    exec_always --no-startup-id /nix/store/d70qawzkq1v5k6s59idgh0h9mr7sqwma-feh-3.2.1/bin/feh --bg-fill $HOME/docs/wallpaper.png
+    output DVI-D-1 {
+      background ~/docs/wallpaper.png fill
+    }
 
     input type:keyboard {
       xkb_layout us

@@ -105,5 +105,7 @@
       xkb_variant ,nodeadkeys
       xkb_options ctrl:nocaps
     }
+
+    workspace 1
   '';
 }

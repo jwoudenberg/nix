@@ -1,4 +1,10 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+let
+  takeScreenshot = pkgs.writeShellScriptBin "take-screenshot" ''
+    mkdir -p ~/tmp
+    grim -g "$(slurp)" ~/tmp/screenshot_$(date --iso=seconds).png
+  '';
+in {
   home.file.".bash_profile".text = ''
     sway
   '';
@@ -64,6 +70,7 @@
       Mod4+k focus up
       Mod4+l focus right
       Mod4+p exec rofi -show run
+      Mod4+s exec ${takeScreenshot}/bin/take-screenshot
     }
 
     mode "resize" bindsym {

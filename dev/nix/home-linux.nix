@@ -6,6 +6,7 @@
     pkgs.cachix
     pkgs.firefox-wayland
     pkgs.gnupg
+    pkgs.grim
     pkgs.i3status
     pkgs.keybase
     pkgs.nix-prefetch-github
@@ -18,6 +19,7 @@
     pkgs.ripgrep
     pkgs.shellcheck
     pkgs.similar-sort
+    pkgs.slurp
     pkgs.todo
     pkgs.vale
     pkgs.wl-clipboard

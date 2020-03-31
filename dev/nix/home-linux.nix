@@ -20,6 +20,7 @@
     pkgs.similar-sort
     pkgs.todo
     pkgs.vale
+    pkgs.wl-clipboard
   ];
 
   imports = [

@@ -4,6 +4,8 @@ let
     mkdir -p ~/tmp
     grim -g "$(slurp)" ~/tmp/screenshot_$(date --iso=seconds).png
   '';
+
+  wallpaper = ~/docs/wallpaper.png;
 in {
   home.file.".bash_profile".text = ''
     sway
@@ -105,7 +107,7 @@ in {
     }
 
     output DVI-D-1 {
-      background ~/docs/wallpaper.png fill
+      background ${wallpaper} fill
     }
 
     input type:keyboard {
@@ -113,5 +115,11 @@ in {
       xkb_variant ,nodeadkeys
       xkb_options ctrl:nocaps
     }
+  '';
+
+  home.file.".config/swaylock/config".text = ''
+    no-unlock-indicator
+    image=${wallpaper}
+    scaling=fill
   '';
 }

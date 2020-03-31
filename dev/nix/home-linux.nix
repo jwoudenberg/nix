@@ -12,6 +12,7 @@
     pkgs.nix-prefetch-github
     pkgs.pass
     pkgs.pdfrg
+    pkgs.imv
     pkgs.magic-wormhole
     pkgs.nixfmt
     pkgs.nodePackages.prettier

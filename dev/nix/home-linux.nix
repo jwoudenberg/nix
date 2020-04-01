@@ -2,20 +2,20 @@
 
 {
   home.packages = [
-    pkgs.calibre
     pkgs.cachix
+    pkgs.calibre
     pkgs.firefox-wayland
     pkgs.gnupg
     pkgs.grim
     pkgs.i3status
-    pkgs.keybase
-    pkgs.nix-prefetch-github
-    pkgs.pass
-    pkgs.pdfrg
     pkgs.imv
+    pkgs.keybase
     pkgs.magic-wormhole
     pkgs.nixfmt
+    pkgs.nix-prefetch-github
     pkgs.nodePackages.prettier
+    pkgs.pass
+    pkgs.pdfrg
     pkgs.random-colors
     pkgs.ripgrep
     pkgs.shellcheck
@@ -37,8 +37,8 @@
     ./programs/git.nix
     ./programs/home-manager.nix
     ./programs/i3status/default.nix
-    ./programs/sway.nix
     ./programs/neovim/default.nix
+    ./programs/sway.nix
     ./programs/vale/default.nix
   ];
 

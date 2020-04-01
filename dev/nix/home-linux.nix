@@ -25,6 +25,7 @@
     pkgs.vale
     pkgs.wl-clipboard
     pkgs.wofi
+    pkgs.xdg_utils
     pkgs.zoom-us
   ];
 

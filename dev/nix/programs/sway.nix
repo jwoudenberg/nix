@@ -71,7 +71,7 @@ in {
       Mod4+j focus down
       Mod4+k focus up
       Mod4+l focus right
-      Mod4+p exec rofi -show run
+      Mod4+p exec wofi --show drun
       Mod4+s exec ${takeScreenshot}/bin/take-screenshot
     }
 

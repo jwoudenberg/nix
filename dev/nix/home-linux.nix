@@ -24,6 +24,7 @@
     pkgs.todo
     pkgs.vale
     pkgs.wl-clipboard
+    pkgs.wofi
     pkgs.zoom-us
   ];
 
@@ -36,7 +37,6 @@
     ./programs/home-manager.nix
     ./programs/i3status/default.nix
     ./programs/sway.nix
-    ./programs/rofi.nix
     ./programs/neovim/default.nix
     ./programs/vale/default.nix
   ];
@@ -55,5 +55,6 @@
     (import ./overlays/random-colors.nix)
     (import ./overlays/similar-sort.nix)
     (import ./overlays/todo.nix)
+    (import ./overlays/wofi.nix)
   ];
 }

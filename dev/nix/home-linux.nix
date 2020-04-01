@@ -24,6 +24,7 @@
     pkgs.todo
     pkgs.vale
     pkgs.wl-clipboard
+    pkgs.zoom-us
   ];
 
   imports = [

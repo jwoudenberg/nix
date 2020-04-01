@@ -6,7 +6,8 @@
 
 {
   imports = [ # Include the results of the hardware scan.
-    ./hardware-configuration.nix
+    ./modules/desktop-hardware.nix
+    ./modules/mullvad-vpn.nix
   ];
 
   hardware.cpu.intel.updateMicrocode = true;
@@ -47,6 +48,7 @@
     efibootmgr
     home-manager
     pavucontrol
+    mullvad-vpn
     steam
   ];
 
@@ -54,17 +56,14 @@
 
   programs.sway.enable = true;
 
-  # Enable resilio sync
   services.resilio.enable = true;
   services.resilio.deviceName = "jasper-desktop-nixos";
   services.resilio.enableWebUI = true;
   services.resilio.httpListenPort = 8888;
 
-  # Enable pcscd for Yubikey support.
-  services.pcscd.enable = true;
-
-  # Enable docker.
+  services.pcscd.enable = true; # For Yubikey support
   virtualisation.docker.enable = true;
+  services.mullvad-vpn.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.jasper = {

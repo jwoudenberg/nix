@@ -21,5 +21,3 @@ set -x GPG_TTY (tty)
 if not set -q TMPDIR
     set -gx TMPDIR /tmp
 end
-
-random-colors --hook=fish | source

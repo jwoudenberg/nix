@@ -7,6 +7,7 @@
     pkgs.firefox-wayland
     pkgs.gnupg
     pkgs.grim
+    pkgs.htop
     pkgs.i3status
     pkgs.imv
     pkgs.keybase

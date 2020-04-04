@@ -40,6 +40,12 @@
   # $ sysctl -n hw.ncpu
   nix.maxJobs = 8;
   nix.buildCores = 8;
+  nix.nixPath = [{
+    darwin = "https://github.com/LnL7/nix-darwin/archive/master.tar.gz";
+    home-manager =
+      "https://github.com/rycee/home-manager/archive/release-19.09.tar.gz";
+    nixpkgs = "https://nixos.org/channels/nixpkgs-19.09-darwin/nixexprs.tar.xz";
+  }];
 
   imports = [ <home-manager/nix-darwin> ];
 

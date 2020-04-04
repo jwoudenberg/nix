@@ -34,7 +34,6 @@
     SSL_CERT_FILE = "/usr/local/etc/openssl/cert.pem";
   };
 
-  nixpkgs.config.allowUnfree = true;
-
+  nixpkgs.config = import ./nixpkgs-config.nix;
   nixpkgs.overlays = import ./overlays.nix;
 }

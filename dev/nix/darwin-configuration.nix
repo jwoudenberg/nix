@@ -53,4 +53,7 @@ in {
   users.users.jasper = { home = "/Users/jasper"; };
 
   home-manager.users.jasper = import ./home-macos.nix;
+
+  nixpkgs.config = import ./nixpkgs-config.nix;
+  nixpkgs.overlays = import ./overlays.nix;
 }

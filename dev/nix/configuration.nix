@@ -30,6 +30,8 @@ in {
   time.timeZone = "Europe/London";
 
   nixpkgs.config = import ./nixpkgs-config.nix;
+  nixpkgs.overlays = import ./overlays.nix;
+
   nix.nixPath = [
     "nixpkgs=http://nixos.org/channels/nixos-${release}/nixexprs.tar.xz"
     "home-manager=https://github.com/rycee/home-manager/archive/release-${release}.tar.gz"

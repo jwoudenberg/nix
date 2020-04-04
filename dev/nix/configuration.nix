@@ -8,6 +8,7 @@
   imports = [ # Include the results of the hardware scan.
     ./modules/desktop-hardware.nix
     ./modules/mullvad-vpn.nix
+    <home-manager/nixos>
   ];
 
   hardware.cpu.intel.updateMicrocode = true;
@@ -38,6 +39,7 @@
   nixpkgs.config.allowUnfree = true;
   nix.nixPath = [
     "nixpkgs=http://nixos.org/channels/nixos-19.09/nixexprs.tar.xz"
+    "home-manager=https://github.com/rycee/home-manager/archive/release-19.09.tar.gz"
     "nixos-config=/etc/nixos/configuration.nix"
   ];
 

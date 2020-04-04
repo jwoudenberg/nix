@@ -75,6 +75,9 @@
     uid = 1000;
   };
 
+  home-manager.useUserPackages = true;
+  home-manager.users.jasper = (import ./home-linux.nix);
+
   # The NixOS release to be compatible with for stateful data such as databases.
   system.stateVersion = "19.09";
   system.autoUpgrade.enable = true;

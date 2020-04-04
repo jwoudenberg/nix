@@ -48,6 +48,8 @@
     DEFAULT_TODO_TXT = "~/docs/todo.txt";
   };
 
+  home.stateVersion = "19.09";
+
   nixpkgs.overlays = [
     (import ./overlays/gnupg.nix)
     (import ./overlays/nixfmt.nix)

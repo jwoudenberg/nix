@@ -22,7 +22,6 @@
     ./programs/fish/default.nix
     ./programs/fzf.nix
     ./programs/git.nix
-    ./programs/home-manager.nix
     ./programs/neovim/default.nix
     # Not supported yet in current stable version of home-manager.
     # ./programs/readline.nix

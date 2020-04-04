@@ -1,6 +1,7 @@
 { pkgs, ... }:
 
-{
+let release = "19.09";
+in {
   imports = [
     ./modules/desktop-hardware.nix
     ./modules/mullvad-vpn.nix
@@ -30,8 +31,8 @@
 
   nixpkgs.config = import ./nixpkgs-config.nix;
   nix.nixPath = [
-    "nixpkgs=http://nixos.org/channels/nixos-19.09/nixexprs.tar.xz"
-    "home-manager=https://github.com/rycee/home-manager/archive/release-19.09.tar.gz"
+    "nixpkgs=http://nixos.org/channels/nixos-${release}/nixexprs.tar.xz"
+    "home-manager=https://github.com/rycee/home-manager/archive/release-${release}.tar.gz"
     "nixos-config=/etc/nixos/configuration.nix"
   ];
 
@@ -66,6 +67,6 @@
   home-manager.useUserPackages = true;
   home-manager.users.jasper = (import ./home-linux.nix);
 
-  system.stateVersion = "19.09";
+  system.stateVersion = release;
   system.autoUpgrade.enable = true;
 }

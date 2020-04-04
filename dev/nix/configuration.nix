@@ -1,11 +1,7 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { pkgs, ... }:
 
 {
-  imports = [ # Include the results of the hardware scan.
+  imports = [
     ./modules/desktop-hardware.nix
     ./modules/mullvad-vpn.nix
     <home-manager/nixos>
@@ -17,23 +13,19 @@
   hardware.pulseaudio.enable = true;
   hardware.pulseaudio.support32Bit = true;
 
-  # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.timeout = 10;
 
-  networking.hostName = "jasper-desktop-nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.hostName = "jasper-desktop-nixos";
   networking.networkmanager.enable = true;
 
-  # Select internationalisation properties.
   i18n = {
     consoleFont = "FiraCode 16";
     consoleKeyMap = "us";
     defaultLocale = "en_US.UTF-8";
   };
 
-  # Set your time zone.
   time.timeZone = "Europe/London";
 
   nixpkgs.config = import ./nixpkgs-config.nix;
@@ -43,8 +35,6 @@
     "nixos-config=/etc/nixos/configuration.nix"
   ];
 
-  # List packages installed in system profile. To search by name, run:
-  # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
     docker
     efibootmgr
@@ -66,7 +56,6 @@
   virtualisation.docker.enable = true;
   services.mullvad-vpn.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.jasper = {
     isNormalUser = true;
     home = "/home/jasper";
@@ -77,7 +66,6 @@
   home-manager.useUserPackages = true;
   home-manager.users.jasper = (import ./home-linux.nix);
 
-  # The NixOS release to be compatible with for stateful data such as databases.
   system.stateVersion = "19.09";
   system.autoUpgrade.enable = true;
 }

@@ -3,9 +3,7 @@
 {
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
-  environment.systemPackages =
-    [ pkgs.cowsay
-    ];
+  environment.systemPackages = [ ];
 
   # Use a custom configuration.nix location.
   # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/darwin/configuration.nix
@@ -32,9 +30,7 @@
 
   imports = [ <home-manager/nix-darwin> ];
 
-  users.users.jasper = {
-    home = "/Users/jasper";
-  };
+  users.users.jasper = { home = "/Users/jasper"; };
 
   home-manager.users.jasper = import ./home-macos.nix;
 }

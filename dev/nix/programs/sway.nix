@@ -5,7 +5,7 @@ let
     grim -g "$(slurp)" ~/tmp/screenshot_$(date --iso=seconds).png
   '';
 
-  wallpaper = ~/docs/wallpaper.png;
+  wallpaper = ../wallpaper/wallpaper.png;
 in {
   home.file.".bash_profile".text = ''
     sway

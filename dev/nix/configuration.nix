@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [ # Include the results of the hardware scan.
@@ -36,7 +36,7 @@
   # Set your time zone.
   time.timeZone = "Europe/London";
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = import ./nixpkgs-config.nix;
   nix.nixPath = [
     "nixpkgs=http://nixos.org/channels/nixos-19.09/nixexprs.tar.xz"
     "home-manager=https://github.com/rycee/home-manager/archive/release-19.09.tar.gz"

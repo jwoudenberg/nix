@@ -50,6 +50,8 @@
 
   home.stateVersion = "19.09";
 
+  nixpkgs.config = import ./nixpkgs-config.nix;
+
   nixpkgs.overlays = [
     (import ./overlays/gnupg.nix)
     (import ./overlays/nixfmt.nix)

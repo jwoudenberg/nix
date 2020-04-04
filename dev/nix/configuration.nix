@@ -48,7 +48,6 @@
   environment.systemPackages = with pkgs; [
     docker
     efibootmgr
-    home-manager
     pavucontrol
     mullvad-vpn
     steam

@@ -36,7 +36,6 @@
     ./programs/fish/default.nix
     ./programs/fzf.nix
     ./programs/git.nix
-    ./programs/home-manager.nix
     ./programs/i3status/default.nix
     ./programs/neovim/default.nix
     ./programs/sway.nix

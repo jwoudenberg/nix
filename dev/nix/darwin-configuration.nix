@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
-
-{
+let release = "19.09";
+in {
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = [ ];
@@ -43,8 +43,9 @@
   nix.nixPath = [{
     darwin = "https://github.com/LnL7/nix-darwin/archive/master.tar.gz";
     home-manager =
-      "https://github.com/rycee/home-manager/archive/release-19.09.tar.gz";
-    nixpkgs = "https://nixos.org/channels/nixpkgs-19.09-darwin/nixexprs.tar.xz";
+      "https://github.com/rycee/home-manager/archive/release-${release}.tar.gz";
+    nixpkgs =
+      "https://nixos.org/channels/nixpkgs-${release}-darwin/nixexprs.tar.xz";
   }];
 
   imports = [ <home-manager/nix-darwin> ];

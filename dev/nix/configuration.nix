@@ -39,7 +39,6 @@ in {
   environment.systemPackages = with pkgs; [
     docker
     efibootmgr
-    pavucontrol
     mullvad-vpn
     steam
   ];

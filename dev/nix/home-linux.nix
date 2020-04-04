@@ -16,6 +16,7 @@
     pkgs.nix-prefetch-github
     pkgs.nodePackages.prettier
     pkgs.pass
+    pkgs.pavucontrol
     pkgs.pdfrg
     pkgs.random-colors
     pkgs.ripgrep

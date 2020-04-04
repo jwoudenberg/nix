@@ -68,7 +68,7 @@
   services.mullvad-vpn.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.extraUsers.jasper = {
+  users.users.jasper = {
     isNormalUser = true;
     home = "/home/jasper";
     extraGroups = [ "wheel" "rslsync" "docker" "sway" ];

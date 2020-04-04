@@ -1,5 +1,7 @@
 self: super:
-
-{
-  pass = super.pass.overrideAttrs (oldAttrs: { doInstallCheck = false; });
-}
+let
+  gnupg = super.gnupg.overrideAttrs (oldAttrs: {
+    configureFlags =
+      "--with-pinentry-pgm=${super.pinentry}/bin/pinentry-curses";
+  });
+in { pass = super.pass.override { gnupg = gnupg; }; }

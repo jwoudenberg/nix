@@ -2,8 +2,7 @@
 let
   fishFunctions = builtins.attrNames (builtins.readDir ./functions);
   fishFunctionFiles = builtins.map (fn: ./functions + "/${fn}") fishFunctions;
-  macosInitFiles = if pkgs.stdenv.isDarwin then [ ./macos.fish ] else [ ];
-  fish_init_files = [ ./config.fish ] ++ macosInitFiles ++ fishFunctionFiles;
+  fish_init_files = [ ./config.fish ] ++ fishFunctionFiles;
   shellInit = ''
     ${builtins.foldl' (xs: x: ''
       ${xs}

@@ -4,7 +4,6 @@
   home.packages = [
     pkgs.cachix
     pkgs.calibre
-    pkgs.firefox-wayland
     pkgs.gnupg
     pkgs.grim
     pkgs.htop
@@ -34,6 +33,7 @@
   imports = [
     ./programs/alacritty.nix
     ./programs/direnv.nix
+    ./programs/firefox.nix
     ./programs/fish/default.nix
     ./programs/fzf.nix
     ./programs/git.nix

@@ -17,6 +17,7 @@
     pkgs.pass
     pkgs.pavucontrol
     pkgs.pdfrg
+    pkgs.qutebrowser
     pkgs.random-colors
     pkgs.ripgrep
     pkgs.shellcheck
@@ -39,6 +40,7 @@
     ../programs/git.nix
     ../programs/i3status/default.nix
     ../programs/neovim/default.nix
+    ../programs/qutebrowser/default.nix
     ../programs/sway.nix
     ../programs/vale/default.nix
   ];

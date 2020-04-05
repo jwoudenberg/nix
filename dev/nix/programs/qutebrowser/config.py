@@ -70,3 +70,6 @@ config.bind('<Ctrl-I>', 'forward')
 config.bind('gt', 'tab-next')
 config.bind('<Ctrl-P>', 'completion-item-focus prev', mode='command')
 config.bind('<Ctrl-N>', 'completion-item-focus next', mode='command')
+
+# Qutebrowser isn't compatible with Nouveau graphics.
+c.qt.force_software_rendering = 'chromium'

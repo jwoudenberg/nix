@@ -2,14 +2,24 @@
 let
   fishFunctions = builtins.attrNames (builtins.readDir ./functions);
   fishFunctionFiles = builtins.map (fn: ./functions + "/${fn}") fishFunctions;
-  fish_init_files = [ ./config.fish ] ++ fishFunctionFiles;
   shellInit = ''
-    ${builtins.foldl' (xs: x: ''
-      ${xs}
-      ${builtins.readFile x}'') "" fish_init_files}
+    # Set vi keybindings.
+    fish_vi_key_bindings
+
+    # No greeting message.
+    set fish_greeting
+
+    function fish_mode_prompt
+        # overwrite the default fish_mode_prompt to show nothing.
+    end
+
     source ${pkgs.fzf}/share/fish/vendor_functions.d/fzf_key_bindings.fish
     source ${pkgs.fzf}/share/fish/vendor_conf.d/load-fzf-key-bindings.fish
     random-colors --hook=fish | source
+
+    ${builtins.foldl' (xs: x: ''
+      ${xs}
+      ${builtins.readFile x}'') "" fishFunctionFiles}
   '';
 in {
   programs.fish = {

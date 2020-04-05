@@ -1,6 +1,6 @@
 { pkgs, ... }:
 
-let release = "19.09";
+let sources = import ./nix/sources.nix;
 in {
   imports = [
     ./modules/desktop-hardware.nix
@@ -33,8 +33,8 @@ in {
   nixpkgs.overlays = import ./overlays.nix;
 
   nix.nixPath = [
-    "nixpkgs=http://nixos.org/channels/nixos-${release}/nixexprs.tar.xz"
-    "home-manager=https://github.com/rycee/home-manager/archive/release-${release}.tar.gz"
+    "nixpkgs=${sources.nixpkgs}"
+    "home-manager=${sources.home-manager}"
     "nixos-config=/etc/nixos/configuration.nix"
   ];
 
@@ -68,6 +68,6 @@ in {
   home-manager.useUserPackages = true;
   home-manager.users.jasper = (import ./linux/home.nix);
 
-  system.stateVersion = release;
+  system.stateVersion = "19.09";
   system.autoUpgrade.enable = true;
 }

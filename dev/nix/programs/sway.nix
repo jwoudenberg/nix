@@ -14,9 +14,9 @@ in {
   home.file.".config/sway/config".text = ''
     font pango:FiraCode 12
     floating_modifier Mod4
-    default_border pixel 1
+    default_border pixel 2
     default_floating_border normal 2
-    hide_edge_borders both
+    hide_edge_borders none
     focus_wrapping no
     focus_follows_mouse yes
     focus_on_window_activation smart

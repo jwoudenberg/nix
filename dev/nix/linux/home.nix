@@ -48,6 +48,7 @@
   home.sessionVariables = {
     EDITOR = "nvim";
     DEFAULT_TODO_TXT = "~/docs/todo.txt";
+    MANPAGER = "nvim -c 'set ft=man' -";
   };
 
   home.stateVersion = "19.09";

@@ -23,6 +23,7 @@
     ./programs/fzf.nix
     ./programs/git.nix
     ./programs/neovim/default.nix
+    ./programs/qutebrowser/default.nix
     # Not supported yet in current stable version of home-manager.
     # ./programs/readline.nix
     ./programs/vale/default.nix

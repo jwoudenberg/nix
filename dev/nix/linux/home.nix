@@ -11,6 +11,7 @@
     pkgs.imv
     pkgs.keybase
     pkgs.magic-wormhole
+    pkgs.haskellPackages.niv
     pkgs.nixfmt
     pkgs.nix-prefetch-github
     pkgs.nodePackages.prettier

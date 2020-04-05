@@ -7,7 +7,7 @@ in {
 
   # Use a custom configuration.nix location.
   # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/darwin/configuration.nix
-  environment.darwinConfig = "$HOME/dev/nix/darwin-configuration.nix";
+  environment.darwinConfig = "$HOME/dev/nix/darwin/configuration.nix";
 
   # Auto upgrade nix package and the daemon service.
   # services.nix-daemon.enable = true;
@@ -52,8 +52,8 @@ in {
 
   users.users.jasper = { home = "/Users/jasper"; };
 
-  home-manager.users.jasper = import ./home-macos.nix;
+  home-manager.users.jasper = import ./home.nix;
 
-  nixpkgs.config = import ./nixpkgs-config.nix;
-  nixpkgs.overlays = import ./overlays.nix;
+  nixpkgs.config = import ../nixpkgs-config.nix;
+  nixpkgs.overlays = import ../overlays.nix;
 }

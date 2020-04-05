@@ -17,16 +17,16 @@
   ];
 
   imports = [
-    ./programs/alacritty.nix
-    ./programs/direnv.nix
-    ./programs/fish/default.nix
-    ./programs/fzf.nix
-    ./programs/git.nix
-    ./programs/neovim/default.nix
-    ./programs/qutebrowser/default.nix
+    ../programs/alacritty.nix
+    ../programs/direnv.nix
+    ../programs/fish/default.nix
+    ../programs/fzf.nix
+    ../programs/git.nix
+    ../programs/neovim/default.nix
+    ../programs/qutebrowser/default.nix
     # Not supported yet in current stable version of home-manager.
     # ./programs/readline.nix
-    ./programs/vale/default.nix
+    ../programs/vale/default.nix
   ];
 
   home.sessionVariables = {
@@ -35,6 +35,6 @@
     SSL_CERT_FILE = "/usr/local/etc/openssl/cert.pem";
   };
 
-  nixpkgs.config = import ./nixpkgs-config.nix;
-  nixpkgs.overlays = import ./overlays.nix;
+  nixpkgs.config = import ../nixpkgs-config.nix;
+  nixpkgs.overlays = import ../overlays.nix;
 }

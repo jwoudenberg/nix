@@ -29,8 +29,7 @@ in {
 
   time.timeZone = "Europe/London";
 
-  nixpkgs.config = import ../nixpkgs-config.nix;
-  nixpkgs.overlays = import ../overlays.nix;
+  nixpkgs = import ../config.nix;
 
   nix.nixPath = [
     "nixpkgs=${sources.nixpkgs}"

@@ -54,7 +54,5 @@
 
   home.stateVersion = "19.09";
 
-  nixpkgs.config = import ../nixpkgs-config.nix;
-
-  nixpkgs.overlays = import ../overlays.nix;
+  nixpkgs = import ../config.nix;
 }

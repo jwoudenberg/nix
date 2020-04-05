@@ -36,6 +36,5 @@
     MANPAGER = "nvim -c 'set ft=man' -";
   };
 
-  nixpkgs.config = import ../nixpkgs-config.nix;
-  nixpkgs.overlays = import ../overlays.nix;
+  nixpkgs = import ../config.nix;
 }

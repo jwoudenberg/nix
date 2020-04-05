@@ -54,6 +54,5 @@ in {
 
   home-manager.users.jasper = import ./home.nix;
 
-  nixpkgs.config = import ../nixpkgs-config.nix;
-  nixpkgs.overlays = import ../overlays.nix;
+  nixpkgs = import ../config.nix;
 }

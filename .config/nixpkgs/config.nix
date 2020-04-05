@@ -1,1 +1,1 @@
-import ../../dev/nix/nixpkgs-config.nix
+(import ../../dev/nix/config.nix).config

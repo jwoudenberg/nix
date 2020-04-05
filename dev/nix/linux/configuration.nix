@@ -3,8 +3,8 @@
 let release = "19.09";
 in {
   imports = [
-    ./modules/desktop-hardware.nix
-    ./modules/mullvad-vpn.nix
+    ../modules/desktop-hardware.nix
+    ../modules/mullvad-vpn.nix
     <home-manager/nixos>
   ];
 
@@ -29,8 +29,8 @@ in {
 
   time.timeZone = "Europe/London";
 
-  nixpkgs.config = import ./nixpkgs-config.nix;
-  nixpkgs.overlays = import ./overlays.nix;
+  nixpkgs.config = import ../nixpkgs-config.nix;
+  nixpkgs.overlays = import ../overlays.nix;
 
   nix.nixPath = [
     "nixpkgs=http://nixos.org/channels/nixos-${release}/nixexprs.tar.xz"
@@ -66,7 +66,7 @@ in {
   };
 
   home-manager.useUserPackages = true;
-  home-manager.users.jasper = (import ./linux/home.nix);
+  home-manager.users.jasper = (import ./home.nix);
 
   system.stateVersion = release;
   system.autoUpgrade.enable = true;

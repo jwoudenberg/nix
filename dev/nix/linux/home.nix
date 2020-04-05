@@ -31,16 +31,16 @@
   ];
 
   imports = [
-    ./programs/alacritty.nix
-    ./programs/direnv.nix
-    ./programs/firefox.nix
-    ./programs/fish/default.nix
-    ./programs/fzf.nix
-    ./programs/git.nix
-    ./programs/i3status/default.nix
-    ./programs/neovim/default.nix
-    ./programs/sway.nix
-    ./programs/vale/default.nix
+    ../programs/alacritty.nix
+    ../programs/direnv.nix
+    ../programs/firefox.nix
+    ../programs/fish/default.nix
+    ../programs/fzf.nix
+    ../programs/git.nix
+    ../programs/i3status/default.nix
+    ../programs/neovim/default.nix
+    ../programs/sway.nix
+    ../programs/vale/default.nix
   ];
 
   home.sessionVariables = {
@@ -50,7 +50,7 @@
 
   home.stateVersion = "19.09";
 
-  nixpkgs.config = import ./nixpkgs-config.nix;
+  nixpkgs.config = import ../nixpkgs-config.nix;
 
-  nixpkgs.overlays = import ./overlays.nix;
+  nixpkgs.overlays = import ../overlays.nix;
 }

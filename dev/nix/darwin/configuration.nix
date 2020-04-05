@@ -1,5 +1,5 @@
 { config, pkgs, ... }:
-let release = "19.09";
+let sources = import ../nix/sources.nix;
 in {
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
@@ -40,13 +40,11 @@ in {
   # $ sysctl -n hw.ncpu
   nix.maxJobs = 8;
   nix.buildCores = 8;
-  nix.nixPath = [{
-    darwin = "https://github.com/LnL7/nix-darwin/archive/master.tar.gz";
-    home-manager =
-      "https://github.com/rycee/home-manager/archive/release-${release}.tar.gz";
-    nixpkgs =
-      "https://nixos.org/channels/nixpkgs-${release}-darwin/nixexprs.tar.xz";
-  }];
+  nix.nixPath = [
+    "darwin=${sources.darwin}"
+    "home-manager=${sources.home-manager}"
+    "nixpkgs=${sources.nixpkgs}"
+  ];
 
   imports = [ <home-manager/nix-darwin> ];
 

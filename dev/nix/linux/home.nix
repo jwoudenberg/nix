@@ -56,5 +56,5 @@
     MANPAGER = "nvim -c 'set ft=man' -";
   };
 
-  home.stateVersion = "19.09";
+  home.stateVersion = "20.03";
 }

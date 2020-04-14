@@ -40,4 +40,6 @@
   };
 
   nixpkgs = import ../config.nix;
+
+  home.stateVersion = "20.03";
 }

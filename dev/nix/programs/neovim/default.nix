@@ -20,7 +20,7 @@ in {
       fzfWrapper
       gitgutter
       goyo
-      gv
+      gv-vim
       lightline-vim
       limelight-vim
       neoformat

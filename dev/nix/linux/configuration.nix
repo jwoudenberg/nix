@@ -63,6 +63,7 @@ in {
   };
 
   home-manager.useUserPackages = true;
+  home-manager.useGlobalPkgs = true;
   home-manager.users.jasper = (import ./home.nix);
 
   system.stateVersion = "19.09";

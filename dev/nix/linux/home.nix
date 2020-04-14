@@ -57,6 +57,4 @@
   };
 
   home.stateVersion = "19.09";
-
-  nixpkgs = import ../config.nix;
 }

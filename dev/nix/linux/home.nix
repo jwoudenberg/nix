@@ -10,14 +10,16 @@
     pkgs.i3status
     pkgs.imv
     pkgs.keybase
-    pkgs.magic-wormhole
+    # Disabled because it pulls in a vulnerable version of openssl.
+    # pkgs.magic-wormhole
     pkgs.haskellPackages.niv
     pkgs.nixfmt
     pkgs.nix-prefetch-github
     pkgs.nodePackages.prettier
     pkgs.pass
     pkgs.pavucontrol
-    pkgs.pdfrg
+    # Disabled because of security vulnerabilities in `xpdf`
+    # pkgs.pdfrg
     pkgs.qutebrowser
     pkgs.random-colors
     pkgs.ripgrep

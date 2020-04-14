@@ -27,7 +27,7 @@ in {
       polyglot
       quickfix-reflector-vim
       tabnine
-      todo
+      todo-txt-vim
       vim-abolish
       vim-commentary
       vim-eunuch

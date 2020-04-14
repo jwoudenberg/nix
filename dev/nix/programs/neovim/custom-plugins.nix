@@ -19,14 +19,4 @@
       sha256 = "1jzpsrrdv53gji3sns1xaj3pq8f6bwssw5wwh9sccr9qdz6i6fwa";
     };
   };
-
-  todo = pkgs.vimUtils.buildVimPlugin {
-    name = "todo";
-    src = pkgs.fetchFromGitHub {
-      owner = "elentok";
-      repo = "todo.vim";
-      rev = "789ab3b8fca9b4433792d33ecbef062646798571";
-      sha256 = "1b182w084zpp384b07k68kf58fs7crv0gfss57ay58v8s9ppkbqd";
-    };
-  };
 }

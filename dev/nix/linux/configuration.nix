@@ -21,11 +21,9 @@ in {
   networking.hostName = "jasper-desktop-nixos";
   networking.networkmanager.enable = true;
 
-  i18n = {
-    consoleFont = "FiraCode 16";
-    consoleKeyMap = "us";
-    defaultLocale = "en_US.UTF-8";
-  };
+  console.font = "FiraCode 16";
+  console.keyMap = "us";
+  i18n.defaultLocale = "en_US.UTF-8";
 
   time.timeZone = "Europe/London";
 

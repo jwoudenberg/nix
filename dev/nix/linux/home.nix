@@ -44,6 +44,7 @@
     ../programs/i3status/default.nix
     ../programs/neovim/default.nix
     ../programs/qutebrowser/default.nix
+    ../programs/readline.nix
     ../programs/ripgrep.nix
     ../programs/sway.nix
     ../programs/vale/default.nix

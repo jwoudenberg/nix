@@ -28,8 +28,7 @@
     ../programs/neovim/default.nix
     ../programs/qutebrowser/default.nix
     ../programs/ripgrep.nix
-    # Not supported yet in current stable version of home-manager.
-    # ./programs/readline.nix
+    ../programs/readline.nix
     ../programs/vale/default.nix
   ];
 

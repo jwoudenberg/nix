@@ -3,9 +3,9 @@
     pkgs.cachix
     pkgs.gnupg
     pkgs.nix-prefetch-github
-    pkgs.pass
-    pkgs.pdfrg
-    pkgs.magic-wormhole
+    # pkgs.pass
+    # pkgs.pdfrg
+    # pkgs.magic-wormhole
     pkgs.haskellPackages.niv
     pkgs.nixfmt
     pkgs.nodePackages.prettier

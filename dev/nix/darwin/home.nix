@@ -4,7 +4,9 @@
     pkgs.gnupg
     pkgs.nix-prefetch-github
     pkgs.pass
+    # Disabled because of security vulnerabilities in `xpdf`
     # pkgs.pdfrg
+    # Disabled because it pulls in a vulnerable version of openssl.
     # pkgs.magic-wormhole
     pkgs.haskellPackages.niv
     pkgs.nixfmt

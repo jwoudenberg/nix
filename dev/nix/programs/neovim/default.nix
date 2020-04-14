@@ -1,5 +1,11 @@
 { pkgs, ... }:
-let allPlugins = pkgs.vimPlugins // pkgs.callPackage ./custom-plugins.nix { };
+let
+  sources = import ../../nix/sources.nix;
+  customPlugin = p:
+    pkgs.vimUtils.buildVimPlugin {
+      name = p.repo;
+      src = p;
+    };
 in {
   programs.neovim = {
     enable = true;
@@ -13,9 +19,10 @@ in {
 
     extraConfig = builtins.readFile ./vimrc;
 
-    plugins = with allPlugins; [
+    plugins = with pkgs.vimPlugins; [
+      (customPlugin sources.vim-dogrun)
+      (customPlugin sources.vim-tabnine)
       ale
-      vim-dogrun
       fzf-vim
       fzfWrapper
       gitgutter
@@ -26,7 +33,6 @@ in {
       neoformat
       polyglot
       quickfix-reflector-vim
-      tabnine
       todo-txt-vim
       vim-abolish
       vim-commentary

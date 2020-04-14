@@ -46,5 +46,29 @@
         "type": "tarball",
         "url": "https://github.com/nixos/nixpkgs-channels/archive/6fd93c338992d9812d345110e53abb8d8ea95660.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "vim-dogrun": {
+        "branch": "master",
+        "description": ":dog: A dark Neovim / Vim colorscheme for the GUI and 256 / true-color terminals.",
+        "homepage": "",
+        "owner": "wadackel",
+        "repo": "vim-dogrun",
+        "rev": "636cdb6d4ec8f0f8ea19fef164c29fb02d17ab07",
+        "sha256": "06xkr7chpiqb60l1m707fs7wv5py9gapgssdz63z952vmhgs9hs6",
+        "type": "tarball",
+        "url": "https://github.com/wadackel/vim-dogrun/archive/636cdb6d4ec8f0f8ea19fef164c29fb02d17ab07.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "vim-tabnine": {
+        "branch": "master",
+        "description": "The all-language autocompleter: https://tabnine.com/",
+        "homepage": "",
+        "owner": "zxqfl",
+        "repo": "tabnine",
+        "rev": "51aca901159a1140195cc68b9e301fe1e8161b23",
+        "sha256": "1w47vxa8w0sycm7prsz98bwz6bjbfy0byb7h97n34fgf5ijxh0bw",
+        "type": "tarball",
+        "url": "https://github.com/zxqfl/tabnine/archive/51aca901159a1140195cc68b9e301fe1e8161b23.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }

@@ -1,8 +1,8 @@
 self: super:
 let
+  pinentry = super.pinentry.override ({ enabledFlavors = [ "curses" ]; });
   gnupg = super.gnupg.overrideAttrs (oldAttrs: {
-    configureFlags =
-      "--with-pinentry-pgm=${super.pinentry}/bin/pinentry-curses";
+    configureFlags = "--with-pinentry-pgm=${pinentry}/bin/pinentry";
   });
 in {
   pass = (super.pass.override { gnupg = gnupg; }).overrideAttrs (oldAttrs: {

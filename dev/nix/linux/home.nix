@@ -4,6 +4,7 @@
   home.packages = [
     pkgs.cachix
     pkgs.calibre
+    pkgs.discord
     pkgs.gnupg
     pkgs.grim
     pkgs.htop
@@ -13,6 +14,7 @@
     # Disabled because it pulls in a vulnerable version of openssl.
     # pkgs.magic-wormhole
     pkgs.haskellPackages.niv
+    pkgs.minecraft
     pkgs.nixfmt
     pkgs.nix-prefetch-github
     pkgs.nodePackages.prettier

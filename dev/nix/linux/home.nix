@@ -11,8 +11,7 @@
     pkgs.i3status
     pkgs.imv
     pkgs.keybase
-    # Disabled because it pulls in a vulnerable version of openssl.
-    # pkgs.magic-wormhole
+    pkgs.magic-wormhole
     pkgs.haskellPackages.niv
     pkgs.minecraft
     pkgs.nixfmt

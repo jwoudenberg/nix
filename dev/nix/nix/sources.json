@@ -17,10 +17,10 @@
         "homepage": "https://rycee.gitlab.io/home-manager/",
         "owner": "rycee",
         "repo": "home-manager",
-        "rev": "2102b4e7b329c0f41205c79d75b534d0db161775",
-        "sha256": "1b3njm1x87sic9dhxj6xl9dcbqc07mc8z18yd2ma0wjvww5fr1yc",
+        "rev": "98fa8f63b8d7508e84275eb47cd7f3003e6b9510",
+        "sha256": "1bf9pzcjd67x65vbqjnsjdx58qma0fjlfcbr19rnzvxzysv7h38k",
         "type": "tarball",
-        "url": "https://github.com/rycee/home-manager/archive/2102b4e7b329c0f41205c79d75b534d0db161775.tar.gz",
+        "url": "https://github.com/rycee/home-manager/archive/98fa8f63b8d7508e84275eb47cd7f3003e6b9510.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs": {
@@ -29,10 +29,10 @@
         "homepage": "https://github.com/NixOS/nixpkgs",
         "owner": "nixos",
         "repo": "nixpkgs-channels",
-        "rev": "708cb6b307b04ad862cc50de792e57e7a4a8bb5a",
-        "sha256": "0fjwv9sxl3j6z0jszaznvz891mn44fz6lqxsa2fkx9xi5mkz63jm",
+        "rev": "4b6bfecc0bd30c7740b9e9fa849de9e5df8d6e26",
+        "sha256": "0wi8641v4345jcqk7myq3dknczps1gbsf48q314wavl5kga8r67f",
         "type": "tarball",
-        "url": "https://github.com/nixos/nixpkgs-channels/archive/708cb6b307b04ad862cc50de792e57e7a4a8bb5a.tar.gz",
+        "url": "https://github.com/nixos/nixpkgs-channels/archive/4b6bfecc0bd30c7740b9e9fa849de9e5df8d6e26.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs-darwin": {
@@ -41,10 +41,10 @@
         "homepage": "https://github.com/NixOS/nixpkgs",
         "owner": "nixos",
         "repo": "nixpkgs-channels",
-        "rev": "6fd93c338992d9812d345110e53abb8d8ea95660",
-        "sha256": "0pib07mi1nn7h6mhqnykj1r24hwn5n3rsbd48bmznxq33vrfshk8",
+        "rev": "c23427de0d501009b9c6d77ff8dda3763c6eb1b4",
+        "sha256": "0fgv4pyzn39y8ibskn37x9cabmg6gflisigr5l45bkplm06bss91",
         "type": "tarball",
-        "url": "https://github.com/nixos/nixpkgs-channels/archive/6fd93c338992d9812d345110e53abb8d8ea95660.tar.gz",
+        "url": "https://github.com/nixos/nixpkgs-channels/archive/c23427de0d501009b9c6d77ff8dda3763c6eb1b4.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "vim-dogrun": {

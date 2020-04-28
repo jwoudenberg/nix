@@ -9,8 +9,10 @@
     ignores = [ "todo.txt" ];
 
     extraConfig = {
-      core.pager =
-        "${pkgs.gitAndTools.diff-so-fancy}/bin/diff-so-fancy | less --tabs=4 -RFX";
+      core.pager = ''
+        ${pkgs.gitAndTools.delta}/bin/delta --plus-color="#012800" --minus-color="#340001"'';
+      interactive.diffFilter =
+        "${pkgs.gitAndTools.delta}/bin/delta --color-only";
       branch.sort = "-committerdate";
     };
   };

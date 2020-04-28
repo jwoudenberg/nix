@@ -43,7 +43,7 @@ in {
   nix.nixPath = [
     "darwin=${sources.darwin}"
     "home-manager=${sources.home-manager}"
-    "nixpkgs=${sources.nixpkgs}"
+    "nixpkgs=${sources.nixpkgs-darwin}"
   ];
 
   imports = [ <home-manager/nix-darwin> ];

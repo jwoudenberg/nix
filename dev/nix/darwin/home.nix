@@ -6,7 +6,8 @@
     pkgs.pass
     # Disabled because of security vulnerabilities in `xpdf`
     # pkgs.pdfrg
-    pkgs.magic-wormhole
+    # Disabled because magic-wormhole depends on an unsupported openssl package.
+    # pkgs.magic-wormhole
     pkgs.haskellPackages.niv
     pkgs.nixfmt
     pkgs.nodePackages.prettier

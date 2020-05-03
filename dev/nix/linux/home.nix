@@ -10,6 +10,7 @@
     pkgs.htop
     pkgs.i3status
     pkgs.imv
+    pkgs.jq
     pkgs.keybase
     pkgs.magic-wormhole
     pkgs.haskellPackages.niv

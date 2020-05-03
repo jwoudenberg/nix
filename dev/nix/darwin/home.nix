@@ -9,6 +9,7 @@
     # Disabled because magic-wormhole depends on an unsupported openssl package.
     # pkgs.magic-wormhole
     pkgs.haskellPackages.niv
+    pkgs.jq
     pkgs.nixfmt
     pkgs.nodePackages.prettier
     pkgs.random-colors

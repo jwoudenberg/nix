@@ -28,6 +28,8 @@ in {
     shellAliases = {
       "ls" = "${pkgs.exa}/bin/exa";
       "cat" = "${pkgs.bat}/bin/bat";
+      "find" = "${pkgs.fd}/bin/fd";
+      "grep" = "${pkgs.ripgrep}/bin/rg";
     };
   };
 }

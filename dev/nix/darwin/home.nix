@@ -1,6 +1,8 @@
 { pkgs, ... }: {
   home.packages = [
     pkgs.cachix
+    pkgs.du-dust
+    pkgs.fd
     pkgs.gnupg
     pkgs.nix-prefetch-github
     pkgs.pass
@@ -12,8 +14,10 @@
     pkgs.jq
     pkgs.nixfmt
     pkgs.nodePackages.prettier
+    pkgs.procs
     pkgs.random-colors
     pkgs.ripgrep
+    pkgs.sd
     pkgs.shellcheck
     pkgs.similar-sort
     pkgs.todo

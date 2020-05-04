@@ -5,6 +5,8 @@
     pkgs.cachix
     pkgs.calibre
     pkgs.discord
+    pkgs.du-dust
+    pkgs.fd
     pkgs.gnupg
     pkgs.grim
     pkgs.htop
@@ -20,11 +22,13 @@
     pkgs.nodePackages.prettier
     pkgs.pass
     pkgs.pavucontrol
+    pkgs.procs
     # Disabled because of security vulnerabilities in `xpdf`
     # pkgs.pdfrg
     pkgs.qutebrowser
     pkgs.random-colors
     pkgs.ripgrep
+    pkgs.sd
     pkgs.shellcheck
     pkgs.similar-sort
     pkgs.slurp

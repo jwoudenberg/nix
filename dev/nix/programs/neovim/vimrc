@@ -91,7 +91,7 @@ let g:fzf_layout = { 'window': 'enew' }
 let $FZF_DEFAULT_OPTS .= ' --no-height' " fixes fzf in nvim terminals
 
 
-" --- files & buffers ---
+" --- SEARCHING FILES ---
 nnoremap <C-P> :Files<cr>
 nnoremap <C-B> :Buffers<CR>
 
@@ -102,7 +102,35 @@ command! -bang -nargs=? -complete=dir Files
                          \ }))<CR>
 
 
-" --- grepping ---
+" --- FILE SEARCH ---
+
+" <leader>g takes a motion, then searches for the text covered by the motion.
+nnoremap <silent> <leader>g :set opfunc=SearchMotion<cr>g@
+vnoremap <silent> <leader>g :<C-U>call SearchMotion(visualmode(), 1)<CR>
+function! SearchMotion(type, ...)
+  let sel_save = &selection
+  let &selection = "inclusive"
+  let reg_save = @@
+
+  if a:0  " Invoked from Visual mode, use '< and '> marks.
+    silent exe "normal! `<" . a:type . "`>y"
+  elseif a:type == 'line'
+    silent exe "normal! '[V']y"
+  elseif a:type == 'block'
+    silent exe "normal! `[\<C-V>`]y"
+  else
+    silent exe "normal! `[v`]y"
+  endif
+
+  let @/ = @@
+  exe "normal /\<cr>"
+
+  let &selection = sel_save
+  let @@ = reg_save
+endfunction
+
+
+" --- CROSS-PROJECT GREP ---
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>).'| tr -d "\017"', 1,

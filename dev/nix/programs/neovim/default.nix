@@ -10,10 +10,10 @@ in {
   programs.neovim = {
     enable = true;
 
-    withPython = true;
+    withPython = false;
     withPython3 = true;
-    withRuby = true;
-    withNodeJs = true;
+    withRuby = false;
+    withNodeJs = false;
 
     vimAlias = true;
 

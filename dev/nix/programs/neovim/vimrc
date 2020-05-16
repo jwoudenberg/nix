@@ -77,6 +77,31 @@ command! -bang -nargs=* Rg
   \   { 'options': '--bind ctrl-a:select-all,ctrl-d:deselect-all' },
   \   <bang>0)
 
+" <leader>G takes a motion, then searches for the text covered by the motion
+" using :Rg.
+nnoremap <silent> <leader>G :set opfunc=ProjectGrepMotion<cr>g@
+vnoremap <silent> <leader>G :<C-U>call ProjectGrepMotion(visualmode(), 1)<CR>
+function! ProjectGrepMotion(type, ...)
+  let sel_save = &selection
+  let &selection = "inclusive"
+  let reg_save = @@
+
+  if a:0  " Invoked from Visual mode, use '< and '> marks.
+    silent exe "normal! `<" . a:type . "`>y"
+  elseif a:type == 'line'
+    silent exe "normal! '[V']y"
+  elseif a:type == 'block'
+    silent exe "normal! `[\<C-V>`]y"
+  else
+    silent exe "normal! `[v`]y"
+  endif
+
+  exe 'Rg '.@@
+
+  let &selection = sel_save
+  let @@ = reg_save
+endfunction
+
 command! -bang -nargs=? -complete=dir Files
   \ call fzf#run(fzf#wrap({"source": "rg --hidden --files \| similar-sort " . @%,
                          \ "sink": "edit",

@@ -1,9 +1,8 @@
-" # Global settings
+" --- VIM SETTINGS ---
 filetype plugin indent on
 syntax on
 
 :scriptencoding utf-8
-let &showbreak = '↪ '
 set clipboard=unnamedplus
 set completeopt+=longest
 set completeopt-=preview
@@ -23,44 +22,27 @@ set splitright
 set tabstop=2
 set termguicolors
 set wildignorecase
+set colorcolumn=81
+set spell spelllang=en_us
 
-" # Plugin configuration
-let g:EditorConfig_exclude_patterns = ['.git/COMMIT_EDITMSG']
+let &showbreak = '↪ '
+let g:netrw_liststyle=1
+let g:mapleader=' '
+let g:maplocalleader='\'
+
+colorscheme dogrun
+set background=dark
+let g:lightline = { 'colorscheme': 'dogrun' }
+
+tnoremap <C-O> <C-\><C-n><C-O>
+
+
+" --- ALE ---
 let g:ale_elm_make_use_global=1
 let g:ale_linters = { 'haskell': ['hlint', 'hdevtools'] }
 let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '!'
-let g:elm_format_autosave = 0
-let g:elm_make_show_warnings = 1
-let g:elm_setup_keybindings = 0
-let g:fzf_layout = { 'window': 'enew' }
-let g:haskell_indent_disable=1 "Automatic indenting and hindent don't agree
-let g:netrw_liststyle=1
-let g:polyglot_disabled = ['haskell', 'markdown']
-let $FZF_DEFAULT_OPTS .= ' --no-height' " fixes fzf in nvim terminals
 
-let g:neoformat_nix_nixfmt = {
-  \ 'exe': 'nixfmt',
-  \ 'stdin': 1,
-  \ }
-
-let g:neoformat_haskell_ormolu = {
-  \ 'exe': 'ormolu',
-  \ 'stdin': 1,
-  \ }
-
-" # Mappings
-let g:mapleader=' '
-let g:maplocalleader='\'
-
-" Perform fuzzy file searching
-nnoremap <C-P> :Files<cr>
-nnoremap <C-B> :Buffers<CR>
-
-" Terminal mappings
-tnoremap <C-O> <C-\><C-n><C-O>
-
-" # Autocmds
 augroup customCommands
   autocmd!
   nmap <silent> <localleader>e <Plug>(ale_detail)
@@ -71,6 +53,56 @@ augroup customCommands
     \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 augroup END
 
+
+" --- POLYGLOT ---
+let g:polyglot_disabled = ['haskell', 'markdown']
+
+
+" --- ELM (POLYGLOT) ---
+let g:elm_format_autosave = 0
+let g:elm_make_show_warnings = 1
+let g:elm_setup_keybindings = 0
+
+
+" --- NEOFORMAT ---
+let g:neoformat_enabled_nix = ['nixfmt']
+let g:neoformat_nix_nixfmt = {
+  \ 'exe': 'nixfmt',
+  \ 'stdin': 1,
+  \ }
+
+let g:neoformat_enabled_haskell = ['ormolu']
+let g:neoformat_haskell_ormolu = {
+  \ 'exe': 'ormolu',
+  \ 'stdin': 1,
+  \ }
+
+let g:neoformat_enabled_ruby = []
+let g:neoformat_enabled_rust = []
+let g:neoformat_enabled_sql = []
+let g:neoformat_enabled_yaml = []
+let g:neoformat_enabled_json = []
+let g:neoformat_basic_format_retab = 1
+let g:neoformat_basic_format_trim = 1
+
+
+" --- FZF ---
+let g:fzf_layout = { 'window': 'enew' }
+let $FZF_DEFAULT_OPTS .= ' --no-height' " fixes fzf in nvim terminals
+
+
+" --- files & buffers ---
+nnoremap <C-P> :Files<cr>
+nnoremap <C-B> :Buffers<CR>
+
+command! -bang -nargs=? -complete=dir Files
+  \ call fzf#run(fzf#wrap({"source": "rg --hidden --files \| similar-sort " . @%,
+                         \ "sink": "edit",
+                         \ "options": "--tiebreak index"
+                         \ }))<CR>
+
+
+" --- grepping ---
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>).'| tr -d "\017"', 1,
@@ -101,28 +133,3 @@ function! ProjectGrepMotion(type, ...)
   let &selection = sel_save
   let @@ = reg_save
 endfunction
-
-command! -bang -nargs=? -complete=dir Files
-  \ call fzf#run(fzf#wrap({"source": "rg --hidden --files \| similar-sort " . @%,
-                         \ "sink": "edit",
-                         \ "options": "--tiebreak index"
-                         \ }))<CR>
-
-" Personal settings
-let g:neoterm_shell = 'fish'
-set colorcolumn=81
-let g:neoformat_enabled_ruby = []
-let g:neoformat_enabled_rust = []
-let g:neoformat_enabled_sql = []
-let g:neoformat_enabled_yaml = []
-let g:neoformat_enabled_json = []
-let g:neoformat_enabled_haskell = ['ormolu']
-let g:neoformat_enabled_nix = ['nixfmt']
-let g:neoformat_basic_format_retab = 1
-let g:neoformat_basic_format_trim = 1
-set spell spelllang=en_us
-
-" Colors
-colorscheme dogrun
-set background=dark
-let g:lightline = { 'colorscheme': 'dogrun' }

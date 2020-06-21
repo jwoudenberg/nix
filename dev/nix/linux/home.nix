@@ -32,6 +32,7 @@
     pkgs.shellcheck
     pkgs.similar-sort
     pkgs.slurp
+    pkgs.tmate
     pkgs.todo
     pkgs.vale
     pkgs.wl-clipboard

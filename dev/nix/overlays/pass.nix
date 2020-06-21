@@ -5,7 +5,10 @@ let
     configureFlags = "--with-pinentry-pgm=${pinentry}/bin/pinentry";
   });
 in {
-  pass = (super.pass.override { gnupg = gnupg; }).overrideAttrs (oldAttrs: {
+  pass = (super.pass.override {
+    waylandSupport = true;
+    gnupg = gnupg;
+  }).overrideAttrs (oldAttrs: {
     # The install check fails on MacOS.
     doInstallCheck = false;
   });

@@ -34,6 +34,11 @@ in {
     "home-manager=${sources.home-manager}"
     "nixos-config=/etc/nixos/linux/configuration.nix"
   ];
+  nix.binaryCaches = [ "https://cache.nixos.org" "https://nri.cachix.org" ];
+  nix.binaryCachePublicKeys = [
+    "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+    "nri.cachix.org-1:9/BMj3Obc+uio3O5rYGT+egHzkBzDunAzlZZfhCGj6o="
+  ];
 
   environment.systemPackages = with pkgs; [
     docker

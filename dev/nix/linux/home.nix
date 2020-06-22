@@ -9,7 +9,6 @@
     pkgs.fd
     pkgs.gnupg
     pkgs.grim
-    pkgs.htop
     pkgs.i3status
     pkgs.imv
     pkgs.jq
@@ -22,7 +21,6 @@
     pkgs.nodePackages.prettier
     pkgs.pass
     pkgs.pavucontrol
-    pkgs.procs
     # Disabled because of security vulnerabilities in `xpdf`
     # pkgs.pdfrg
     pkgs.qutebrowser
@@ -38,6 +36,7 @@
     pkgs.wl-clipboard
     pkgs.wofi
     pkgs.xdg_utils
+    pkgs.ytop
     pkgs.zoom-us
   ];
 

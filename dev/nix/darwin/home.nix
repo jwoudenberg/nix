@@ -14,7 +14,6 @@
     pkgs.jq
     pkgs.nixfmt
     pkgs.nodePackages.prettier
-    pkgs.procs
     pkgs.random-colors
     pkgs.ripgrep
     pkgs.sd
@@ -22,6 +21,7 @@
     pkgs.similar-sort
     pkgs.todo
     pkgs.vale
+    pkgs.ytop
   ];
 
   imports = [

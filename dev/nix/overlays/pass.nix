@@ -6,7 +6,7 @@ let
   });
 in {
   pass = (super.pass.override {
-    waylandSupport = true;
+    waylandSupport = !super.stdenv.isDarwin;
     gnupg = gnupg;
   }).overrideAttrs (oldAttrs: {
     # The install check fails on MacOS.

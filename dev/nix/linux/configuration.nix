@@ -5,7 +5,7 @@ in {
   imports = [
     ../modules/desktop-hardware.nix
     ../modules/mullvad-vpn.nix
-    <home-manager/nixos>
+    "${sources.home-manager}/nixos"
   ];
 
   hardware.cpu.intel.updateMicrocode = true;
@@ -31,7 +31,6 @@ in {
 
   nix.nixPath = [
     "nixpkgs=${sources.nixpkgs}"
-    "home-manager=${sources.home-manager}"
     "nixos-config=/etc/nixos/linux/configuration.nix"
   ];
   nix.binaryCaches = [ "https://cache.nixos.org" "https://nri.cachix.org" ];

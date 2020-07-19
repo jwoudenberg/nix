@@ -46,7 +46,7 @@ in {
     "nixpkgs=${sources.nixpkgs-darwin}"
   ];
 
-  imports = [ <home-manager/nix-darwin> ];
+  imports = [ "${sources.home-manager}/nix-darwin" ];
 
   users.users.jasper = { home = "/Users/jasper"; };
 

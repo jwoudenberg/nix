@@ -1,12 +1,12 @@
-{ pkgs ? import <nixpkgs> { } }:
+{ callPackage, fetchFromGitHub, buildGoPackage, stdenv }:
 let
   version = "2.5.0";
 
-  npmPkgs = pkgs.callPackage ./frontend/default.nix { };
+  npmPkgs = callPackage ./frontend/default.nix { };
 
-  rice = pkgs.callPackage ../go.rice { };
+  rice = callPackage ../go.rice { };
 
-  src = pkgs.fetchFromGitHub {
+  src = fetchFromGitHub {
     owner = "filebrowser";
     repo = "filebrowser";
     rev = "v${version}";
@@ -25,7 +25,7 @@ let
     '';
   };
 
-in pkgs.buildGoPackage {
+in buildGoPackage {
   name = "filebrowser-${version}";
   version = version;
   goPackagePath = "github.com/filebrowser/filebrowser";
@@ -36,7 +36,7 @@ in pkgs.buildGoPackage {
     cd http
     ${rice}/bin/rice embed-go
   '';
-  meta = with pkgs.stdenv.lib; {
+  meta = with stdenv.lib; {
     description =
       "Web File Browser which can be used as a middleware or standalone app.";
     homepage = "https://filebrowser.org/";

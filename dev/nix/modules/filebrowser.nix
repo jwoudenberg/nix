@@ -1,25 +1,29 @@
 { config, pkgs, lib, ... }:
 
-let cfg = config.services.filebrowser;
-in {
+{
   options.services.filebrowser = {
 
     enable = lib.mkEnableOption "filebrowser";
 
-    configFile = lib.mkOption {
-      type = lib.types.nullOr lib.types.path;
-      default = null;
+    config = lib.mkOption {
+      type = lib.types.attrs;
+      default = { };
       description = ''
-        The path to a filebrowser configuration file.
-        The configuration format is documented at: https://filebrowser.org/configuration
-      '';
-    };
+        Configuration options to set before starting. Must be an attribute set
+        containing keys and values that are accepted by the `config set`
+        command:
 
-    port = lib.mkOption {
-      type = lib.types.port;
-      default = 8080;
-      description = ''
-        The port filebrowser should bind to.
+            filebrowser config set --<key>=<value>
+
+        Configuration options that are not provided will be set to the defaults
+        specified by the `filebrowser config set` command.
+
+        Example:
+
+            {
+              port = 8082;
+              "auth.method" = "json";
+            }
       '';
     };
 
@@ -48,47 +52,62 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
-    systemd.services.filebrowser = {
-      description = "filebrowser";
-      after = [ "network.target" ];
-      wantedBy = [ "multi-user.target" ];
-      serviceConfig = {
-        Type = "simple";
-        User = cfg.user;
-        Group = cfg.group;
-        StateDirectory = "filebrowser";
+  config = let
 
-        ExecStart = pkgs.writeShellScript "start-filebrowser" ''
-          ${pkgs.filebrowser}/bin/filebrowser \
-            --database /var/lib/filebrowser/filebrowser.db \
-            --port ${toString cfg.port} \
-            ${
-            if (cfg.configFile == null) then
-              ""
-            else
-              "--config ${cfg.configFile}"
-            }
-        '';
+    cfg = config.services.filebrowser;
 
-        Restart = "on-failure";
+    port = if cfg.config.port == null then 8080 else cfg.config.port;
+
+    configParams = lib.concatStringsSep " "
+      (lib.mapAttrsToList (key: value: "--${key}=${lib.escapeShellArg value}")
+      cfg.config);
+
+    filebrowser = "${pkgs.filebrowser}/bin/filebrowser";
+
+    configFile = pkgs.runCommand "filebrowser-config.json" { } ''
+      # Create a fresh database with all configurations initialized to defaults.
+      ${filebrowser} config init
+      # Apply user-defined configuration settings.
+      ${filebrowser} config set ${configParams}
+      # Export the modified filebrowser configuration.
+      ${filebrowser} config export $out
+    '';
+
+    in lib.mkIf cfg.enable {
+
+      systemd.services.filebrowser = {
+        description = "filebrowser";
+        after = [ "network.target" ];
+        wantedBy = [ "multi-user.target" ];
+        serviceConfig = {
+          Type = "simple";
+          User = cfg.user;
+          Group = cfg.group;
+          StateDirectory = "filebrowser";
+          ExecStartPre = "${filebrowser} config import ${configFile}";
+          ExecStart = filebrowser;
+          Restart = "on-failure";
+        };
+        environment = {
+          FB_DATABASE = "/var/lib/filebrowser/filebrowser.db";
+          FB_PORT = builtins.toString port;
+        };
+      };
+
+      users.users = lib.mkIf (cfg.user == "filebrowser") {
+        filebrowser = {
+          group = cfg.group;
+          uid = 320;
+        };
+
+      };
+
+      users.groups =
+        lib.mkIf (cfg.group == "filebrowser") { filebrowser = { gid = 320; }; };
+
+      networking.firewall = lib.mkIf cfg.openFirewall {
+        allowedTCPPorts = [ port ];
+        allowedUDPPorts = [ port ];
       };
     };
-
-    users.users = lib.mkIf (cfg.user == "filebrowser") {
-      filebrowser = {
-        group = cfg.group;
-        uid = 320;
-      };
-
-    };
-
-    users.groups =
-      lib.mkIf (cfg.group == "filebrowser") { filebrowser = { gid = 320; }; };
-
-    networking.firewall = lib.mkIf cfg.openFirewall {
-      allowedTCPPorts = [ cfg.port ];
-      allowedUDPPorts = [ cfg.port ];
-    };
-  };
 }

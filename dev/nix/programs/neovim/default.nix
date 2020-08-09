@@ -20,7 +20,6 @@ in {
     extraConfig = builtins.readFile ./vimrc;
 
     plugins = with pkgs.vimPlugins; [
-      (customPlugin sources.vim-dogrun)
       (customPlugin sources.vim-tabnine)
       ale
       fzf-vim
@@ -31,6 +30,7 @@ in {
       lightline-vim
       limelight-vim
       neoformat
+      nord-vim
       polyglot
       quickfix-reflector-vim
       todo-txt-vim

@@ -30,9 +30,9 @@ let g:netrw_liststyle=1
 let g:mapleader=' '
 let g:maplocalleader='\'
 
-colorscheme dogrun
+colorscheme nord
 set background=dark
-let g:lightline = { 'colorscheme': 'dogrun' }
+let g:lightline = { 'colorscheme': 'nord' }
 
 tnoremap <C-O> <C-\><C-n><C-O>
 

@@ -47,6 +47,12 @@
         "url": "https://github.com/nixos/nixpkgs-channels/archive/add5529b3ee2df5035d7fb06120b74363a373be4.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "similar-sort": {
+        "ref": "master",
+        "repo": "https://git.bytes.zone/brian/similar-sort.git",
+        "rev": "301de2b5f83aba77a14b4df33347e8157de4f9ca",
+        "type": "git"
+    },
     "vim-tabnine": {
         "branch": "master",
         "description": "Vim client for TabNine",

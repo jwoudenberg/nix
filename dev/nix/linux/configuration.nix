@@ -58,6 +58,7 @@ in {
   services.pcscd.enable = true; # For Yubikey support
   virtualisation.docker.enable = true;
   services.mullvad-vpn.enable = true;
+  services.fwupd.enable = true;
 
   users.users.jasper = {
     isNormalUser = true;

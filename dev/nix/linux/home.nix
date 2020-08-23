@@ -13,7 +13,7 @@
     pkgs.imv
     pkgs.jq
     pkgs.keybase
-    pkgs.magic-wormhole
+    pkgs.croc
     pkgs.haskellPackages.niv
     pkgs.minecraft
     pkgs.nixfmt

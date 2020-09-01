@@ -35,6 +35,10 @@ let g:lightline = { 'colorscheme': 'nord' }
 
 tnoremap <C-O> <C-\><C-n><C-O>
 
+" --- LOCAL VIMRC ---
+let g:localvimrc_persistent = 2
+
+
 " --- GOYO ---
 
 function! s:goyo_enter()

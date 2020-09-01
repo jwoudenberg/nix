@@ -40,6 +40,7 @@ in {
       vim-fugitive
       vim-highlightedyank
       vim-illuminate
+      vim-localvimrc
       vim-repeat
       vim-rhubarb
       vim-signature

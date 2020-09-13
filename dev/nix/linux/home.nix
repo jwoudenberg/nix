@@ -4,6 +4,7 @@
   home.packages = [
     pkgs.cachix
     pkgs.calibre
+    pkgs.chromium
     pkgs.discord
     pkgs.du-dust
     pkgs.fd
@@ -20,7 +21,7 @@
     pkgs.nix-prefetch-github
     pkgs.nodePackages.prettier
     pkgs.pass
-    pkgs.pavucontrol
+    pkgs.pulsemixer
     # Disabled because of security vulnerabilities in `xpdf`
     # pkgs.pdfrg
     pkgs.qutebrowser

@@ -24,7 +24,6 @@
     pkgs.pulsemixer
     # Disabled because of security vulnerabilities in `xpdf`
     # pkgs.pdfrg
-    pkgs.qutebrowser
     pkgs.random-colors
     pkgs.ripgrep
     pkgs.sd
@@ -50,7 +49,6 @@
     ../programs/git.nix
     ../programs/i3status/default.nix
     ../programs/neovim/default.nix
-    ../programs/qutebrowser/default.nix
     ../programs/readline.nix
     ../programs/ripgrep.nix
     ../programs/sway.nix

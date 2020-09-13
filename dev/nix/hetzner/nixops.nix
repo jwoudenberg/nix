@@ -56,5 +56,21 @@ in {
       enable = true;
       openFirewall = true;
     };
+
+    # Caddy
+    services.caddy = {
+      enable = true;
+      email = "letsencrypt@jasperwoudenberg.com";
+      agree = true;
+      config = ''
+        files.jasperwoudenberg.com {
+          gzip
+          minify
+          log syslog
+
+
+        }
+      '';
+    };
   };
 }

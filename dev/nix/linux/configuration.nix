@@ -17,6 +17,7 @@ in {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.timeout = 10;
+  boot.kernel.sysctl."fs.inotify.max_user_watches" = 524288;
 
   networking.hostName = "jasper-desktop-nixos";
   networking.networkmanager.enable = true;

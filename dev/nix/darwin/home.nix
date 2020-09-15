@@ -30,7 +30,6 @@
     ../programs/fzf.nix
     ../programs/git.nix
     ../programs/neovim/default.nix
-    ../programs/qutebrowser/default.nix
     ../programs/ripgrep.nix
     ../programs/readline.nix
     ../programs/vale/default.nix

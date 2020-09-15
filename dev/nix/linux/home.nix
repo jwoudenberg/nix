@@ -59,6 +59,7 @@
     EDITOR = "nvim";
     DEFAULT_TODO_TXT = "~/docs/todo.txt";
     MANPAGER = "nvim -c 'set ft=man' -";
+    AWS_VAULT_BACKEND = "file";
   };
 
   home.stateVersion = "20.03";

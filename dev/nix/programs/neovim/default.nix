@@ -36,6 +36,7 @@ in {
       todo-txt-vim
       vim-abolish
       vim-commentary
+      vim-dirvish
       vim-eunuch
       vim-fugitive
       vim-highlightedyank

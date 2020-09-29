@@ -3,7 +3,6 @@ filetype plugin indent on
 syntax on
 
 :scriptencoding utf-8
-set clipboard=unnamedplus
 set completeopt+=longest
 set completeopt-=preview
 set expandtab

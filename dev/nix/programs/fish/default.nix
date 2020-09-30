@@ -13,8 +13,6 @@ let
         # overwrite the default fish_mode_prompt to show nothing.
     end
 
-    source ${pkgs.fzf}/share/fish/vendor_functions.d/fzf_key_bindings.fish
-    source ${pkgs.fzf}/share/fish/vendor_conf.d/load-fzf-key-bindings.fish
     random-colors --hook=fish | source
 
     ${builtins.foldl' (xs: x: ''

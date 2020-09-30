@@ -116,6 +116,14 @@ command! -bang -nargs=? -complete=dir Files
                          \ "options": "--tiebreak index"
                          \ }))<CR>
 
+" --- DIRVISH ---
+
+augroup dirvish_config
+  autocmd!
+
+  " Undo Dirvish' default binding of <C-P>
+  autocmd FileType dirvish silent! unmap <buffer> <C-P>
+augroup END
 
 " --- FILE SEARCH ---
 

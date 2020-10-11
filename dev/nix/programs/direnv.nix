@@ -1,1 +1,6 @@
-{ pkgs, ... }: { programs.direnv = { enable = true; }; }
+{ pkgs, ... }: {
+  programs.direnv = {
+    enable = true;
+    enableNixDirenvIntegration = true;
+  };
+}

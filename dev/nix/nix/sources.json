@@ -5,10 +5,10 @@
         "homepage": "",
         "owner": "LnL7",
         "repo": "nix-darwin",
-        "rev": "d5f26b4c0cbfc58937cc8660b4e6c74fdcbb8972",
-        "sha256": "0svki83ajhrmw10cy6glrak641j5i0znypm562p1j6vm12wd789p",
+        "rev": "828879f93084fdd5b12925acc016497d2410bdc4",
+        "sha256": "137mdg921lw0mmir9ycx5v1166hmdn5z20brdcbdvyc1jd7m09sx",
         "type": "tarball",
-        "url": "https://github.com/LnL7/nix-darwin/archive/d5f26b4c0cbfc58937cc8660b4e6c74fdcbb8972.tar.gz",
+        "url": "https://github.com/LnL7/nix-darwin/archive/828879f93084fdd5b12925acc016497d2410bdc4.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "home-manager": {

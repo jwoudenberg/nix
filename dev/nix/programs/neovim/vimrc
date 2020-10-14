@@ -39,7 +39,6 @@ let g:localvimrc_persistent = 2
 
 
 " --- GOYO ---
-
 function! s:goyo_enter()
   set spell spelllang=en_us
 endfunction
@@ -99,7 +98,10 @@ let g:neoformat_enabled_yaml = []
 let g:neoformat_enabled_json = []
 let g:neoformat_enabled_html = []
 let g:neoformat_basic_format_retab = 1
-let g:neoformat_basic_format_trim = 1
+
+
+" --- TRIM ON SAVE"
+autocmd BufWritePre * :%s/\s\+$//e
 
 
 " --- FZF ---

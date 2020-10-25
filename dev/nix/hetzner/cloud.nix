@@ -68,6 +68,11 @@ in {
     };
 
     # Plex
+    # When recreating we need to run Plex setup again. To do so:
+    # 1. Set `openFirewall = false;` (so no-one can claim the unconfigured server)
+    # 2. ssh -L 32400:localhost:32400 root@ai-banana.jasperwoudenberg.com
+    # 3. In the browser login at localhost:32400/web and follow the instructions
+    # 4. Set `openFirewall = true;`
     services.plex = {
       enable = true;
       openFirewall = true;

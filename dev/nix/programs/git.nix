@@ -14,6 +14,7 @@
       # interactive.diffFilter =
       #   "${pkgs.gitAndTools.delta}/bin/delta --color-only";
       branch.sort = "-committerdate";
+      pull.rebase = false;
     };
   };
 }

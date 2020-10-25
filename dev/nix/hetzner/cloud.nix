@@ -29,8 +29,13 @@ in {
 
     # Ssh
     services.openssh.enable = true;
-    users.users.root.openssh.authorizedKeys.keys =
-      [ (builtins.readFile "${builtins.getEnv "HOME"}/.ssh/id_rsa.pub") ];
+    users.users.root.openssh.authorizedKeys.keys = let
+      sshKeysSrc = builtins.fetchurl {
+        url = "https://github.com/jwoudenberg.keys";
+        sha256 = "1hz1m98r8lln50bba9d4f7gcadj4rk5mj5v6zlzxa3lxwiplc6fc";
+      };
+      in builtins.filter (line: line != "")
+      (pkgs.lib.splitString "\n" (builtins.readFile sshKeysSrc));
 
     # Resilio Sync
     system.activationScripts.mkmusic = ''

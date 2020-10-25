@@ -1,12 +1,17 @@
-let resilioListeningPort = 18776;
+let
+  sources = import ../nix/sources.nix;
+  pkgs = import sources.nixpkgs { };
+  resilioListeningPort = 18776;
 in {
-  ai-banana = { config, pkgs, ... }: {
-    # NixOps
-    deployment.targetHost = "88.198.108.91";
+  "ai-banana" = {
+    # Morph
+    deployment.targetHost = "116.203.68.188";
+    deployment.targetUser = "root";
 
+    # Nix
     nixpkgs.config.allowUnfree = true;
-
     system.stateVersion = "20.03";
+    networking.hostName = "ai-banana";
 
     # Hardware
     imports = [ <nixpkgs/nixos/modules/profiles/qemu-guest.nix> ];

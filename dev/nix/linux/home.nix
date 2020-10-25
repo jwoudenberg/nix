@@ -14,7 +14,7 @@
     pkgs.imv
     pkgs.jq
     pkgs.keybase
-    pkgs.croc
+    pkgs.magic-wormhole
     pkgs.haskellPackages.niv
     pkgs.minecraft
     pkgs.nixfmt
@@ -22,8 +22,6 @@
     pkgs.nodePackages.prettier
     pkgs.pass
     pkgs.pulsemixer
-    # Disabled because of security vulnerabilities in `xpdf`
-    # pkgs.pdfrg
     pkgs.random-colors
     pkgs.ripgrep
     pkgs.sd

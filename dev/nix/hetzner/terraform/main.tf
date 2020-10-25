@@ -1,12 +1,17 @@
 terraform {
-  backend "local" {
-    path = "../../../../docs/terraform-state/hetzner.tfstate"
+  backend "remote" {
+    organization = "hjgames"
+    workspaces {
+      name = "hetzner"
+    }
   }
 }
 
 # Hetzner
 
-provider "hcloud" {}
+provider "hcloud" {
+  version = "~> 1.22"
+}
 
 resource "hcloud_server" "ai-banana" {
   name        = "ai-banana"

@@ -45,6 +45,16 @@ in {
     "home-manager=${sources.home-manager}"
     "nixpkgs=${sources.nixpkgs-darwin}"
   ];
+  # Allow Linux builds on MacOS using nix-docker:
+  # Assumes instructions below are followed to set up a docker container that
+  # allows access using my default ssh key.
+  # https://github.com/LnL7/nix-docker#running-as-a-remote-builder
+  nix.distributedBuilds = true;
+  nix.buildMachines = [{
+    hostName = "nix-docker";
+    system = "x86_64-linux";
+    maxJobs = 4;
+  }];
 
   imports = [ "${sources.home-manager}/nix-darwin" ];
 

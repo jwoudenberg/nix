@@ -3,9 +3,8 @@ let
   pkgs = import sources.nixpkgs { };
   resilioListeningPort = 18776;
 in {
-  "ai-banana" = {
+  "ai-banana.jasperwoudenberg.com" = {
     # Morph
-    deployment.targetHost = "88.198.108.91";
     deployment.targetUser = "root";
 
     # Nix

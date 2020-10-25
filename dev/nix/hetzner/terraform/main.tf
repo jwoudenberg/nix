@@ -4,6 +4,8 @@ terraform {
   }
 }
 
+# Hetzner
+
 provider "hcloud" {}
 
 resource "hcloud_server" "ai-banana" {
@@ -35,4 +37,24 @@ resource "hcloud_volume_attachment" "volume1" {
 resource "hcloud_ssh_key" "jasper" {
   name       = "Jaspers key"
   public_key = file("~/.ssh/id_rsa.pub")
+}
+
+# Cloudflare
+
+provider "cloudflare" {
+  version = "~> 2.0"
+}
+
+resource "cloudflare_record" "ai-banana" {
+  zone_id = data.cloudflare_zones.ai-banana.zones[0].id
+  name    = "ai-banana"
+  value   = hcloud_server.ai-banana.ipv4_address
+  type    = "A"
+  ttl     = 300
+}
+
+data "cloudflare_zones" "ai-banana" {
+  filter {
+    name = "jasperwoudenberg.com"
+  }
 }

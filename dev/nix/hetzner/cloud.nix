@@ -5,10 +5,11 @@ let
 in {
   "ai-banana" = {
     # Morph
-    deployment.targetHost = "116.203.68.188";
+    deployment.targetHost = "88.198.108.91";
     deployment.targetUser = "root";
 
     # Nix
+    nixpkgs.localSystem.system = "x86_64-linux";
     nixpkgs.config.allowUnfree = true;
     system.stateVersion = "20.03";
     networking.hostName = "ai-banana";

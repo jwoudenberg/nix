@@ -22,9 +22,9 @@ in {
       fsType = "ext4";
     };
     fileSystems."/srv/volume1" = {
-      device = "/dev/sdb";
+      device = "/dev/disk/by-id/scsi-0HC_Volume_6344799";
       fsType = "ext4";
-      options = [ ];
+      options = [ "discard" "defaults" ];
     };
 
     # Ssh

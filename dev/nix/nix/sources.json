@@ -48,9 +48,9 @@
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "similar-sort": {
-        "ref": "master",
+        "ref": "main",
         "repo": "https://git.bytes.zone/brian/similar-sort.git",
-        "rev": "301de2b5f83aba77a14b4df33347e8157de4f9ca",
+        "rev": "47a6eea3b0b9a2e1095ee92d891ca401089b09e9",
         "type": "git"
     },
     "vim-tabnine": {

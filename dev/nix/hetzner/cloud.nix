@@ -37,6 +37,12 @@ in {
       in builtins.filter (line: line != "")
       (pkgs.lib.splitString "\n" (builtins.readFile sshKeysSrc));
 
+    # healthchecks.io
+    services.cron.enable = true;
+    services.cron.systemCronJobs = [
+      "0 * * * *      root    systemctl is-active --quiet plex && curl -fsS -m 10 --retry 5 -o /dev/null https://hc-ping.com/8177d382-5f65-465c-8e41-50b0a9291c9f"
+    ];
+
     # Resilio Sync
     system.activationScripts.mkmusic = ''
       mkdir -p /srv/volume1/music

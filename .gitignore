@@ -7,3 +7,6 @@
 !/dev/nix/**
 !/dev/todo/
 !/dev/todo/**
+
+# Un-un-ignore specific directories
+.direnv

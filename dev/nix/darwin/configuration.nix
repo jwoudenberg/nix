@@ -56,10 +56,10 @@ in {
     maxJobs = 4;
   }];
 
-  imports = [ "${sources.home-manager}/nix-darwin" ];
-
   users.users.jasper = { home = "/Users/jasper"; };
 
+  imports = [ "${sources.home-manager}/nix-darwin" ];
+  home-manager.useGlobalPkgs = true;
   home-manager.users.jasper = import ./home.nix;
 
   nixpkgs = import ../config.nix;

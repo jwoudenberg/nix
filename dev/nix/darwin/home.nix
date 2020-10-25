@@ -42,7 +42,5 @@
     MANPAGER = "nvim -c 'set ft=man' -";
   };
 
-  nixpkgs = import ../config.nix;
-
   home.stateVersion = "20.03";
 }

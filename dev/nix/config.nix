@@ -1,7 +1,6 @@
 {
   config = { allowUnfree = true; };
   overlays = [
-    (import ./overlays/nixfmt.nix)
     (import ./overlays/pass.nix)
     (import ./overlays/random-colors.nix)
     (import ./overlays/similar-sort.nix)

@@ -2,11 +2,7 @@
 
 let sources = import ../nix/sources.nix;
 in {
-  imports = [
-    ../modules/desktop-hardware.nix
-    ../modules/mullvad-vpn.nix
-    "${sources.home-manager}/nixos"
-  ];
+  imports = [ ../modules/desktop-hardware.nix "${sources.home-manager}/nixos" ];
 
   hardware.cpu.intel.updateMicrocode = true;
   hardware.opengl.driSupport32Bit = true;

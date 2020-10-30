@@ -9,7 +9,6 @@ in {
   hardware.opengl.extraPackages32 = [ pkgs.pkgsi686Linux.libva ];
   hardware.pulseaudio.enable = true;
   hardware.pulseaudio.support32Bit = true;
-  hardware.u2f.enable = true;
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;

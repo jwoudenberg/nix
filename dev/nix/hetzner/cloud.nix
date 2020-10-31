@@ -33,8 +33,8 @@ in {
         url = "https://github.com/jwoudenberg.keys";
         sha256 = "1hz1m98r8lln50bba9d4f7gcadj4rk5mj5v6zlzxa3lxwiplc6fc";
       };
-      in builtins.filter (line: line != "")
-      (pkgs.lib.splitString "\n" (builtins.readFile sshKeysSrc));
+    in builtins.filter (line: line != "")
+    (pkgs.lib.splitString "\n" (builtins.readFile sshKeysSrc));
 
     # healthchecks.io
     services.cron.enable = true;
@@ -48,8 +48,8 @@ in {
       chown rslsync:rslsync -R /srv/volume1/music
     '';
 
-    networking.firewall.allowedTCPPorts = [ resilioListeningPort ];
-    networking.firewall.allowedUDPPorts = [ resilioListeningPort ];
+    networking.firewall.allowedTCPPorts = [ resilioListeningPort 80 443 ];
+    networking.firewall.allowedUDPPorts = [ resilioListeningPort 80 443 ];
 
     services.resilio = {
       enable = true;
@@ -76,6 +76,18 @@ in {
     services.plex = {
       enable = true;
       openFirewall = true;
+    };
+
+    # Caddy
+    services.caddy = {
+      enable = true;
+      agree = true;
+      email = "letsencrypt@jasperwoudenberg.com";
+      config = ''
+        ai-banana.jasperwoudenberg.com {
+          respond "Hello, world!"
+        }
+      '';
     };
   };
 }

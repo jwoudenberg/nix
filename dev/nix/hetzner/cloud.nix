@@ -83,8 +83,12 @@ in {
       enable = true;
       agree = true;
       email = "letsencrypt@jasperwoudenberg.com";
+      # Hashes generated with the `caddyfile hash-password` command.
       config = ''
         ai-banana.jasperwoudenberg.com {
+          basicauth {
+            jasper JDJhJDEwJHU5ZVlVeDRJREFMYU1QbU5vdVpXVE9weWtnNHBGR255ZUhKRUp3a21xaWpzcC80aVFtOUl5
+          }
           respond "Hello, world!"
         }
       '';

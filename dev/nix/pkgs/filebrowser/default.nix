@@ -1,10 +1,8 @@
-{ callPackage, fetchFromGitHub, buildGoPackage, stdenv }:
+{ callPackage, fetchFromGitHub, buildGoPackage, stdenv, go-rice }:
 let
   version = "2.5.0";
 
   npmPkgs = callPackage ./frontend/default.nix { };
-
-  rice = callPackage ../go.rice { };
 
   src = fetchFromGitHub {
     owner = "filebrowser";
@@ -34,7 +32,7 @@ in buildGoPackage {
   postPatch = ''
     cp -r ${frontend}/frontend/dist frontend/dist
     cd http
-    ${rice}/bin/rice embed-go
+    ${go-rice}/bin/rice embed-go
   '';
   meta = with stdenv.lib; {
     description =

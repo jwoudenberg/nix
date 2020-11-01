@@ -28,7 +28,7 @@ resource "hcloud_server" "ai-banana" {
 
 resource "hcloud_volume" "volume1" {
   name     = "volume1"
-  size     = 80
+  size     = 160
   location = "nbg1"
   format   = "ext4"
 }

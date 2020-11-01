@@ -1,5 +1,9 @@
-let resilioListeningPort = 18776;
+let
+  resilioListeningPort = 18776;
+  sources = import ../nix/sources.nix;
 in {
+  network = { pkgs = import sources.nixpkgs { system = "x86_64-linux"; }; };
+
   "ai-banana.jasperwoudenberg.com" = { pkgs, ... }: {
     # Morph
     deployment.targetUser = "root";

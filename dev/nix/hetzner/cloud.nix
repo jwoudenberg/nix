@@ -65,7 +65,8 @@ in {
       listeningPort = resilio.listeningPort;
       sharedFolders = let
         configFor = dir: {
-          secret = builtins.getEnv "RESILIO_${pkgs.lib.toUpper dir}_READONLY";
+          secret =
+            builtins.getEnv "RESILIO_KEY_${pkgs.lib.toUpper dir}_READONLY";
           directory = resilio.pathFor dir;
           useRelayServer = false;
           useTracker = true;

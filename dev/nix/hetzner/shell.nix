@@ -14,12 +14,8 @@ let
     export CLOUDFLARE_API_TOKEN="$(pass show cloudflare.com | grep 'API-token' | awk '{print $2}')"
 
     # For nix deploys
-    export RESILIO_MUSIC_READONLY="$(pass show resilio.com | grep 'key-music-read-only' | awk '{print $2}')"
-    export RESILIO_BOOKS_READONLY="$(pass show resilio.com | grep 'key-books-read-only' | awk '{print $2}')"
-    export RESILIO_PHOTO_READONLY="$(pass show resilio.com | grep 'key-photo-read-only' | awk '{print $2}')"
-    export RESILIO_JASPER_READONLY="$(pass show resilio.com | grep 'key-jasper-read-only' | awk '{print $2}')"
-    export RESILIO_HISKE_READONLY="$(pass show resilio.com | grep 'key-hiske-read-only' | awk '{print $2}')"
-    export RESILIO_HJGAMES_READONLY="$(pass show resilio.com | grep 'key-hjgames-read-only' | awk '{print $2}')"
+    export $(pass show resilio.com | grep key_ | awk '{ print "RESILIO_" toupper($1) "=" $2}')
+
     exec "$@"
   '';
 

@@ -28,6 +28,8 @@ resource "hcloud_server" "ai-banana" {
 
 resource "hcloud_volume" "volume1" {
   name     = "volume1"
+  # After changing the disk size, ssh into the machine and run:
+  #     $ resize2fs /dev/sdb
   size     = 160
   location = "nbg1"
   format   = "ext4"

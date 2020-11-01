@@ -1,9 +1,6 @@
-let
-  sources = import ../nix/sources.nix;
-  pkgs = import sources.nixpkgs { };
-  resilioListeningPort = 18776;
+let resilioListeningPort = 18776;
 in {
-  "ai-banana.jasperwoudenberg.com" = {
+  "ai-banana.jasperwoudenberg.com" = { pkgs, ... }: {
     # Morph
     deployment.targetUser = "root";
 
@@ -89,9 +86,26 @@ in {
           basicauth {
             jasper JDJhJDEwJHU5ZVlVeDRJREFMYU1QbU5vdVpXVE9weWtnNHBGR255ZUhKRUp3a21xaWpzcC80aVFtOUl5
           }
-          respond "Hello, world!"
+          reverse_proxy {
+            to localhost:8080
+          }
         }
       '';
+    };
+
+    # rclone
+    systemd.services.rclone-serve = {
+      description = "Rclone Serve";
+      after = [ "network.target" ];
+      wantedBy = [ "multi-user.target" ];
+      serviceConfig = {
+        Type = "simple";
+        User = "rslsync";
+        Group = "rslsync";
+        ExecStart =
+          "${pkgs.rclone}/bin/rclone serve webdav /srv/volume1 --addr localhost:8080";
+        Restart = "on-failure";
+      };
     };
   };
 }

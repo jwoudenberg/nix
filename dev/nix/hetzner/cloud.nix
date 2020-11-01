@@ -1,6 +1,10 @@
 let
-  resilioListeningPort = 18776;
   sources = import ../nix/sources.nix;
+  resilio = {
+    listeningPort = 18776;
+    dirs = [ "music" "photo" "books" "jasper" "hiske" "hjgames" ];
+    pathFor = dir: "/srv/volume1/${dir}";
+  };
 in {
   network = { pkgs = import sources.nixpkgs { system = "x86_64-linux"; }; };
 
@@ -27,7 +31,7 @@ in {
       options = [ "discard" "defaults" ];
     };
 
-    # Ssh
+    # SSH
     services.openssh.enable = true;
     users.users.root.openssh.authorizedKeys.keys = let
       sshKeysSrc = builtins.fetchurl {
@@ -37,6 +41,10 @@ in {
     in builtins.filter (line: line != "")
     (pkgs.lib.splitString "\n" (builtins.readFile sshKeysSrc));
 
+    # Network
+    networking.firewall.allowedTCPPorts = [ resilio.listeningPort 80 443 ];
+    networking.firewall.allowedUDPPorts = [ resilio.listeningPort 80 443 ];
+
     # healthchecks.io
     services.cron.enable = true;
     services.cron.systemCronJobs = [
@@ -44,28 +52,29 @@ in {
     ];
 
     # Resilio Sync
-    system.activationScripts.mkmusic = ''
-      mkdir -p /srv/volume1/music
-      chown rslsync:rslsync -R /srv/volume1/music
+    system.activationScripts.mkResilioSharedFolders = let
+      pathList = pkgs.lib.concatMapStringsSep " " resilio.pathFor resilio.dirs;
+    in ''
+      mkdir -p ${pathList}
+      chown rslsync:rslsync -R ${pathList}
     '';
-
-    networking.firewall.allowedTCPPorts = [ resilioListeningPort 80 443 ];
-    networking.firewall.allowedUDPPorts = [ resilioListeningPort 80 443 ];
 
     services.resilio = {
       enable = true;
       enableWebUI = false;
-      listeningPort = resilioListeningPort;
-      sharedFolders = [{
-        secret = builtins.getEnv "RESILIO_MUSIC_READONLY";
-        directory = "/srv/volume1/music";
-        useRelayServer = false;
-        useTracker = true;
-        useDHT = true;
-        searchLAN = true;
-        useSyncTrash = false;
-        knownHosts = [ ];
-      }];
+      listeningPort = resilio.listeningPort;
+      sharedFolders = let
+        configFor = dir: {
+          secret = builtins.getEnv "RESILIO_${pkgs.lib.toUpper dir}_READONLY";
+          directory = resilio.pathFor dir;
+          useRelayServer = false;
+          useTracker = true;
+          useDHT = true;
+          searchLAN = true;
+          useSyncTrash = false;
+          knownHosts = [ ];
+        };
+      in builtins.map configFor resilio.dirs;
     };
 
     # Plex

@@ -5,6 +5,7 @@
     pkgs.cachix
     pkgs.calibre
     pkgs.chromium
+    pkgs.comma
     pkgs.discord
     pkgs.du-dust
     pkgs.fd

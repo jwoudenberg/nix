@@ -13,8 +13,9 @@ in {
     deployment.targetUser = "root";
 
     # Nix
-    nixpkgs.localSystem.system = "x86_64-linux";
-    nixpkgs.config.allowUnfree = true;
+    nixpkgs = (import ../config.nix) // {
+      localSystem.system = "x86_64-linux";
+    };
     system.stateVersion = "20.03";
     networking.hostName = "ai-banana";
 
@@ -30,6 +31,9 @@ in {
       fsType = "ext4";
       options = [ "discard" "defaults" ];
     };
+
+    # Packages
+    environment.systemPackages = [ pkgs.comma ];
 
     # SSH
     services.openssh.enable = true;

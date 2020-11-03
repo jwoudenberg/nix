@@ -18,6 +18,11 @@ in {
     };
     system.stateVersion = "20.03";
     networking.hostName = "ai-banana";
+    nix.gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
+    };
 
     # Hardware
     imports = [ <nixpkgs/nixos/modules/profiles/qemu-guest.nix> ];

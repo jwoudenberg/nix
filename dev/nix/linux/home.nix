@@ -32,6 +32,7 @@
     pkgs.tmate
     pkgs.todo
     pkgs.vale
+    pkgs.wally-cli
     pkgs.wl-clipboard
     pkgs.wofi
     pkgs.xdg_utils

@@ -41,12 +41,7 @@ in {
     options = "--delete-older-than 7d";
   };
 
-  environment.systemPackages = with pkgs; [
-    docker
-    efibootmgr
-    mullvad-vpn
-    steam
-  ];
+  environment.systemPackages = with pkgs; [ efibootmgr mullvad-vpn steam ];
 
   fonts.fonts = [ pkgs.fira-code ];
 
@@ -58,14 +53,13 @@ in {
   services.resilio.httpListenPort = 8888;
 
   services.pcscd.enable = true; # For Yubikey support
-  virtualisation.docker.enable = true;
   services.mullvad-vpn.enable = true;
   services.fwupd.enable = true;
 
   users.users.jasper = {
     isNormalUser = true;
     home = "/home/jasper";
-    extraGroups = [ "wheel" "rslsync" "docker" "sway" ];
+    extraGroups = [ "wheel" "rslsync" "sway" ];
     uid = 1000;
   };
 

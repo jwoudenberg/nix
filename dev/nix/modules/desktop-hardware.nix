@@ -16,12 +16,6 @@
     fsType = "ext4";
   };
 
-  fileSystems."/var/lib/docker/plugins" = {
-    device = "/var/lib/docker/plugins";
-    fsType = "none";
-    options = [ "bind" ];
-  };
-
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/D114-214D";
     fsType = "vfat";

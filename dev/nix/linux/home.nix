@@ -23,6 +23,8 @@
     pkgs.nodePackages.prettier
     pkgs.pass
     pkgs.pulsemixer
+    pkgs.plex-media-player
+    pkgs.podman
     pkgs.random-colors
     pkgs.ripgrep
     pkgs.sd

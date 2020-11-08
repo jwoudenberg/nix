@@ -53,6 +53,7 @@
     ../programs/neovim/default.nix
     ../programs/readline.nix
     ../programs/ripgrep.nix
+    ../programs/ssh.nix
     ../programs/sway.nix
     ../programs/vale/default.nix
   ];

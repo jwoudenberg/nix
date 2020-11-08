@@ -50,6 +50,9 @@ in {
     in builtins.filter (line: line != "")
     (pkgs.lib.splitString "\n" (builtins.readFile sshKeysSrc));
 
+    # Mosh
+    programs.mosh.enable = true;
+
     # Network
     networking.firewall.allowedTCPPorts = [ resilio.listeningPort 80 443 ];
     networking.firewall.allowedUDPPorts = [ resilio.listeningPort 80 443 ];

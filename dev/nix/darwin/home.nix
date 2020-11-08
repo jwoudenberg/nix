@@ -10,6 +10,7 @@
     pkgs.magic-wormhole
     pkgs.haskellPackages.niv
     pkgs.jq
+    pkgs.mosh
     pkgs.nixfmt
     pkgs.nodePackages.prettier
     pkgs.random-colors

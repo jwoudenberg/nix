@@ -16,6 +16,7 @@
     pkgs.jq
     pkgs.keybase
     pkgs.magic-wormhole
+    pkgs.mosh
     pkgs.haskellPackages.niv
     pkgs.minecraft
     pkgs.nixfmt

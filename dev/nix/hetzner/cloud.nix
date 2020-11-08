@@ -131,5 +131,24 @@ in {
         Restart = "on-failure";
       };
     };
+
+    # restic
+    services.restic.backups.daily = {
+      paths = builtins.map resilio.pathFor resilio.dirs;
+      repository = "sftp:19438@ch-s012.rsync.net:restic-backups";
+      passwordFile = "/var/secrets/restic-password";
+      timerConfig = { OnCalendar = "00:05"; };
+      pruneOpts = [
+        "--keep-daily 7"
+        "--keep-weekly 5"
+        "--keep-monthly 12"
+        "--keep-yearly 75"
+      ];
+    };
+
+    deployment.secrets.restic-password = {
+      source = "/tmp/restic-password";
+      destination = "/var/secrets/restic-password";
+    };
   };
 }

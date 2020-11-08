@@ -15,8 +15,11 @@ let
 
     # For nix deploys
     export $(pass show resilio.com | grep key_ | awk '{ print "RESILIO_" toupper($1) "=" $2}')
+    pass show rsync.net | grep restic | awk '{ print $2 }' > /tmp/restic-password
 
     exec "$@"
+
+    rm /tmp/restic-password
   '';
 
 in pkgs.mkShell { buildInputs = [ pkgs.morph pkgs.terraform withSecrets ]; }

@@ -103,11 +103,12 @@ in {
       enable = true;
       agree = true;
       email = "letsencrypt@jasperwoudenberg.com";
-      # Hashes generated with the `caddyfile hash-password` command.
+      # Hashes generated with the `caddy hash-password` command.
       config = ''
         ai-banana.jasperwoudenberg.com {
           basicauth {
             jasper JDJhJDEwJHU5ZVlVeDRJREFMYU1QbU5vdVpXVE9weWtnNHBGR255ZUhKRUp3a21xaWpzcC80aVFtOUl5
+            hiske JDJhJDEwJEtac3JYQjNHMDY3WXpLcFVKQzYuZHVBVlJHamI5OWRwc1NsamZlL1ROYUo0WHFtZnZCVkU2 n3SxWJ2AgsVTq7xralHp1nQCe1YQutlN2jdtlzsclCI=
           }
           reverse_proxy {
             to localhost:8080

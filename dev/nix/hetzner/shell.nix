@@ -15,11 +15,13 @@ let
 
     # For nix deploys
     export $(pass show resilio.com | grep key_ | awk '{ print "RESILIO_" toupper($1) "=" $2}')
-    pass show rsync.net | grep restic | awk '{ print $2 }' > /tmp/restic-password
+    mkdir -p /tmp/secrets
+    pass show rsync.net | grep restic | awk '{ print $2 }' > /tmp/secrets/restic-password
+    echo "RCLONE_PASS=$(pass show ai-banana.jasperwoudenberg.com | grep sftp-password | awk '{ print $2 }')" > /tmp/secrets/sftp-password
 
     exec "$@"
 
-    rm /tmp/restic-password
+    rm -rf /tmp/secrets
   '';
 
 in pkgs.mkShell { buildInputs = [ pkgs.morph pkgs.terraform withSecrets ]; }

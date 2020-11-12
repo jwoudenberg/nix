@@ -54,8 +54,8 @@ in {
     programs.mosh.enable = true;
 
     # Network
-    networking.firewall.allowedTCPPorts = [ resilio.listeningPort 80 443 ];
-    networking.firewall.allowedUDPPorts = [ resilio.listeningPort 80 443 ];
+    networking.firewall.allowedTCPPorts = [ resilio.listeningPort 80 443 2022 ];
+    networking.firewall.allowedUDPPorts = [ resilio.listeningPort 80 443 2022 ];
 
     # healthchecks.io
     services.cron.enable = true;
@@ -121,7 +121,7 @@ in {
     };
 
     # rclone
-    systemd.services.rclone-serve = {
+    systemd.services.rclone-serve-webdav = {
       description = "Rclone Serve";
       after = [ "network.target" ];
       wantedBy = [ "multi-user.target" ];
@@ -133,6 +133,34 @@ in {
           "${pkgs.rclone}/bin/rclone serve webdav /srv/volume1 --addr localhost:8080";
         Restart = "on-failure";
       };
+    };
+
+    systemd.services.rclone-serve-sftp = {
+      description = "Rclone Serve";
+      after = [ "network.target" ];
+      wantedBy = [ "multi-user.target" ];
+      serviceConfig = {
+        Type = "simple";
+        User = "rslsync";
+        Group = "rslsync";
+        ExecStart = let
+          start = pkgs.writeShellScriptBin "rclone-serve-sftp" ''
+            #!/usr/bin/env bash
+            exec ${pkgs.rclone}/bin/rclone serve sftp \
+              /srv/volume1/hjgames/scans-to-process \
+              --user sftp \
+              --pass "$RCLONE_PASS" \
+              --addr :2022
+          '';
+        in "${start}/bin/rclone-serve-sftp";
+        Restart = "on-failure";
+        EnvironmentFile = "/var/secrets/sftp-password";
+      };
+    };
+
+    deployment.secrets.sftp-password = {
+      source = "/tmp/secrets/sftp-password";
+      destination = "/var/secrets/sftp-password";
     };
 
     # restic
@@ -150,7 +178,7 @@ in {
     };
 
     deployment.secrets.restic-password = {
-      source = "/tmp/restic-password";
+      source = "/tmp/secrets/restic-password";
       destination = "/var/secrets/restic-password";
     };
 

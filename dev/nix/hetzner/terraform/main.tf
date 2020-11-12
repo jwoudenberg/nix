@@ -60,6 +60,14 @@ resource "cloudflare_record" "ai-banana" {
   ttl     = 300
 }
 
+resource "cloudflare_record" "banana" {
+  zone_id = data.cloudflare_zones.ai-banana.zones[0].id
+  name    = "banana"
+  value   = "ai-banana.jasperwoudenberg.com"
+  type    = "CNAME"
+  ttl     = 300
+}
+
 data "cloudflare_zones" "ai-banana" {
   filter {
     name = "jasperwoudenberg.com"

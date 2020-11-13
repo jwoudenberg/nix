@@ -156,7 +156,7 @@ in {
             #!/usr/bin/env bash
             exec ${pkgs.rclone}/bin/rclone serve sftp \
               /srv/volume1/hjgames/scans-to-process \
-              --key /var/secrets/ssh-key
+              --key /var/secrets/ssh-key \
               --user sftp \
               --pass "$RCLONE_PASS" \
               --addr :2022
@@ -170,11 +170,15 @@ in {
     deployment.secrets.ssh-key = {
       source = "/tmp/secrets/ssh-key";
       destination = "/var/secrets/ssh-key";
+      owner.user = "rslsync";
+      owner.group = "rslsync";
     };
 
     deployment.secrets.sftp-password = {
       source = "/tmp/secrets/sftp-password";
       destination = "/var/secrets/sftp-password";
+      owner.user = "rslsync";
+      owner.group = "rslsync";
     };
 
     # restic

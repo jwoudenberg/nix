@@ -2,7 +2,14 @@ let
   sources = import ../nix/sources.nix;
   resilio = {
     listeningPort = 18776;
-    dirs = [ "music" "photo" "books" "jasper" "hiske" "hjgames" ];
+    dirs = {
+      "music" = "readonly";
+      "photo" = "readonly";
+      "books" = "readonly";
+      "jasper" = "readonly";
+      "hiske" = "readonly";
+      "hjgames" = "readwrite";
+    };
     pathFor = dir: "/srv/volume1/${dir}";
   };
 in {
@@ -65,7 +72,8 @@ in {
 
     # Resilio Sync
     system.activationScripts.mkResilioSharedFolders = let
-      pathList = pkgs.lib.concatMapStringsSep " " resilio.pathFor resilio.dirs;
+      pathList = pkgs.lib.concatMapStringsSep " " resilio.pathFor
+        (builtins.attrNames resilio.dirs);
     in ''
       mkdir -p ${pathList}
       chown rslsync:rslsync -R ${pathList}
@@ -76,9 +84,9 @@ in {
       enableWebUI = false;
       listeningPort = resilio.listeningPort;
       sharedFolders = let
-        configFor = dir: {
-          secret =
-            builtins.getEnv "RESILIO_KEY_${pkgs.lib.toUpper dir}_READONLY";
+        configFor = dir: perms: {
+          secret = builtins.getEnv
+            "RESILIO_KEY_${pkgs.lib.toUpper dir}_${pkgs.lib.toUpper perms}";
           directory = resilio.pathFor dir;
           useRelayServer = false;
           useTracker = true;
@@ -87,7 +95,7 @@ in {
           useSyncTrash = false;
           knownHosts = [ ];
         };
-      in builtins.map configFor resilio.dirs;
+      in builtins.attrValues (builtins.mapAttrs configFor resilio.dirs);
     };
 
     # Plex
@@ -171,7 +179,7 @@ in {
 
     # restic
     services.restic.backups.daily = {
-      paths = builtins.map resilio.pathFor resilio.dirs;
+      paths = builtins.map resilio.pathFor (builtins.attrNames resilio.dirs);
       repository = "sftp:19438@ch-s012.rsync.net:restic-backups";
       passwordFile = "/var/secrets/restic-password";
       timerConfig = { OnCalendar = "00:05"; };

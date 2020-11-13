@@ -18,6 +18,7 @@ let
     mkdir -p /tmp/secrets
     pass show rsync.net | grep restic | awk '{ print $2 }' > /tmp/secrets/restic-password
     echo "RCLONE_PASS=$(pass show ai-banana.jasperwoudenberg.com | grep sftp-password | awk '{ print $2 }')" > /tmp/secrets/sftp-password
+    pass show ai-banana.jasperwoudenberg.com | sed '1,/ssh-key-encoded:/d' > /tmp/secrets/ssh-key
 
     exec "$@"
 

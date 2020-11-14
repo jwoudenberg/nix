@@ -68,6 +68,7 @@ in {
     services.cron.enable = true;
     services.cron.systemCronJobs = [
       "0 * * * *      root    systemctl is-active --quiet plex && curl -fsS -m 10 --retry 5 -o /dev/null https://hc-ping.com/8177d382-5f65-465c-8e41-50b0a9291c9f"
+      "0 * * * *      root    ls -1qA /srv/volume1/hjgames/scans-to-process/ | grep -q . || curl -fsS -m 10 --retry 5 -o /dev/null https://hc-ping.com/8ff8704b-d08e-47eb-b879-02ddb7442fe2"
     ];
 
     # Resilio Sync
@@ -227,6 +228,7 @@ in {
           script = pkgs.writeShellScriptBin "ocr-scans-to-process" ''
             #!/usr/bin/env bash
             for file in /srv/volume1/hjgames/scans-to-process/*; do
+              # Run ocrmypdf on the scanned file.
               ${pkgs.ocrmypdf}/bin/ocrmypdf \
                 --rotate-pages \
                 --skip-text \
@@ -234,6 +236,9 @@ in {
                 "$file" \
                 "/srv/volume1/hjgames/documenten/$(basename "$file")" \
                 && rm $file
+
+              # Notify healthchecks.io of the status of the previous command.
+              curl --retry 3 https://hc-ping.com/8ff8704b-d08e-47eb-b879-02ddb7442fe2/$?
             done
           '';
         in "${script}/bin/ocr-scans-to-process";

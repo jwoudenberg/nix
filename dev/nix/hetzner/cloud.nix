@@ -152,7 +152,7 @@ in {
         User = "rslsync";
         Group = "rslsync";
         ExecStart = let
-          start = pkgs.writeShellScriptBin "rclone-serve-sftp" ''
+          script = pkgs.writeShellScriptBin "rclone-serve-sftp" ''
             #!/usr/bin/env bash
             exec ${pkgs.rclone}/bin/rclone serve sftp \
               /srv/volume1/hjgames/scans-to-process \
@@ -161,7 +161,7 @@ in {
               --pass "$RCLONE_PASS" \
               --addr :2022
           '';
-        in "${start}/bin/rclone-serve-sftp";
+        in "${script}/bin/rclone-serve-sftp";
         Restart = "on-failure";
         EnvironmentFile = "/var/secrets/sftp-password";
       };
@@ -210,7 +210,7 @@ in {
         "Triggers ocrmypdf service when a file is placed in the scans-to-process directory.";
       pathConfig = {
         DirectoryNotEmpty = "/srv/volume1/hjgames/scans-to-process";
-        MakeDirectory = True;
+        MakeDirectory = true;
       };
     };
 
@@ -223,17 +223,19 @@ in {
         User = "rslsync";
         Group = "rslsync";
         ExecStart = let
-          start = pkgs.writeShellScriptBin "ocr-scans-to-process" ''
+          script = pkgs.writeShellScriptBin "ocr-scans-to-process" ''
             #!/usr/bin/env bash
-            for file in /srv/volume1/hjgames/scans-to-process; do
+            for file in /srv/volume1/hjgames/scans-to-process/*; do
               ${pkgs.ocrmypdf}/bin/ocrmypdf \
                 --rotate-pages \
                 --skip-text \
-                --language eng+nld
-                $file
+                --language nld+eng \
+                "$file" \
+                "/srv/volume1/hjgames/documenten/$(basename "$file")" \
+                && rm $file
             done
           '';
-        in "${start}/bin/ocr-scans-to-process";
+        in "${script}/bin/ocr-scans-to-process";
       };
     };
   };

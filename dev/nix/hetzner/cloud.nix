@@ -202,5 +202,39 @@ in {
 
     systemd.services.restic-backups-daily.serviceConfig.ExecStartPost =
       "${pkgs.curl}/bin/curl -m 10 --retry 5 https://hc-ping.com/528b3b90-9fc4-4dd7-b032-abb0c7019b88";
+
+    # ocrmypdf
+    systemd.paths.ocrmypdf = {
+      enable = true;
+      description =
+        "Triggers ocrmypdf service when a file is placed in the scans-to-process directory.";
+      pathConfig = {
+        DirectoryNotEmpty = "/srv/volume1/hjgames/scans-to-process";
+        MakeDirectory = True;
+      };
+    };
+
+    systemd.services.ocrmypdf = {
+      enable = true;
+      description =
+        "Run ocrmypdf on all files in the scans-to-process directory.";
+      serviceConfig = {
+        Type = "oneshot";
+        User = "rslsync";
+        Group = "rslsync";
+        ExecStart = let
+          start = pkgs.writeShellScriptBin "ocr-scans-to-process" ''
+            #!/usr/bin/env bash
+            for file in /srv/volume1/hjgames/scans-to-process; do
+              ${pkgs.ocrmypdf}/bin/ocrmypdf \
+                --rotate-pages \
+                --skip-text \
+                --language eng+nld
+                $file
+            done
+          '';
+        in "${start}/bin/ocr-scans-to-process";
+      };
+    };
   };
 }

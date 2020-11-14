@@ -23,6 +23,7 @@
     pkgs.nix-prefetch-github
     pkgs.nodePackages.prettier
     pkgs.pass
+    pkgs.pdfgrep
     pkgs.pulsemixer
     pkgs.plex-media-player
     pkgs.podman

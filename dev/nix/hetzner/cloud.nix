@@ -206,6 +206,7 @@ in {
     # ocrmypdf
     systemd.paths.ocrmypdf = {
       enable = true;
+      wantedBy = [ "multi-user.target" ];
       description =
         "Triggers ocrmypdf service when a file is placed in the scans-to-process directory.";
       pathConfig = {

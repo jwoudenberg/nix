@@ -234,7 +234,7 @@ in {
                 --skip-text \
                 --language nld+eng \
                 "$file" \
-                "/srv/volume1/hjgames/documenten/$(basename "$file")" \
+                $(mktemp -u "/srv/volume1/hjgames/documenten/$(date '+%Y%m%d')_XXXXXX.pdf" ) \
                 && rm $file
 
               # Notify healthchecks.io of the status of the previous command.

@@ -238,7 +238,7 @@ in {
                 && rm $file
 
               # Notify healthchecks.io of the status of the previous command.
-              curl --retry 3 https://hc-ping.com/8ff8704b-d08e-47eb-b879-02ddb7442fe2/$?
+              ${pkgs.curl}/bin/curl --retry 3 https://hc-ping.com/8ff8704b-d08e-47eb-b879-02ddb7442fe2/$?
             done
           '';
         in "${script}/bin/ocr-scans-to-process";

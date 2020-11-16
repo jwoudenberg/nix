@@ -10,6 +10,7 @@
     pkgs.du-dust
     pkgs.fd
     pkgs.gnupg
+    pkgs.gotop
     pkgs.grim
     pkgs.i3status
     pkgs.imv
@@ -40,7 +41,6 @@
     pkgs.wl-clipboard
     pkgs.wofi
     pkgs.xdg_utils
-    pkgs.ytop
     pkgs.zoom-us
   ];
 

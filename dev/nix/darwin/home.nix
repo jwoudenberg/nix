@@ -5,6 +5,7 @@
     pkgs.du-dust
     pkgs.fd
     pkgs.gnupg
+    pkgs.gotop
     pkgs.nix-prefetch-github
     pkgs.pass
     pkgs.pdfgrep
@@ -21,7 +22,6 @@
     pkgs.similar-sort
     pkgs.todo
     pkgs.vale
-    pkgs.ytop
   ];
 
   imports = [

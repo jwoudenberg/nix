@@ -230,6 +230,7 @@ in {
             for file in /srv/volume1/hjgames/scans-to-process/*; do
               # Run ocrmypdf on the scanned file.
               ${pkgs.ocrmypdf}/bin/ocrmypdf \
+                --output-type pdf \
                 --rotate-pages \
                 --skip-text \
                 --language nld+eng \

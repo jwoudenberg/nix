@@ -201,6 +201,8 @@ in {
       destination = "/var/secrets/restic-password";
     };
 
+    systemd.services.restic-backups-daily.serviceConfig.ExecStartPre =
+      "${pkgs.curl}/bin/curl -m 10 --retry 5 https://hc-ping.com/528b3b90-9fc4-4dd7-b032-abb0c7019b88/start";
     systemd.services.restic-backups-daily.serviceConfig.ExecStartPost =
       "${pkgs.curl}/bin/curl -m 10 --retry 5 https://hc-ping.com/528b3b90-9fc4-4dd7-b032-abb0c7019b88";
 

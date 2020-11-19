@@ -230,15 +230,20 @@ in {
           script = pkgs.writeShellScriptBin "ocr-scans-to-process" ''
             #!/usr/bin/env bash
             for file in /srv/volume1/hjgames/scans-to-process/*; do
+              # Notify healthchecks.io that we're about to start scanning.
+              ${pkgs.curl}/bin/curl --retry 3 https://hc-ping.com/8ff8704b-d08e-47eb-b879-02ddb7442fe2/start
+
               # Run ocrmypdf on the scanned file.
+              output="$(mktemp -u "/tmp/$(date '+%Y%m%d')_XXXXXX.pdf")"
               ${pkgs.ocrmypdf}/bin/ocrmypdf \
                 --output-type pdf \
                 --rotate-pages \
                 --skip-text \
                 --language nld+eng \
                 "$file" \
-                $(mktemp -u "/srv/volume1/hjgames/documenten/$(date '+%Y%m%d')_XXXXXX.pdf" ) \
-                && rm $file
+                "$output" \
+                && rm "$file" \
+                && mv "$output" /srv/volume1/hjgames/documenten
 
               # Notify healthchecks.io of the status of the previous command.
               ${pkgs.curl}/bin/curl --retry 3 https://hc-ping.com/8ff8704b-d08e-47eb-b879-02ddb7442fe2/$?

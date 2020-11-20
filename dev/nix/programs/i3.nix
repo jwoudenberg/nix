@@ -30,7 +30,7 @@
     floating.modifier = "Mod4";
 
     keybindings = {
-      "${modifier}+Return" = "exec alacritty -e fish";
+      "${modifier}+Return" = "exec kitty -e fish";
       "${modifier}+Shift+q" = "kill";
       "${modifier}+p" = "exec rofi -show run";
       "${modifier}+h" = "focus left";

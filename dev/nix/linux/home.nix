@@ -45,7 +45,6 @@
   ];
 
   imports = [
-    ../programs/alacritty.nix
     ../programs/direnv.nix
     ../programs/firefox.nix
     ../programs/fish/default.nix

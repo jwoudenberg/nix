@@ -52,6 +52,7 @@
     ../programs/fzf.nix
     ../programs/git.nix
     ../programs/i3status/default.nix
+    ../programs/kitty.nix
     ../programs/neovim/default.nix
     ../programs/readline.nix
     ../programs/ripgrep.nix

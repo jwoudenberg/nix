@@ -30,6 +30,7 @@
     ../programs/fish/default.nix
     ../programs/fzf.nix
     ../programs/git.nix
+    ../programs/kitty.nix
     ../programs/neovim/default.nix
     ../programs/ripgrep.nix
     ../programs/readline.nix

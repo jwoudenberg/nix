@@ -8,7 +8,7 @@
     };
 
     settings = {
-      font_size = if builtins.currentSystem == "x86_64-darwin" then 16 else 13;
+      font_size = 18;
       shell = "${pkgs.fish}/bin/fish";
     };
   };

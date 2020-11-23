@@ -16,10 +16,6 @@
       macos_quit_when_last_window_closed = true;
     };
 
-    keybindings = {
-      "ctrl+c" = "copy_or_interrupt";
-      "ctrl+v" = "paste_from_clipboard";
-      "ctrl+k" = "clear_terminal reset active";
-    };
+    keybindings = { "ctrl+k" = "clear_terminal reset active"; };
   };
 }

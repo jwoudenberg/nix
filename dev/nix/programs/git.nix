@@ -6,7 +6,7 @@
 
     lfs.enable = true;
 
-    ignores = [ "todo.txt" ".direnv" ];
+    ignores = [ "todo.txt" ".direnv" ".lvimrc" ];
 
     extraConfig = {
       core.pager = ''

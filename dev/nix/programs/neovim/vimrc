@@ -34,6 +34,8 @@ let g:lightline = { 'colorscheme': 'nord' }
 
 tnoremap <C-O> <C-\><C-n><C-O>
 
+autocmd BufNewFile,BufRead *.pl :set ft=prolog
+
 " --- LOCAL VIMRC ---
 let g:localvimrc_persistent = 2
 

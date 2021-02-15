@@ -113,7 +113,6 @@ in {
     # Caddy
     services.caddy = {
       enable = true;
-      agree = true;
       email = "letsencrypt@jasperwoudenberg.com";
       # Hashes generated with the `caddy hash-password` command.
       config = ''

@@ -17,10 +17,10 @@
         "homepage": "",
         "owner": "LnL7",
         "repo": "nix-darwin",
-        "rev": "dca3806552420c811e539ede2af3aa7aec665ba1",
-        "sha256": "1pcq911d8fbkrj63bl3iqil2g8778awcaqzjkmfpllq59bjk5x40",
+        "rev": "5c3146b75d5d478f0693d0ea6c83f1da8382ff56",
+        "sha256": "0021ry1mnrxfn8bcihq4frjh085zlrwgi2w1gx5iwl40n3p3zs9h",
         "type": "tarball",
-        "url": "https://github.com/LnL7/nix-darwin/archive/dca3806552420c811e539ede2af3aa7aec665ba1.tar.gz",
+        "url": "https://github.com/LnL7/nix-darwin/archive/5c3146b75d5d478f0693d0ea6c83f1da8382ff56.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "home-manager": {
@@ -29,10 +29,10 @@
         "homepage": "https://rycee.gitlab.io/home-manager/",
         "owner": "rycee",
         "repo": "home-manager",
-        "rev": "91bd34620d73340be03642279ee0d1c64110ee6c",
-        "sha256": "1pwn2w21rmnk7nqzx9wmgb4k4kph7vfd1r9wcq9xdn7w27cjdg7v",
+        "rev": "209566c752c4428c7692c134731971193f06b37c",
+        "sha256": "1canlfkm09ssbgm3hq0kb9d86bdh84jhidxv75g98zq5wgadk7jm",
         "type": "tarball",
-        "url": "https://github.com/rycee/home-manager/archive/91bd34620d73340be03642279ee0d1c64110ee6c.tar.gz",
+        "url": "https://github.com/rycee/home-manager/archive/209566c752c4428c7692c134731971193f06b37c.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs": {
@@ -41,10 +41,10 @@
         "homepage": "",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "8e78c2cfbae71720869c35b6710d652bf28b37cc",
-        "sha256": "178dr6bz71lbv0ljynvvkrc2p0lwqmci482brkqdw9qfx3sc1a7f",
+        "rev": "37b47da04ca50d17934881192e65ad2df83704b5",
+        "sha256": "0was72mxc0i1zlpn18svmdkwpxbfjmb3m60fnv041zjyrlkmy91s",
         "type": "tarball",
-        "url": "https://github.com/nixos/nixpkgs/archive/8e78c2cfbae71720869c35b6710d652bf28b37cc.tar.gz",
+        "url": "https://github.com/nixos/nixpkgs/archive/37b47da04ca50d17934881192e65ad2df83704b5.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs-darwin": {
@@ -53,10 +53,10 @@
         "homepage": "",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "2875bc9a55d4859be86f8250987aed58405be552",
-        "sha256": "12kc5r5flp2iargba39dbvmghl62i3wkp6s4rqas48wnmsfp3d24",
+        "rev": "16fc9eb7364942f81d466cf29ab4e1623fc6d74f",
+        "sha256": "12l5lqa3v9psz06jjmnarbdix42a4zax6h47fbrqz94s5i1d45q6",
         "type": "tarball",
-        "url": "https://github.com/nixos/nixpkgs/archive/2875bc9a55d4859be86f8250987aed58405be552.tar.gz",
+        "url": "https://github.com/nixos/nixpkgs/archive/16fc9eb7364942f81d466cf29ab4e1623fc6d74f.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "similar-sort": {

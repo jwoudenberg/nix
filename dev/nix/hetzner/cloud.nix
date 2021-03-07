@@ -61,7 +61,13 @@ in {
     programs.mosh.enable = true;
 
     # Network
-    networking.firewall.allowedTCPPorts = [ resilio.listeningPort 80 443 2022 ];
+    networking.firewall.allowedTCPPorts = [
+      resilio.listeningPort
+      80
+      443
+      2022 # ssh
+      32400 # plex media server
+    ];
     networking.firewall.allowedUDPPorts = [ resilio.listeningPort 80 443 2022 ];
 
     # healthchecks.io
@@ -107,7 +113,10 @@ in {
     # 4. Set `openFirewall = true;`
     services.plex = {
       enable = true;
-      openFirewall = true;
+      # by default the plex derivation opens ports that should only be
+      # accessible from a local network. The one port that should be exposed to
+      # the public internet is opened manually above.
+      openFirewall = false;
     };
 
     # Caddy

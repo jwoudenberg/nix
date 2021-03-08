@@ -18,6 +18,7 @@
     pkgs.keybase
     pkgs.magic-wormhole
     pkgs.mosh
+    pkgs.mupdf
     pkgs.haskellPackages.niv
     pkgs.minecraft
     pkgs.nixfmt

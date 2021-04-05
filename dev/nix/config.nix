@@ -2,6 +2,7 @@
   config = { allowUnfree = true; };
   overlays = [
     (import ./overlays/comma.nix)
+    (import ./overlays/nix-script.nix)
     (import ./overlays/pass.nix)
     (import ./overlays/random-colors.nix)
     (import ./overlays/similar-sort.nix)

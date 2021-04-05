@@ -35,6 +35,18 @@
         "url": "https://github.com/rycee/home-manager/archive/209566c752c4428c7692c134731971193f06b37c.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "nix-script": {
+        "branch": "main",
+        "description": "write scripts in compiled languages that run in the nix ecosystem, with no separate build step",
+        "homepage": null,
+        "owner": "BrianHicks",
+        "repo": "nix-script",
+        "rev": "623d1d1bd3a1c0d4dd7eb7b969c46d7a22d32117",
+        "sha256": "12hnl09w4q3kvvadxgx9yvd1bxmg1n4s78bm1v61mjy2wsx3fhx5",
+        "type": "tarball",
+        "url": "https://github.com/BrianHicks/nix-script/archive/623d1d1bd3a1c0d4dd7eb7b969c46d7a22d32117.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "nixpkgs": {
         "branch": "nixos-20.09",
         "description": "Nix Packages collection",

@@ -11,7 +11,7 @@ in {
     enable = true;
 
     withPython = false;
-    withPython3 = true;
+    withPython3 = false;
     withRuby = false;
     withNodeJs = false;
 

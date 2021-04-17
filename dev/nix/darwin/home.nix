@@ -13,6 +13,7 @@
     pkgs.magic-wormhole
     pkgs.haskellPackages.niv
     pkgs.jq
+    pkgs.tabnine
     pkgs.mosh
     pkgs.nixfmt
     pkgs.nix-script

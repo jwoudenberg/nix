@@ -1,7 +1,7 @@
 { pkgs, ... }:
 let
   sources = import ../../nix/sources.nix;
-  customPlugin = p:
+  nivSourceAsPlugin = p:
     pkgs.vimUtils.buildVimPlugin {
       name = p.repo;
       src = p;
@@ -20,7 +20,11 @@ in {
     extraConfig = builtins.readFile ./vimrc;
 
     plugins = with pkgs.vimPlugins; [
-      (customPlugin sources.vim-tabnine)
+      (nivSourceAsPlugin sources."asyncomplete.vim")
+      (pkgs.vimUtils.buildVimPlugin {
+        name = "asyncomplete-tabnine";
+        src = ../../asyncomplete-tabnine;
+      })
       ale
       fzf-vim
       fzfWrapper

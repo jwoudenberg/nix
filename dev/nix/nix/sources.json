@@ -1,4 +1,16 @@
 {
+    "asyncomplete.vim": {
+        "branch": "master",
+        "description": "async completion in pure vim script for vim8 and neovim",
+        "homepage": "",
+        "owner": "prabirshrestha",
+        "repo": "asyncomplete.vim",
+        "rev": "8e018dee9c5e2205288bda01be0de196b04b7cf2",
+        "sha256": "1ghv6zp3qajd4n9qv3mnxqhczi77qmds2b2iicbl252slvldr604",
+        "type": "tarball",
+        "url": "https://github.com/prabirshrestha/asyncomplete.vim/archive/8e018dee9c5e2205288bda01be0de196b04b7cf2.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "comma": {
         "branch": "master",
         "description": null,
@@ -76,17 +88,5 @@
         "repo": "https://git.bytes.zone/brian/similar-sort.git",
         "rev": "47a6eea3b0b9a2e1095ee92d891ca401089b09e9",
         "type": "git"
-    },
-    "vim-tabnine": {
-        "branch": "master",
-        "description": "Vim client for TabNine",
-        "homepage": "https://tabnine.com/",
-        "owner": "codota",
-        "repo": "tabnine-vim",
-        "rev": "fa891e62903501f7eeb2f00f6574ec9684e1c4ee",
-        "sha256": "0cra1l31fcngp3iyn61rlngz4qx7zwk68h07bgp9w5gjx59a7npz",
-        "type": "tarball",
-        "url": "https://github.com/codota/tabnine-vim/archive/fa891e62903501f7eeb2f00f6574ec9684e1c4ee.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }

@@ -103,7 +103,19 @@ let g:neoformat_enabled_html = []
 let g:neoformat_basic_format_retab = 1
 
 
-" --- TRIM ON SAVE"
+" --- Autocomplete
+autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#tabnine#get_source_options({
+  \ 'name': 'tabnine',
+  \ 'allowlist': ['*'],
+  \ 'completor': function('asyncomplete#tabnine#completor'),
+  \ 'config': {
+  \   'line_limit': 1000,
+  \   'max_num_result': 5,
+  \  },
+  \ }))
+
+
+" --- TRIM ON SAVE
 autocmd BufWritePre * :%s/\s\+$//e
 
 

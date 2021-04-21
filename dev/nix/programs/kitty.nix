@@ -16,6 +16,9 @@
       macos_quit_when_last_window_closed = true;
     };
 
-    keybindings = { "ctrl+shift+k" = "clear_terminal reset active"; };
+    keybindings = {
+      "cmd+k" = "next_tab";
+      "cmd+j" = "previous_tab";
+    };
   };
 }

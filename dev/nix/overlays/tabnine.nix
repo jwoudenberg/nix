@@ -6,18 +6,18 @@
 self: super:
 
 let
-  version = "3.3.108";
+  version = "3.3.115";
   src = if super.stdenv.hostPlatform.system == "x86_64-darwin" then
     super.fetchurl {
       url =
         "https://update.tabnine.com/bundles/${version}/x86_64-apple-darwin/TabNine.zip";
-      sha256 = "0b5la0mfar0d876zfs876mk3cw2g5cb4bhfqrx6midw7p3q80yib";
+      sha256 = "104h3b9cvmz2m27a94cfc00xm8wa2p1pvrfs92hrz59hcs8vdldf";
     }
   else if super.stdenv.hostPlatform.system == "x86_64-linux" then
     super.fetchurl {
       url =
         "https://update.tabnine.com/bundles/${version}/x86_64-unknown-linux-musl/TabNine.zip";
-      sha256 = "vbeuZf/phOj83xTha+AzpKIvvrjwMar7q2teAmr5ESQ=";
+      sha256 = "vbeuZf/phOj93xTha+AzpKIvvrjwMar7q2teAmr5ESQ=";
     }
   else
     throw "Not supported on ${super.stdenv.hostPlatform.system}";

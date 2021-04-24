@@ -22,7 +22,7 @@ in {
   console.keyMap = "us";
   i18n.defaultLocale = "en_US.UTF-8";
 
-  time.timeZone = "Europe/London";
+  time.timeZone = "Europe/Amsterdam";
 
   nixpkgs = import ../config.nix;
 

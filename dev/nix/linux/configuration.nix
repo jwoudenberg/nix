@@ -46,6 +46,7 @@ in {
   fonts.fonts = [ pkgs.fira-code ];
 
   programs.sway.enable = true;
+  programs.ssh.startAgent = true;
 
   services.resilio.enable = true;
   services.resilio.deviceName = "jasper-desktop-nixos";

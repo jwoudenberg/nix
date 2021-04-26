@@ -35,6 +35,7 @@
     pkgs.shellcheck
     pkgs.similar-sort
     pkgs.slurp
+    pkgs.tabnine
     pkgs.tmate
     pkgs.todo
     pkgs.vale

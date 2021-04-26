@@ -17,7 +17,7 @@ let
     super.fetchurl {
       url =
         "https://update.tabnine.com/bundles/${version}/x86_64-unknown-linux-musl/TabNine.zip";
-      sha256 = "vbeuZf/phOj93xTha+AzpKIvvrjwMar7q2teAmr5ESQ=";
+      sha256 = "0rs2vmdz8c9zs53pjbzy27ir0p5v752cpsnqfaqf0ilx7k6fpnnm";
     }
   else
     throw "Not supported on ${super.stdenv.hostPlatform.system}";

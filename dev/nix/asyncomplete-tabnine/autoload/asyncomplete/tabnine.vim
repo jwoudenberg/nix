@@ -13,7 +13,7 @@ endfunction
 
 function! s:start_tabnine() abort
     let l:cmd = [
-      \   'tabnine',
+      \   'TabNine',
       \   '--log-file-path',
       \   '/tmp/tabnine.log',
       \ ]

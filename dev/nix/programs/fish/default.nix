@@ -26,6 +26,7 @@ in {
     shellAliases = {
       "ls" = "${pkgs.exa}/bin/exa";
       "cat" = "${pkgs.bat}/bin/bat";
+      "lock" = "swaylock";
     };
   };
 }

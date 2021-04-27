@@ -2,7 +2,6 @@
 
 {
   home.packages = [
-    pkgs._1password-gui
     pkgs.cachix
     pkgs.calibre
     pkgs.chromium

@@ -41,7 +41,7 @@ in {
     options = "--delete-older-than 7d";
   };
 
-  environment.systemPackages = with pkgs; [ efibootmgr mullvad-vpn steam ];
+  environment.systemPackages = with pkgs; [ efibootmgr steam ];
 
   fonts.fonts = [ pkgs.fira-code ];
 
@@ -54,7 +54,6 @@ in {
   services.resilio.httpListenPort = 8888;
 
   services.pcscd.enable = true; # For Yubikey support
-  services.mullvad-vpn.enable = true;
   services.fwupd.enable = true;
 
   users.users.jasper = {

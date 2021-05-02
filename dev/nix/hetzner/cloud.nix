@@ -15,7 +15,7 @@ let
 in {
   network = { pkgs = import sources.nixpkgs { system = "x86_64-linux"; }; };
 
-  "ai-banana.jasperwoudenberg.com" = { pkgs, ... }: {
+  "ai-banana.jasperwoudenberg.com" = { pkgs, config, ... }: {
     # Morph
     deployment.targetUser = "root";
 
@@ -45,7 +45,10 @@ in {
     };
 
     # Packages
-    environment.systemPackages = [ pkgs.comma ];
+    environment.systemPackages = [ pkgs.comma pkgs.tailscale ];
+
+    # Tailscale
+    services.tailscale.enable = true;
 
     # SSH
     services.openssh.enable = true;
@@ -61,14 +64,20 @@ in {
     programs.mosh.enable = true;
 
     # Network
-    networking.firewall.allowedTCPPorts = [
-      resilio.listeningPort
-      80
-      443
-      2022 # ssh
-      32400 # plex media server
-    ];
-    networking.firewall.allowedUDPPorts = [ resilio.listeningPort 80 443 2022 ];
+    networking.firewall = {
+      enable = true;
+      trustedInterfaces = [ "tailscale0" ];
+      allowedTCPPorts = [
+        resilio.listeningPort
+        2022 # ssh
+      ];
+      allowedUDPPorts = [
+        resilio.listeningPort
+        config.services.tailscale.port
+        2022
+        # ssh
+      ];
+    };
 
     # healthchecks.io
     services.cron.enable = true;

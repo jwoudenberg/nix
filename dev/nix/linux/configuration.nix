@@ -17,6 +17,10 @@ in {
 
   networking.hostName = "jasper-desktop-nixos";
   networking.networkmanager.enable = true;
+  networking.firewall = {
+    enable = true;
+    allowedUDPPorts = [ config.services.tailscale.port ];
+  };
 
   console.font = "FiraCode 16";
   console.keyMap = "us";
@@ -53,6 +57,7 @@ in {
   services.resilio.enableWebUI = true;
   services.resilio.httpListenPort = 8888;
 
+  services.tailscale.enable = true;
   services.pcscd.enable = true; # For Yubikey support
   services.fwupd.enable = true;
 

@@ -74,8 +74,7 @@ in {
       allowedUDPPorts = [
         resilio.listeningPort
         config.services.tailscale.port
-        2022
-        # ssh
+        2022 # ssh
       ];
     };
 

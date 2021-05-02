@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 let sources = import ../nix/sources.nix;
 in {
@@ -17,10 +17,14 @@ in {
 
   networking.hostName = "jasper-desktop-nixos";
   networking.networkmanager.enable = true;
+  networking.nameservers = [ "100.100.100.100" "1.1.1.1" ];
+  networking.search = [ "jasperwoudenberg.com.beta.tailscale.net" ];
   networking.firewall = {
     enable = true;
     allowedUDPPorts = [ config.services.tailscale.port ];
   };
+
+  services.resolved.fallbackDns = config.networking.nameservers;
 
   console.font = "FiraCode 16";
   console.keyMap = "us";

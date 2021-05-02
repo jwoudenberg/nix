@@ -133,11 +133,7 @@ in {
       email = "letsencrypt@jasperwoudenberg.com";
       # Hashes generated with the `caddy hash-password` command.
       config = ''
-        ai-banana.jasperwoudenberg.com {
-          basicauth {
-            jasper JDJhJDEwJHU5ZVlVeDRJREFMYU1QbU5vdVpXVE9weWtnNHBGR255ZUhKRUp3a21xaWpzcC80aVFtOUl5
-            hiske JDJhJDEwJEtac3JYQjNHMDY3WXpLcFVKQzYuZHVBVlJHamI5OWRwc1NsamZlL1ROYUo0WHFtZnZCVkU2 n3SxWJ2AgsVTq7xralHp1nQCe1YQutlN2jdtlzsclCI=
-          }
+        :80 {
           reverse_proxy {
             to localhost:8080
           }
@@ -155,7 +151,7 @@ in {
         User = "rslsync";
         Group = "rslsync";
         ExecStart =
-          "${pkgs.rclone}/bin/rclone serve webdav /srv/volume1 --addr localhost:8080";
+          "${pkgs.rclone}/bin/rclone serve webdav /srv/volume1 --addr :8080";
         Restart = "on-failure";
       };
     };

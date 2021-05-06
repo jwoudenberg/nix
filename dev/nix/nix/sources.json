@@ -47,6 +47,18 @@
         "url": "https://github.com/rycee/home-manager/archive/2aa20ae969f2597c4df10a094440a66e9d7f8c86.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "launch": {
+        "branch": "main",
+        "description": "FZF based launcher for personal use",
+        "homepage": null,
+        "owner": "jwoudenberg",
+        "repo": "launch",
+        "rev": "100997312d46551199203e649f0cdc6eef8660b7",
+        "sha256": "1jja5pps4cs83ai84z2yybv06zzgr02lv126idz60w4a4f5wg0fj",
+        "type": "tarball",
+        "url": "https://github.com/jwoudenberg/launch/archive/100997312d46551199203e649f0cdc6eef8660b7.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "nix-script": {
         "branch": "main",
         "description": "write scripts in compiled languages that run in the nix ecosystem, with no separate build step",

@@ -35,7 +35,7 @@ in {
     client.unfocused $cdark $clight $cdark $caccent $cdark
     client.urgent $caccent $clight $cdark $caccent $caccent
 
-    for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 350 px 350 px, border pixel 5
+    for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 350 px 350 px, border pixel 3
     set $menu exec kitty --class=launcher -- ${pkgs.jwlaunch}/bin/launch
 
     bindsym {

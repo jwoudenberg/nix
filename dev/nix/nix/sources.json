@@ -53,10 +53,10 @@
         "homepage": null,
         "owner": "jwoudenberg",
         "repo": "launch",
-        "rev": "e2c1a424737285963cbf2d504ac2414cfc942cf4",
-        "sha256": "02gmd3h9jw7vy6hlwr9xix8xai5i2k807yzlq6mfnq0nym6k6x06",
+        "rev": "0ee4c2124dd8063009df03e599319dd500804362",
+        "sha256": "09qh4gih4382qsyal0x6mpzyrghw787mm6d5qsqap03q29z9xkzh",
         "type": "tarball",
-        "url": "https://github.com/jwoudenberg/launch/archive/e2c1a424737285963cbf2d504ac2414cfc942cf4.tar.gz",
+        "url": "https://github.com/jwoudenberg/launch/archive/0ee4c2124dd8063009df03e599319dd500804362.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nix-script": {

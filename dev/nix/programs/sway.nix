@@ -31,7 +31,7 @@ in {
     client.placeholder #000000 #0c0c0c #ffffff #000000 #0c0c0c
     client.background #ffffff
 
-    for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 5
+    for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 350 px 350 px, border pixel 5
     set $menu exec kitty --class=launcher -- ${pkgs.jwlaunch}/bin/launch
 
     bindsym {

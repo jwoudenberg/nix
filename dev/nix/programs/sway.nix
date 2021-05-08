@@ -31,8 +31,8 @@ in {
     client.placeholder #000000 #0c0c0c #ffffff #000000 #0c0c0c
     client.background #ffffff
 
-    for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 10
-    set $menu exec kitty --class=launcher -e ${pkgs.jwlaunch}/bin/launch
+    for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 5
+    set $menu exec kitty --class=launcher -- ${pkgs.jwlaunch}/bin/launch
 
     bindsym {
       Mod4+0 workspace 10
@@ -48,7 +48,6 @@ in {
       Mod4+Down focus down
       Mod4+Left focus left
       Mod4+Return exec kitty -e fish
-      Mod4+t exec $menu
       Mod4+Right focus right
       Mod4+Shift+0 move container to workspace 10
       Mod4+Shift+1 move container to workspace 1
@@ -75,7 +74,7 @@ in {
       Mod4+j focus down
       Mod4+k focus up
       Mod4+l focus right
-      Mod4+p exec wofi --show drun
+      Mod4+p exec $menu
       Mod4+s exec ${takeScreenshot}/bin/take-screenshot
     }
 

@@ -9,6 +9,5 @@
     (import ./overlays/similar-sort.nix)
     (import ./overlays/tabnine.nix)
     (import ./overlays/todo.nix)
-    (import ./overlays/wofi.nix)
   ];
 }

@@ -66,6 +66,7 @@ in {
 
   programs.sway.enable = true;
   programs.ssh.startAgent = true;
+  programs.command-not-found.enable = false;
 
   services.resilio.enable = true;
   services.resilio.deviceName = "jasper-desktop-nixos";

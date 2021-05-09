@@ -68,5 +68,5 @@
     AWS_VAULT_BACKEND = "file";
   };
 
-  home.stateVersion = "20.03";
+  home.stateVersion = "20.09";
 }

@@ -36,7 +36,7 @@ in {
   nixpkgs = import ../config.nix;
 
   nix.nixPath = [
-    "nixpkgs=${sources.nixpkgs}"
+    "nixpkgs=${pkgs.path}" # For nix command line tools
     "nixos-config=/etc/nixos/linux/configuration.nix"
   ];
   nix.binaryCaches = [ "https://cache.nixos.org" "https://nri.cachix.org" ];
@@ -50,7 +50,17 @@ in {
     options = "--delete-older-than 7d";
   };
 
-  environment.systemPackages = with pkgs; [ efibootmgr steam ];
+  environment.systemPackages = let
+    # Wrap nixos-rebuild, ensuring it always uses the nixpkgs version pinned
+    # using Niv. Without this we'd need to build twice, the first time to get
+    # NIX_PATH pointing towards the new niv-provided nixpkgs, the second time
+    # to use that NIX_PATH and upgrade the system.
+    nixos-rebuild = pkgs.writeShellScriptBin "nixos-rebuild" ''
+      exec ${config.system.build.nixos-rebuild}/bin/nixos-rebuild \
+        -I $(nix eval --raw '(import ${toString ../nix/sources.nix}).nixpkgs') \
+        $@
+    '';
+  in [ nixos-rebuild pkgs.efibootmgr pkgs.steam ];
 
   fonts.fonts = [ pkgs.fira-code ];
 

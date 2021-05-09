@@ -1,12 +1,2 @@
-# Ignore files by default
-*
-
-# Un-ignore specific project directories
-!/dev/
-!/dev/nix/
-!/dev/nix/**
-!/dev/todo/
-!/dev/todo/**
-
 # Un-un-ignore specific directories
 .direnv

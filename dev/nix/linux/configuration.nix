@@ -88,5 +88,5 @@ in {
   home-manager.users.jasper = (import ./home.nix);
 
   system.stateVersion = "19.09";
-  system.autoUpgrade.enable = true;
+  system.autoUpgrade.enable = false;
 }

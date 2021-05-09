@@ -36,7 +36,7 @@ in {
   nixpkgs = import ../config.nix;
 
   nix.nixPath = [
-    "nixpkgs=${pkgs.path}" # For nix command line tools
+    "nixpkgs=${sources.nixpkgs}" # For nix command line tools
     "nixos-config=/etc/nixos/linux/configuration.nix"
   ];
   nix.binaryCaches = [ "https://cache.nixos.org" "https://nri.cachix.org" ];
@@ -55,9 +55,12 @@ in {
     # using Niv. Without this we'd need to build twice, the first time to get
     # NIX_PATH pointing towards the new niv-provided nixpkgs, the second time
     # to use that NIX_PATH and upgrade the system.
+    sourcesPath = toString ../nix/sources.nix;
     nixos-rebuild = pkgs.writeShellScriptBin "nixos-rebuild" ''
+      #!/bin/sh
+      NIXPKGS="$(nix eval --raw '(import ${sourcesPath}).nixpkgs')"
       exec ${config.system.build.nixos-rebuild}/bin/nixos-rebuild \
-        -I $(nix eval --raw '(import ${toString ../nix/sources.nix}).nixpkgs') \
+        -I nixpkgs="$NIXPKGS" \
         $@
     '';
   in [ nixos-rebuild pkgs.efibootmgr pkgs.steam ];

@@ -69,4 +69,6 @@
   };
 
   home.stateVersion = "20.09";
+
+  xdg.configFile."nixpkgs/config.nix".source = ../config.nix;
 }

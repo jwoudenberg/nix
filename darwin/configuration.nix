@@ -57,6 +57,7 @@ in {
   }];
 
   users.users.jasper = { home = "/Users/jasper"; };
+  users.nix.configureBuildUsers = true;
 
   imports = [ "${sources.home-manager}/nix-darwin" ];
   home-manager.useGlobalPkgs = true;

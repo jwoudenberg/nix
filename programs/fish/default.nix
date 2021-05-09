@@ -27,6 +27,7 @@ in {
       "ls" = "${pkgs.exa}/bin/exa";
       "cat" = "${pkgs.bat}/bin/bat";
       "lock" = "swaylock";
+      "ssh" = "kitty +kitten ssh";
     };
   };
 }

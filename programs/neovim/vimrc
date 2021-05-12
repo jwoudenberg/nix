@@ -22,6 +22,7 @@ set tabstop=2
 set termguicolors
 set wildignorecase
 set colorcolumn=81
+set clipboard=unnamedplus
 
 let &showbreak = '↪ '
 let g:netrw_liststyle=1

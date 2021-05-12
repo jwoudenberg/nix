@@ -123,6 +123,11 @@ in {
             to localhost:8080
           }
         }
+        :7000 {
+          reverse_proxy {
+            to localhost:58050
+          }
+        }
       '';
     };
 
@@ -256,7 +261,12 @@ in {
         autoStart = true;
         volumes = [ "/srv/volume1/music:/Music" ];
         environment = { TZ = "Europe/Amsterdam"; };
-        ports = [ "9791-9792:9791-9792" ];
+        extraOptions = [ "--network=host" ];
+      };
+      containers.bubbleupnpserver = {
+        image = "bubblesoftapps/bubbleupnpserver";
+        autoStart = true;
+        extraOptions = [ "--network=host" ];
       };
     };
   };

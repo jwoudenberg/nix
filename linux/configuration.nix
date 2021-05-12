@@ -94,17 +94,4 @@ in {
   system.stateVersion = "20.09";
   system.autoUpgrade.enable = false;
 
-  virtualisation.oci-containers = {
-    containers.minimserver = {
-      image = "minimworld/minimserver:2.0.16";
-      autoStart = true;
-      volumes = [
-        "/home/jasper/tmp/music:/Music"
-        "/home/jasper/tmp/minimserver:/MinimServer"
-      ];
-      environment = { TZ = "Europe/Amsterdam"; };
-      ports = [ "9790:9790" "9791:9791" ];
-    };
-  };
-
 }

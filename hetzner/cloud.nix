@@ -13,7 +13,7 @@ let
     pathFor = dir: "/srv/volume1/${dir}";
   };
 in {
-  network = { pkgs = import sources.nixpkgs { system = "x86_64-linux"; }; };
+  network = { };
 
   "ai-banana.jasperwoudenberg.com" = { pkgs, config, ... }: {
     # Morph
@@ -81,7 +81,6 @@ in {
     # healthchecks.io
     services.cron.enable = true;
     services.cron.systemCronJobs = [
-      "0 * * * *      root    systemctl is-active --quiet plex && curl -fsS -m 10 --retry 5 -o /dev/null https://hc-ping.com/8177d382-5f65-465c-8e41-50b0a9291c9f"
       "0 * * * *      root    ls -1qA /srv/volume1/hjgames/scans-to-process/ | grep -q . || curl -fsS -m 10 --retry 5 -o /dev/null https://hc-ping.com/8ff8704b-d08e-47eb-b879-02ddb7442fe2"
     ];
 
@@ -111,20 +110,6 @@ in {
           knownHosts = [ ];
         };
       in builtins.attrValues (builtins.mapAttrs configFor resilio.dirs);
-    };
-
-    # Plex
-    # When recreating we need to run Plex setup again. To do so:
-    # 1. Set `openFirewall = false;` (so no-one can claim the unconfigured server)
-    # 2. ssh -L 32400:localhost:32400 root@ai-banana.jasperwoudenberg.com
-    # 3. In the browser login at localhost:32400/web and follow the instructions
-    # 4. Set `openFirewall = true;`
-    services.plex = {
-      enable = true;
-      # by default the plex derivation opens ports that should only be
-      # accessible from a local network. The one port that should be exposed to
-      # the public internet is opened manually above.
-      openFirewall = false;
     };
 
     # Caddy
@@ -264,5 +249,16 @@ in {
         in "${script}/bin/ocr-scans-to-process";
       };
     };
+
+    virtualisation.oci-containers = {
+      containers.minimserver = {
+        image = "minimworld/minimserver:2.0.16";
+        autoStart = true;
+        volumes = [ "/srv/volume1/music:/Music" ];
+        environment = { TZ = "Europe/Amsterdam"; };
+        ports = [ "9791-9792:9791-9792" ];
+      };
+    };
   };
+
 }

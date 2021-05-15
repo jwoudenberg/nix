@@ -1,7 +1,6 @@
 { pkgs, config, ... }:
 
-let sources = import ../nix/sources.nix;
-in {
+{
   hardware.cpu.intel.updateMicrocode = true;
   hardware.opengl.driSupport32Bit = true;
   hardware.opengl.extraPackages32 = [ pkgs.pkgsi686Linux.libva ];
@@ -32,10 +31,7 @@ in {
 
   nixpkgs = import ../config.nix;
 
-  nix.nixPath = [
-    "nixpkgs=${sources.nixpkgs}" # For nix command line tools
-    "nixos-config=/etc/nixos/linux/configuration.nix"
-  ];
+  nix.nixPath = [ "nixpkgs=${pkgs.path}" ];
   nix.binaryCaches = [ "https://cache.nixos.org" "https://nri.cachix.org" ];
   nix.binaryCachePublicKeys = [
     "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
@@ -51,20 +47,7 @@ in {
     experimental-features = nix-command flakes
   '';
 
-  environment.systemPackages = let
-    # Wrap nixos-rebuild, ensuring it always uses the nixpkgs version pinned
-    # using Niv. Without this we'd need to build twice, the first time to get
-    # NIX_PATH pointing towards the new niv-provided nixpkgs, the second time
-    # to use that NIX_PATH and upgrade the system.
-    sourcesPath = toString ../nix/sources.nix;
-    nixos-rebuild = pkgs.writeShellScriptBin "nixos-rebuild" ''
-      #!/bin/sh
-      NIXPKGS="$(nix eval --raw '(import ${sourcesPath}).nixpkgs')"
-      exec ${config.system.build.nixos-rebuild}/bin/nixos-rebuild \
-        -I nixpkgs="$NIXPKGS" \
-        $@
-    '';
-  in [ nixos-rebuild pkgs.efibootmgr pkgs.steam ];
+  environment.systemPackages = [ pkgs.efibootmgr pkgs.steam ];
 
   fonts.fonts = [ pkgs.fira-code ];
 

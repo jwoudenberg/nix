@@ -1,3 +1,4 @@
+inputs:
 { pkgs, config, ... }:
 
 {
@@ -31,7 +32,8 @@
 
   nixpkgs = import ../config.nix;
 
-  nix.nixPath = [ "nixpkgs=${pkgs.path}" ];
+  nix.registry.nixpkgs.flake = inputs.nixpkgs;
+  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
   nix.binaryCaches = [ "https://cache.nixos.org" "https://nri.cachix.org" ];
   nix.binaryCachePublicKeys = [
     "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="

@@ -6,14 +6,14 @@
     home-manager.url = "github:nix-community/home-manager/release-20.09";
   };
 
-  outputs = { nixpkgs, home-manager, ... }: {
+  outputs = inputs: {
 
-    nixosConfigurations.jasper-desktop-nixos = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.jasper-desktop-nixos = inputs.nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        linux/configuration.nix
+        (import linux/configuration.nix inputs)
         modules/desktop-hardware.nix
-        home-manager.nixosModules.home-manager
+        inputs.home-manager.nixosModules.home-manager
       ];
     };
 

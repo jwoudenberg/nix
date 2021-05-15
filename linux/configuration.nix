@@ -2,8 +2,6 @@
 
 let sources = import ../nix/sources.nix;
 in {
-  imports = [ ../modules/desktop-hardware.nix "${sources.home-manager}/nixos" ];
-
   hardware.cpu.intel.updateMicrocode = true;
   hardware.opengl.driSupport32Bit = true;
   hardware.opengl.extraPackages32 = [ pkgs.pkgsi686Linux.libva ];

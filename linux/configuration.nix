@@ -49,6 +49,10 @@ in {
     dates = "weekly";
     options = "--delete-older-than 7d";
   };
+  nix.package = pkgs.nixFlakes;
+  nix.extraOptions = ''
+    experimental-features = nix-command flakes
+  '';
 
   environment.systemPackages = let
     # Wrap nixos-rebuild, ensuring it always uses the nixpkgs version pinned

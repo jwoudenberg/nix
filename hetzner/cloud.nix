@@ -259,7 +259,10 @@ in {
       containers.minimserver = {
         image = "minimworld/minimserver:2.0.16";
         autoStart = true;
-        volumes = [ "/srv/volume1/music:/Music" ];
+        volumes = [
+          "/srv/volume1/music:/Music"
+          "/srv/volume1/minimserver-data:/opt/minimserver/data"
+        ];
         environment = { TZ = "Europe/Amsterdam"; };
         extraOptions = [ "--network=host" ];
       };

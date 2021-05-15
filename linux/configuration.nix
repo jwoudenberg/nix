@@ -27,7 +27,6 @@ in {
     allowedUDPPorts = [ config.services.tailscale.port ];
   };
 
-  console.font = "FiraCode 16";
   console.keyMap = "us";
   i18n.defaultLocale = "en_US.UTF-8";
 

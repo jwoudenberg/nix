@@ -61,6 +61,8 @@
     ../programs/vale/default.nix
   ];
 
+  programs.kitty.settings.font_size = 14;
+
   home.sessionVariables = {
     EDITOR = "nvim";
     DEFAULT_TODO_TXT = "~/docs/todo.txt";

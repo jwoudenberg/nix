@@ -59,12 +59,6 @@
         "url": "https://github.com/jwoudenberg/launch/archive/d3db0385faa7e195eee2b4ee3bd45a77bab35881.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "minimserver": {
-        "sha256": "123405nhx3klz9c2m4fgx76k6x2jn719dcx3bwfxw0jxzf4ppgx9",
-        "type": "tarball",
-        "url": "https://minimworld.com/files/b3e72d708c6f184e1e3aac190204b086/MinimServer-2.0.18-linux-intel.tar.gz",
-        "url_template": "https://minimworld.com/files/b3e72d708c6f184e1e3aac190204b086/MinimServer-2.0.18-linux-intel.tar.gz"
-    },
     "nix-script": {
         "branch": "main",
         "description": "write scripts in compiled languages that run in the nix ecosystem, with no separate build step",

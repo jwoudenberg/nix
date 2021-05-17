@@ -13,7 +13,7 @@ inputs:
   boot.loader.timeout = 10;
   boot.kernel.sysctl."fs.inotify.max_user_watches" = 524288;
 
-  networking.hostName = "jasper-desktop-nixos";
+  networking.hostName = "timid-lasagne";
   networking.networkmanager = {
     enable = true;
     dns = "none";
@@ -58,7 +58,7 @@ inputs:
   programs.command-not-found.enable = false;
 
   services.resilio.enable = true;
-  services.resilio.deviceName = "jasper-desktop-nixos";
+  services.resilio.deviceName = "timid-lasagne";
   services.resilio.enableWebUI = true;
   services.resilio.httpListenPort = 8888;
 

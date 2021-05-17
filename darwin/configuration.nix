@@ -1,13 +1,10 @@
+inputs:
 { config, pkgs, ... }:
-let sources = import ../nix/sources.nix;
-in {
+
+{
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = [ ];
-
-  # Use a custom configuration.nix location.
-  # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/darwin/configuration.nix
-  environment.darwinConfig = "$HOME/dev/nix/darwin/configuration.nix";
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
@@ -40,11 +37,7 @@ in {
   # $ sysctl -n hw.ncpu
   nix.maxJobs = 8;
   nix.buildCores = 8;
-  nix.nixPath = [
-    "darwin=${sources.darwin}"
-    "home-manager=${sources.home-manager}"
-    "nixpkgs=${sources.nixpkgs-darwin}"
-  ];
+  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs-darwin}" ];
   # Allow Linux builds on MacOS using nix-docker:
   # Assumes instructions below are followed to set up a docker container that
   # allows access using my default ssh key.
@@ -63,7 +56,6 @@ in {
   users.users.jasper = { home = "/Users/jasper"; };
   users.nix.configureBuildUsers = true;
 
-  imports = [ "${sources.home-manager}/nix-darwin" ];
   home-manager.useGlobalPkgs = true;
   home-manager.users.jasper = import ./home.nix;
 

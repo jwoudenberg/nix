@@ -55,6 +55,10 @@ in {
     system = "x86_64-linux";
     maxJobs = 4;
   }];
+  nix.package = pkgs.nixFlakes;
+  nix.extraOptions = ''
+    experimental-features = nix-command flakes
+  '';
 
   users.users.jasper = { home = "/Users/jasper"; };
   users.nix.configureBuildUsers = true;

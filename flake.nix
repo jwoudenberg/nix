@@ -17,6 +17,7 @@
       modules = [
         (import linux/configuration.nix inputs)
         modules/desktop-hardware.nix
+        modules/resilio.nix
         inputs.home-manager.nixosModules.home-manager
       ];
     };

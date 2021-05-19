@@ -13,7 +13,7 @@ inputs:
   boot.loader.timeout = 10;
   boot.kernel.sysctl."fs.inotify.max_user_watches" = 524288;
 
-  networking.hostName = "timid-lasagne";
+  networking.hostName = "timid-lasagna";
   networking.networkmanager = {
     enable = true;
     dns = "none";
@@ -58,7 +58,7 @@ inputs:
   programs.command-not-found.enable = false;
 
   services.resilio.enable = true;
-  services.resilio.deviceName = "timid-lasagne";
+  services.resilio.deviceName = "timid-lasagna";
   services.resilio.enableWebUI = true;
   services.resilio.httpListenPort = 8888;
 

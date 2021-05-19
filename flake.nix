@@ -12,7 +12,7 @@
 
   outputs = inputs: {
 
-    nixosConfigurations.jasper-desktop-nixos = inputs.nixpkgs.lib.nixosSystem {
+    nixosConfigurations.timid-lasagna = inputs.nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         (import linux/configuration.nix inputs)

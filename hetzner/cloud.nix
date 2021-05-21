@@ -16,6 +16,7 @@ in {
   network = { };
 
   "ai-banana.jasperwoudenberg.com" = { pkgs, config, ... }: {
+
     # Morph
     deployment.targetUser = "root";
 
@@ -32,7 +33,11 @@ in {
     };
 
     # Hardware
-    imports = [ <nixpkgs/nixos/modules/profiles/qemu-guest.nix> ];
+    disabledModules = [ "services/networking/resilio.nix" ];
+    imports = [
+      ../modules/resilio.nix
+      <nixpkgs/nixos/modules/profiles/qemu-guest.nix>
+    ];
     boot.loader.grub.device = "/dev/sda";
     fileSystems."/" = {
       device = "/dev/sda1";
@@ -99,8 +104,7 @@ in {
       listeningPort = resilio.listeningPort;
       sharedFolders = let
         configFor = dir: perms: {
-          secret = builtins.getEnv
-            "RESILIO_KEY_${pkgs.lib.toUpper dir}_${pkgs.lib.toUpper perms}";
+          secretFile = "/var/secrets/resilio_key_${dir}_${perms}";
           directory = resilio.pathFor dir;
           useRelayServer = false;
           useTracker = true;
@@ -110,6 +114,36 @@ in {
           knownHosts = [ ];
         };
       in builtins.attrValues (builtins.mapAttrs configFor resilio.dirs);
+    };
+
+    deployment.secrets.resilio-music = {
+      source = "/tmp/secrets/resilio_key_music_readonly";
+      destination = "/var/secrets/resilio_key_music_readonly";
+    };
+
+    deployment.secrets.resilio-books = {
+      source = "/tmp/secrets/resilio_key_books_readonly";
+      destination = "/var/secrets/resilio_key_books_readonly";
+    };
+
+    deployment.secrets.resilio-photo = {
+      source = "/tmp/secrets/resilio_key_photo_readonly";
+      destination = "/var/secrets/resilio_key_photo_readonly";
+    };
+
+    deployment.secrets.resilio-jasper = {
+      source = "/tmp/secrets/resilio_key_jasper_readonly";
+      destination = "/var/secrets/resilio_key_jasper_readonly";
+    };
+
+    deployment.secrets.resilio-hiske = {
+      source = "/tmp/secrets/resilio_key_hiske_readonly";
+      destination = "/var/secrets/resilio_key_hiske_readonly";
+    };
+
+    deployment.secrets.resilio-hjgames = {
+      source = "/tmp/secrets/resilio_key_hjgames_readwrite";
+      destination = "/var/secrets/resilio_key_hjgames_readwrite";
     };
 
     # Caddy

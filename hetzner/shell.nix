@@ -14,11 +14,14 @@ let
     export CLOUDFLARE_API_TOKEN="$(pass show cloudflare.com | grep 'API-token' | awk '{print $2}')"
 
     # For nix deploys
-    export $(pass show resilio.com | grep key_ | awk '{ print "RESILIO_" toupper($1) "=" $2}')
     mkdir -p /tmp/secrets
     pass show rsync.net | grep restic | awk '{ print $2 }' > /tmp/secrets/restic-password
     echo "RCLONE_PASS=$(pass show ai-banana.jasperwoudenberg.com | grep sftp-password | awk '{ print $2 }')" > /tmp/secrets/sftp-password
     pass show ai-banana.jasperwoudenberg.com | sed '1,/ssh-key-encoded:/d' > /tmp/secrets/ssh-key
+
+    resilio_secret () { echo "$2" > "/tmp/secrets/resilio_$1"; }
+    export -f resilio_secret
+    pass show resilio.com | grep key_ | xargs -I {} bash -c 'resilio_secret {}'
 
     exec "$@"
 

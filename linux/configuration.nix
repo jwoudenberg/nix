@@ -57,10 +57,26 @@ inputs:
   programs.ssh.startAgent = true;
   programs.command-not-found.enable = false;
 
-  services.resilio.enable = true;
-  services.resilio.deviceName = "timid-lasagna";
-  services.resilio.enableWebUI = true;
-  services.resilio.httpListenPort = 8888;
+  services.resilio2 = {
+    enable = true;
+    deviceName = "timid-lasagna";
+    sharedFolders = let
+      mkSharedFolder = name: {
+        directory = "/home/rslsync/" + name;
+        secretFile = "/home/rslsync/.secrets/" + name;
+        useRelayServer = false;
+        useTracker = true;
+        useDHT = true;
+        searchLAN = true;
+        useSyncTrash = false;
+        knownHosts = [ ];
+      };
+    in [
+      (mkSharedFolder "books")
+      (mkSharedFolder "hjgames")
+      (mkSharedFolder "jasper")
+    ];
+  };
 
   services.tailscale.enable = true;
   services.pcscd.enable = true; # For Yubikey support

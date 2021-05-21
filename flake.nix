@@ -14,10 +14,10 @@
 
     nixosConfigurations.timid-lasagna = inputs.nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
+
       modules = [
         (import linux/configuration.nix inputs)
         modules/desktop-hardware.nix
-        modules/resilio.nix
         inputs.home-manager.nixosModules.home-manager
       ];
     };

@@ -7,7 +7,7 @@
 with lib;
 
 let
-  cfg = config.services.resilio2;
+  cfg = config.services.resilio;
 
   resilioSync = pkgs.resilio-sync;
 
@@ -71,7 +71,7 @@ let
   '';
 in {
   options = {
-    services.resilio2 = {
+    services.resilio = {
       enable = mkOption {
         type = types.bool;
         default = false;
@@ -271,7 +271,7 @@ in {
 
     users.groups.rslsync = { };
 
-    systemd.services.resilio2 = with pkgs; {
+    systemd.services.resilio = with pkgs; {
       description = "Resilio Sync Service";
       wantedBy = [ "multi-user.target" ];
       after = [ "network.target" ];

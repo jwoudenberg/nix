@@ -2,6 +2,9 @@ inputs:
 { pkgs, config, ... }:
 
 {
+  disabledModules = [ "services/networking/resilio.nix" ];
+  imports = [ ../modules/resilio.nix ];
+
   hardware.cpu.intel.updateMicrocode = true;
   hardware.opengl.driSupport32Bit = true;
   hardware.opengl.extraPackages32 = [ pkgs.pkgsi686Linux.libva ];
@@ -57,7 +60,7 @@ inputs:
   programs.ssh.startAgent = true;
   programs.command-not-found.enable = false;
 
-  services.resilio2 = {
+  services.resilio = {
     enable = true;
     deviceName = "timid-lasagna";
     sharedFolders = let

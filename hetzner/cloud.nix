@@ -20,12 +20,7 @@ in {
     # Morph
     deployment.targetUser = "root";
 
-    imports = [ ./configuration.nix ];
-
-    # Nix
-    nixpkgs = (import ../config.nix) // {
-      localSystem.system = "x86_64-linux";
-    };
+    imports = [ (import ./configuration.nix pkgs.comma) ];
 
     deployment.secrets.resilio-music = {
       source = "/tmp/secrets/resilio_key_music_readonly";

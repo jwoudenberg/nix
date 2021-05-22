@@ -8,6 +8,8 @@
     darwin.inputs.nixpkgs.follows = "nixpkgs-darwin";
     home-manager.url = "github:nix-community/home-manager/release-20.09";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    comma.url = "github:Shopify/comma";
+    comma.flake = false;
   };
 
   outputs = inputs: {
@@ -23,7 +25,7 @@
 
     nixosConfigurations.ai-banana = inputs.nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      modules = [ ./hetzner.configuration.nix ];
+      modules = [ (import ./hetzner/configuration.nix inputs.comma) ];
     };
 
     darwinConfigurations.sentient-tshirt = inputs.darwin.lib.darwinSystem {

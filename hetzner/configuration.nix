@@ -12,11 +12,13 @@ let
     };
     pathFor = dir: "/srv/volume1/${dir}";
   };
-in { pkgs, config, ... }: {
+in comma:
+{ pkgs, config, modulesPath, ... }: {
 
   # Nix
   system.stateVersion = "20.03";
   networking.hostName = "ai-banana";
+  nixpkgs = import ../config.nix;
   nix.gc = {
     automatic = true;
     dates = "weekly";
@@ -26,7 +28,7 @@ in { pkgs, config, ... }: {
   # Hardware
   disabledModules = [ "services/networking/resilio.nix" ];
   imports =
-    [ ../modules/resilio.nix <nixpkgs/nixos/modules/profiles/qemu-guest.nix> ];
+    [ ../modules/resilio.nix (modulesPath + "/profiles/qemu-guest.nix") ];
   boot.loader.grub.device = "/dev/sda";
   fileSystems."/" = {
     device = "/dev/sda1";
@@ -39,7 +41,7 @@ in { pkgs, config, ... }: {
   };
 
   # Packages
-  environment.systemPackages = [ pkgs.comma pkgs.tailscale ];
+  environment.systemPackages = [ comma pkgs.tailscale ];
 
   # Tailscale
   services.tailscale.enable = true;

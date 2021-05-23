@@ -5,10 +5,22 @@
 
 set -exuo pipefail
 
-HOST="${1:-}"
+export HOST="${1:?'Pass host'}"
 nixos-rebuild build --flake ".#$HOST"
 STORE_PATH=$(realpath result)
 
+# Copy configuration
 nix-copy-closure --use-substitutes --to "$HOST" "$STORE_PATH"
+
+# Copy over secrets
+write_secret () {
+  SECRET=$(basename "$1" .gpg)
+  pass show "$HOST/$SECRET" | ssh "$HOST" -T "cat > /var/secrets/$SECRET"
+}
+export -f write_secret
+find ~/.password-store/ai-banana -type f \
+  -exec bash -exuo pipefail -c 'write_secret "$1"' _ {} \;
+
+# Activate new configuration
 ssh "$HOST" -- "sudo nix-env --profile /nix/var/nix/profiles/system --set $STORE_PATH"
 ssh "$HOST" -- "sudo /nix/var/nix/profiles/system/bin/switch-to-configuration switch"

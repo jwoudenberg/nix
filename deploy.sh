@@ -15,9 +15,10 @@ nix-copy-closure --use-substitutes --to "$HOST" "$STORE_PATH"
 # Copy over secrets
 write_secret () {
   SECRET=$(basename "$1" .gpg)
-  pass show "$HOST/$SECRET" | ssh "$HOST" -T "cat > /var/secrets/$SECRET"
+  pass show "$HOST/$SECRET" | ssh "$HOST" -T "cat > /run/secrets/$SECRET"
 }
 export -f write_secret
+ssh "$HOST" -- "mkdir -p /run/secrets"
 find ~/.password-store/ai-banana -type f \
   -exec bash -exuo pipefail -c 'write_secret "$1"' _ {} \;
 

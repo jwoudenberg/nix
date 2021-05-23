@@ -98,7 +98,7 @@ in { pkgs, config, modulesPath, ... }: {
     listeningPort = resilio.listeningPort;
     sharedFolders = let
       configFor = dir: perms: {
-        secretFile = "/var/secrets/resilio_key_${dir}_${perms}";
+        secretFile = "/run/secrets/resilio_key_${dir}_${perms}";
         directory = resilio.pathFor dir;
         useRelayServer = false;
         useTracker = true;
@@ -157,14 +157,14 @@ in { pkgs, config, modulesPath, ... }: {
           #!/usr/bin/env bash
           exec ${pkgs.rclone}/bin/rclone serve sftp \
             /srv/volume1/hjgames/scans-to-process \
-            --key /var/secrets/ssh-key \
+            --key /run/secrets/ssh-key \
             --user sftp \
             --pass "$RCLONE_PASS" \
             --addr :2022
         '';
       in "${script}/bin/rclone-serve-sftp";
       Restart = "on-failure";
-      EnvironmentFile = "/var/secrets/sftp-password";
+      EnvironmentFile = "/run/secrets/sftp-password";
     };
   };
 
@@ -172,7 +172,7 @@ in { pkgs, config, modulesPath, ... }: {
   services.restic.backups.daily = {
     paths = builtins.map resilio.pathFor (builtins.attrNames resilio.dirs);
     repository = "sftp:19438@ch-s012.rsync.net:restic-backups";
-    passwordFile = "/var/secrets/restic-password";
+    passwordFile = "/run/secrets/restic-password";
     timerConfig = { OnCalendar = "00:05"; };
     pruneOpts = [
       "--keep-daily 7"

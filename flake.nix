@@ -15,7 +15,7 @@
     nixosConfigurations.timid-lasagna = inputs.nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        (import linux/configuration.nix inputs)
+        (import ./timid-lasagna/configuration.nix inputs)
         modules/desktop-hardware.nix
         inputs.home-manager.nixosModules.home-manager
       ];
@@ -23,12 +23,12 @@
 
     nixosConfigurations.ai-banana = inputs.nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      modules = [ ./hetzner/configuration.nix ];
+      modules = [ ./ai-banana/configuration.nix ];
     };
 
     darwinConfigurations.sentient-tshirt = inputs.darwin.lib.darwinSystem {
       modules = [
-        (import ./darwin/configuration.nix inputs)
+        (import ./sentient-tshirt/configuration.nix inputs)
         inputs.home-manager.darwinModules.home-manager
       ];
     };

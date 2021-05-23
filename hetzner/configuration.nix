@@ -12,8 +12,7 @@ let
     };
     pathFor = dir: "/srv/volume1/${dir}";
   };
-in comma:
-{ pkgs, config, modulesPath, ... }: {
+in { pkgs, config, modulesPath, ... }: {
 
   # Nix
   system.stateVersion = "20.03";
@@ -45,7 +44,7 @@ in comma:
   };
 
   # Packages
-  environment.systemPackages = [ comma pkgs.tailscale ];
+  environment.systemPackages = [ pkgs.tailscale ];
 
   # Tailscale
   services.tailscale.enable = true;

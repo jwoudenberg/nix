@@ -20,7 +20,7 @@ in {
     # Morph
     deployment.targetUser = "root";
 
-    imports = [ (import ./configuration.nix pkgs.comma) ];
+    imports = [ ./configuration.nix ];
 
     deployment.secrets.resilio-music = {
       source = "/tmp/secrets/resilio_key_music_readonly";

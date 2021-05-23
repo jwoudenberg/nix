@@ -1,5 +1,4 @@
 let
-  sources = import ../nix/sources.nix;
   resilio = {
     listeningPort = 18776;
     dirs = {

@@ -23,18 +23,6 @@
         "url": "https://github.com/Shopify/comma/archive/4a62ec17e20ce0e738a8e5126b4298a73903b468.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "darwin": {
-        "branch": "master",
-        "description": "nix modules for darwin",
-        "homepage": "",
-        "owner": "LnL7",
-        "repo": "nix-darwin",
-        "rev": "a7492a8c76dcc702d0a65cd820a5f9baa8702684",
-        "sha256": "0d5mb454sxa45z3mcl8p3wd3sqg1qd1cqqr9hwkay71j9ydv1vpz",
-        "type": "tarball",
-        "url": "https://github.com/LnL7/nix-darwin/archive/a7492a8c76dcc702d0a65cd820a5f9baa8702684.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "launch": {
         "branch": "main",
         "description": "FZF based launcher for personal use",

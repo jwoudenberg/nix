@@ -35,18 +35,6 @@
         "url": "https://github.com/BrianHicks/nix-script/archive/3fb63b03f6242c8c518729af154e702424040055.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "nixpkgs": {
-        "branch": "nixos-20.09",
-        "description": "Nix Packages collection",
-        "homepage": "",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "bba3474a5798b5a3a87e10102d1a55f19ec3fca5",
-        "sha256": "0g261s4n3hdhm7l5flmyl8jjihla688ib12flvwsvcax1p8h34d5",
-        "type": "tarball",
-        "url": "https://github.com/nixos/nixpkgs/archive/bba3474a5798b5a3a87e10102d1a55f19ec3fca5.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "similar-sort": {
         "ref": "main",
         "repo": "https://git.bytes.zone/brian/similar-sort.git",

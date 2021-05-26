@@ -1,7 +1,6 @@
 { pkgs, ... }: {
   home.packages = [
     pkgs.cachix
-    pkgs.comma
     pkgs.du-dust
     pkgs.fd
     pkgs.gitAndTools.gh

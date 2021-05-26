@@ -21,6 +21,21 @@
         "type": "github"
       }
     },
+    "flake-utils": {
+      "locked": {
+        "lastModified": 1620759905,
+        "narHash": "sha256-WiyWawrgmyN0EdmiHyG2V+fqReiVi8bM9cRdMaKQOFg=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "b543720b25df6ffdfcf9227afafc5b8c1fabfae8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -39,6 +54,27 @@
         "owner": "nix-community",
         "ref": "release-20.09",
         "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "launch": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1622054781,
+        "narHash": "sha256-G60GbgnOCOyGu7u0KWNdp3kXSHoEuC+ei+T+XuQooAk=",
+        "owner": "jwoudenberg",
+        "repo": "launch",
+        "rev": "85a1d7c1e0b1a74b4f3cb1c2304a60fa1d057237",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jwoudenberg",
+        "repo": "launch",
         "type": "github"
       }
     },
@@ -78,6 +114,7 @@
       "inputs": {
         "darwin": "darwin",
         "home-manager": "home-manager",
+        "launch": "launch",
         "nixpkgs": "nixpkgs",
         "nixpkgs-darwin": "nixpkgs-darwin"
       }

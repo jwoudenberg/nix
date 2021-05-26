@@ -49,5 +49,7 @@
 
   home.stateVersion = "20.03";
 
-  xdg.configFile."nixpkgs/config.nix".source = ../config.nix;
+  xdg.configFile."nixpkgs/config.nix".text = ''
+    { allowUnfree = true; }
+  '';
 }

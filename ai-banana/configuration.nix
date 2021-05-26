@@ -11,12 +11,15 @@ let
     };
     pathFor = dir: "/srv/volume1/${dir}";
   };
-in { pkgs, config, modulesPath, ... }: {
+in inputs:
+{ pkgs, config, modulesPath, ... }: {
 
   # Nix
   system.stateVersion = "20.03";
   networking.hostName = "ai-banana";
-  nixpkgs = import ../config.nix;
+  nixpkgs.config.allowUnfree = true;
+  nixpkgs.overlays = builtins.attrValues inputs.self.overlays;
+
   nix.gc = {
     automatic = true;
     dates = "weekly";

@@ -8,9 +8,21 @@
     darwin.inputs.nixpkgs.follows = "nixpkgs-darwin";
     home-manager.url = "github:nix-community/home-manager/release-20.09";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    launch.url = "github:jwoudenberg/launch";
+    launch.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs: {
+
+    overlays = {
+      launch = final: prev: { jwlaunch = inputs.launch; };
+      nix-script = import ./overlays/nix-script.nix;
+      pass = import ./overlays/pass.nix;
+      random-colors = import ./overlays/random-colors.nix;
+      similar-sort = import ./overlays/similar-sort.nix;
+      tabnine = import ./overlays/tabnine.nix;
+      todo = import ./overlays/todo.nix;
+    };
 
     nixosConfigurations.timid-lasagna = inputs.nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
@@ -23,7 +35,7 @@
 
     nixosConfigurations.ai-banana = inputs.nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      modules = [ ./ai-banana/configuration.nix ];
+      modules = [ (import ./ai-banana/configuration.nix inputs) ];
     };
 
     darwinConfigurations.sentient-tshirt = inputs.darwin.lib.darwinSystem {

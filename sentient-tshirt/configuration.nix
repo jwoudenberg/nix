@@ -57,7 +57,8 @@ inputs:
   home-manager.useGlobalPkgs = true;
   home-manager.users.jasper = import ./home.nix;
 
-  nixpkgs = import ../config.nix;
+  nixpkgs.config.allowUnfree = true;
+  nixpkgs.overlays = builtins.attrValues inputs.self.overlays;
 
   system.defaults.NSGlobalDomain.AppleKeyboardUIMode = 3;
   system.defaults.NSGlobalDomain.ApplePressAndHoldEnabled = false;

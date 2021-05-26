@@ -11,18 +11,6 @@
         "url": "https://github.com/prabirshrestha/asyncomplete.vim/archive/8e018dee9c5e2205288bda01be0de196b04b7cf2.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "launch": {
-        "branch": "main",
-        "description": "FZF based launcher for personal use",
-        "homepage": null,
-        "owner": "jwoudenberg",
-        "repo": "launch",
-        "rev": "d3db0385faa7e195eee2b4ee3bd45a77bab35881",
-        "sha256": "0wr5adbqz2i2dwacps698qq3xff772agrac8id4fajsl6qc7wlw2",
-        "type": "tarball",
-        "url": "https://github.com/jwoudenberg/launch/archive/d3db0385faa7e195eee2b4ee3bd45a77bab35881.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "nix-script": {
         "branch": "main",
         "description": "write scripts in compiled languages that run in the nix ecosystem, with no separate build step",

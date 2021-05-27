@@ -20,11 +20,6 @@ in {
     extraConfig = builtins.readFile ./vimrc;
 
     plugins = with pkgs.vimPlugins; [
-      (nivSourceAsPlugin sources."asyncomplete.vim")
-      (pkgs.vimUtils.buildVimPlugin {
-        name = "asyncomplete-tabnine";
-        src = ../../asyncomplete-tabnine;
-      })
       ale
       fzf-vim
       fzfWrapper

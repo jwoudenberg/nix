@@ -104,31 +104,6 @@ let g:neoformat_enabled_html = []
 let g:neoformat_basic_format_retab = 1
 
 
-" --- AUTOCOMPLETE
-autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#tabnine#get_source_options({
-  \ 'name': 'tabnine',
-  \ 'allowlist': ['*'],
-  \ 'completor': function('asyncomplete#tabnine#completor'),
-  \ 'config': {
-  \   'line_limit': 1000,
-  \   'max_num_result': 5,
-  \  },
-  \ }))
-
-let g:asyncomplete_auto_popup = 0
-
-function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-
-inoremap <silent><expr> <TAB>
-  \ pumvisible() ? "\<C-n>" :
-  \ <SID>check_back_space() ? "\<TAB>" :
-  \ asyncomplete#force_refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-
 " --- TRIM ON SAVE
 autocmd BufWritePre * :%s/\s\+$//e
 

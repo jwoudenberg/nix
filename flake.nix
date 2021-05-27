@@ -15,7 +15,9 @@
   outputs = inputs: {
 
     overlays = {
-      launch = final: prev: { jwlaunch = inputs.launch; };
+      launch = final: prev: {
+        jwlaunch = inputs.launch.defaultPackage."x86_64-linux";
+      };
       nix-script = import ./overlays/nix-script.nix;
       pass = import ./overlays/pass.nix;
       random-colors = import ./overlays/random-colors.nix;

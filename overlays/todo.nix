@@ -1,3 +1,4 @@
-self: super:
+final: prev:
 
-let src = super.callPackage ../todo/default.nix { }; in { todo = src; }
+let src = prev.callPackage ../todo/default.nix { };
+in { todo = src; }

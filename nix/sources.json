@@ -10,17 +10,5 @@
         "type": "tarball",
         "url": "https://github.com/prabirshrestha/asyncomplete.vim/archive/8e018dee9c5e2205288bda01be0de196b04b7cf2.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
-    "nix-script": {
-        "branch": "main",
-        "description": "write scripts in compiled languages that run in the nix ecosystem, with no separate build step",
-        "homepage": null,
-        "owner": "BrianHicks",
-        "repo": "nix-script",
-        "rev": "3fb63b03f6242c8c518729af154e702424040055",
-        "sha256": "1xv532n8pyq4pmrj98wjsy7qcy27cc4llqhqwjqlhqd92j1m5ngx",
-        "type": "tarball",
-        "url": "https://github.com/BrianHicks/nix-script/archive/3fb63b03f6242c8c518729af154e702424040055.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }

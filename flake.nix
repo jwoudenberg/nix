@@ -13,6 +13,8 @@
     similar-sort.url =
       "git+https://git.bytes.zone/brian/similar-sort.git?ref=main";
     similar-sort.flake = false;
+    nix-script.url = "github:BrianHicks/nix-script";
+    nix-script.flake = false;
   };
 
   outputs = inputs: {
@@ -21,7 +23,9 @@
       launch = final: prev: {
         jwlaunch = inputs.launch.defaultPackage."x86_64-linux";
       };
-      nix-script = import ./overlays/nix-script.nix;
+      nix-script = final: prev: {
+        nix-script = prev.callPackage inputs.nix-script { };
+      };
       pass = import ./overlays/pass.nix;
       random-colors = import ./overlays/random-colors.nix;
       similar-sort = final: prev: {

@@ -10,6 +10,9 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     launch.url = "github:jwoudenberg/launch";
     launch.inputs.nixpkgs.follows = "nixpkgs";
+    similar-sort.url =
+      "git+https://git.bytes.zone/brian/similar-sort.git?ref=main";
+    similar-sort.flake = false;
   };
 
   outputs = inputs: {
@@ -21,7 +24,9 @@
       nix-script = import ./overlays/nix-script.nix;
       pass = import ./overlays/pass.nix;
       random-colors = import ./overlays/random-colors.nix;
-      similar-sort = import ./overlays/similar-sort.nix;
+      similar-sort = final: prev: {
+        similar-sort = prev.callPackage inputs.similar-sort { };
+      };
       tabnine = import ./overlays/tabnine.nix;
       todo = import ./overlays/todo.nix;
     };

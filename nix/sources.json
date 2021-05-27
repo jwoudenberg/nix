@@ -22,11 +22,5 @@
         "type": "tarball",
         "url": "https://github.com/BrianHicks/nix-script/archive/3fb63b03f6242c8c518729af154e702424040055.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
-    "similar-sort": {
-        "ref": "main",
-        "repo": "https://git.bytes.zone/brian/similar-sort.git",
-        "rev": "47a6eea3b0b9a2e1095ee92d891ca401089b09e9",
-        "type": "git"
     }
 }

@@ -116,7 +116,25 @@
         "home-manager": "home-manager",
         "launch": "launch",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-darwin": "nixpkgs-darwin"
+        "nixpkgs-darwin": "nixpkgs-darwin",
+        "similar-sort": "similar-sort"
+      }
+    },
+    "similar-sort": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1601304261,
+        "narHash": "sha256-JaghPMt7Kt1QcJRnoATQBZ5RxrJ1DASfE1zDNyjn5dA=",
+        "ref": "main",
+        "rev": "47a6eea3b0b9a2e1095ee92d891ca401089b09e9",
+        "revCount": 5,
+        "type": "git",
+        "url": "https://git.bytes.zone/brian/similar-sort.git"
+      },
+      "original": {
+        "ref": "main",
+        "type": "git",
+        "url": "https://git.bytes.zone/brian/similar-sort.git"
       }
     }
   },

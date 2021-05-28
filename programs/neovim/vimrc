@@ -121,7 +121,7 @@ command! -bang -nargs=? -complete=dir Files
   \ call fzf#run(fzf#wrap({"source": "rg --hidden --files \| similar-sort " . @%,
                          \ "sink": "edit",
                          \ "options": "--tiebreak index"
-                         \ }))<CR>
+                         \ }))
 
 " --- DIRVISH ---
 

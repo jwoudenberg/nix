@@ -69,7 +69,7 @@
     AWS_VAULT_BACKEND = "file";
   };
 
-  home.stateVersion = "20.09";
+  home.stateVersion = "21.05";
 
   xdg.configFile."nixpkgs/config.nix".text = ''
     { allowUnfree = true; }

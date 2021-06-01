@@ -2,11 +2,11 @@
   description = "Jaspers Nix configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-20.09";
-    nixpkgs-darwin.url = "github:NixOS/nixpkgs/nixpkgs-20.09-darwin";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-21.05";
+    nixpkgs-darwin.url = "github:NixOS/nixpkgs/nixpkgs-21.05-darwin";
     darwin.url = "github:LnL7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "nixpkgs-darwin";
-    home-manager.url = "github:nix-community/home-manager/release-20.09";
+    home-manager.url = "github:nix-community/home-manager/release-21.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     launch.url = "github:jwoudenberg/launch";
     launch.inputs.nixpkgs.follows = "nixpkgs";

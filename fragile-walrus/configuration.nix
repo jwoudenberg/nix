@@ -109,7 +109,7 @@ inputs:
 
   home-manager.useUserPackages = true;
   home-manager.useGlobalPkgs = true;
-  home-manager.users.jasper = (import ../timid-lasagna/home.nix);
+  home-manager.users.jasper = (import ./home.nix);
 
   system.stateVersion = "21.05";
   system.autoUpgrade.enable = false;

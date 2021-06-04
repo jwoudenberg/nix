@@ -35,15 +35,6 @@
       todo = import ./overlays/todo.nix;
     };
 
-    nixosConfigurations.timid-lasagna = inputs.nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        (import ./timid-lasagna/configuration.nix inputs)
-        modules/desktop-hardware.nix
-        inputs.home-manager.nixosModules.home-manager
-      ];
-    };
-
     nixosConfigurations.fragile-walrus = inputs.nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [

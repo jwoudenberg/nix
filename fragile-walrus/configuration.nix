@@ -101,7 +101,7 @@ inputs:
   users.users.jasper = {
     isNormalUser = true;
     home = "/home/jasper";
-    extraGroups = [ "wheel" "rslsync" "sway" ];
+    extraGroups = [ "wheel" "rslsync" "sway" "networkmanager" ];
     hashedPassword =
       "$6$h6p1ovc5FdW$w8vrupUIOdgfgDJOxEfqPdibbitT3HfZkjVQDurQ7YHfxH6hyC1AUTMZ8qlGff5KCE4XQfYfR970S6BtTin3m.";
     uid = 1000;

@@ -77,8 +77,8 @@ inputs:
     deviceName = "fragile-walrus";
     sharedFolders = let
       mkSharedFolder = name: {
-        directory = "/home/rslsync/" + name;
-        secretFile = "/home/rslsync/.secrets/" + name;
+        directory = "/persist/rslsync/" + name;
+        secretFile = "/persist/rslsync/.secrets/" + name;
         useRelayServer = false;
         useTracker = true;
         useDHT = true;

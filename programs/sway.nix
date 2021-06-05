@@ -7,10 +7,6 @@ let
 
   wallpaper = ../wallpaper/wallpaper.png;
 in {
-  home.file.".bash_profile".text = ''
-    sway
-  '';
-
   home.file.".config/sway/config".text = ''
     font pango:FiraCode 12
     floating_modifier Mod4

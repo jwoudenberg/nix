@@ -30,6 +30,21 @@ inputs:
   services.zfs.autoScrub.enable = true;
   services.zfs.trim.enable = true;
 
+  services.greetd = {
+    enable = true;
+    vt = 2;
+    settings = {
+      default_session = {
+        command =
+          "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --greeting 'Hoi!' --cmd sway";
+        user = "jasper";
+      };
+    };
+  };
+  # To avoid interleaving tuigreet output with booting output:
+  # https://github.com/apognu/tuigreet/issues/17
+  systemd.services.greetd.serviceConfig.Type = "idle";
+
   networking.hostId = "f1e5b37a";
   networking.hostName = "fragile-walrus";
   networking.networkmanager = {

@@ -23,6 +23,10 @@ inputs:
   boot.initrd.supportedFilesystems = [ "zfs" ];
   boot.supportedFilesystems = [ "zfs" ];
 
+  system.activationScripts.publicPersist = ''
+    chmod 777 /persist
+  '';
+
   services.zfs.autoScrub.enable = true;
   services.zfs.trim.enable = true;
 

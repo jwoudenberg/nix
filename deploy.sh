@@ -6,7 +6,7 @@
 set -exuo pipefail
 
 export HOST="${1:?'Pass host'}"
-nixos-rebuild build --flake ".#$HOST"
+nix build ".#nixosConfigurations.$HOST.config.system.build.toplevel" --out-link "$(pwd)/result"
 STORE_PATH=$(realpath result)
 
 # Copy configuration

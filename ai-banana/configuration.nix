@@ -27,13 +27,9 @@ in inputs:
   };
 
   # Hardware
-  disabledModules =
-    [ "services/networking/resilio.nix" "virtualisation/oci-containers.nix" ];
-  imports = [
-    ../modules/resilio.nix
-    ../modules/oci-containers.nix
-    (modulesPath + "/profiles/qemu-guest.nix")
-  ];
+  disabledModules = [ "services/networking/resilio.nix" ];
+  imports =
+    [ ../modules/resilio.nix (modulesPath + "/profiles/qemu-guest.nix") ];
   boot.loader.grub.device = "/dev/sda";
   fileSystems."/" = {
     device = "/dev/sda1";

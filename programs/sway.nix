@@ -112,7 +112,7 @@ in {
       }
     }
 
-    output DVI-D-1 {
+    output * {
       background ${wallpaper} fill
     }
 

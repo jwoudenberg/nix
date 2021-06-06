@@ -125,6 +125,11 @@ inputs:
   services.pcscd.enable = true; # For Yubikey support
   services.fwupd.enable = true;
 
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
+  };
+
   users.mutableUsers = false;
   users.users.jasper = {
     isNormalUser = true;

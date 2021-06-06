@@ -9,8 +9,6 @@ inputs:
   hardware.opengl.enable = true;
   hardware.opengl.driSupport = true;
   hardware.opengl.driSupport32Bit = true;
-  hardware.pulseaudio.enable = true;
-  hardware.pulseaudio.support32Bit = true;
   hardware.system76.enableAll = true;
   hardware.enableRedistributableFirmware = true;
 
@@ -47,6 +45,14 @@ inputs:
   # To avoid interleaving tuigreet output with booting output:
   # https://github.com/apognu/tuigreet/issues/17
   systemd.services.greetd.serviceConfig.Type = "idle";
+
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
+  security.rtkit.enable = true;
 
   networking.hostId = "f1e5b37a";
   networking.hostName = "fragile-walrus";

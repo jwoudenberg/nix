@@ -27,8 +27,11 @@ inputs:
     chmod 777 /persist
   '';
 
-  services.zfs.autoScrub.enable = true;
-  services.zfs.trim.enable = true;
+  services.zfs = {
+    autoScrub.enable = true;
+    trim.enable = true;
+    autoSnapshot.flags = "-k -p -u -P trunk/nix";
+  };
 
   services.greetd = {
     enable = true;

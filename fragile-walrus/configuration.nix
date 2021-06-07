@@ -28,6 +28,7 @@ inputs:
   services.zfs = {
     autoScrub.enable = true;
     trim.enable = true;
+    autoSnapshot.enable = true;
     autoSnapshot.flags = "-k -p -u -P trunk/nix";
   };
 

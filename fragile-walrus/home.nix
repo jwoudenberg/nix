@@ -58,6 +58,7 @@
     ../programs/ssh.nix
     ../programs/sway.nix
     ../programs/vale/default.nix
+    ../programs/wlsunset.nix
   ];
 
   programs.kitty.settings.font_size = 14;

@@ -117,7 +117,22 @@ in {
       xkb_variant ,nodeadkeys
       xkb_options ctrl:nocaps
     }
+
+    exec "systemctl --user import-environment; systemctl --user start sway-session.target"
   '';
+
+  # This is needed for other wayland tools like wlsunset to trigger in the
+  # right moment. Can be removed if I home-managerify the above configuration.
+  # See: https://github.com/nix-community/home-manager/issues/1865
+  systemd.user.targets.sway-session = {
+    Unit = {
+      Description = "sway compositor session";
+      Documentation = [ "man:systemd.special(7)" ];
+      BindsTo = [ "graphical-session.target" ];
+      Wants = [ "graphical-session-pre.target" ];
+      After = [ "graphical-session-pre.target" ];
+    };
+  };
 
   home.file.".config/swaylock/config".text = ''
     no-unlock-indicator

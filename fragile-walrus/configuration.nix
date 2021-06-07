@@ -21,8 +21,18 @@ inputs:
   boot.initrd.supportedFilesystems = [ "zfs" ];
   boot.supportedFilesystems = [ "zfs" ];
 
-  system.activationScripts.publicPersist = ''
+  system.activationScripts.persist = ''
+    # Make /persist public so the rslsync user can look in it.
     chmod 777 /persist
+
+    # Symbolic links to home directory.
+    ln -sfn /persist/rslsync/books /home/jasper/books
+    ln -sfn /persist/rslsync/jasper /home/jasper/docs
+    ln -sfn /persist/rslsync/hjgames /home/jasper/hjgames
+    ln -sfn /persist/dev /home/jasper/dev
+    ln -sfn /persist/password-store /home/jasper/.password-store
+    ln -sfn /persist/ssh /home/jasper/.ssh
+    ln -sfn /persist/aws /home/jasper/.aws
   '';
 
   services.zfs = {

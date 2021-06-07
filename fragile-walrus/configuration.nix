@@ -98,6 +98,7 @@ inputs:
   fonts.fonts = [ pkgs.fira-code ];
 
   programs.sway.enable = true;
+  programs.xwayland.enable = false;
   programs.ssh.startAgent = true;
   programs.command-not-found.enable = false;
 

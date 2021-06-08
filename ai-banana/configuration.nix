@@ -41,6 +41,12 @@ in inputs:
     options = [ "discard" "defaults" ];
   };
 
+  # Enable IP forwarding to allow this machine to function as a tailscale exit
+  # node.
+  # See: https://tailscale.com/kb/1104/enable-ip-forwarding/
+  boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
+  boot.kernel.sysctl."net.ipv6.conf.all.forwarding" = 1;
+
   # Packages
   environment.systemPackages = [ pkgs.tailscale ];
 

@@ -23,7 +23,7 @@ inputs:
 
   system.activationScripts.persist = ''
     # Make /persist public so the rslsync user can look in it.
-    chmod 777 /persist
+    chmod 755 /persist
 
     # Symbolic links to home directory.
     ln -sfn /persist/rslsync/books /home/jasper/books

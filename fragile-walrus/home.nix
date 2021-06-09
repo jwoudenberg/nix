@@ -68,6 +68,8 @@
     DEFAULT_TODO_TXT = "~/docs/todo.txt";
     MANPAGER = "nvim -c 'set ft=man' -";
     AWS_VAULT_BACKEND = "file";
+    # Fix issue with opening links in Firefox using :GBrowse.
+    MOZ_DBUS_REMOTE = "1";
   };
 
   home.stateVersion = "21.05";

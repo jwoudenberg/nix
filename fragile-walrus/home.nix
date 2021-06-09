@@ -17,7 +17,7 @@
     pkgs.keybase
     pkgs.magic-wormhole
     pkgs.mosh
-    pkgs.mupdf
+    pkgs.zathura
     pkgs.haskellPackages.niv
     pkgs.minecraft
     pkgs.nixfmt
@@ -81,7 +81,7 @@
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
-      "application/pdf" = [ "mupdf.desktop" ];
+      "application/pdf" = [ "org.pwmt.zathura.desktop" ];
       "x-scheme-handler/http" = [ "firefox.desktop" ];
       "x-scheme-handler/https" = [ "firefox.desktop" ];
     };

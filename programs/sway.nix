@@ -1,11 +1,5 @@
 { pkgs, ... }:
-let
-  takeScreenshot = pkgs.writeShellScriptBin "take-screenshot" ''
-    mkdir -p ~/tmp
-    grim -g "$(slurp)" ~/tmp/screenshot_$(date --iso=seconds).png
-  '';
-
-  wallpaper = ../wallpaper/wallpaper.png;
+let wallpaper = ../wallpaper/wallpaper.png;
 in {
   home.file.".config/sway/config".text = ''
     font pango:FiraCode 12
@@ -75,7 +69,6 @@ in {
       Mod4+k focus up
       Mod4+l focus right
       Mod4+p exec $menu
-      Mod4+s exec ${takeScreenshot}/bin/take-screenshot
     }
 
     mode "resize" bindsym {

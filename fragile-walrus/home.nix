@@ -57,6 +57,7 @@
     ../programs/ripgrep.nix
     ../programs/ssh.nix
     ../programs/sway.nix
+    ../programs/take-screenshot.nix
     ../programs/vale/default.nix
     ../programs/wlsunset.nix
   ];

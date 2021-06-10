@@ -10,10 +10,8 @@
         "browser.urlbar.suggest.searches" = false;
         "browser.urlbar.suggest.history" = false;
         "network.cookie.cookieBehavior" = 1;
-        "privacy.clearOnShutdown.cookies" = true;
         "browser.newtabpage.enabled" = false;
-        "browser.urlbar.oneOffSearches" = false;
-        "browser.search.defaultenginename" = "bing";
+        "signon.rememberSignons" = false;
       };
     };
   };

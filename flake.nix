@@ -10,6 +10,8 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     launch.url = "github:jwoudenberg/launch";
     launch.inputs.nixpkgs.follows = "nixpkgs";
+    random-colors.url = "github:jwoudenberg/random-colors";
+    random-colors.inputs.nixpkgs.follows = "nixpkgs";
     similar-sort.url =
       "git+https://git.bytes.zone/brian/similar-sort.git?ref=main";
     similar-sort.flake = false;
@@ -23,7 +25,7 @@
       customPkgs = final: prev: {
         jwlaunch = inputs.launch.defaultPackage."x86_64-linux";
         nix-script = final.callPackage inputs.nix-script { };
-        random-colors = final.callPackage ./pkgs/random-colors.nix { };
+        random-colors = inputs.random-colors.defaultPackage."x86_64-linux";
         similar-sort = prev.callPackage inputs.similar-sort { };
         system76-power = final.callPackage ./pkgs/system76-power.nix { };
       };

@@ -5,7 +5,8 @@
       extraPrefs = ''
         pref("browser.download.dir", "~/downloads");
         pref("browser.download.useDownloadDir", true);
-        pref("browser.link.open_newwindow", 0);
+        pref("browser.link.open_newwindow", 3);
+        pref("browser.link.open_newwindow.restriction", 0);
         pref("browser.newtabpage.enabled", false);
         pref("browser.startup.homepage", "about:blank");
         pref("browser.tabs.allowTabDetach", false);

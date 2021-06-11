@@ -40,6 +40,7 @@ inputs:
     ln -sfn /persist/password-store /home/jasper/.password-store
     ln -sfn /persist/ssh /home/jasper/.ssh
     ln -sfn /persist/aws /home/jasper/.aws
+    ln -sfn /persist/random-colors /home/jasper/.config/random-colors
 
     # Tailscale state
     mkdir -p /var/lib/tailscale

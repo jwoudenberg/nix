@@ -40,10 +40,12 @@ inputs:
     ln -sfn /persist/password-store /home/jasper/.password-store
     ln -sfn /persist/ssh /home/jasper/.ssh
     ln -sfn /persist/aws /home/jasper/.aws
-    ln -sfn /persist/random-colors /home/jasper/.config/random-colors
-    ln -sfn /persist/gh /home/jasper/.config/gh
     ln -sfn /persist/awsvault /home/jasper/.awsvault
     ln -sfn /persist/gnupg /home/jasper/.gnupg
+
+    mkdir -p /home/jasper/.config
+    ln -sfn /persist/random-colors /home/jasper/.config/random-colors
+    ln -sfn /persist/gh /home/jasper/.config/gh
 
     # Tailscale state
     mkdir -p /var/lib/tailscale

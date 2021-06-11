@@ -40,6 +40,12 @@ inputs:
     ln -sfn /persist/password-store /home/jasper/.password-store
     ln -sfn /persist/ssh /home/jasper/.ssh
     ln -sfn /persist/aws /home/jasper/.aws
+
+    # Tailscale state
+    mkdir -p /var/lib/tailscale
+    ln -sfn /persist/var/lib/tailscale/files /var/lib/tailscale/files
+    ln -sfn /persist/var/lib/tailscale/tailscaled.state /var/lib/tailscale/tailscaled.state
+    ln -sfn /persist/var/lib/tailscale/tailscaled.log.conf /var/lib/tailscale/tailscaled.log.conf
   '';
 
   services.zfs = {

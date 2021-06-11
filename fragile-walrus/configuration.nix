@@ -48,6 +48,9 @@ inputs:
     ln -sfn /persist/var/lib/tailscale/tailscaled.log.conf /var/lib/tailscale/tailscaled.log.conf
   '';
 
+  environment.etc."NetworkManager/system-connections".source =
+    "/persist/etc/NetworkManager/system-connections/";
+
   services.zfs = {
     autoScrub.enable = true;
     trim.enable = true;

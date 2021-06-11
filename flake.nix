@@ -15,6 +15,8 @@
     similar-sort.flake = false;
     nix-script.url = "github:BrianHicks/nix-script";
     nix-script.flake = false;
+    system76-power.url = "github:pop-os/system76-power/1.1.16";
+    system76-power.flake = false;
   };
 
   outputs = inputs: {
@@ -33,6 +35,7 @@
       };
       tabnine = import ./overlays/tabnine.nix;
       todo = import ./overlays/todo.nix;
+      system76-power = import ./overlays/system76-power.nix inputs;
     };
 
     nixosConfigurations.fragile-walrus = inputs.nixpkgs.lib.nixosSystem {

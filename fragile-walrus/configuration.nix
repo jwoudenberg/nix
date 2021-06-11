@@ -3,7 +3,11 @@ inputs:
 
 {
   disabledModules = [ "services/networking/resilio.nix" ];
-  imports = [ ../modules/resilio.nix ./hardware-configuration.nix ];
+  imports = [
+    ../modules/resilio.nix
+    ../modules/system76-power.nix
+    ./hardware-configuration.nix
+  ];
 
   hardware.cpu.amd.updateMicrocode = true;
   hardware.opengl.enable = true;
@@ -102,7 +106,7 @@ inputs:
     experimental-features = nix-command flakes
   '';
 
-  environment.systemPackages = [ pkgs.efibootmgr ];
+  environment.systemPackages = [ pkgs.efibootmgr pkgs.system76-power ];
 
   fonts.fonts = [ pkgs.fira-code ];
 

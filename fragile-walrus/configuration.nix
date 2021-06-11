@@ -1,5 +1,5 @@
 inputs:
-{ pkgs, config, ... }:
+{ pkgs, config, lib, ... }:
 
 {
   disabledModules = [ "services/networking/resilio.nix" ];
@@ -23,6 +23,9 @@ inputs:
   boot.loader.timeout = 10;
   boot.kernel.sysctl."fs.inotify.max_user_watches" = 524288;
   boot.initrd.supportedFilesystems = [ "zfs" ];
+  boot.initrd.postDeviceCommands = lib.mkAfter ''
+    zfs rollback -r trunk/root@blank
+  '';
   boot.supportedFilesystems = [ "zfs" ];
 
   system.activationScripts.persist = ''

@@ -27,7 +27,8 @@
         nix-script = final.callPackage inputs.nix-script { };
         random-colors = inputs.random-colors.defaultPackage."x86_64-linux";
         similar-sort = prev.callPackage inputs.similar-sort { };
-        system76-power = final.callPackage ./pkgs/system76-power.nix { };
+        system76-power =
+          final.callPackage ./shared/nix-pkgs/system76-power.nix { };
       };
     };
 

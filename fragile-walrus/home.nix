@@ -43,22 +43,22 @@
   ];
 
   imports = [
-    ../programs/direnv.nix
-    ../programs/firefox.nix
-    ../programs/fish/default.nix
-    ../programs/fzf.nix
-    ../programs/git.nix
-    ../programs/i3status/default.nix
-    ../programs/kitty.nix
-    ../programs/neovim/default.nix
-    ../programs/pass.nix
-    ../programs/readline.nix
-    ../programs/ripgrep.nix
-    ../programs/ssh.nix
-    ../programs/sway.nix
-    ../programs/take-screenshot.nix
-    ../programs/vale/default.nix
-    ../programs/wlsunset.nix
+    ../shared/home-manager-modules/direnv.nix
+    ../shared/home-manager-modules/firefox.nix
+    ../shared/home-manager-modules/fish/default.nix
+    ../shared/home-manager-modules/fzf.nix
+    ../shared/home-manager-modules/git.nix
+    ../shared/home-manager-modules/i3status/default.nix
+    ../shared/home-manager-modules/kitty.nix
+    ../shared/home-manager-modules/neovim/default.nix
+    ../shared/home-manager-modules/pass.nix
+    ../shared/home-manager-modules/readline.nix
+    ../shared/home-manager-modules/ripgrep.nix
+    ../shared/home-manager-modules/ssh.nix
+    ../shared/home-manager-modules/sway.nix
+    ../shared/home-manager-modules/take-screenshot.nix
+    ../shared/home-manager-modules/vale/default.nix
+    ../shared/home-manager-modules/wlsunset.nix
   ];
 
   programs.kitty.settings.font_size = 14;

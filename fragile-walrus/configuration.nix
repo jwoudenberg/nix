@@ -4,8 +4,8 @@ inputs:
 {
   disabledModules = [ "services/networking/resilio.nix" ];
   imports = [
-    ../modules/resilio.nix
-    ../modules/system76-power.nix
+    ../shared/nixos-modules/resilio.nix
+    ../shared/nixos-modules/system76-power.nix
     ./hardware-configuration.nix
   ];
 

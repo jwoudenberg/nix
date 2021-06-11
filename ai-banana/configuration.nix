@@ -28,8 +28,10 @@ in inputs:
 
   # Hardware
   disabledModules = [ "services/networking/resilio.nix" ];
-  imports =
-    [ ../modules/resilio.nix (modulesPath + "/profiles/qemu-guest.nix") ];
+  imports = [
+    ../shared/nixos-modules/resilio.nix
+    (modulesPath + "/profiles/qemu-guest.nix")
+  ];
   boot.loader.grub.device = "/dev/sda";
   fileSystems."/" = {
     device = "/dev/sda1";

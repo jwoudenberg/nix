@@ -27,15 +27,15 @@
   ];
 
   imports = [
-    ../programs/direnv.nix
-    ../programs/fish/default.nix
-    ../programs/fzf.nix
-    ../programs/git.nix
-    ../programs/kitty.nix
-    ../programs/neovim/default.nix
-    ../programs/ripgrep.nix
-    ../programs/readline.nix
-    ../programs/vale/default.nix
+    ../shared/home-manager-modules/direnv.nix
+    ../shared/home-manager-modules/fish/default.nix
+    ../shared/home-manager-modules/fzf.nix
+    ../shared/home-manager-modules/git.nix
+    ../shared/home-manager-modules/kitty.nix
+    ../shared/home-manager-modules/neovim/default.nix
+    ../shared/home-manager-modules/ripgrep.nix
+    ../shared/home-manager-modules/readline.nix
+    ../shared/home-manager-modules/vale/default.nix
   ];
 
   programs.kitty.settings.font_size = 18;

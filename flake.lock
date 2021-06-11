@@ -134,8 +134,7 @@
         "nix-script": "nix-script",
         "nixpkgs": "nixpkgs",
         "nixpkgs-darwin": "nixpkgs-darwin",
-        "similar-sort": "similar-sort",
-        "system76-power": "system76-power"
+        "similar-sort": "similar-sort"
       }
     },
     "similar-sort": {
@@ -153,23 +152,6 @@
         "ref": "main",
         "type": "git",
         "url": "https://git.bytes.zone/brian/similar-sort.git"
-      }
-    },
-    "system76-power": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1614195017,
-        "narHash": "sha256-OtrhvUkNNgg6KlrqjwiBKL4zuQZBWevb0xgtSlEW2rQ=",
-        "owner": "pop-os",
-        "repo": "system76-power",
-        "rev": "81e875c83c43529328a139257976245a5c88f73e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "pop-os",
-        "ref": "1.1.16",
-        "repo": "system76-power",
-        "type": "github"
       }
     }
   },

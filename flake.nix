@@ -15,27 +15,19 @@
     similar-sort.flake = false;
     nix-script.url = "github:BrianHicks/nix-script";
     nix-script.flake = false;
-    system76-power.url = "github:pop-os/system76-power/1.1.16";
-    system76-power.flake = false;
   };
 
   outputs = inputs: {
 
     overlays = {
-      launch = final: prev: {
+      customPkgs = final: prev: {
         jwlaunch = inputs.launch.defaultPackage."x86_64-linux";
-      };
-      nix-script = final: prev: {
-        nix-script = prev.callPackage inputs.nix-script { };
-      };
-      pass = import ./overlays/pass.nix;
-      random-colors = import ./overlays/random-colors.nix;
-      similar-sort = final: prev: {
+        nix-script = final.callPackage inputs.nix-script { };
+        random-colors = final.callPackage ./pkgs/random-colors.nix { };
         similar-sort = prev.callPackage inputs.similar-sort { };
+        system76-power = final.callPackage ./pkgs/system76-power.nix { };
+        todo = final.callPackage ./todo/default.nix { };
       };
-      tabnine = import ./overlays/tabnine.nix;
-      todo = import ./overlays/todo.nix;
-      system76-power = import ./overlays/system76-power.nix inputs;
     };
 
     nixosConfigurations.fragile-walrus = inputs.nixpkgs.lib.nixosSystem {

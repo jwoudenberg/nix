@@ -23,7 +23,6 @@
     pkgs.nixfmt
     pkgs.nix-prefetch-github
     pkgs.nodePackages.prettier
-    pkgs.pass
     pkgs.pdfgrep
     pkgs.pulsemixer
     pkgs.plex-media-player
@@ -53,6 +52,7 @@
     ../programs/i3status/default.nix
     ../programs/kitty.nix
     ../programs/neovim/default.nix
+    ../programs/pass.nix
     ../programs/readline.nix
     ../programs/ripgrep.nix
     ../programs/ssh.nix

@@ -44,6 +44,7 @@ inputs:
     ln -sfn /persist/gnupg /home/jasper/.gnupg
 
     mkdir -p /home/jasper/.config
+    chown jasper:users /home/jasper/.config
     ln -sfn /persist/random-colors /home/jasper/.config/random-colors
     ln -sfn /persist/gh /home/jasper/.config/gh
 

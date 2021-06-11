@@ -43,6 +43,7 @@ inputs:
     ln -sfn /persist/random-colors /home/jasper/.config/random-colors
     ln -sfn /persist/gh /home/jasper/.config/gh
     ln -sfn /persist/awsvault /home/jasper/.awsvault
+    ln -sfn /persist/gnupg /home/jasper/.gnupg
 
     # Tailscale state
     mkdir -p /var/lib/tailscale

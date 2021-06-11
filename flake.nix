@@ -26,7 +26,6 @@
         random-colors = final.callPackage ./pkgs/random-colors.nix { };
         similar-sort = prev.callPackage inputs.similar-sort { };
         system76-power = final.callPackage ./pkgs/system76-power.nix { };
-        todo = final.callPackage ./todo/default.nix { };
       };
     };
 

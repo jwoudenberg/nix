@@ -35,7 +35,6 @@
     pkgs.slurp
     pkgs.tabnine
     pkgs.tmate
-    pkgs.todo
     pkgs.vale
     pkgs.wally-cli
     pkgs.wl-clipboard

@@ -125,6 +125,10 @@ inputs:
     experimental-features = nix-command flakes
   '';
 
+  security.sudo.extraConfig = ''
+    Defaults lecture=never
+  '';
+
   environment.systemPackages = [ pkgs.efibootmgr pkgs.system76-power ];
 
   fonts.fonts = [ pkgs.fira-code ];

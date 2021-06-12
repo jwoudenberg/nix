@@ -109,7 +109,7 @@ inputs:
   time.timeZone = "Europe/Amsterdam";
 
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.overlays = builtins.attrValues inputs.self.overlays;
+  nixpkgs.overlays = [ inputs.self.overlays.linuxCustomPkgs ];
 
   nix.registry.nixpkgs.flake = inputs.nixpkgs;
   nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];

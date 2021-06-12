@@ -21,7 +21,7 @@ in inputs:
   system.stateVersion = "20.03";
   networking.hostName = "ai-banana";
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.overlays = builtins.attrValues inputs.self.overlays;
+  nixpkgs.overlays = [ inputs.self.overlays.linuxCustomPkgs ];
 
   nix.gc = {
     automatic = true;

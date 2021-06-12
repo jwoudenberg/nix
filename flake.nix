@@ -21,15 +21,18 @@
 
   outputs = inputs: {
 
-    overlays = {
-      customPkgs = final: prev: {
-        jwlaunch = inputs.launch.defaultPackage."x86_64-linux";
+    overlays = let
+      mkOverlay = system: final: prev: {
+        jwlaunch = inputs.launch.defaultPackage."${system}";
         nix-script = final.callPackage inputs.nix-script { };
-        random-colors = inputs.random-colors.defaultPackage."x86_64-linux";
+        random-colors = inputs.random-colors.defaultPackage."${system}";
         similar-sort = prev.callPackage inputs.similar-sort { };
         system76-power =
           final.callPackage ./shared/nix-pkgs/system76-power.nix { };
       };
+    in {
+      darwinCustomPkgs = mkOverlay "x86_64-darwin";
+      linuxCustomPkgs = mkOverlay "x86_64-linux";
     };
 
     nixosConfigurations.fragile-walrus = inputs.nixpkgs.lib.nixosSystem {

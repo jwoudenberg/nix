@@ -1,4 +1,4 @@
-{ pkg-config, libusb, dbus, lib, rustPlatform, fetchFromGitHub }:
+{ pkg-config, libusb1, dbus, lib, rustPlatform, fetchFromGitHub }:
 
 let
   version = "1.1.16";
@@ -15,7 +15,7 @@ in rustPlatform.buildRustPackage {
   };
 
   nativeBuildInputs = [ pkg-config ];
-  buildInputs = [ dbus libusb ];
+  buildInputs = [ dbus libusb1 ];
 
   cargoSha256 = "sha256-YqGr6Qou73gBDgz+S4oNhPQfrv7rkys+xZkgMCQca1M=";
 

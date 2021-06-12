@@ -50,13 +50,13 @@ inputs:
 
     # Tailscale state
     mkdir -p /var/lib/tailscale
-    ln -sfn /persist/var/lib/tailscale/files /var/lib/tailscale/files
-    ln -sfn /persist/var/lib/tailscale/tailscaled.state /var/lib/tailscale/tailscaled.state
-    ln -sfn /persist/var/lib/tailscale/tailscaled.log.conf /var/lib/tailscale/tailscaled.log.conf
+    ln -sfn /persist/tailscale/files /var/lib/tailscale/files
+    ln -sfn /persist/tailscale/tailscaled.state /var/lib/tailscale/tailscaled.state
+    ln -sfn /persist/tailscale/tailscaled.log.conf /var/lib/tailscale/tailscaled.log.conf
   '';
 
   environment.etc."NetworkManager/system-connections".source =
-    "/persist/etc/NetworkManager/system-connections/";
+    "/persist/system-connections/";
 
   services.zfs = {
     autoScrub.enable = true;

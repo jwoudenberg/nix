@@ -9,7 +9,6 @@
         pref("browser.link.open_newwindow", 3);
         pref("browser.link.open_newwindow.restriction", 0);
         pref("browser.newtabpage.enabled", false);
-        pref("browser.startup.firstrunSkipsHomepage", false);
         pref("browser.startup.homepage", "about:blank");
         pref("browser.tabs.allowTabDetach", false);
         pref("browser.urlbar.suggest.bookmark", false);

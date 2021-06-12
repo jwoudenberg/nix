@@ -9,6 +9,8 @@
         pref("browser.link.open_newwindow.restriction", 0);
         pref("browser.newtabpage.enabled", false);
         pref("browser.startup.homepage", "about:blank");
+        pref("browser.aboutwelcome.enabled", false);
+        pref("trailhead.firstrun.branches", "nofirstrun-empty");
         pref("browser.tabs.allowTabDetach", false);
         pref("browser.urlbar.suggest.bookmark", false);
         pref("browser.urlbar.suggest.engines", false);

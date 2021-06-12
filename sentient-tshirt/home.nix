@@ -22,7 +22,6 @@
     pkgs.sd
     pkgs.shellcheck
     pkgs.similar-sort
-    pkgs.todo
     pkgs.vale
   ];
 

@@ -3,7 +3,6 @@
 {
   home.packages = [
     pkgs.cachix
-    pkgs.calibre
     pkgs.chromium
     pkgs.discord
     pkgs.du-dust
@@ -43,6 +42,7 @@
   ];
 
   imports = [
+    ../shared/home-manager-modules/calibre.nix
     ../shared/home-manager-modules/direnv.nix
     ../shared/home-manager-modules/firefox.nix
     ../shared/home-manager-modules/fish/default.nix

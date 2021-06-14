@@ -84,6 +84,12 @@
       "application/pdf" = [ "org.pwmt.zathura.desktop" ];
       "x-scheme-handler/http" = [ "firefox.desktop" ];
       "x-scheme-handler/https" = [ "firefox.desktop" ];
+      "image/bmp" = [ "imv.desktop" ];
+      "image/gif" = [ "imv.desktop" ];
+      "image/jpeg" = [ "imv.desktop" ];
+      "image/jpg" = [ "imv.desktop" ];
+      "image/png" = [ "imv.desktop" ];
+      "image/tiff" = [ "imv.desktop" ];
     };
   };
 }

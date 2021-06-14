@@ -29,6 +29,14 @@
         similar-sort = prev.callPackage inputs.similar-sort { };
         system76-power =
           final.callPackage ./shared/nix-pkgs/system76-power.nix { };
+        fzf = prev.fzf.overrideAttrs (old: {
+          buildInputs = old.buildInputs ++ [ final.makeWrapper ];
+          postInstall = ''
+            ${old.postInstall}
+            wrapProgram $out/bin/fzf \
+              --set FZF_DEFAULT_COMMAND '${final.ripgrep}/bin/rg --hidden --iglob !.git --files'
+          '';
+        });
       };
     };
 

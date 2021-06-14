@@ -21,7 +21,6 @@ in {
     plugins = with pkgs.vimPlugins; [
       ale
       fzf-vim
-      fzfWrapper
       gitgutter
       goyo
       gv-vim

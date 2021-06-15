@@ -123,13 +123,27 @@ in inputs:
     # Hashes generated with the `caddy hash-password` command.
     config = ''
       :80 {
-        reverse_proxy {
-          to localhost:8080
+        respond / `
+          <html>
+            <head><title>ai-banana</title></head>
+            <body>
+              <h1>ai-banana</h1>
+              <ul>
+                <li><a href="/files/">files</li>
+                <li><a href="/upnp/">upnp</li>
+              </ul>
+            </body>
+          </html>
+        `
+
+        rewrite /files /files/
+        handle_path /files/* {
+          reverse_proxy localhost:8080
         }
-      }
-      :7000 {
-        reverse_proxy {
-          to localhost:58050
+
+        rewrite /upnp /upnp/
+        handle_path /upnp/* {
+          reverse_proxy localhost:58050
         }
       }
     '';

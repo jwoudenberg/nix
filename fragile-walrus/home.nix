@@ -42,7 +42,6 @@
   ];
 
   imports = [
-    ../shared/home-manager-modules/calibre.nix
     ../shared/home-manager-modules/direnv.nix
     ../shared/home-manager-modules/firefox.nix
     ../shared/home-manager-modules/fish/default.nix

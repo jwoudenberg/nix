@@ -1,4 +1,6 @@
 let
+  webdavPort = 8080;
+  calibreWebPort = 8083;
   resilio = {
     listeningPort = 18776;
     dirs = {
@@ -129,24 +131,44 @@ in inputs:
             <body>
               <h1>ai-banana</h1>
               <ul>
-                <li><a href="/files/">files</li>
-                <li><a href="/upnp/">upnp</li>
+                <li><a href="/files/">files</a></li>
+                <li><a href="/books/">books</a></li>
+                <li><a href="/upnp/">upnp</a></li>
               </ul>
             </body>
           </html>
         `
 
-        rewrite /files /files/
+        redir /files /files/
         handle_path /files/* {
-          reverse_proxy localhost:8080
+          reverse_proxy localhost:${toString webdavPort}
         }
 
-        rewrite /upnp /upnp/
+        redir /upnp /upnp/
         handle_path /upnp/* {
           reverse_proxy localhost:58050
         }
+
+        redir /books /books/
+        reverse_proxy /books/* {
+          to localhost:${toString calibreWebPort}
+          header_up Authorization admin
+          header_up X-Script-Name /books
+        }
       }
     '';
+  };
+
+  # calibre-web
+  services.calibre-web = {
+    enable = true;
+    listen.port = calibreWebPort;
+    group = "rslsync";
+    options.calibreLibrary = "/srv/volume1/books";
+    # Documentation on this reverse proxy setup:
+    # https://github.com/janeczku/calibre-web/wiki/Setup-Reverse-Proxy
+    options.reverseProxyAuth.enable = true;
+    options.reverseProxyAuth.header = "Authorization";
   };
 
   # rclone
@@ -159,7 +181,9 @@ in inputs:
       User = "rslsync";
       Group = "rslsync";
       ExecStart =
-        "${pkgs.rclone}/bin/rclone serve webdav /srv/volume1 --addr :8080";
+        "${pkgs.rclone}/bin/rclone serve webdav /srv/volume1 --addr :${
+          toString webdavPort
+        }";
       Restart = "on-failure";
     };
   };

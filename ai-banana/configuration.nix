@@ -1,6 +1,7 @@
 let
   webdavPort = 8080;
   calibreWebPort = 8083;
+  kobodlPort = 8084;
   resilio = {
     listeningPort = 18776;
     dirs = {
@@ -133,6 +134,9 @@ in inputs:
               <ul>
                 <li><a href="/files/">files</a></li>
                 <li><a href="/books/">books</a></li>
+                <li><a href="http://ai-banana:${
+                  toString (kobodlPort + 1)
+                }">kobo upload</a></li>
                 <li><a href="/upnp/">upnp</a></li>
               </ul>
             </body>
@@ -156,6 +160,10 @@ in inputs:
           header_up X-Script-Name /books
         }
       }
+
+      :${toString (kobodlPort + 1)} {
+        reverse_proxy localhost:${toString kobodlPort}
+      }
     '';
   };
 
@@ -165,6 +173,7 @@ in inputs:
     listen.port = calibreWebPort;
     group = "rslsync";
     options.calibreLibrary = "/srv/volume1/books";
+    options.enableBookUploading = true;
     # Documentation on this reverse proxy setup:
     # https://github.com/janeczku/calibre-web/wiki/Setup-Reverse-Proxy
     options.reverseProxyAuth.enable = true;
@@ -294,5 +303,33 @@ in inputs:
       autoStart = true;
       extraOptions = [ "--network=host" ];
     };
+    containers.kobodl =
+      # configDir = pkgs.writeTextDir "config/kobodl.json" ''
+      #   {
+      #     "users": [];
+      #     "calibre_web": {
+      #       "enabled" = true,
+      #       "url" = "localhost/books/upload",
+      #       "username" = "",
+      #       "password" = ""
+      #     }
+      #   }
+      # '';
+      {
+        image = "subdavis/kobodl";
+        autoStart = true;
+        extraOptions = [ "--network=host" ];
+        ports = [ "${toString kobodlPort}:${toString kobodlPort}" ];
+        volumes = [ "/srv/volume1/kobodl:/kobodl" ];
+        cmd = [
+          "--config"
+          "/kobodl/kobodl.json"
+          "serve"
+          "--host"
+          "0.0.0.0"
+          "--port"
+          "${toString kobodlPort}"
+        ];
+      };
   };
 }

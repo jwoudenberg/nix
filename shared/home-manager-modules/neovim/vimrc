@@ -118,7 +118,7 @@ nnoremap <C-P> :Files<cr>
 nnoremap <C-B> :Buffers<CR>
 
 command! -bang -nargs=? -complete=dir Files
-  \ call fzf#run(fzf#wrap({"source": "rg --hidden --files \| similar-sort " . @%,
+  \ call fzf#run(fzf#wrap({"source": $FZF_DEFAULT_COMMAND . " \| similar-sort " . @%,
                          \ "sink": "edit",
                          \ "options": "--tiebreak index"
                          \ }))

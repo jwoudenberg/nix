@@ -6,7 +6,7 @@ let
     dirs = {
       "music" = "readonly";
       "photo" = "readonly";
-      "books" = "readonly";
+      "books" = "readwrite";
       "jasper" = "readonly";
       "hiske" = "readonly";
       "hjgames" = "readwrite";

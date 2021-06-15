@@ -171,6 +171,7 @@ in inputs:
   services.calibre-web = {
     enable = true;
     listen.port = calibreWebPort;
+    user = "rslsync";
     group = "rslsync";
     options.calibreLibrary = "/srv/volume1/books";
     options.enableBookUploading = true;

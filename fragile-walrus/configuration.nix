@@ -44,6 +44,7 @@ inputs:
     ln -sfn /persist/aws /home/jasper/.aws
     ln -sfn /persist/awsvault /home/jasper/.awsvault
     ln -sfn /persist/gnupg /home/jasper/.gnupg
+    ln -sfn /persist/steam /home/jasper/.steam
 
     mkdir -p /home/jasper/.config
     chown jasper:users /home/jasper/.config
@@ -136,9 +137,10 @@ inputs:
   fonts.fonts = [ pkgs.fira-code ];
 
   programs.sway.enable = true;
-  programs.xwayland.enable = false;
+  programs.xwayland.enable = true;
   programs.ssh.startAgent = true;
   programs.command-not-found.enable = false;
+  programs.steam.enable = true;
 
   services.resilio = {
     enable = true;

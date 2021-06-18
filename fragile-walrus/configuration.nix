@@ -45,6 +45,7 @@ inputs:
     ln -sfn /persist/awsvault /home/jasper/.awsvault
     ln -sfn /persist/gnupg /home/jasper/.gnupg
     ln -sfn /persist/steam /home/jasper/.steam
+    ln -sfn /persist/steam/.steam/sdk32/steam /home/jasper/.steampath
 
     mkdir -p /home/jasper/.config
     chown jasper:users /home/jasper/.config

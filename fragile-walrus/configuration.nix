@@ -44,6 +44,7 @@ inputs:
     ln -sfn /persist/aws /home/jasper/.aws
     ln -sfn /persist/awsvault /home/jasper/.awsvault
     ln -sfn /persist/gnupg /home/jasper/.gnupg
+    ln -sfn /persist/kube /home/jasper/.kube
 
     mkdir -p /home/jasper/.config
     chown jasper:users /home/jasper/.config

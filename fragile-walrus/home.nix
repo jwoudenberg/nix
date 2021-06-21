@@ -1,7 +1,18 @@
 { pkgs, ... }:
 
-{
+let
+
+  boot-popos = pkgs.writeShellScriptBin "popos" ''
+    #!/usr/bin/env bash
+    set -euxo pipefail
+
+    bootctl set-oneshot Pop_OS-current.conf
+    systemctl reboot
+  '';
+
+in {
   home.packages = [
+    boot-popos
     pkgs.cachix
     pkgs.chromium
     pkgs.discord

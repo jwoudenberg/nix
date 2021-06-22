@@ -92,6 +92,7 @@ in {
     enable = true;
     defaultApplications = {
       "application/pdf" = [ "org.pwmt.zathura.desktop" ];
+      "x-www-browser" = [ "firefox.desktop" ];
       "x-scheme-handler/http" = [ "firefox.desktop" ];
       "x-scheme-handler/https" = [ "firefox.desktop" ];
       "image/bmp" = [ "imv.desktop" ];

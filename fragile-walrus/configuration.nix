@@ -15,6 +15,7 @@ inputs:
   hardware.opengl.driSupport32Bit = true;
   hardware.system76.enableAll = true;
   hardware.enableRedistributableFirmware = true;
+  hardware.keyboard.zsa.enable = true; # Support flashing Ergodox.
 
   boot.kernelPackages =
     pkgs.linuxPackages_5_12; # Required by AMD 6700 graphics card

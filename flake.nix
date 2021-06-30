@@ -2,6 +2,7 @@
   description = "Jaspers Nix configuration";
 
   inputs = {
+    nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-21.05";
     nixpkgs-darwin.url = "github:NixOS/nixpkgs/nixpkgs-21.05-darwin";
     darwin.url = "github:LnL7/nix-darwin/master";
@@ -27,8 +28,11 @@
         nix-script = final.callPackage inputs.nix-script { };
         random-colors = inputs.random-colors.defaultPackage."${system}";
         similar-sort = prev.callPackage inputs.similar-sort { };
-        system76-power =
-          final.callPackage ./shared/nix-pkgs/system76-power.nix { };
+        linuxPackages_5_12 = prev.linuxPackages_5_12.extend (_: _: {
+          system76-power = final.callPackage
+            "${inputs.nixpkgs-master}/pkgs/os-specific/linux/system76-power/default.nix"
+            { };
+        });
       };
     in {
       darwinCustomPkgs = mkOverlay "x86_64-darwin";

@@ -141,6 +141,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-master": {
+      "locked": {
+        "lastModified": 1625074645,
+        "narHash": "sha256-TuNxtDKfmx20eNN12njHtfLsQaY4uMlE7jnw92m13Vs=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "4afb7c8e2c631f5c191aaf586673430b72e4b15e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "master",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "random-colors": {
       "inputs": {
         "flake-utils": "flake-utils_2",
@@ -170,6 +186,7 @@
         "nix-script": "nix-script",
         "nixpkgs": "nixpkgs",
         "nixpkgs-darwin": "nixpkgs-darwin",
+        "nixpkgs-master": "nixpkgs-master",
         "random-colors": "random-colors",
         "similar-sort": "similar-sort"
       }

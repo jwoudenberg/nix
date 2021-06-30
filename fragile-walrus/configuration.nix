@@ -2,10 +2,11 @@ inputs:
 { pkgs, config, lib, ... }:
 
 {
-  disabledModules = [ "services/networking/resilio.nix" ];
+  disabledModules =
+    [ "services/networking/resilio.nix" "hardware/system-76.nix" ];
   imports = [
     ../shared/nixos-modules/resilio.nix
-    ../shared/nixos-modules/system76-power.nix
+    "${inputs.nixpkgs-master}/nixos/modules/hardware/system-76.nix"
     ./hardware-configuration.nix
   ];
 
@@ -133,7 +134,7 @@ inputs:
     Defaults lecture=never
   '';
 
-  environment.systemPackages = [ pkgs.efibootmgr pkgs.system76-power ];
+  environment.systemPackages = [ pkgs.efibootmgr ];
 
   fonts.fonts = [ pkgs.fira-code ];
 

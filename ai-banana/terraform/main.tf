@@ -14,20 +14,25 @@ provider "hcloud" {
 }
 
 resource "hcloud_server" "ai-banana" {
-  name        = "ai-banana"
-  image       = "ubuntu-20.04"
-  server_type = "cx11"
-  location    = "nbg1"
-  ssh_keys    = [hcloud_ssh_key.jasper.id]
-  backups     = false
-  user_data   = <<-EOT
+  name         = "ai-banana"
+  image        = "ubuntu-20.04"
+  server_type  = "cx11"
+  location     = "nbg1"
+  ssh_keys     = [hcloud_ssh_key.jasper.id]
+  backups      = false
+  firewall_ids = [hcloud_firewall.ai-banana.id]
+  user_data    = <<-EOT
     #!/bin/sh
     curl https://raw.githubusercontent.com/elitak/nixos-infect/master/nixos-infect | PROVIDER=hetznercloud NIX_CHANNEL=nixos-20.03 bash 2>&1 | tee /tmp/infect.log
     EOT
+
+  lifecycle {
+    ignore_changes = [ssh_keys]
+  }
 }
 
 resource "hcloud_volume" "volume1" {
-  name     = "volume1"
+  name = "volume1"
   # After changing the disk size, ssh into the machine and run:
   #     $ resize2fs /dev/sdb
   size     = 250
@@ -43,7 +48,47 @@ resource "hcloud_volume_attachment" "volume1" {
 
 resource "hcloud_ssh_key" "jasper" {
   name       = "Jaspers key"
-  public_key = file("~/.ssh/id_rsa.pub")
+  public_key = file("~/.ssh/id_ed25519.pub")
+}
+
+resource "hcloud_firewall" "ai-banana" {
+  name = "ai-banana"
+
+  # SSH
+  rule {
+    direction  = "in"
+    protocol   = "tcp"
+    source_ips = ["0.0.0.0/0", "::/0"]
+    port       = "2022"
+  }
+  rule {
+    direction  = "in"
+    protocol   = "udp"
+    source_ips = ["0.0.0.0/0", "::/0"]
+    port       = "2022"
+  }
+
+  # Resilio
+  rule {
+    direction  = "in"
+    protocol   = "tcp"
+    source_ips = ["0.0.0.0/0", "::/0"]
+    port       = "18776"
+  }
+  rule {
+    direction  = "in"
+    protocol   = "udp"
+    source_ips = ["0.0.0.0/0", "::/0"]
+    port       = "18776"
+  }
+
+  # Tailscale
+  rule {
+    direction  = "in"
+    protocol   = "udp"
+    source_ips = ["0.0.0.0/0", "::/0"]
+    port       = "41641"
+  }
 }
 
 # Cloudflare

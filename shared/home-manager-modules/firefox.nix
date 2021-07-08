@@ -26,6 +26,20 @@
       '';
       extraPolicies = {
         SearchEngines = { Default = "DuckDuckGo"; };
+        Permissions = {
+          Location = {
+            Allow = [ ];
+            BlockNewRequests = true;
+          };
+          Notifications = {
+            Allow = [ ];
+            BlockNewRequests = true;
+          };
+          Autoplay = {
+            Allow = [ ];
+            BlockNewRequests = true;
+          };
+        };
         ShowHomeButton = false;
       };
     };

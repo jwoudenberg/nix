@@ -21,8 +21,6 @@ inputs:
   boot.kernelPackages =
     pkgs.linuxPackages_5_12; # Required by AMD 6700 graphics card
   boot.loader.systemd-boot.enable = true;
-  boot.zfs.enableUnstable =
-    true; # Required until ZFS for kernel 5.12 is officially released.
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.timeout = 10;
   boot.kernel.sysctl."fs.inotify.max_user_watches" = 524288;

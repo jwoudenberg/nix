@@ -11,6 +11,11 @@ let
       "jasper" = "readonly";
       "hiske" = "readonly";
       "hjgames" = "readwrite";
+      "gilles1" = "encrypted";
+      "gilles4" = "encrypted";
+      "gilles5" = "encrypted";
+      "gilles6" = "encrypted";
+      "gilles7" = "encrypted";
     };
     pathFor = dir: "/srv/volume1/${dir}";
   };

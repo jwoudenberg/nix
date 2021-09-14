@@ -1,5 +1,4 @@
-inputs:
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   # List packages installed in system profile.

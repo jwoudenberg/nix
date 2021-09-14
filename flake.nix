@@ -53,8 +53,10 @@
     };
 
     darwinConfigurations.sentient-tshirt = inputs.darwin.lib.darwinSystem {
+      inputs = inputs;
+
       modules = [
-        (import ./sentient-tshirt/configuration.nix inputs)
+        (import ./sentient-tshirt/configuration.nix)
         inputs.home-manager.darwinModules.home-manager
       ];
     };

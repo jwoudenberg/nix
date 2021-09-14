@@ -34,7 +34,6 @@
   # $ sysctl -n hw.ncpu
   nix.maxJobs = 8;
   nix.buildCores = 8;
-  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs-darwin}" ];
   # Allow Linux builds on MacOS using nix-docker:
   # Assumes instructions below are followed to set up a docker container that
   # allows access using my default ssh key.

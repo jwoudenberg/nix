@@ -22,6 +22,7 @@ inputs:
     pkgs.linuxPackages_5_13; # Required by AMD 6700 graphics card
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 10;
+  boot.loader.systemd-boot.editor = false;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.timeout = 10;
   boot.kernel.sysctl."fs.inotify.max_user_watches" = 524288;

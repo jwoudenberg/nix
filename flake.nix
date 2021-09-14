@@ -15,7 +15,7 @@
     random-colors.inputs.nixpkgs.follows = "nixpkgs";
     similar-sort.url =
       "git+https://git.bytes.zone/brian/similar-sort.git?ref=main";
-    similar-sort.flake = false;
+    similar-sort.inputs.nixpks.follows = "nixpkgs";
     nix-script.url = "github:BrianHicks/nix-script";
     nix-script.flake = false;
   };
@@ -27,7 +27,7 @@
         jwlaunch = inputs.launch.defaultPackage."${system}";
         nix-script = final.callPackage inputs.nix-script { };
         random-colors = inputs.random-colors.defaultPackage."${system}";
-        similar-sort = prev.callPackage inputs.similar-sort { };
+        similar-sort = inputs.similar-sort.defaultPackage."${system}";
         linuxPackages_5_12 = prev.linuxPackages_5_12.extend (_: _: {
           system76-power = final.callPackage
             "${inputs.nixpkgs-master}/pkgs/os-specific/linux/system76-power/default.nix"

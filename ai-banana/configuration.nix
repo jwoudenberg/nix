@@ -95,6 +95,7 @@ in inputs:
   services.cron.enable = true;
   services.cron.systemCronJobs = [
     "0 * * * *      root    ls -1qA /srv/volume1/hjgames/scans-to-process/ | grep -q . || curl -fsS -m 10 --retry 5 -o /dev/null https://hc-ping.com/8ff8704b-d08e-47eb-b879-02ddb7442fe2"
+    "0 * * * *      root    systemctl is-active resilio && curl -fsS -m 10 --retry 5 -o /dev/null https://hc-ping.com/2d0bc35c-d03a-4ef6-8ea2-461e52b9f426"
   ];
 
   # Resilio Sync

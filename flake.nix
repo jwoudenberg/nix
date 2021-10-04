@@ -28,13 +28,13 @@
         nix-script = final.callPackage inputs.nix-script { };
         random-colors = inputs.random-colors.defaultPackage."${system}";
         similar-sort = inputs.similar-sort.defaultPackage."${system}";
-        linuxPackages_5_13 = prev.linuxPackages_5_13.extend (_: _: {
+        linuxPackages_5_14 = prev.linuxPackages_5_14.extend (_: _: {
           # I need a newer kernel than what's available in 21.05 to support my
           # graphics card. ZFS support for these newer kernels is still a work
           # in progress, so that means I need to move to the unstable branch for
           # ZFS support too. I should be able to move back to defaults come the
           # 21.11 release.
-          zfs = final.linuxPackages_5_13.zfsUnstable;
+          zfs = final.linuxPackages_5_14.zfsUnstable;
           system76-power = final.callPackage
             "${inputs.nixpkgs-master}/pkgs/os-specific/linux/system76-power/default.nix"
             { };

@@ -54,7 +54,7 @@ in {
 
   imports = [
     ../shared/home-manager-modules/direnv.nix
-    ../shared/home-manager-modules/firefox.nix
+    ../shared/home-manager-modules/qutebrowser.nix
     ../shared/home-manager-modules/fish/default.nix
     ../shared/home-manager-modules/fzf.nix
     ../shared/home-manager-modules/git.nix
@@ -62,6 +62,7 @@ in {
     ../shared/home-manager-modules/kitty.nix
     ../shared/home-manager-modules/neovim/default.nix
     ../shared/home-manager-modules/pass.nix
+    ../shared/home-manager-modules/qutebrowser.nix
     ../shared/home-manager-modules/readline.nix
     ../shared/home-manager-modules/ripgrep.nix
     ../shared/home-manager-modules/ssh.nix
@@ -92,9 +93,9 @@ in {
     enable = true;
     defaultApplications = {
       "application/pdf" = [ "org.pwmt.zathura.desktop" ];
-      "x-www-browser" = [ "firefox.desktop" ];
-      "x-scheme-handler/http" = [ "firefox.desktop" ];
-      "x-scheme-handler/https" = [ "firefox.desktop" ];
+      "x-www-browser" = [ "qutebrowser.desktop" ];
+      "x-scheme-handler/http" = [ "qutebrowser.desktop" ];
+      "x-scheme-handler/https" = [ "qutebrowser.desktop" ];
       "image/bmp" = [ "imv.desktop" ];
       "image/gif" = [ "imv.desktop" ];
       "image/jpeg" = [ "imv.desktop" ];

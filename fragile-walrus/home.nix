@@ -14,7 +14,6 @@ in {
   home.packages = [
     boot-popos
     pkgs.cachix
-    pkgs.chromium
     pkgs.discord
     pkgs.du-dust
     pkgs.fd

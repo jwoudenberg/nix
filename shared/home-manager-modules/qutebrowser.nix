@@ -12,7 +12,6 @@
       "gT" = "tab-prev";
     };
     settings = {
-      downloads.location.directory = "~/downloads";
       downloads.location.prompt = false;
       spellcheck.languages = [ "en-US" "nl-NL" ];
       tabs.last_close = "close";

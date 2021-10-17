@@ -1,10 +1,7 @@
 { pkgs, ... }: {
   programs.qutebrowser = {
     enable = true;
-    aliases = {
-      "q" = "tab-close";
-      "tabnew" = "new-tab";
-    };
+    aliases = { "q" = "tab-close"; };
     keyBindings.normal = {
       "<Ctrl-O>" = "back";
       "<Ctrl-I>" = "forward";
@@ -13,8 +10,11 @@
     };
     settings = {
       downloads.location.prompt = false;
-      spellcheck.languages = [ "en-US" "nl-NL" ];
       tabs.last_close = "close";
+      content.cookies.accept = "no-3rdparty";
+      content.autoplay = false;
+      content.geolocation = false;
+      content.pdfjs = true;
     };
   };
 }

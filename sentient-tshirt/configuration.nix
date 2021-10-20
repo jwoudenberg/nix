@@ -44,7 +44,7 @@
     system = "x86_64-linux";
     maxJobs = 4;
   }];
-  nix.package = pkgs.nixFlakes;
+  nix.package = pkgs.nixUnstable;
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';

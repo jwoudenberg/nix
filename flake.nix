@@ -59,6 +59,7 @@
     };
 
     darwinConfigurations.sentient-tshirt = inputs.darwin.lib.darwinSystem {
+      system = "x86_64-darwin";
       inputs = inputs;
 
       modules = [

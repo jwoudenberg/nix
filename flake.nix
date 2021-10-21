@@ -17,7 +17,7 @@
       "git+https://git.bytes.zone/brian/similar-sort.git?ref=main";
     similar-sort.inputs.nixpks.follows = "nixpkgs";
     nix-script.url = "github:BrianHicks/nix-script";
-    nix-script.flake = false;
+    nix-script.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs: {

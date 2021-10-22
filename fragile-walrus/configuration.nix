@@ -43,8 +43,6 @@ inputs:
     ln -sfn /persist/dev /home/jasper/dev
     ln -sfn /persist/password-store /home/jasper/.password-store
     ln -sfn /persist/ssh /home/jasper/.ssh
-    ln -sfn /persist/aws /home/jasper/.aws
-    ln -sfn /persist/awsvault /home/jasper/.awsvault
     ln -sfn /persist/gnupg /home/jasper/.gnupg
     ln -sfn /persist/kube /home/jasper/.kube
     ln -sfn /persist/terraform.d /home/jasper/.terraform.d
@@ -52,7 +50,6 @@ inputs:
     mkdir -p /home/jasper/.config
     chown jasper:users /home/jasper/.config
     ln -sfn /persist/random-colors /home/jasper/.config/random-colors
-    ln -sfn /persist/gh /home/jasper/.config/gh
 
     # Tailscale state
     mkdir -p /var/lib/tailscale

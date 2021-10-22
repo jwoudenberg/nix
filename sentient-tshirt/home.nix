@@ -3,7 +3,6 @@
     pkgs.cachix
     pkgs.du-dust
     pkgs.fd
-    pkgs.gitAndTools.gh
     pkgs.gnupg
     pkgs.gotop
     pkgs.nix-prefetch-github

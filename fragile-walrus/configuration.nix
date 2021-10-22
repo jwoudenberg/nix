@@ -6,7 +6,7 @@ inputs:
     [ "services/networking/resilio.nix" "hardware/system-76.nix" ];
   imports = [
     ../shared/nixos-modules/resilio.nix
-    "${inputs.nixpkgs-master}/nixos/modules/hardware/system-76.nix"
+    "${inputs.nixpkgs-unstable}/nixos/modules/hardware/system-76.nix"
     ./hardware-configuration.nix
   ];
 

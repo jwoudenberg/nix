@@ -126,22 +126,6 @@
         "type": "github"
       }
     },
-    "nix-script": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1633965928,
-        "narHash": "sha256-V0pIvibIoejEkukOR7hjLsxun52Da3/K8SE8lbmY2gA=",
-        "owner": "BrianHicks",
-        "repo": "nix-script",
-        "rev": "a0518dfa23469951a459b10760a68c80fb35f43d",
-        "type": "github"
-      },
-      "original": {
-        "owner": "BrianHicks",
-        "repo": "nix-script",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1634758644,
@@ -246,7 +230,6 @@
         "darwin": "darwin",
         "home-manager": "home-manager",
         "launch": "launch",
-        "nix-script": "nix-script",
         "nixpkgs": "nixpkgs",
         "nixpkgs-darwin": "nixpkgs-darwin",
         "nixpkgs-master": "nixpkgs-master",

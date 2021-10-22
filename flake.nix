@@ -16,8 +16,6 @@
     similar-sort.url =
       "git+https://git.bytes.zone/brian/similar-sort.git?ref=main";
     similar-sort.inputs.nixpks.follows = "nixpkgs";
-    nix-script.url = "github:BrianHicks/nix-script";
-    nix-script.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs: {
@@ -25,7 +23,6 @@
     overlays = let
       mkOverlay = system: final: prev: {
         jwlaunch = inputs.launch.defaultPackage."${system}";
-        nix-script = final.callPackage inputs.nix-script { };
         random-colors = inputs.random-colors.defaultPackage."${system}";
         similar-sort = inputs.similar-sort.defaultPackage."${system}";
         linuxPackages_5_14 = prev.linuxPackages_5_14.extend (_: _: {

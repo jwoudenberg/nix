@@ -8,7 +8,6 @@
     pkgs.nix-prefetch-github
     pkgs.pass
     pkgs.pdfgrep
-    pkgs.magic-wormhole
     pkgs.haskellPackages.niv
     pkgs.jq
     pkgs.tabnine

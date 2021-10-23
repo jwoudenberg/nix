@@ -2,13 +2,9 @@ inputs:
 { pkgs, config, lib, ... }:
 
 {
-  disabledModules =
-    [ "services/networking/resilio.nix" "hardware/system-76.nix" ];
-  imports = [
-    ../shared/nixos-modules/resilio.nix
-    "${inputs.nixpkgs-unstable}/nixos/modules/hardware/system-76.nix"
-    ./hardware-configuration.nix
-  ];
+  disabledModules = [ "services/networking/resilio.nix" ];
+  imports =
+    [ ../shared/nixos-modules/resilio.nix ./hardware-configuration.nix ];
 
   hardware.cpu.amd.updateMicrocode = true;
   hardware.opengl.enable = true;

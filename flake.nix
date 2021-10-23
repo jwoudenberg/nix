@@ -24,8 +24,6 @@
       mkOverlay = system: final: prev: {
         jwlaunch = inputs.launch.defaultPackage."${system}";
         random-colors = inputs.random-colors.defaultPackage."${system}";
-        neovim-unwrapped =
-          inputs.nixpkgs-unstable.legacyPackages."${system}".neovim-unwrapped;
         similar-sort = inputs.similar-sort.defaultPackage."${system}";
         linuxPackages_5_14 = prev.linuxPackages_5_14.extend (_: _: {
           # I need a newer kernel than what's available in 21.05 to support my
@@ -34,9 +32,6 @@
           # ZFS support too. I should be able to move back to defaults come the
           # 21.11 release.
           zfs = final.linuxPackages_5_14.zfsUnstable;
-          system76-power = final.callPackage
-            "${inputs.nixpkgs-unstable}/pkgs/os-specific/linux/system76-power/default.nix"
-            { };
         });
       };
     in {
@@ -44,13 +39,14 @@
       linuxCustomPkgs = mkOverlay "x86_64-linux";
     };
 
-    nixosConfigurations.fragile-walrus = inputs.nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        (import ./fragile-walrus/configuration.nix inputs)
-        inputs.home-manager.nixosModules.home-manager
-      ];
-    };
+    nixosConfigurations.fragile-walrus =
+      inputs.nixpkgs-unstable.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          (import ./fragile-walrus/configuration.nix inputs)
+          inputs.home-manager.nixosModules.home-manager
+        ];
+      };
 
     nixosConfigurations.ai-banana = inputs.nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";

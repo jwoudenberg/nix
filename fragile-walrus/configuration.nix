@@ -52,6 +52,10 @@ inputs:
     ln -sfn /persist/tailscale/files /var/lib/tailscale/files
     ln -sfn /persist/tailscale/tailscaled.state /var/lib/tailscale/tailscaled.state
     ln -sfn /persist/tailscale/tailscaled.log.conf /var/lib/tailscale/tailscaled.log.conf
+
+    # Set permissions for rslsync dirs (these gets reset sometimes, don't know why)
+    chown -R rslsync:rslsync /persist/rslsync
+    chmod -R 770 /persist/rslsync
   '';
 
   environment.etc."NetworkManager/system-connections".source =

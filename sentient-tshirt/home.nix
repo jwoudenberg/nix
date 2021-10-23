@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   home.packages = [
     pkgs.cachix
+    pkgs.croc
     pkgs.du-dust
     pkgs.fd
     pkgs.gnupg

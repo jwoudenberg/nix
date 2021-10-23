@@ -14,6 +14,7 @@ in {
   home.packages = [
     boot-popos
     pkgs.cachix
+    pkgs.croc
     pkgs.discord
     pkgs.du-dust
     pkgs.fd
@@ -24,7 +25,6 @@ in {
     pkgs.imv
     pkgs.jq
     pkgs.keybase
-    pkgs.magic-wormhole
     pkgs.mosh
     pkgs.zathura
     pkgs.haskellPackages.niv

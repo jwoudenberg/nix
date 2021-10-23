@@ -24,6 +24,8 @@
       mkOverlay = system: final: prev: {
         jwlaunch = inputs.launch.defaultPackage."${system}";
         random-colors = inputs.random-colors.defaultPackage."${system}";
+        neovim-unwrapped =
+          inputs.nixpkgs-unstable.legacyPackages."${system}".neovim-unwrapped;
         similar-sort = inputs.similar-sort.defaultPackage."${system}";
         linuxPackages_5_14 = prev.linuxPackages_5_14.extend (_: _: {
           # I need a newer kernel than what's available in 21.05 to support my

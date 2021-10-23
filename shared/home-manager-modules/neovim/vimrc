@@ -197,3 +197,12 @@ require('orgmode').setup({
   org_indent_mode = 'noindent',
 })
 EOF
+
+" --- COMPLETION ---
+lua << EOF
+require('cmp').setup({
+  sources = {
+    { name = 'cmp_tabnine' },
+  },
+})
+EOF

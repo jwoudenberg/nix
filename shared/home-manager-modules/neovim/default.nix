@@ -28,6 +28,8 @@ in {
       limelight-vim
       neoformat
       nord-vim
+      nvim-cmp
+      cmp-tabnine
       orgmode-nvim
       polyglot
       quickfix-reflector-vim

@@ -23,6 +23,7 @@ set termguicolors
 set wildignorecase
 set colorcolumn=81
 set clipboard=unnamedplus
+set nofoldenable
 
 let &showbreak = '↪ '
 let g:netrw_liststyle=1

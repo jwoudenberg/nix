@@ -28,6 +28,7 @@ in {
       limelight-vim
       neoformat
       nord-vim
+      orgmode-nvim
       polyglot
       quickfix-reflector-vim
       todo-txt-vim

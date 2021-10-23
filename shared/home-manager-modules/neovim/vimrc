@@ -187,3 +187,11 @@ function! ProjectGrepMotion(type, ...)
   let &selection = sel_save
   let @@ = reg_save
 endfunction
+
+" --- ORG-MODE ---
+lua << EOF
+require('orgmode').setup({
+  org_agenda_files = {'~/docs/org/**/*'},
+  org_default_notes_file = '~/docs/org/refile.org',
+})
+EOF

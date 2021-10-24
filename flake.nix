@@ -2,19 +2,19 @@
   description = "Jaspers Nix configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-nixos.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-darwin.url = "github:NixOS/nixpkgs/nixpkgs-21.05-darwin";
     darwin.url = "github:LnL7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "nixpkgs-darwin";
     home-manager.url = "github:nix-community/home-manager/release-21.05";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs-nixos";
     launch.url = "github:jwoudenberg/launch";
-    launch.inputs.nixpkgs.follows = "nixpkgs";
+    launch.inputs.nixpkgs.follows = "nixpkgs-nixos";
     random-colors.url = "github:jwoudenberg/random-colors";
-    random-colors.inputs.nixpkgs.follows = "nixpkgs";
+    random-colors.inputs.nixpkgs.follows = "nixpkgs-nixos";
     similar-sort.url =
       "git+https://git.bytes.zone/brian/similar-sort.git?ref=main";
-    similar-sort.inputs.nixpks.follows = "nixpkgs";
+    similar-sort.inputs.nixpks.follows = "nixpkgs-nixos";
   };
 
   outputs = inputs: {
@@ -38,7 +38,7 @@
       linuxCustomPkgs = mkOverlay "x86_64-linux";
     };
 
-    nixosConfigurations.fragile-walrus = inputs.nixpkgs.lib.nixosSystem {
+    nixosConfigurations.fragile-walrus = inputs.nixpkgs-nixos.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         (import ./fragile-walrus/configuration.nix inputs)
@@ -46,7 +46,7 @@
       ];
     };
 
-    nixosConfigurations.ai-banana = inputs.nixpkgs.lib.nixosSystem {
+    nixosConfigurations.ai-banana = inputs.nixpkgs-nixos.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [ (import ./ai-banana/configuration.nix inputs) ];
     };

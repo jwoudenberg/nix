@@ -39,7 +39,7 @@
 
   home.sessionVariables = {
     EDITOR = "nvim";
-    DEFAULT_TODO_TXT = "~/docs/todo.txt";
+    DEFAULT_TODO_TXT = "~/docs/org/todo.org";
     SSL_CERT_FILE = "/usr/local/etc/openssl/cert.pem";
     MANPAGER = "nvim -c 'set ft=man' -";
   };

@@ -3,8 +3,7 @@ filetype plugin indent on
 syntax on
 
 :scriptencoding utf-8
-set completeopt+=longest
-set completeopt-=preview
+set completeopt=menu,noselect
 set expandtab
 set hidden
 set lbr
@@ -200,9 +199,20 @@ EOF
 
 " --- COMPLETION ---
 lua << EOF
-require('cmp').setup({
+local cmp = require('cmp')
+cmp.setup({
   sources = {
     { name = 'cmp_tabnine' },
   },
+  mapping = {
+    ['<C-f>'] = cmp.mapping.confirm({ select = true, behavior = cmp.SelectBehavior.Insert }),
+  },
+  experimental = {
+    ghost_text = true,
+  },
+})
+
+require('cmp_tabnine.config'):setup({
+  max_num_results = 1,
 })
 EOF

@@ -128,16 +128,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1634758644,
-        "narHash": "sha256-H3UW/msC6wadg28lcgZv2Ge/P7dWxesL6i37a0GOeyM=",
+        "lastModified": 1634782485,
+        "narHash": "sha256-psfh4OQSokGXG0lpq3zKFbhOo3QfoeudRcaUnwMRkQo=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "70904d4a9927a4d6e05c72c4aaac4370e05107f3",
+        "rev": "34ad3ffe08adfca17fcb4e4a47bb5f3b113687be",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixos-21.05",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -154,22 +154,6 @@
       "original": {
         "owner": "NixOS",
         "ref": "nixpkgs-21.05-darwin",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs-unstable": {
-      "locked": {
-        "lastModified": 1634782485,
-        "narHash": "sha256-psfh4OQSokGXG0lpq3zKFbhOo3QfoeudRcaUnwMRkQo=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "34ad3ffe08adfca17fcb4e4a47bb5f3b113687be",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -232,7 +216,6 @@
         "launch": "launch",
         "nixpkgs": "nixpkgs",
         "nixpkgs-darwin": "nixpkgs-darwin",
-        "nixpkgs-unstable": "nixpkgs-unstable",
         "random-colors": "random-colors",
         "similar-sort": "similar-sort"
       }

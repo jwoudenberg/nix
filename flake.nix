@@ -2,8 +2,7 @@
   description = "Jaspers Nix configuration";
 
   inputs = {
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-21.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-darwin.url = "github:NixOS/nixpkgs/nixpkgs-21.05-darwin";
     darwin.url = "github:LnL7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "nixpkgs-darwin";
@@ -39,14 +38,13 @@
       linuxCustomPkgs = mkOverlay "x86_64-linux";
     };
 
-    nixosConfigurations.fragile-walrus =
-      inputs.nixpkgs-unstable.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          (import ./fragile-walrus/configuration.nix inputs)
-          inputs.home-manager.nixosModules.home-manager
-        ];
-      };
+    nixosConfigurations.fragile-walrus = inputs.nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        (import ./fragile-walrus/configuration.nix inputs)
+        inputs.home-manager.nixosModules.home-manager
+      ];
+    };
 
     nixosConfigurations.ai-banana = inputs.nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";

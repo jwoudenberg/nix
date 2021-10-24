@@ -73,6 +73,7 @@
   system.defaults.NSGlobalDomain.NSNavPanelExpandedStateForSaveMode = true;
   system.defaults.NSGlobalDomain.NSNavPanelExpandedStateForSaveMode2 = true;
   system.defaults.NSGlobalDomain."com.apple.swipescrolldirection" = false;
+  system.defaults.NSGlobalDomain."com.apple.mouse.tapBehavior" = 1;
   system.defaults.dock.show-recents = false;
 
   system.keyboard.enableKeyMapping = true;

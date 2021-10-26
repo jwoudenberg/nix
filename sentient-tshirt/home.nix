@@ -4,7 +4,7 @@
     pkgs.croc
     pkgs.du-dust
     pkgs.fd
-    pkgs.gnupg
+    pkgs.gnupg-customized
     pkgs.gotop
     pkgs.nix-prefetch-github
     pkgs.pass

@@ -18,7 +18,7 @@ in {
     pkgs.discord
     pkgs.du-dust
     pkgs.fd
-    pkgs.gnupg
+    pkgs.gnupg-customized
     pkgs.gotop
     pkgs.grim
     pkgs.i3status

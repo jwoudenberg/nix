@@ -1,11 +1,7 @@
 { pkgs, ... }:
 let
-  pinentry = pkgs.pinentry.override ({ enabledFlavors = [ "curses" ]; });
-  gnupg = pkgs.gnupg.overrideAttrs (oldAttrs: {
-    configureFlags = "--with-pinentry-pgm=${pinentry}/bin/pinentry";
-  });
   pass = (pkgs.pass.override {
     waylandSupport = true;
-    gnupg = gnupg;
+    gnupg = pkgs.gnupg-customized;
   });
 in { config.home.packages = [ pass ]; }

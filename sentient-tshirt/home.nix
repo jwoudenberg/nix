@@ -41,7 +41,7 @@
     EDITOR = "nvim";
     DEFAULT_TODO_TXT = "~/docs/org/todo.org";
     SSL_CERT_FILE = "/usr/local/etc/openssl/cert.pem";
-    MANPAGER = "nvim -c 'set ft=man' -";
+    MANPAGER = "nvim +Man!";
   };
 
   home.stateVersion = "20.03";

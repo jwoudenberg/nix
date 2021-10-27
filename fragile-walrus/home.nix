@@ -77,7 +77,7 @@ in {
   home.sessionVariables = {
     EDITOR = "nvim";
     DEFAULT_TODO_TXT = "~/docs/todo.txt";
-    MANPAGER = "nvim -c 'set ft=man' -";
+    MANPAGER = "nvim +Man!";
     AWS_VAULT_BACKEND = "file";
     # Fix issue with opening links in Firefox using :GBrowse.
     MOZ_DBUS_REMOTE = "1";

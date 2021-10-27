@@ -59,6 +59,7 @@ in {
     ../shared/home-manager-modules/git.nix
     ../shared/home-manager-modules/i3status/default.nix
     ../shared/home-manager-modules/kitty.nix
+    ../shared/home-manager-modules/keepassxc.nix
     ../shared/home-manager-modules/neovim/default.nix
     ../shared/home-manager-modules/pass.nix
     ../shared/home-manager-modules/qutebrowser.nix

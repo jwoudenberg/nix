@@ -34,25 +34,10 @@
   # $ sysctl -n hw.ncpu
   nix.maxJobs = 8;
   nix.buildCores = 8;
-  # Allow Linux builds on MacOS using nix-docker:
-  # Assumes instructions below are followed to set up a docker container that
-  # allows access using my default ssh key.
-  # https://github.com/LnL7/nix-docker#running-as-a-remote-builder
-  nix.distributedBuilds = true;
-  nix.buildMachines = [{
-    hostName = "nix-docker";
-    system = "x86_64-linux";
-    maxJobs = 4;
-  }];
   nix.package = pkgs.nixUnstable;
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
-  nix.binaryCaches = [ "https://cache.nixos.org" "https://nri.cachix.org" ];
-  nix.binaryCachePublicKeys = [
-    "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-    "nri.cachix.org-1:9/BMj3Obc+uio3O5rYGT+egHzkBzDunAzlZZfhCGj6o="
-  ];
 
   users.users.jasper = { home = "/Users/jasper"; };
   users.nix.configureBuildUsers = true;

@@ -37,9 +37,6 @@ inputs:
     ln -sfn /persist/rslsync/jasper /home/jasper/docs
     ln -sfn /persist/rslsync/hjgames /home/jasper/hjgames
     ln -sfn /persist/dev /home/jasper/dev
-    ln -sfn /persist/password-store /home/jasper/.password-store
-    ln -sfn /persist/ssh /home/jasper/.ssh
-    ln -sfn /persist/kube /home/jasper/.kube
     ln -sfn /persist/terraform.d /home/jasper/.terraform.d
 
     mkdir -p /home/jasper/.config

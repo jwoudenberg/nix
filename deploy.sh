@@ -14,13 +14,19 @@ nix-copy-closure --use-substitutes --to "$HOST" "$STORE_PATH"
 
 # Copy over secrets
 write_secret () {
-  SECRET=$(basename "$1" .gpg)
-  pass show "$HOST/$SECRET" | ssh "$HOST" -T "cat > /run/secrets/$SECRET"
+  SECRET=$1
+  keepassxc-cli show \
+    -y 1 \
+    --show-protected \
+    --attributes Notes \
+    ~/docs/passwords.kdbx "$HOST/$SECRET" \
+    | ssh "$HOST" -T "cat > /run/secrets/$SECRET"
 }
 export -f write_secret
 ssh "$HOST" -- "mkdir -p /run/secrets"
-find ~/.password-store/ai-banana -type f \
-  -exec bash -exuo pipefail -c 'write_secret "$1"' _ {} \;
+for pass in $(keepassxc-cli ls -y 1 ~/docs/passwords.kdbx "$HOST"); do
+  write_secret "$pass"
+done
 
 # Activate new configuration
 ssh "$HOST" -- "sudo nix-env --profile /nix/var/nix/profiles/system --set $STORE_PATH"

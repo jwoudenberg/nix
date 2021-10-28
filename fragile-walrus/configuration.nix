@@ -81,6 +81,12 @@ inputs:
   # https://github.com/apognu/tuigreet/issues/17
   systemd.services.greetd.serviceConfig.Type = "idle";
 
+  # Use yubikey-agent for ssh access. Need to use a graphical pinentry option
+  # here instead of curses, because pinentry is called by the yubikey-agent
+  # daemon and so doesn't have a connection with the active terminal.
+  services.yubikey-agent.enable = true;
+  programs.gnupg.agent.pinentryFlavor = "qt";
+
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -131,13 +137,12 @@ inputs:
     Defaults lecture=never
   '';
 
-  environment.systemPackages = [ pkgs.efibootmgr ];
+  environment.systemPackages = [ pkgs.efibootmgr pkgs.pinentry ];
 
   fonts.fonts = [ pkgs.fira-code ];
 
   programs.sway.enable = true;
   programs.xwayland.enable = false;
-  programs.ssh.startAgent = true;
   programs.command-not-found.enable = false;
 
   services.resilio = {
@@ -188,5 +193,4 @@ inputs:
 
   system.stateVersion = "21.05";
   system.autoUpgrade.enable = false;
-
 }

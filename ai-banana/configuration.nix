@@ -68,7 +68,7 @@ in inputs:
   users.users.root.openssh.authorizedKeys.keys = let
     sshKeysSrc = builtins.fetchurl {
       url = "https://github.com/jwoudenberg.keys";
-      sha256 = "1770msnmbxhbsq8j6iznz816jbz7rm9ss45bjahlqsb3570hdvqf";
+      sha256 = "sha256:1kix1w98bj85rnwpd00y6qck3mrghli7m9fyir6sv6ld8s4kpq54";
     };
   in builtins.filter (line: line != "")
   (pkgs.lib.splitString "\n" (builtins.readFile sshKeysSrc));

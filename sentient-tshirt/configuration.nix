@@ -86,4 +86,14 @@
   system.keyboard.remapCapsLockToControl = true;
 
   networking.hostName = "sentient-tshirt";
+
+  launchd.user.agents.yubikey-agent = {
+    path = [ config.environment.systemPath ];
+    command =
+      "${pkgs.yubikey-agent}/bin/yubikey-agent -l /tmp/yubikey-agent.sock";
+    serviceConfig.KeepAlive = true;
+  };
+  environment.extraInit = ''
+    export SSH_AUTH_SOCK="/tmp/yubikey-agent.sock"
+  '';
 }

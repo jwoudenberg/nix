@@ -18,6 +18,7 @@
     pkgs.sd
     pkgs.shellcheck
     pkgs.similar-sort
+    pkgs.yubikey-agent
     pkgs.vale
   ];
 

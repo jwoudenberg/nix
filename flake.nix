@@ -21,12 +21,6 @@
 
     overlays = let
       mkOverlay = system: final: prev: {
-        gnupg-customized = let
-          pinentry =
-            prev.pinentry.override ({ enabledFlavors = [ "curses" ]; });
-        in prev.gnupg.overrideAttrs (oldAttrs: {
-          configureFlags = "--with-pinentry-pgm=${pinentry}/bin/pinentry";
-        });
         jwlaunch = inputs.launch.defaultPackage."${system}";
         random-colors = inputs.random-colors.defaultPackage."${system}";
         similar-sort = inputs.similar-sort.defaultPackage."${system}";

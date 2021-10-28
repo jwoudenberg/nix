@@ -4,10 +4,8 @@
     pkgs.croc
     pkgs.du-dust
     pkgs.fd
-    pkgs.gnupg-customized
     pkgs.gotop
     pkgs.nix-prefetch-github
-    pkgs.pass
     pkgs.pdfgrep
     pkgs.haskellPackages.niv
     pkgs.jq

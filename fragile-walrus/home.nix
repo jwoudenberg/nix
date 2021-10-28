@@ -18,7 +18,6 @@ in {
     pkgs.discord
     pkgs.du-dust
     pkgs.fd
-    pkgs.gnupg-customized
     pkgs.gotop
     pkgs.grim
     pkgs.i3status
@@ -61,7 +60,6 @@ in {
     ../shared/home-manager-modules/kitty.nix
     ../shared/home-manager-modules/keepassxc.nix
     ../shared/home-manager-modules/neovim/default.nix
-    ../shared/home-manager-modules/pass.nix
     ../shared/home-manager-modules/qutebrowser.nix
     ../shared/home-manager-modules/readline.nix
     ../shared/home-manager-modules/ripgrep.nix

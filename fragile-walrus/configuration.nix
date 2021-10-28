@@ -39,7 +39,6 @@ inputs:
     ln -sfn /persist/dev /home/jasper/dev
     ln -sfn /persist/password-store /home/jasper/.password-store
     ln -sfn /persist/ssh /home/jasper/.ssh
-    ln -sfn /persist/gnupg /home/jasper/.gnupg
     ln -sfn /persist/kube /home/jasper/.kube
     ln -sfn /persist/terraform.d /home/jasper/.terraform.d
 

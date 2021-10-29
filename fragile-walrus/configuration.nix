@@ -84,7 +84,7 @@ inputs:
   services.yubikey-agent.enable = true;
   programs.gnupg.agent.pinentryFlavor = "qt";
   systemd.user.services.yubikey-agent.wantedBy =
-    [ "default.target" ]; # Start automatically.
+    [ "graphical-session.target" ]; # Start automatically.
 
   services.pipewire = {
     enable = true;

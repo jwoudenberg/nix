@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   programs.ssh = {
     enable = true;
+    userKnownHostsFile = "/persist/ssh/known_hosts";
     matchBlocks = {
       "ai-banana" = { user = "root"; };
       "rsyncnet" = {

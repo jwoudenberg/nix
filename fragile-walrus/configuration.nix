@@ -83,6 +83,8 @@ inputs:
   # daemon and so doesn't have a connection with the active terminal.
   services.yubikey-agent.enable = true;
   programs.gnupg.agent.pinentryFlavor = "qt";
+  systemd.user.services.yubikey-agent.wantedBy =
+    [ "default.target" ]; # Start automatically.
 
   services.pipewire = {
     enable = true;

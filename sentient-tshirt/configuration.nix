@@ -43,6 +43,11 @@
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
+  nix.gc = {
+    automatic = true;
+    interval = { Weekday = 7; }; # Every sunday
+    options = "--delete-older-than 7d";
+  };
 
   users.users.jasper = { home = "/Users/jasper"; };
   users.nix.configureBuildUsers = true;

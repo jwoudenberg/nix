@@ -1,11 +1,16 @@
 { config, pkgs, inputs, ... }:
 
 {
+
+  imports = [ ../shared/darwin-modules/yubikey-agent.nix ];
+
   # List packages installed in system profile.
   environment.systemPackages = [ ];
 
   # Auto upgrade nix package and the daemon service.
   services.nix-daemon.enable = true;
+
+  services.yubikey-agent.enable = true;
 
   # Create /etc/bashrc that loads the nix-darwin environment.
   programs.bash.enable = true;
@@ -86,14 +91,4 @@
   system.keyboard.remapCapsLockToControl = true;
 
   networking.hostName = "sentient-tshirt";
-
-  launchd.user.agents.yubikey-agent = {
-    path = [ config.environment.systemPath ];
-    command =
-      "${pkgs.yubikey-agent}/bin/yubikey-agent -l /tmp/yubikey-agent.sock";
-    serviceConfig.KeepAlive = true;
-  };
-  environment.extraInit = ''
-    export SSH_AUTH_SOCK="/tmp/yubikey-agent.sock"
-  '';
 }

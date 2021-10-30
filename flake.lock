@@ -174,16 +174,16 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1635247071,
-        "narHash": "sha256-NjWixz/Yb55hE3c9FxQjah3Ijlwvz6zRTXLaQClE0x0=",
+        "lastModified": 1635587605,
+        "narHash": "sha256-YCvSHRQDwp4bytJB/qLETAD1pYxIAUrkq0+yKiSz+8U=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "f112b512e1710da6c8beb8e541a8ad9fcd81e6e6",
+        "rev": "3854b45b21b0f16fb82832e3b884e654115872a9",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixpkgs-unstable",
+        "ref": "release-21.05",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -227,16 +227,16 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1635280434,
-        "narHash": "sha256-xXooWRSFqjKtOUP0XCvTu7VqXhnx9bsBGazdeXn5/CA=",
-        "ref": "main",
-        "rev": "166a8d8f56d05d3d4fb50dca55297bc6c4e2b5af",
-        "revCount": 48,
+        "lastModified": 1631617637,
+        "narHash": "sha256-5TiuoRZQfp9wBqZluqqLPaUbfAjMnuhISYTrxAt66qU=",
+        "ref": "master",
+        "rev": "1c23fc936150c5f1a40f66d3d28ececc9e53dd2d",
+        "revCount": 46,
         "type": "git",
         "url": "https://git.bytes.zone/brian/similar-sort.git"
       },
       "original": {
-        "ref": "main",
+        "rev": "1c23fc936150c5f1a40f66d3d28ececc9e53dd2d",
         "type": "git",
         "url": "https://git.bytes.zone/brian/similar-sort.git"
       }

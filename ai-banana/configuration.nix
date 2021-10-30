@@ -290,7 +290,7 @@ in inputs:
 
   virtualisation.oci-containers = {
     containers.minimserver = {
-      image = "minimworld/minimserver:2.0.16";
+      image = "minimworld/minimserver:2.0.18";
       autoStart = true;
       volumes = [
         "/srv/volume1/music:/Music"

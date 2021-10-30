@@ -143,7 +143,6 @@ in inputs:
                 <li><a href="http://ai-banana:${
                   toString (kobodlPort + 1)
                 }">kobo upload</a></li>
-                <li><a href="/upnp/">upnp</a></li>
               </ul>
             </body>
           </html>
@@ -152,11 +151,6 @@ in inputs:
         redir /files /files/
         handle_path /files/* {
           reverse_proxy localhost:${toString webdavPort}
-        }
-
-        redir /upnp /upnp/
-        handle_path /upnp/* {
-          reverse_proxy localhost:58050
         }
 
         redir /books /books/
@@ -303,11 +297,6 @@ in inputs:
         "/srv/volume1/minimserver-data:/opt/minimserver/data"
       ];
       environment = { TZ = "Europe/Amsterdam"; };
-      extraOptions = [ "--network=host" ];
-    };
-    containers.bubbleupnpserver = {
-      image = "bubblesoftapps/bubbleupnpserver";
-      autoStart = true;
       extraOptions = [ "--network=host" ];
     };
     containers.kobodl =

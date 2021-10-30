@@ -143,6 +143,7 @@ in inputs:
                 <li><a href="http://ai-banana:${
                   toString (kobodlPort + 1)
                 }">kobo upload</a></li>
+                <li><a href="http://ai-banana:9790">minimserver</a></li>
               </ul>
             </body>
           </html>

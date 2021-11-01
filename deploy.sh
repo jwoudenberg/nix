@@ -9,6 +9,9 @@ export HOST="${1:?'Pass host'}"
 nix build ".#nixosConfigurations.$HOST.config.system.build.toplevel" --out-link "$(pwd)/result"
 STORE_PATH=$(realpath result)
 
+# Create a persistent ssh connection that will be reused by follow-up commands
+ssh -MNf "$HOST"
+
 # Copy configuration
 nix-copy-closure --use-substitutes --to "$HOST" "$STORE_PATH"
 

@@ -12,10 +12,13 @@ STORE_PATH=$(realpath result)
 # Copy configuration
 nix-copy-closure --use-substitutes --to "$HOST" "$STORE_PATH"
 
+echo -n 'keepassxc password:'
+read -s PASSWORD
+
 # Copy over secrets
 write_secret () {
   SECRET=$1
-  keepassxc-cli show \
+  echo "$PASSWORD" | keepassxc-cli show \
     -y 1 \
     --show-protected \
     --attributes Notes \
@@ -24,7 +27,7 @@ write_secret () {
 }
 export -f write_secret
 ssh "$HOST" -- "mkdir -p /run/secrets"
-for pass in $(keepassxc-cli ls -y 1 ~/docs/passwords.kdbx "$HOST"); do
+for pass in $(echo "$PASSWORD" | keepassxc-cli ls -y 1 ~/docs/passwords.kdbx "$HOST"); do
   write_secret "$pass"
 done
 

@@ -22,11 +22,12 @@ inputs:
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.timeout = 10;
   boot.kernel.sysctl."fs.inotify.max_user_watches" = 524288;
+
+  # Reset root filesystem at boot
   boot.initrd.supportedFilesystems = [ "zfs" ];
   boot.initrd.postDeviceCommands = lib.mkAfter ''
     zfs rollback -r trunk/root@blank
   '';
-  boot.supportedFilesystems = [ "zfs" ];
 
   system.activationScripts.persist = ''
     # Make /persist public so the rslsync user can look in it.
@@ -57,6 +58,9 @@ inputs:
   environment.etc."NetworkManager/system-connections".source =
     "/persist/system-connections/";
 
+  # ZFS
+  boot.supportedFilesystems = [ "zfs" ];
+  networking.hostId = "f1e5b37a";
   services.zfs = {
     autoScrub.enable = true;
     trim.enable = true;
@@ -94,7 +98,6 @@ inputs:
   };
   security.rtkit.enable = true;
 
-  networking.hostId = "f1e5b37a";
   networking.hostName = "fragile-walrus";
   networking.networkmanager = {
     enable = true;

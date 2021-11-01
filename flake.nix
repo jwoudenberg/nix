@@ -13,7 +13,7 @@
     random-colors.url = "github:jwoudenberg/random-colors";
     random-colors.inputs.nixpkgs.follows = "nixpkgs-nixos";
     similar-sort.url =
-      "git+https://git.bytes.zone/brian/similar-sort.git?rev=1c23fc936150c5f1a40f66d3d28ececc9e53dd2d";
+      "git+https://git.bytes.zone/brian/similar-sort.git?ref=main";
   };
 
   outputs = inputs: {

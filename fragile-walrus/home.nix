@@ -1,23 +1,8 @@
 { pkgs, ... }:
 
-let
-
-  boot-popos = pkgs.writeShellScriptBin "popos" ''
-    #!/usr/bin/env bash
-    set -euxo pipefail
-
-    bootctl set-oneshot Pop_OS-current.conf
-    systemctl reboot
-  '';
-
-in {
+{
   home.packages = [
-    boot-popos
-    pkgs.cachix
     pkgs.croc
-    pkgs.discord
-    pkgs.du-dust
-    pkgs.fd
     pkgs.gotop
     pkgs.grim
     pkgs.i3status
@@ -33,11 +18,8 @@ in {
     pkgs.nodePackages.prettier
     pkgs.pdfgrep
     pkgs.pulsemixer
-    pkgs.plex-media-player
-    pkgs.podman
     pkgs.random-colors
     pkgs.ripgrep
-    pkgs.sd
     pkgs.shellcheck
     pkgs.similar-sort
     pkgs.slurp
@@ -52,7 +34,6 @@ in {
 
   imports = [
     ../shared/home-manager-modules/direnv.nix
-    ../shared/home-manager-modules/qutebrowser.nix
     ../shared/home-manager-modules/fish/default.nix
     ../shared/home-manager-modules/fzf.nix
     ../shared/home-manager-modules/git.nix
@@ -77,12 +58,7 @@ in {
     EDITOR = "nvim";
     DEFAULT_TODO_TXT = "~/docs/todo.txt";
     MANPAGER = "nvim +Man!";
-    AWS_VAULT_BACKEND = "file";
-    # Fix issue with opening links in Firefox using :GBrowse.
-    MOZ_DBUS_REMOTE = "1";
   };
-
-  home.stateVersion = "21.05";
 
   xdg.configFile."nixpkgs/config.nix".text = ''
     { allowUnfree = true; }

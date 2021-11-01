@@ -42,13 +42,23 @@ in inputs:
   ];
   boot.loader.grub.device = "/dev/sda";
   fileSystems."/" = {
-    device = "/dev/sda1";
+    device = "/dev/disk/by-uuid/bda03ef5-0d25-49a5-87d2-c79383443df8";
     fsType = "ext4";
   };
   fileSystems."/srv/volume1" = {
-    device = "/dev/disk/by-id/scsi-0HC_Volume_6344799";
-    fsType = "ext4";
-    options = [ "discard" "defaults" ];
+    device = "trunk/volume1";
+    fsType = "zfs";
+  };
+
+  # ZFS
+  boot.initrd.supportedFilesystems = [ "zfs" ];
+  boot.zfs.requestEncryptionCredentials = true;
+  boot.supportedFilesystems = [ "zfs" ];
+  networking.hostId = "d26b29e3";
+  services.zfs = {
+    autoScrub.enable = true;
+    trim.enable = true;
+    autoSnapshot.enable = true;
   };
 
   # ZFS

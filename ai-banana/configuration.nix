@@ -61,16 +61,6 @@ in inputs:
     autoSnapshot.enable = true;
   };
 
-  # ZFS
-  boot.initrd.supportedFilesystems = [ "zfs" ];
-  boot.supportedFilesystems = [ "zfs" ];
-  networking.hostId = "d26b29e3";
-  services.zfs = {
-    autoScrub.enable = true;
-    trim.enable = true;
-    autoSnapshot.enable = true;
-  };
-
   # Enable IP forwarding to allow this machine to function as a tailscale exit
   # node.
   # See: https://tailscale.com/kb/1104/enable-ip-forwarding/

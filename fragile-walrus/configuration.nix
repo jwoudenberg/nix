@@ -42,6 +42,7 @@ inputs:
     mkdir -p /home/jasper/.config
     chown jasper:users /home/jasper/.config
     ln -sfn /persist/random-colors /home/jasper/.config/random-colors
+    ln -sfn /persist/signal /home/jasper/.config/Signal
 
     # Tailscale state
     mkdir -p /var/lib/tailscale

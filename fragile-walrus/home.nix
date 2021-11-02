@@ -21,6 +21,7 @@
     pkgs.random-colors
     pkgs.ripgrep
     pkgs.shellcheck
+    pkgs.signal-desktop
     pkgs.similar-sort
     pkgs.slurp
     pkgs.tabnine

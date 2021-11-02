@@ -53,7 +53,7 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 " --- ALE ---
 let g:ale_elm_make_use_global=1
 let g:ale_linters_explicit = 1
-let g:ale_linters = { 'haskell': ['hlint'], 'elm': ['make'], 'nim': ['nimcheck'] }
+let g:ale_linters = { 'haskell': ['hlint'], 'elm': ['make'], 'nim': ['nimcheck'], 'rust': ['cargo'] }
 let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '!'
 
@@ -80,6 +80,7 @@ let g:elm_setup_keybindings = 0
 
 " --- NEOFORMAT ---
 let g:neoformat_enabled_nix = ['nixfmt']
+let g:neoformat_enabled_rust = ['rustfmt']
 let g:neoformat_nix_nixfmt = {
   \ 'exe': 'nixfmt',
   \ 'stdin': 1,
@@ -92,7 +93,6 @@ let g:neoformat_haskell_ormolu = {
   \ }
 
 let g:neoformat_enabled_ruby = []
-let g:neoformat_enabled_rust = []
 let g:neoformat_enabled_sql = []
 let g:neoformat_enabled_yaml = []
 let g:neoformat_enabled_json = []

@@ -124,7 +124,7 @@ inputs:
     dates = "weekly";
     options = "--delete-older-than 7d";
   };
-  nix.package = pkgs.nixFlakes;
+  nix.package = pkgs.nix_2_4;
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';

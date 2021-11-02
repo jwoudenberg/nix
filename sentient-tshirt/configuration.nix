@@ -39,7 +39,7 @@
   # $ sysctl -n hw.ncpu
   nix.maxJobs = 8;
   nix.buildCores = 8;
-  nix.package = pkgs.nixUnstable;
+  nix.package = pkgs.nix_2_4;
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';

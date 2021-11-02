@@ -95,11 +95,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1624204976,
-        "narHash": "sha256-WZjEvT0gS2eV4y95behTUquzu+N/vqu4ECSO+WWmRnQ=",
+        "lastModified": 1635847488,
+        "narHash": "sha256-IlYMzvrLggu5qxmOHfRX/S5bfX++9jj0wdVYfI8s4Mg=",
         "owner": "jwoudenberg",
         "repo": "launch",
-        "rev": "0b64fe695ff8a8f915615e0b5ec143c7e91dd33c",
+        "rev": "d37a1ce40372502f0caf0a0bdfa456b2ba2fb1e0",
         "type": "github"
       },
       "original": {

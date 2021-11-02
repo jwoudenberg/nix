@@ -15,6 +15,7 @@
       content.autoplay = false;
       content.geolocation = false;
       content.pdfjs = true;
+      content.notifications.enabled = false;
     };
   };
 }

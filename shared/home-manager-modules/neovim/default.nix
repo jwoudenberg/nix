@@ -26,6 +26,7 @@ in {
       gv-vim
       lightline-vim
       limelight-vim
+      luasnip # required by nvim-cmp
       neoformat
       nord-vim
       nvim-cmp

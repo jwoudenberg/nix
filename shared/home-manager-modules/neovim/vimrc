@@ -37,6 +37,8 @@ tnoremap <C-O> <C-\><C-n><C-O>
 
 autocmd BufNewFile,BufRead *.pl :set ft=prolog
 
+nmap gx :silent execute "!xdg-open " . shellescape("<cWORD>")<CR>
+
 " --- GOYO ---
 function! s:goyo_enter()
   set spell spelllang=en_us

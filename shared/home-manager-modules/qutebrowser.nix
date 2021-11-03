@@ -16,6 +16,7 @@
       content.geolocation = false;
       content.pdfjs = true;
       content.notifications.enabled = false;
+      content.register_protocol_handler = false;
     };
   };
 }

@@ -43,6 +43,7 @@ inputs:
     chown jasper:users /home/jasper/.config
     ln -sfn /persist/random-colors /home/jasper/.config/random-colors
     ln -sfn /persist/signal /home/jasper/.config/Signal
+    ln -sfn /persist/keybase /home/jasper/.config/keybase
 
     # Tailscale state
     mkdir -p /var/lib/tailscale
@@ -89,6 +90,8 @@ inputs:
   programs.gnupg.agent.pinentryFlavor = "qt";
   systemd.user.services.yubikey-agent.wantedBy =
     [ "graphical-session.target" ]; # Start automatically.
+
+  services.keybase.enable = true;
 
   services.pipewire = {
     enable = true;

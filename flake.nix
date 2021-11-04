@@ -14,6 +14,8 @@
     random-colors.inputs.nixpkgs.follows = "nixpkgs-nixos";
     similar-sort.url =
       "git+https://git.bytes.zone/brian/similar-sort.git?ref=main";
+    keepassxc-pass-frontend.url = "github:jwoudenberg/keepassxc-pass-frontend";
+    keepassxc-pass-frontend.inputs.nixpkgs.follows = "nixpkgs-nixos";
   };
 
   outputs = inputs: {
@@ -21,6 +23,8 @@
     overlays = let
       mkOverlay = system: final: prev: {
         jwlaunch = inputs.launch.defaultPackage."${system}";
+        keepassxc-pass-frontend =
+          inputs.keepassxc-pass-frontend.defaultPackage."${system}";
         random-colors = inputs.random-colors.defaultPackage."${system}";
         similar-sort = inputs.similar-sort.defaultPackage."${system}";
         linuxPackages_5_14 = prev.linuxPackages_5_14.extend (_: _: {

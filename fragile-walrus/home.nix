@@ -43,6 +43,7 @@
     ../shared/home-manager-modules/kitty.nix
     ../shared/home-manager-modules/keepassxc.nix
     ../shared/home-manager-modules/neovim/default.nix
+    ../shared/home-manager-modules/nix-index.nix
     ../shared/home-manager-modules/qutebrowser.nix
     ../shared/home-manager-modules/readline.nix
     ../shared/home-manager-modules/ripgrep.nix

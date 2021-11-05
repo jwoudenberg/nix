@@ -45,6 +45,10 @@ inputs:
     ln -sfn /persist/signal /home/jasper/.config/Signal
     ln -sfn /persist/keybase /home/jasper/.config/keybase
 
+    mkdir -p /home/jasper/.cache
+    chown jasper:users /home/jasper/.cache
+    ln -sfn /persist/nix-index /home/jasper/.cache/nix-index
+
     # Tailscale state
     mkdir -p /var/lib/tailscale
     ln -sfn /persist/tailscale/files /var/lib/tailscale/files

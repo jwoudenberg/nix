@@ -16,12 +16,16 @@
       "git+https://git.bytes.zone/brian/similar-sort.git?ref=main";
     keepassxc-pass-frontend.url = "github:jwoudenberg/keepassxc-pass-frontend";
     keepassxc-pass-frontend.inputs.nixpkgs.follows = "nixpkgs-nixos";
+    elm-pair.url = "/home/jasper/dev/elm-pair";
+    elm-pair.inputs.nixpkgs.follows = "nixpkgs-nixos";
   };
 
   outputs = inputs: {
 
     overlays = let
       mkOverlay = system: final: prev: {
+        elm-pair-neovim-plugin =
+          inputs.elm-pair.packages."${system}".neovim-plugin;
         jwlaunch = inputs.launch.defaultPackage."${system}";
         keepassxc-pass-frontend =
           inputs.keepassxc-pass-frontend.defaultPackage."${system}";

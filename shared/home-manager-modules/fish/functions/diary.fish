@@ -1,18 +1,18 @@
 function diary
     set date (date "+%y-%m-%d")
-    mkdir -p ~/docs/diary
-    set entry ~/docs/diary/$date.md
-    set title "# $date"
+    mkdir -p ~/docs/org/diary
+    set entry ~/docs/org/diary/$date.org
+    set title "* $date"
 
     # Create the diary file if it doesn't exist.
     if not test -e $entry
-        echo "$title" > $entry
+        echo "$title" >$entry
     end
 
     # Add a subtitle section if extra arguments are passed.
     set subtitle_text (string join " " $argv)
     if test -n "$subtitle_text"
-        echo -e "\n## $subtitle_text" >> $entry
+        echo -e "\n** $subtitle_text" >>$entry
     end
 
     # Allow the user to edit the entry.

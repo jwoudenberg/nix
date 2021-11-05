@@ -19,7 +19,6 @@ in {
     extraConfig = builtins.readFile ./vimrc;
 
     plugins = with pkgs.vimPlugins; [
-      pkgs.elm-pair-neovim-plugin
       ale
       fzf-vim
       gitgutter

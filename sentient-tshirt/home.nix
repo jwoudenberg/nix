@@ -25,7 +25,7 @@
     ../shared/home-manager-modules/git.nix
     ../shared/home-manager-modules/keepassxc-pass-frontend.nix
     ../shared/home-manager-modules/kitty.nix
-    ../shared/home-manager-modules/nix-index/default.nix
+    ../shared/home-manager-modules/nix-index.nix
     ../shared/home-manager-modules/neovim/default.nix
     ../shared/home-manager-modules/readline.nix
     ../shared/home-manager-modules/ripgrep.nix

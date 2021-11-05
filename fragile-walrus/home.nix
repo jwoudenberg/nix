@@ -2,6 +2,7 @@
 
 {
   home.packages = [
+    pkgs.comma
     pkgs.croc
     pkgs.gotop
     pkgs.grim

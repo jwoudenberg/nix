@@ -24,6 +24,7 @@
 
     overlays = let
       mkOverlay = system: final: prev: {
+        comma = final.callPackage ./shared/nix-pkgs/comma { };
         elm-pair-neovim-plugin =
           inputs.elm-pair.packages."${system}".neovim-plugin;
         jwlaunch = inputs.launch.defaultPackage."${system}";

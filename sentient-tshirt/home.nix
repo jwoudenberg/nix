@@ -1,5 +1,6 @@
 { pkgs, ... }: {
   home.packages = [
+    pkgs.comma
     pkgs.croc
     pkgs.gotop
     pkgs.nix-prefetch-github

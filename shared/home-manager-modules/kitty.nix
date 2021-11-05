@@ -23,5 +23,11 @@
       "ctrl+c" = "copy_or_interrupt";
       "ctrl+v" = "paste";
     };
+
+    extraConfig = ''
+      mouse_map left click ungrabbed mouse_click_url_or_select
+      copy_on_select no
+      mouse_map middle release ungrabbed paste_from_clipboard
+    '';
   };
 }

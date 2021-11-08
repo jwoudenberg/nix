@@ -1,5 +1,26 @@
 {
   "nodes": {
+    "comma": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": [
+          "nixpkgs-nixos"
+        ]
+      },
+      "locked": {
+        "lastModified": 1636394139,
+        "narHash": "sha256-Uv+txXVZzOLEsDFgHKgMZxLeolWjkTwDuj1ILB5KouI=",
+        "owner": "jwoudenberg",
+        "repo": "comma",
+        "rev": "0f8be31974b965e3aca76aacca97cd3348d4a740",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jwoudenberg",
+        "repo": "comma",
+        "type": "github"
+      }
+    },
     "darwin": {
       "inputs": {
         "nixpkgs": [
@@ -23,11 +44,11 @@
     },
     "flake-utils": {
       "locked": {
-        "lastModified": 1622445595,
-        "narHash": "sha256-m+JRe6Wc5OZ/mKw2bB3+Tl0ZbtyxxxfnAWln8Q5qs+Y=",
+        "lastModified": 1634851050,
+        "narHash": "sha256-N83GlSGPJJdcqhUxSCS/WwW5pksYf3VP1M13cDRTSVA=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "7d706970d94bc5559077eb1a6600afddcd25a7c8",
+        "rev": "c91f3de5adaf1de973b797ef7485e441a65b8935",
         "type": "github"
       },
       "original": {
@@ -68,6 +89,21 @@
     },
     "flake-utils_4": {
       "locked": {
+        "lastModified": 1622445595,
+        "narHash": "sha256-m+JRe6Wc5OZ/mKw2bB3+Tl0ZbtyxxxfnAWln8Q5qs+Y=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "7d706970d94bc5559077eb1a6600afddcd25a7c8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "flake-utils_5": {
+      "locked": {
         "lastModified": 1634851050,
         "narHash": "sha256-N83GlSGPJJdcqhUxSCS/WwW5pksYf3VP1M13cDRTSVA=",
         "owner": "numtide",
@@ -104,7 +140,7 @@
     },
     "keepassxc-pass-frontend": {
       "inputs": {
-        "flake-utils": "flake-utils",
+        "flake-utils": "flake-utils_2",
         "nixpkgs": [
           "nixpkgs-nixos"
         ]
@@ -125,7 +161,7 @@
     },
     "launch": {
       "inputs": {
-        "flake-utils": "flake-utils_2",
+        "flake-utils": "flake-utils_3",
         "nixpkgs": [
           "nixpkgs-nixos"
         ]
@@ -226,7 +262,7 @@
     },
     "random-colors": {
       "inputs": {
-        "flake-utils": "flake-utils_3",
+        "flake-utils": "flake-utils_4",
         "nixpkgs": [
           "nixpkgs-nixos"
         ]
@@ -247,6 +283,7 @@
     },
     "root": {
       "inputs": {
+        "comma": "comma",
         "darwin": "darwin",
         "home-manager": "home-manager",
         "keepassxc-pass-frontend": "keepassxc-pass-frontend",
@@ -259,7 +296,7 @@
     },
     "similar-sort": {
       "inputs": {
-        "flake-utils": "flake-utils_4",
+        "flake-utils": "flake-utils_5",
         "naersk": "naersk",
         "nixpkgs": "nixpkgs_2"
       },

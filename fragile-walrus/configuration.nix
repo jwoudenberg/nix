@@ -49,6 +49,14 @@ inputs:
     chown jasper:users /home/jasper/.cache
     ln -sfn /persist/nix-index /home/jasper/.cache/nix-index
 
+    mkdir -p /home/jasper/.config/TabNine
+    chown jasper:users /home/jasper/.config/TabNine
+    ln -sfn /persist/tabnine/tabnine_config.json /home/jasper/.config/TabNine/tabnine_config.json
+
+    mkdir -p /home/jasper/.local/share/TabNine
+    chown -R jasper:users /home/jasper/.local
+    ln -sfn /persist/tabnine/models /home/jasper/.local/share/TabNine/models
+
     # Tailscale state
     mkdir -p /var/lib/tailscale
     ln -sfn /persist/tailscale/files /var/lib/tailscale/files

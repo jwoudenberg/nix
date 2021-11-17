@@ -1,183 +1,178 @@
+-- VIM SETTINGS
+vim.o.completeopt = "menu,noselect"
+vim.o.expandtab = true
+vim.o.hidden = true
+vim.o.lbr = true;
+vim.o.mouse = "a"
+vim.o.modeline = false
+vim.o.swapfile = false
+vim.o.number = true
+vim.o.path = "**"
+vim.o.updatetime = 100  -- ensures gitgutter updates every 100ms
+vim.o.shiftround = true
+vim.o.shiftwidth = 2
+vim.o.splitbelow = true
+vim.o.splitright = true
+vim.o.tabstop = 2
+vim.o.termguicolors = true
+vim.o.wildignorecase = true
+vim.o.colorcolumn = "81"
+vim.o.clipboard = "unnamedplus"
+vim.o.foldenable = false
+
+vim.g.showbreak = "↪ "
+vim.g.mapleader = " "
+vim.g.maplocalleader = [[\]]
+
+vim.api.nvim_set_keymap("t", "<C-O>", [[<C-\><C-n><C-O>]], { noremap = true })
+vim.api.nvim_set_keymap("n", "gx", [[:silent execute "!open " . shellescape("<cWORD>")<CR>]], {})
+
 vim.cmd([[
-" --- VIM SETTINGS ---
-filetype plugin indent on
-syntax on
+  augroup custom_commands
+    autocmd BufNewFile,BufRead *.pl :set ft=prolog
+    autocmd BufWritePre * :%s/\s\+$//e
+  augroup END
+]])
 
-set completeopt=menu,noselect
-set expandtab
-set hidden
-set lbr
-set mouse=a
-set nomodeline
-set noswapfile
-set number
-set path=**
-set updatetime=100  " ensures gitgutter updates every 100ms
-set shiftround
-set shiftwidth=2
-set splitbelow
-set splitright
-set tabstop=2
-set termguicolors
-set wildignorecase
-set colorcolumn=81
-set clipboard=unnamedplus
-set nofoldenable
+-- COLORSCHEME
+vim.o.background = "dark"
+vim.cmd("colorscheme nord")
+vim.g.lightline = { colorscheme = "nord" }
 
-let &showbreak = '↪ '
-let g:netrw_liststyle=1
-let g:mapleader=' '
-let g:maplocalleader='\'
+-- ALE
+vim.g.ale_use_global_executables = true
+vim.g.ale_linters_explicit = true
+vim.g.ale_linters = {
+    haskell = {"hlint"},
+    elm = {"make"},
+    nim = {"nimcheck"},
+    rust = {"cargo"},
+    lua = {"luacheck"},
+  }
 
-colorscheme nord
-set background=dark
-let g:lightline = { 'colorscheme': 'nord' }
+vim.g.ale_sign_error = "✗"
+vim.g.ale_sign_warning = "!"
+vim.g.ale_rust_cargo_use_clippy = vim.fn.executable("cargo-clippy")
 
-tnoremap <C-O> <C-\><C-n><C-O>
+vim.cmd([[
+  augroup ale_commands
+    autocmd!
+    nmap <silent> <localleader>e <Plug>(ale_detail)
+    autocmd BufWritePre * Neoformat
+  augroup END
+]])
 
-autocmd BufNewFile,BufRead *.pl :set ft=prolog
+-- POLYGLOT
+vim.g.polyglot_disabled = {"haskell", "markdown"}
 
-nmap gx :silent execute "!xdg-open " . shellescape("<cWORD>")<CR>
+-- NEOFORMAT
+vim.g.neoformat_basic_format_retab = true
+vim.g.neoformat_enabled_nix = {"nixfmt"}
+vim.g.neoformat_enabled_rust = {"rustfmt"}
+vim.g.neoformat_enabled_lua = {"luaformat"}
+vim.g.neoformat_enabled_haskell = {"ormolu"}
+vim.g.neoformat_enabled_ruby = {}
+vim.g.neoformat_enabled_sql = {}
+vim.g.neoformat_enabled_yaml = {}
+vim.g.neoformat_enabled_json = {}
+vim.g.neoformat_enabled_html = {}
 
-" --- ALE ---
-let g:ale_elm_make_use_global=1
-let g:ale_linters_explicit = 1
-let g:ale_linters = { 'haskell': ['hlint'], 'elm': ['make'], 'nim': ['nimcheck'], 'rust': ['cargo'], 'lua': ['luacheck'] }
-let g:ale_sign_error = '✗'
-let g:ale_sign_warning = '!'
-let g:ale_rust_cargo_use_clippy = executable('cargo-clippy')
+-- FZF
+vim.g.fzf_layout = { window = "enew" }
+vim.cmd([[let $FZF_DEFAULT_OPTS .= ' --no-height']]) -- fixes fzf in nvim terminals
+vim.cmd([[
+  augroup fzf_commands
+    " don't show fzf statusline
+    autocmd  FileType fzf set laststatus=0 noshowmode noruler
+      \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+  augroup END
+]])
 
-augroup customCommands
-  autocmd!
-  nmap <silent> <localleader>e <Plug>(ale_detail)
-  autocmd BufWritePre * Neoformat
+-- SEARCHING FILES
+vim.api.nvim_set_keymap("n", "<C-P>", ":Files<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<C-B>", ":Buffers<CR>", { noremap = true })
+vim.cmd([[
+  command! -bang -nargs=? -complete=dir Files
+    \ call fzf#run(fzf#wrap({"source": $FZF_DEFAULT_COMMAND . " \| similar-sort " . (@% == '' ? 'a' : @%),
+                          \ "sink": "edit",
+                          \ "options": "--tiebreak index"
+                          \ }))
+]])
 
-  " don't show fzf statusline
-  autocmd  FileType fzf set laststatus=0 noshowmode noruler
-    \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
-augroup END
+-- DIRVISH
+vim.cmd([[
+  augroup dirvish_commands
+    autocmd!
 
+    " Undo Dirvish' default binding of <C-P>
+    autocmd FileType dirvish silent! unmap <buffer> <C-P>
+  augroup END
+]])
 
-" --- POLYGLOT ---
-let g:polyglot_disabled = ['haskell', 'markdown']
+-- FILE SEARCH
 
+-- <leader>g takes a motion, then searches for the text covered by the motion.
+vim.api.nvim_set_keymap("n", "<leader>g", [[:set opfunc=SearchMotion<CR>g@]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<leader>g", [[:<C-U>call SearchMotion(visualmode(), 1)<CR>]], { noremap = true, silent = true })
 
-" --- ELM (POLYGLOT) ---
-let g:elm_format_autosave = 0
-let g:elm_make_show_warnings = 1
-let g:elm_setup_keybindings = 0
+vim.cmd([[
+  function! SearchMotion(type, ...)
+    let sel_save = &selection
+    let &selection = "inclusive"
+    let reg_save = @@
 
+    if a:0  " Invoked from Visual mode, use '< and '> marks.
+      silent exe "normal! `<" . a:type . "`>y"
+    elseif a:type == 'line'
+      silent exe "normal! '[V']y"
+    elseif a:type == 'block'
+      silent exe "normal! `[\<C-V>`]y"
+    else
+      silent exe "normal! `[v`]y"
+    endif
 
-" --- NEOFORMAT ---
-let g:neoformat_enabled_nix = ['nixfmt']
-let g:neoformat_enabled_rust = ['rustfmt']
-let g:neoformat_enabled_lua = ['luaformat']
-let g:neoformat_nix_nixfmt = {
-  \ 'exe': 'nixfmt',
-  \ 'stdin': 1,
-  \ }
+    let @/ = @@
+    exe "normal /\<cr>"
 
-let g:neoformat_enabled_haskell = ['ormolu']
-let g:neoformat_haskell_ormolu = {
-  \ 'exe': 'ormolu',
-  \ 'stdin': 1,
-  \ }
+    let &selection = sel_save
+    let @@ = reg_save
+  endfunction
+]])
 
-let g:neoformat_enabled_ruby = []
-let g:neoformat_enabled_sql = []
-let g:neoformat_enabled_yaml = []
-let g:neoformat_enabled_json = []
-let g:neoformat_enabled_html = []
-let g:neoformat_basic_format_retab = 1
+-- CROSS-PROJECT GREP
+vim.cmd([[
+  command! -bang -nargs=* Rg
+    \ call fzf#vim#grep(
+    \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>).'| tr -d "\017"', 1,
+    \   { 'options': '--bind ctrl-a:select-all,ctrl-d:deselect-all' },
+    \   <bang>0)
+]])
 
+-- <leader>G takes a motion, then searches for the text covered by the motion using :Rg.
+vim.api.nvim_set_keymap("n", "<leader>G", [[:set opfunc=ProjectGrepMotion<CR>g@]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<leader>G", [[:<C-U>call ProjectGrepMotion(visualmode(), 1)<CR>]], { noremap = true, silent = true })
 
-" --- TRIM ON SAVE
-autocmd BufWritePre * :%s/\s\+$//e
+vim.cmd([[
+  function! ProjectGrepMotion(type, ...)
+    let sel_save = &selection
+    let &selection = "inclusive"
+    let reg_save = @@
 
+    if a:0  " Invoked from Visual mode, use '< and '> marks.
+      silent exe "normal! `<" . a:type . "`>y"
+    elseif a:type == 'line'
+      silent exe "normal! '[V']y"
+    elseif a:type == 'block'
+      silent exe "normal! `[\<C-V>`]y"
+    else
+      silent exe "normal! `[v`]y"
+    endif
 
-" --- FZF ---
-let g:fzf_layout = { 'window': 'enew' }
-let $FZF_DEFAULT_OPTS .= ' --no-height' " fixes fzf in nvim terminals
+    exe 'Rg '.@@
 
-
-" --- SEARCHING FILES ---
-nnoremap <C-P> :Files<cr>
-nnoremap <C-B> :Buffers<CR>
-
-command! -bang -nargs=? -complete=dir Files
-  \ call fzf#run(fzf#wrap({"source": $FZF_DEFAULT_COMMAND . " \| similar-sort " . (@% == '' ? 'a' : @%),
-                         \ "sink": "edit",
-                         \ "options": "--tiebreak index"
-                         \ }))
-
-" --- DIRVISH ---
-
-augroup dirvish_config
-  autocmd!
-
-  " Undo Dirvish' default binding of <C-P>
-  autocmd FileType dirvish silent! unmap <buffer> <C-P>
-augroup END
-
-" --- FILE SEARCH ---
-
-" <leader>g takes a motion, then searches for the text covered by the motion.
-nnoremap <silent> <leader>g :set opfunc=SearchMotion<cr>g@
-vnoremap <silent> <leader>g :<C-U>call SearchMotion(visualmode(), 1)<CR>
-function! SearchMotion(type, ...)
-  let sel_save = &selection
-  let &selection = "inclusive"
-  let reg_save = @@
-
-  if a:0  " Invoked from Visual mode, use '< and '> marks.
-    silent exe "normal! `<" . a:type . "`>y"
-  elseif a:type == 'line'
-    silent exe "normal! '[V']y"
-  elseif a:type == 'block'
-    silent exe "normal! `[\<C-V>`]y"
-  else
-    silent exe "normal! `[v`]y"
-  endif
-
-  let @/ = @@
-  exe "normal /\<cr>"
-
-  let &selection = sel_save
-  let @@ = reg_save
-endfunction
-
-
-" --- CROSS-PROJECT GREP ---
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>).'| tr -d "\017"', 1,
-  \   { 'options': '--bind ctrl-a:select-all,ctrl-d:deselect-all' },
-  \   <bang>0)
-
-" <leader>G takes a motion, then searches for the text covered by the motion
-" using :Rg.
-nnoremap <silent> <leader>G :set opfunc=ProjectGrepMotion<cr>g@
-vnoremap <silent> <leader>G :<C-U>call ProjectGrepMotion(visualmode(), 1)<CR>
-function! ProjectGrepMotion(type, ...)
-  let sel_save = &selection
-  let &selection = "inclusive"
-  let reg_save = @@
-
-  if a:0  " Invoked from Visual mode, use '< and '> marks.
-    silent exe "normal! `<" . a:type . "`>y"
-  elseif a:type == 'line'
-    silent exe "normal! '[V']y"
-  elseif a:type == 'block'
-    silent exe "normal! `[\<C-V>`]y"
-  else
-    silent exe "normal! `[v`]y"
-  endif
-
-  exe 'Rg '.@@
-
-  let &selection = sel_save
-  let @@ = reg_save
-endfunction
+    let &selection = sel_save
+    let @@ = reg_save
+  endfunction
 ]])
 
 -- ORG-MODE

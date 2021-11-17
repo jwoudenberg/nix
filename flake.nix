@@ -21,7 +21,6 @@
   };
 
   outputs = inputs: {
-
     overlays = let
       mkOverlay = system: final: prev: {
         comma = inputs.comma.defaultPackage.${system};
@@ -57,6 +56,18 @@
         (import ./sentient-tshirt/configuration.nix)
         inputs.home-manager.darwinModules.home-manager
       ];
+    };
+
+    devShell = let
+      mkDevShell = pkgs:
+        pkgs.mkShell {
+          buildInputs = [ pkgs.luaformatter pkgs.lua53Packages.luacheck ];
+        };
+    in {
+      "x86_64-linux" =
+        mkDevShell inputs.nixpkgs-nixos.legacyPackages."x86_64-linux";
+      "x86_64-darwin" =
+        mkDevShell inputs.nixpkgs-darwin.legacyPackages."x86_64-darwin";
     };
 
   };

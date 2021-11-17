@@ -1,3 +1,4 @@
+-- luacheck: globals vim
 -- VIM SETTINGS
 vim.o.completeopt = "menu,noselect"
 vim.o.expandtab = true
@@ -8,7 +9,7 @@ vim.o.modeline = false
 vim.o.swapfile = false
 vim.o.number = true
 vim.o.path = "**"
-vim.o.updatetime = 100  -- ensures gitgutter updates every 100ms
+vim.o.updatetime = 100 -- ensures gitgutter updates every 100ms
 vim.o.shiftround = true
 vim.o.shiftwidth = 2
 vim.o.splitbelow = true
@@ -24,8 +25,10 @@ vim.g.showbreak = "↪ "
 vim.g.mapleader = " "
 vim.g.maplocalleader = [[\]]
 
-vim.api.nvim_set_keymap("t", "<C-O>", [[<C-\><C-n><C-O>]], { noremap = true })
-vim.api.nvim_set_keymap("n", "gx", [[:silent execute "!open " . shellescape("<cWORD>")<CR>]], {})
+vim.api.nvim_set_keymap("t", "<C-O>", [[<C-\><C-n><C-O>]], {noremap = true})
+vim.api.nvim_set_keymap("n", "gx",
+                        [[:silent execute "!open " . shellescape("<cWORD>")<CR>]],
+                        {})
 
 vim.cmd([[
   augroup custom_commands
@@ -37,7 +40,7 @@ vim.cmd([[
 -- COLORSCHEME
 vim.o.background = "dark"
 vim.cmd("colorscheme nord")
-vim.g.lightline = { colorscheme = "nord" }
+vim.g.lightline = {colorscheme = "nord"}
 
 -- ALE
 vim.g.ale_use_global_executables = true
@@ -47,8 +50,8 @@ vim.g.ale_linters = {
     elm = {"make"},
     nim = {"nimcheck"},
     rust = {"cargo"},
-    lua = {"luacheck"},
-  }
+    lua = {"luacheck"}
+}
 
 vim.g.ale_sign_error = "✗"
 vim.g.ale_sign_warning = "!"
@@ -78,7 +81,7 @@ vim.g.neoformat_enabled_json = {}
 vim.g.neoformat_enabled_html = {}
 
 -- FZF
-vim.g.fzf_layout = { window = "enew" }
+vim.g.fzf_layout = {window = "enew"}
 vim.cmd([[let $FZF_DEFAULT_OPTS .= ' --no-height']]) -- fixes fzf in nvim terminals
 vim.cmd([[
   augroup fzf_commands
@@ -89,8 +92,8 @@ vim.cmd([[
 ]])
 
 -- SEARCHING FILES
-vim.api.nvim_set_keymap("n", "<C-P>", ":Files<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<C-B>", ":Buffers<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<C-P>", ":Files<CR>", {noremap = true})
+vim.api.nvim_set_keymap("n", "<C-B>", ":Buffers<CR>", {noremap = true})
 vim.cmd([[
   command! -bang -nargs=? -complete=dir Files
     \ call fzf#run(fzf#wrap({"source": $FZF_DEFAULT_COMMAND . " \| similar-sort " . (@% == '' ? 'a' : @%),
@@ -112,8 +115,11 @@ vim.cmd([[
 -- FILE SEARCH
 
 -- <leader>g takes a motion, then searches for the text covered by the motion.
-vim.api.nvim_set_keymap("n", "<leader>g", [[:set opfunc=SearchMotion<CR>g@]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap("v", "<leader>g", [[:<C-U>call SearchMotion(visualmode(), 1)<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>g", [[:set opfunc=SearchMotion<CR>g@]],
+                        {noremap = true, silent = true})
+vim.api.nvim_set_keymap("v", "<leader>g",
+                        [[:<C-U>call SearchMotion(visualmode(), 1)<CR>]],
+                        {noremap = true, silent = true})
 
 vim.cmd([[
   function! SearchMotion(type, ...)
@@ -149,8 +155,12 @@ vim.cmd([[
 ]])
 
 -- <leader>G takes a motion, then searches for the text covered by the motion using :Rg.
-vim.api.nvim_set_keymap("n", "<leader>G", [[:set opfunc=ProjectGrepMotion<CR>g@]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap("v", "<leader>G", [[:<C-U>call ProjectGrepMotion(visualmode(), 1)<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>G",
+                        [[:set opfunc=ProjectGrepMotion<CR>g@]],
+                        {noremap = true, silent = true})
+vim.api.nvim_set_keymap("v", "<leader>G",
+                        [[:<C-U>call ProjectGrepMotion(visualmode(), 1)<CR>]],
+                        {noremap = true, silent = true})
 
 vim.cmd([[
   function! ProjectGrepMotion(type, ...)
@@ -177,30 +187,25 @@ vim.cmd([[
 
 -- ORG-MODE
 require('orgmode').setup({
-  org_agenda_files = {'~/docs/org/**/*'},
-  org_default_notes_file = '~/docs/org/refile.org',
-  org_indent_mode = 'noindent',
+    org_agenda_files = {'~/docs/org/**/*'},
+    org_default_notes_file = '~/docs/org/refile.org',
+    org_indent_mode = 'noindent'
 })
 
 -- COMPLETION
 local cmp = require('cmp')
 cmp.setup({
-  sources = {
-    { name = 'cmp_tabnine' },
-  },
-  mapping = {
-    ['<C-f>'] = cmp.mapping.confirm({ select = true, behavior = cmp.SelectBehavior.Insert }),
-  },
-  experimental = {
-    ghost_text = true,
-  },
-  snippet = {
-    expand = function(args)
-      require('luasnip').lsp_expand(args.body)
-    end,
-  },
+    sources = {{name = 'cmp_tabnine'}},
+    mapping = {
+        ['<C-f>'] = cmp.mapping.confirm({
+            select = true,
+            behavior = cmp.SelectBehavior.Insert
+        })
+    },
+    experimental = {ghost_text = true},
+    snippet = {
+        expand = function(args) require('luasnip').lsp_expand(args.body) end
+    }
 })
 
-require('cmp_tabnine.config'):setup({
-  max_num_results = 1,
-})
+require('cmp_tabnine.config'):setup({max_num_results = 1})

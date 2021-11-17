@@ -1,8 +1,8 @@
+vim.cmd([[
 " --- VIM SETTINGS ---
 filetype plugin indent on
 syntax on
 
-:scriptencoding utf-8
 set completeopt=menu,noselect
 set expandtab
 set hidden
@@ -38,19 +38,6 @@ tnoremap <C-O> <C-\><C-n><C-O>
 autocmd BufNewFile,BufRead *.pl :set ft=prolog
 
 nmap gx :silent execute "!xdg-open " . shellescape("<cWORD>")<CR>
-
-" --- GOYO ---
-function! s:goyo_enter()
-  set spell spelllang=en_us
-endfunction
-
-function! s:goyo_leave()
-  set nospell
-endfunction
-
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
-
 
 " --- ALE ---
 let g:ale_elm_make_use_global=1
@@ -191,18 +178,16 @@ function! ProjectGrepMotion(type, ...)
   let &selection = sel_save
   let @@ = reg_save
 endfunction
+]])
 
-" --- ORG-MODE ---
-lua << EOF
+-- ORG-MODE
 require('orgmode').setup({
   org_agenda_files = {'~/docs/org/**/*'},
   org_default_notes_file = '~/docs/org/refile.org',
   org_indent_mode = 'noindent',
 })
-EOF
 
-" --- COMPLETION ---
-lua << EOF
+-- COMPLETION
 local cmp = require('cmp')
 cmp.setup({
   sources = {
@@ -224,4 +209,3 @@ cmp.setup({
 require('cmp_tabnine.config'):setup({
   max_num_results = 1,
 })
-EOF

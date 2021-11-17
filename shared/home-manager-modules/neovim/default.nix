@@ -16,13 +16,16 @@ in {
 
     vimAlias = true;
 
-    extraConfig = builtins.readFile ./vimrc;
+    extraConfig = ''
+      lua << EOF
+      ${builtins.readFile ./init.lua}
+      EOF
+    '';
 
     plugins = with pkgs.vimPlugins; [
       ale
       fzf-vim
       gitgutter
-      goyo
       gv-vim
       lightline-vim
       limelight-vim

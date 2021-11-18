@@ -185,13 +185,6 @@ vim.cmd([[
   endfunction
 ]])
 
--- ORG-MODE
-require('orgmode').setup({
-    org_agenda_files = {'~/docs/org/**/*'},
-    org_default_notes_file = '~/docs/org/refile.org',
-    org_indent_mode = 'noindent'
-})
-
 -- COMPLETION
 local cmp = require('cmp')
 cmp.setup({

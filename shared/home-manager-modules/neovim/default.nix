@@ -34,7 +34,6 @@ in {
       nord-vim
       nvim-cmp
       cmp-tabnine
-      orgmode-nvim
       polyglot
       quickfix-reflector-vim
       todo-txt-vim

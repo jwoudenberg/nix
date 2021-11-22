@@ -2,6 +2,7 @@ let
   webdavPort = 8080;
   calibreWebPort = 8083;
   kobodlPort = 8084;
+  navidromePort = 4533;
   resilio = {
     listeningPort = 18776;
     dirs = {
@@ -135,6 +136,17 @@ in inputs:
     in builtins.attrValues (builtins.mapAttrs configFor resilio.dirs);
   };
 
+  services.navidrome = {
+    enable = true;
+    settings = {
+      MusicFolder = "/srv/volume1/music";
+      Port = navidromePort;
+      BaseUrl = "/music";
+      ReverseProxyUserHeader = "Remote-User";
+      ReverseProxyWhitelist = "127.0.0.1/32";
+    };
+  };
+
   # Caddy
   services.caddy = {
     enable = true;
@@ -149,11 +161,11 @@ in inputs:
               <h1>ai-banana</h1>
               <ul>
                 <li><a href="/files/">files</a></li>
+                <li><a href="/music/">music</a></li>
                 <li><a href="/books/">books</a></li>
                 <li><a href="http://ai-banana:${
                   toString (kobodlPort + 1)
                 }">kobo upload</a></li>
-                <li><a href="http://ai-banana:9790">minimserver</a></li>
               </ul>
             </body>
           </html>
@@ -162,6 +174,12 @@ in inputs:
         redir /files /files/
         handle_path /files/* {
           reverse_proxy localhost:${toString webdavPort}
+        }
+
+        redir /music /music/
+        reverse_proxy /music/* {
+          to localhost:${toString navidromePort}
+          header_up Remote-User admin
         }
 
         redir /books /books/
@@ -300,16 +318,6 @@ in inputs:
   };
 
   virtualisation.oci-containers = {
-    containers.minimserver = {
-      image = "minimworld/minimserver:2.0.18";
-      autoStart = true;
-      volumes = [
-        "/srv/volume1/music:/Music"
-        "/srv/volume1/minimserver-data:/opt/minimserver/data"
-      ];
-      environment = { TZ = "Europe/Amsterdam"; };
-      extraOptions = [ "--network=host" ];
-    };
     containers.kobodl =
       # configDir = pkgs.writeTextDir "config/kobodl.json" ''
       #   {

@@ -24,6 +24,7 @@
     pkgs.shellcheck
     pkgs.signal-desktop
     pkgs.similar-sort
+    pkgs.shy
     pkgs.slurp
     pkgs.tabnine
     pkgs.tmate

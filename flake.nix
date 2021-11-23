@@ -16,6 +16,8 @@
     random-colors.inputs.nixpkgs.follows = "nixpkgs-nixos";
     similar-sort.url =
       "git+https://git.bytes.zone/brian/similar-sort.git?ref=main";
+    shy.url = "github:jwoudenberg/shy";
+    shy.inputs.nixpkgs.follows = "nixpkgs-nixos";
     keepassxc-pass-frontend.url = "github:jwoudenberg/keepassxc-pass-frontend";
     keepassxc-pass-frontend.inputs.nixpkgs.follows = "nixpkgs-nixos";
   };
@@ -29,6 +31,7 @@
           inputs.keepassxc-pass-frontend.defaultPackage."${system}";
         random-colors = inputs.random-colors.defaultPackage."${system}";
         similar-sort = inputs.similar-sort.defaultPackage."${system}";
+        shy = inputs.shy.defaultPackage."${system}";
       };
     in {
       darwinCustomPkgs = mkOverlay "x86_64-darwin";

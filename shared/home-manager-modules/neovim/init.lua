@@ -206,3 +206,27 @@ require('cmp_tabnine.config'):setup({max_num_results = 1})
 -- GITSIGNS
 
 require('gitsigns').setup({current_line_blame = false})
+
+-- SUBSTITUTIONS
+-- taken from: https://github.com/svermeulen/vim-subversive/issues/22
+
+vim.api.nvim_set_keymap("n", "s", [[:set opfunc=SwapRegisterSubstitute<CR>g@]],
+                        {silent = true, noremap = true})
+vim.api.nvim_set_keymap("v", "s", "p", {silent = true, noremap = true})
+
+vim.api.nvim_set_keymap("n", "ss", "s_", {})
+vim.api.nvim_set_keymap("n", "S", "s$", {})
+
+vim.cmd([[
+  function! SwapRegisterSubstitute(type, ...)
+    if a:0
+      silent exe "normal! `<" . a:type . "`>p"
+    elseif a:type == 'line'
+      silent exe "normal! '[V']p"
+    elseif a:type == 'block'
+      silent exe "normal! `[\<C-V>`]p"
+    else
+      silent exe "normal! `[v`]p"
+    endif
+  endfunction
+]])

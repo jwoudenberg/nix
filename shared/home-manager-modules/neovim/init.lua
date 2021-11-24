@@ -205,7 +205,7 @@ require('cmp_tabnine.config'):setup({max_num_results = 1})
 
 -- GITSIGNS
 
-require('gitsigns').setup({current_line_blame = false})
+require('gitsigns').setup({current_line_blame = true})
 
 -- SUBSTITUTIONS
 -- taken from: https://github.com/svermeulen/vim-subversive/issues/22

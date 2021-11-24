@@ -25,7 +25,7 @@ in {
     plugins = with pkgs.vimPlugins; [
       ale
       fzf-vim
-      gitgutter
+      gitsigns-nvim
       gv-vim
       lightline-vim
       limelight-vim

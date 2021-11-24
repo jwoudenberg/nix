@@ -34,6 +34,7 @@ vim.cmd([[
   augroup custom_commands
     autocmd BufNewFile,BufRead *.pl :set ft=prolog
     autocmd BufWritePre * :%s/\s\+$//e
+    au TextYankPost * silent! lua vim.highlight.on_yank({ timeout = 500 })
   augroup END
 ]])
 

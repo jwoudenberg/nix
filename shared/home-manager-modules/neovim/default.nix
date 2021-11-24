@@ -42,7 +42,6 @@ in {
       vim-dirvish
       vim-eunuch
       vim-fugitive
-      vim-highlightedyank
       vim-illuminate
       vim-repeat
       vim-rhubarb

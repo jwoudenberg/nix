@@ -26,9 +26,7 @@ in {
       ale
       fzf-vim
       gitsigns-nvim
-      gv-vim
       lightline-vim
-      limelight-vim
       luasnip # required by nvim-cmp
       neoformat
       nord-vim

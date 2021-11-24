@@ -9,7 +9,6 @@ vim.o.modeline = false
 vim.o.swapfile = false
 vim.o.number = true
 vim.o.path = "**"
-vim.o.updatetime = 100 -- ensures gitgutter updates every 100ms
 vim.o.shiftround = true
 vim.o.shiftwidth = 2
 vim.o.splitbelow = true
@@ -203,3 +202,7 @@ cmp.setup({
 })
 
 require('cmp_tabnine.config'):setup({max_num_results = 1})
+
+-- GITSIGNS
+
+require('gitsigns').setup()

@@ -166,6 +166,9 @@ in inputs:
                 <li><a href="http://ai-banana:${
                   toString (kobodlPort + 1)
                 }">kobo upload</a></li>
+                <li><a href="http://ai-banana:${
+                  toString config.services.adguardhome.port
+                }">ad-blocking</a></li>
               </ul>
             </body>
           </html>
@@ -316,6 +319,8 @@ in inputs:
       in "${script}/bin/ocr-scans-to-process";
     };
   };
+
+  services.adguardhome = { enable = true; };
 
   virtualisation.oci-containers = {
     containers.kobodl =

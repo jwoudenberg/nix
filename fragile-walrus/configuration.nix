@@ -118,7 +118,7 @@ inputs:
     enable = true;
     dns = "none";
   };
-  networking.nameservers = [ "100.100.100.100" "1.1.1.1" ];
+  networking.nameservers = [ "100.100.100.100" "100.118.235.97" ];
   networking.search = [ "jasperwoudenberg.com.beta.tailscale.net" ];
   networking.firewall = {
     enable = true;

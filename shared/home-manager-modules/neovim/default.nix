@@ -33,6 +33,7 @@ in {
       nord-vim
       nvim-cmp
       cmp-tabnine
+      plenary-nvim # required by neogit
       polyglot
       quickfix-reflector-vim
       todo-txt-vim

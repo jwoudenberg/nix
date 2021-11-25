@@ -207,6 +207,7 @@ require('cmp_tabnine.config'):setup({max_num_results = 1})
 -- GIT
 
 require('gitsigns').setup({current_line_blame = true})
+require('plenary') -- Needs to be loaded before neogit: https://github.com/TimUntersberger/neogit/issues/206
 require('neogit').setup({})
 
 -- SUBSTITUTIONS

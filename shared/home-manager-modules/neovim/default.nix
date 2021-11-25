@@ -29,6 +29,7 @@ in {
       lightline-vim
       luasnip # required by nvim-cmp
       neoformat
+      neogit
       nord-vim
       nvim-cmp
       cmp-tabnine

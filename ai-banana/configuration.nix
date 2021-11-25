@@ -93,12 +93,14 @@ in inputs:
     trustedInterfaces = [ "tailscale0" ];
     allowedTCPPorts = [
       resilio.listeningPort
-      2022 # ssh
+      22 # ssh admin
+      2022 # ssh printserver
     ];
     allowedUDPPorts = [
       resilio.listeningPort
       config.services.tailscale.port
-      2022 # ssh
+      22 # ssh admin
+      2022 # ssh printserver
     ];
   };
 

@@ -31,8 +31,8 @@ in inputs:
 
   nix.gc = {
     automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 7d";
+    dates = "daily";
+    options = "--delete-older-than 1d";
   };
 
   # Hardware
@@ -262,6 +262,7 @@ in inputs:
     repository = "sftp:19438@ch-s012.rsync.net:restic-backups";
     passwordFile = "/run/secrets/restic-password";
     timerConfig = { OnCalendar = "00:05"; };
+    extraBackupArgs = [ "/srv/volume1/restic-cache" ];
     pruneOpts = [
       "--keep-daily 7"
       "--keep-weekly 5"

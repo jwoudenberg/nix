@@ -118,8 +118,6 @@ inputs:
     enable = true;
     dns = "none";
   };
-  networking.nameservers = [ "100.100.100.100" "1.1.1.1" ];
-  networking.search = [ "jasperwoudenberg.com.beta.tailscale.net" ];
   networking.firewall = {
     enable = true;
     allowedUDPPorts = [ config.services.tailscale.port ];

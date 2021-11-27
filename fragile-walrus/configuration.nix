@@ -77,7 +77,14 @@ inputs:
   services.zfs = {
     autoScrub.enable = true;
     trim.enable = true;
-    autoSnapshot.enable = true;
+    autoSnapshot = {
+      enable = true;
+      frequent = 4;
+      hourly = 24;
+      daily = 7;
+      weekly = 4;
+      monthly = 10 * 12;
+    };
   };
 
   services.greetd = {

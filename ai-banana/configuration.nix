@@ -250,21 +250,18 @@ in inputs:
     description = "Rclone Serve";
     after = [ "network.target" ];
     wantedBy = [ "multi-user.target" ];
+    script = ''
+      exec ${pkgs.rclone}/bin/rclone serve sftp \
+        /srv/volume1/hjgames/scans-to-process \
+        --key /run/secrets/ssh-key \
+        --user sftp \
+        --pass "$RCLONE_PASS" \
+        --addr :2022
+    '';
     serviceConfig = {
       Type = "simple";
       User = "rslsync";
       Group = "rslsync";
-      ExecStart = let
-        script = pkgs.writeShellScriptBin "rclone-serve-sftp" ''
-          #!/usr/bin/env bash
-          exec ${pkgs.rclone}/bin/rclone serve sftp \
-            /srv/volume1/hjgames/scans-to-process \
-            --key /run/secrets/ssh-key \
-            --user sftp \
-            --pass "$RCLONE_PASS" \
-            --addr :2022
-        '';
-      in "${script}/bin/rclone-serve-sftp";
       Restart = "on-failure";
       EnvironmentFile = "/run/secrets/sftp-password";
     };
@@ -306,34 +303,31 @@ in inputs:
     enable = true;
     description =
       "Run ocrmypdf on all files in the scans-to-process directory.";
+    script = ''
+      for file in /srv/volume1/hjgames/scans-to-process/*; do
+        # Notify healthchecks.io that we're about to start scanning.
+        ${pkgs.curl}/bin/curl --retry 3 https://hc-ping.com/c10a6886-0cb9-4ec5-89fc-b8a2e65dbe1e/start
+
+        # Run ocrmypdf on the scanned file.
+        output="$(mktemp -u "/tmp/$(date '+%Y%m%d')_XXXXXX.pdf")"
+        ${pkgs.ocrmypdf}/bin/ocrmypdf \
+          --output-type pdf \
+          --rotate-pages \
+          --skip-text \
+          --language nld+eng \
+          "$file" \
+          "$output" \
+          && rm "$file" \
+          && mv "$output" /srv/volume1/hjgames/documenten
+
+        # Notify healthchecks.io of the status of the previous command.
+        ${pkgs.curl}/bin/curl --retry 3 https://hc-ping.com/c10a6886-0cb9-4ec5-89fc-b8a2e65dbe1e/$?
+      done
+    '';
     serviceConfig = {
       Type = "oneshot";
       User = "rslsync";
       Group = "rslsync";
-      ExecStart = let
-        script = pkgs.writeShellScriptBin "ocr-scans-to-process" ''
-          #!/usr/bin/env bash
-          for file in /srv/volume1/hjgames/scans-to-process/*; do
-            # Notify healthchecks.io that we're about to start scanning.
-            ${pkgs.curl}/bin/curl --retry 3 https://hc-ping.com/8ff8704b-d08e-47eb-b879-02ddb7442fe2/start
-
-            # Run ocrmypdf on the scanned file.
-            output="$(mktemp -u "/tmp/$(date '+%Y%m%d')_XXXXXX.pdf")"
-            ${pkgs.ocrmypdf}/bin/ocrmypdf \
-              --output-type pdf \
-              --rotate-pages \
-              --skip-text \
-              --language nld+eng \
-              "$file" \
-              "$output" \
-              && rm "$file" \
-              && mv "$output" /srv/volume1/hjgames/documenten
-
-            # Notify healthchecks.io of the status of the previous command.
-            ${pkgs.curl}/bin/curl --retry 3 https://hc-ping.com/8ff8704b-d08e-47eb-b879-02ddb7442fe2/$?
-          done
-        '';
-      in "${script}/bin/ocr-scans-to-process";
     };
   };
 

@@ -113,15 +113,29 @@ in inputs:
   systemd.services.healthchecks = {
     serviceConfig.Type = "oneshot";
     script = ''
+      set -ux    # No -e because I want to run all checks.
+
       # No scans waiting for processing
       ls -1qA /srv/volume1/hjgames/scans-to-process/ | grep -q . || \
         ${pkgs.curl}/bin/curl -fsS -m 10 --retry 5 -o /dev/null \
         https://hc-ping.com/8ff8704b-d08e-47eb-b879-02ddb7442fe2
 
-      # resilio is running
+      # Resilio is running
       systemctl is-active resilio && \
         ${pkgs.curl}/bin/curl -fsS -m 10 --retry 5 -o /dev/null \
         https://hc-ping.com/2d0bc35c-d03a-4ef6-8ea2-461e52b9f426
+
+      # Enough disk space remaining
+      check_free_diskspace () {
+        # Taken from https://www.reddit.com/r/selfhosted/comments/fw4gjr/how_to_use_healthchecksio_to_monitor_free_disk/
+        URL="https://hc-ping.com/fc58bfe1-77e7-46ea-a8a4-90096c883afd"
+        PCT=$(df --output=pcent "$1" | tail -n 1 | tr -d '% ')
+        if [ $PCT -gt 80 ]; then url=$url/fail; fi
+        ${pkgs.curl}/bin/curl -fsS -m 10 --retry 5 -o /dev/null \
+          --data-raw "Used space on $1: $PCT%" "$URL"
+      }
+      check_free_diskspace '/'
+      check_free_diskspace '/srv/volume1'
     '';
   };
 

@@ -281,26 +281,6 @@ in inputs:
     };
   };
 
-  # restic
-  services.restic.backups.daily = {
-    paths = builtins.map resilio.pathFor (builtins.attrNames resilio.dirs);
-    repository = "sftp:19438@ch-s012.rsync.net:restic-backups";
-    passwordFile = "/run/secrets/restic-password";
-    timerConfig = { OnCalendar = "00:05"; };
-    extraBackupArgs = [ "/srv/volume1/restic-cache" ];
-    pruneOpts = [
-      "--keep-daily 7"
-      "--keep-weekly 5"
-      "--keep-monthly 12"
-      "--keep-yearly 75"
-    ];
-  };
-
-  systemd.services.restic-backups-daily.serviceConfig.ExecStartPre =
-    "${pkgs.curl}/bin/curl -m 10 --retry 5 https://hc-ping.com/528b3b90-9fc4-4dd7-b032-abb0c7019b88/start";
-  systemd.services.restic-backups-daily.serviceConfig.ExecStartPost =
-    "${pkgs.curl}/bin/curl -m 10 --retry 5 https://hc-ping.com/528b3b90-9fc4-4dd7-b032-abb0c7019b88";
-
   # ocrmypdf
   systemd.paths.ocrmypdf = {
     enable = true;

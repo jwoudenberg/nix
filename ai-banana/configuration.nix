@@ -1,25 +1,6 @@
 let
   webdavPort = 8080;
-  calibreWebPort = 8083;
   kobodlPort = 8084;
-  navidromePort = 4533;
-  resilio = {
-    listeningPort = 18776;
-    dirs = {
-      "music" = "readonly";
-      "photo" = "readonly";
-      "books" = "readwrite";
-      "jasper" = "readonly";
-      "hiske" = "readonly";
-      "hjgames" = "readwrite";
-      "gilles1" = "encrypted";
-      "gilles4" = "encrypted";
-      "gilles5" = "encrypted";
-      "gilles6" = "encrypted";
-      "gilles7" = "encrypted";
-    };
-    pathFor = dir: "/srv/volume1/${dir}";
-  };
 in inputs:
 { pkgs, config, modulesPath, ... }: {
 
@@ -92,12 +73,12 @@ in inputs:
     enable = true;
     trustedInterfaces = [ "tailscale0" ];
     allowedTCPPorts = [
-      resilio.listeningPort
+      config.services.resilio.listeningPort
       22 # ssh admin
       2022 # ssh printserver
     ];
     allowedUDPPorts = [
-      resilio.listeningPort
+      config.services.resilio.listeningPort
       config.services.tailscale.port
       22 # ssh admin
       2022 # ssh printserver
@@ -141,8 +122,8 @@ in inputs:
 
   # Resilio Sync
   system.activationScripts.mkResilioSharedFolders = let
-    pathList = pkgs.lib.concatMapStringsSep " " resilio.pathFor
-      (builtins.attrNames resilio.dirs);
+    pathList = pkgs.lib.concatMapStringsSep " " (config: config.directory)
+      config.services.resilio.sharedFolders;
   in ''
     mkdir -p ${pathList}
     chown rslsync:rslsync -R ${pathList}
@@ -151,11 +132,24 @@ in inputs:
   services.resilio = {
     enable = true;
     enableWebUI = false;
-    listeningPort = resilio.listeningPort;
+    listeningPort = 18776;
     sharedFolders = let
+      dirs = {
+        "music" = "readonly";
+        "photo" = "readonly";
+        "books" = "readwrite";
+        "jasper" = "readonly";
+        "hiske" = "readonly";
+        "hjgames" = "readwrite";
+        "gilles1" = "encrypted";
+        "gilles4" = "encrypted";
+        "gilles5" = "encrypted";
+        "gilles6" = "encrypted";
+        "gilles7" = "encrypted";
+      };
       configFor = dir: perms: {
         secretFile = "/run/secrets/resilio_key_${dir}_${perms}";
-        directory = resilio.pathFor dir;
+        directory = "/srv/volume1/${dir}";
         useRelayServer = false;
         useTracker = true;
         useDHT = true;
@@ -163,14 +157,14 @@ in inputs:
         useSyncTrash = false;
         knownHosts = [ ];
       };
-    in builtins.attrValues (builtins.mapAttrs configFor resilio.dirs);
+    in builtins.attrValues (builtins.mapAttrs configFor dirs);
   };
 
   services.navidrome = {
     enable = true;
     settings = {
       MusicFolder = "/srv/volume1/music";
-      Port = navidromePort;
+      Port = 4533;
       BaseUrl = "/music";
       ReverseProxyUserHeader = "Remote-User";
       ReverseProxyWhitelist = "127.0.0.1/32";
@@ -211,13 +205,13 @@ in inputs:
 
         redir /music /music/
         reverse_proxy /music/* {
-          to localhost:${toString navidromePort}
+          to localhost:${toString config.services.navidrome.settings.Port}
           header_up Remote-User admin
         }
 
         redir /books /books/
         reverse_proxy /books/* {
-          to localhost:${toString calibreWebPort}
+          to localhost:${toString config.services.calibre-web.listen.port}
           header_up Authorization admin
           header_up X-Script-Name /books
         }
@@ -232,7 +226,7 @@ in inputs:
   # calibre-web
   services.calibre-web = {
     enable = true;
-    listen.port = calibreWebPort;
+    listen.port = 8083;
     user = "rslsync";
     group = "rslsync";
     options.calibreLibrary = "/srv/volume1/books";

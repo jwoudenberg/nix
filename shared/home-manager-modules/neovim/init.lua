@@ -212,25 +212,8 @@ require('plenary') -- Needs to be loaded before neogit: https://github.com/TimUn
 require('neogit').setup({})
 
 -- SUBSTITUTIONS
--- taken from: https://github.com/svermeulen/vim-subversive/issues/22
 
-vim.api.nvim_set_keymap("n", "s", [[:set opfunc=SwapRegisterSubstitute<CR>g@]],
-                        {silent = true, noremap = true})
-vim.api.nvim_set_keymap("v", "s", "p", {silent = true, noremap = true})
-
-vim.api.nvim_set_keymap("n", "ss", "s_", {})
-vim.api.nvim_set_keymap("n", "S", "s$", {})
-
-vim.cmd([[
-  function! SwapRegisterSubstitute(type, ...)
-    if a:0
-      silent exe "normal! `<" . a:type . "`>p"
-    elseif a:type == 'line'
-      silent exe "normal! '[V']p"
-    elseif a:type == 'block'
-      silent exe "normal! `[\<C-V>`]p"
-    else
-      silent exe "normal! `[v`]p"
-    endif
-  endfunction
-]])
+vim.api.nvim_set_keymap("n", "s", [[<plug>(SubversiveSubstitute)]], {})
+vim.api.nvim_set_keymap("n", "ss", [[<plug>(SubversiveSubstituteLine)]], {})
+vim.api.nvim_set_keymap("n", "S", [[<plug>(SubversiveSubstituteToEndOfLine)]],
+                        {})

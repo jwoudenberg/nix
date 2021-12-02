@@ -156,6 +156,8 @@ inputs:
 
   environment.systemPackages = [ pkgs.efibootmgr pkgs.pinentry ];
 
+  environment.pathsToLink = [ "/share/fish" ]; # Needed for direnv integration.
+
   fonts.fonts = [ pkgs.fira-code ];
 
   programs.sway.enable = true;

@@ -5,7 +5,7 @@ in inputs:
 { pkgs, config, modulesPath, ... }: {
 
   # Nix
-  system.stateVersion = "20.03";
+  system.stateVersion = "21.11";
   networking.hostName = "ai-banana";
   nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = [ inputs.self.overlays.linuxCustomPkgs ];

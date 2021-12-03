@@ -94,15 +94,19 @@ vim.cmd([[
 ]])
 
 -- SEARCHING FILES
+function _G.fzf_files()
+    vim.fn["fzf#run"](vim.fn["fzf#wrap"]({
+        source = vim.env.FZF_DEFAULT_COMMAND .. " | similar-sort " ..
+            vim.fn.expand('%'),
+        sink = "edit",
+        options = "--tiebreak index"
+    }))
+end
+
+vim.cmd([[command! -bang -nargs=? -complete=dir Files call v:lua.fzf_files()]])
+
 vim.api.nvim_set_keymap("n", "<C-P>", ":Files<CR>", {noremap = true})
 vim.api.nvim_set_keymap("n", "<C-B>", ":Buffers<CR>", {noremap = true})
-vim.cmd([[
-  command! -bang -nargs=? -complete=dir Files
-    \ call fzf#run(fzf#wrap({"source": $FZF_DEFAULT_COMMAND . " \| similar-sort " . (@% == '' ? 'a' : @%),
-                          \ "sink": "edit",
-                          \ "options": "--tiebreak index"
-                          \ }))
-]])
 
 -- DIRVISH
 vim.cmd([[

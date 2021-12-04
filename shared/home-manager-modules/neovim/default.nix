@@ -24,7 +24,7 @@ in {
 
     plugins = with pkgs.vimPlugins; [
       ale
-      fzf-vim
+      fzfWrapper
       gitsigns-nvim
       lightline-vim
       luasnip # required by nvim-cmp

@@ -83,7 +83,6 @@ vim.g.neoformat_enabled_html = {}
 
 -- FZF
 vim.g.fzf_layout = {window = "enew"}
-vim.cmd([[let $FZF_DEFAULT_OPTS .= ' --no-height']]) -- fixes fzf in nvim terminals
 vim.cmd([[
   augroup fzf_commands
     " don't show fzf statusline
@@ -92,7 +91,20 @@ vim.cmd([[
   augroup END
 ]])
 
--- SEARCHING FILES
+-- FZF :Rg
+function _G.fzf_rg(needle)
+    vim.fn["fzf#vim#grep"](
+        "rg --column --line-number --no-heading --color=always " ..
+            vim.fn.shellescape(needle), 1, {
+            options = {
+                "--no-height", "--bind=ctrl-a:select-all,ctrl-d:deselect-all"
+            }
+        }, true)
+end
+
+vim.cmd([[command! -bang -nargs=* Rg call v:lua.fzf_rg(<q-args>)]])
+
+-- FZF :Files
 function _G.fzf_files()
     vim.fn["fzf#run"]({
         source = vim.env.FZF_DEFAULT_COMMAND .. " | similar-sort " ..
@@ -105,6 +117,7 @@ end
 vim.cmd([[command! -bang -nargs=? Files call v:lua.fzf_files()]])
 vim.api.nvim_set_keymap("n", "<C-P>", ":Files<CR>", {noremap = true})
 
+-- FZF :Buffers
 function _G.fzf_buffers()
     local buffers = {}
     for _, buf in pairs(vim.api.nvim_list_bufs()) do
@@ -176,13 +189,6 @@ vim.cmd([[
 ]])
 
 -- CROSS-PROJECT GREP
-vim.cmd([[
-  command! -bang -nargs=* Rg
-    \ call fzf#vim#grep(
-    \   'rg --column --line-number --no-heading --color=always '.shellescape(<q-args>).'| tr -d "\017"', 1,
-    \   { 'options': '--bind ctrl-a:select-all,ctrl-d:deselect-all' },
-    \   <bang>0)
-]])
 
 -- <leader>G takes a motion, then searches for the text covered by the motion using :Rg.
 vim.api.nvim_set_keymap("n", "<leader>G",

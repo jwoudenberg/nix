@@ -169,6 +169,49 @@ end
 vim.cmd([[command! -bang -nargs=? Buffers call v:lua.fzf_buffers()]])
 vim.api.nvim_set_keymap("n", "<C-B>", ":Buffers<CR>", {noremap = true})
 
+-- FZF :Lines
+function _G.fzf_lines()
+    local lines = {}
+    for index, line in pairs(vim.api.nvim_buf_get_lines(0, 0, -1, false)) do
+        table.insert(lines, index .. "\t" .. line)
+    end
+
+    local bufnr = vim.fn.bufnr()
+
+    vim.fn["fzf#run"]({
+        source = lines,
+        options = {
+            "--no-height", "--multi", "--delimiter=\t",
+            "--bind=ctrl-a:select-all,ctrl-d:deselect-all", "--with-nth=2.."
+        },
+        sinklist = function(selected_lines)
+            local loclist = {}
+            for _, line in pairs(selected_lines) do
+                local line_parts = vim.fn.split(line, "\t");
+                table.insert(loclist, {
+                    bufnr = bufnr,
+                    lnum = tonumber(line_parts[1]),
+                    col = 1,
+                    text = line_parts[2]
+                })
+            end
+
+            if #loclist >= 1 then
+                local first = loclist[1]
+                vim.api.nvim_win_set_cursor(0, {first.lnum, 1})
+            end
+
+            if #loclist > 2 then
+                vim.fn.setloclist(0, loclist)
+                vim.cmd("lopen")
+            end
+        end
+    })
+end
+
+vim.cmd([[command! -bang -nargs=? Lines call v:lua.fzf_lines()]])
+vim.api.nvim_set_keymap("n", "<C-L>", ":Lines<CR>", {noremap = true})
+
 -- DIRVISH
 vim.cmd([[
   augroup dirvish_commands

@@ -106,16 +106,13 @@ vim.cmd([[command! -bang -nargs=? Files call v:lua.fzf_files()]])
 vim.api.nvim_set_keymap("n", "<C-P>", ":Files<CR>", {noremap = true})
 
 function _G.fzf_buffers()
-    local function format_buffer(buf)
-        local fullname = vim.api.nvim_buf_get_name(buf)
-        local name = vim.fn.fnamemodify(fullname, ":p:~:.")
-        return buf .. "\t" .. name
-    end
-
     local buffers = {}
     for _, buf in pairs(vim.api.nvim_list_bufs()) do
         if vim.api.nvim_buf_is_loaded(buf) then
-            table.insert(buffers, format_buffer(buf))
+            local fullname = vim.api.nvim_buf_get_name(buf)
+            local name = fullname == "" and "[no name]" or
+                             vim.fn.fnamemodify(fullname, ":.")
+            table.insert(buffers, buf .. "\t" .. name)
         end
     end
 

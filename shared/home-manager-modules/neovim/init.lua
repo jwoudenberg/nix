@@ -94,48 +94,42 @@ vim.cmd([[
 
 -- SEARCHING FILES
 function _G.fzf_files()
-    vim.fn["fzf#run"](vim.fn["fzf#wrap"]({
+    vim.fn["fzf#run"]({
         source = vim.env.FZF_DEFAULT_COMMAND .. " | similar-sort " ..
             vim.fn.expand('%'),
         sink = "edit",
-        options = "--tiebreak=index"
-    }))
+        options = {"--tiebreak=index", "--no-height"}
+    })
 end
 
 vim.cmd([[command! -bang -nargs=? Files call v:lua.fzf_files()]])
 vim.api.nvim_set_keymap("n", "<C-P>", ":Files<CR>", {noremap = true})
 
 function _G.fzf_buffers()
-    local buffers = {}
-
     local function format_buffer(buf)
         local fullname = vim.api.nvim_buf_get_name(buf)
         local name = vim.fn.fnamemodify(fullname, ":p:~:.")
         return buf .. "\t" .. name
     end
 
+    local buffers = {}
     for _, buf in pairs(vim.api.nvim_list_bufs()) do
         if vim.api.nvim_buf_is_loaded(buf) then
             table.insert(buffers, format_buffer(buf))
         end
     end
 
-    local wrapped = vim.fn["fzf#wrap"]({
+    vim.fn["fzf#run"]({
         source = buffers,
-        options = {"--tiebreak=index", "--delimiter=\t", "--with-nth=2.."}
+        options = {
+            "--tiebreak=index", "--delimiter=\t", "--with-nth=2..",
+            "--no-height"
+        },
+        sink = function(line)
+            local buf = string.match(line, "%d+")
+            if buf then vim.api.nvim_win_set_buf(0, buf) end
+        end
     })
-    -- Can't assign the sink property in the dictionary passed to `wrap`,
-    -- because then the function reference gets lost somehow when the result is
-    -- evaluated in Vim. This approach is taken from:
-    -- https://github.com/junegunn/fzf/issues/1778#issuecomment-697208274
-    wrapped["sink*"] = nil
-    wrapped["sinklist"] = nil
-    wrapped.sink = function(line)
-        local buf = string.match(line, "%d+")
-        if buf then vim.api.nvim_win_set_buf(0, buf) end
-    end
-
-    vim.fn["fzf#run"](wrapped)
 end
 
 vim.cmd([[command! -bang -nargs=? Buffers call v:lua.fzf_buffers()]])

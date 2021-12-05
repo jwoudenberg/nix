@@ -93,13 +93,37 @@ vim.cmd([[
 
 -- FZF :Rg
 function _G.fzf_rg(needle)
-    vim.fn["fzf#vim#grep"](
-        "rg --column --line-number --no-heading --color=always " ..
-            vim.fn.shellescape(needle), 1, {
-            options = {
-                "--no-height", "--bind=ctrl-a:select-all,ctrl-d:deselect-all"
-            }
-        }, true)
+    vim.fn["fzf#run"]({
+        source = "rg --column --line-number --no-heading --color=always " ..
+            vim.fn.shellescape(needle),
+        options = {
+            "--no-height", "--ansi", "--multi", "--delimiter=:",
+            "--bind=ctrl-a:select-all,ctrl-d:deselect-all", "--with-nth=1,4"
+        },
+        sinklist = function(lines)
+            local qflist = {}
+            for _, line in pairs(lines) do
+                local line_parts = vim.fn.split(line, ":");
+                table.insert(qflist, {
+                    filename = line_parts[1],
+                    lnum = tonumber(line_parts[2]),
+                    col = tonumber(line_parts[3]),
+                    text = line_parts[4]
+                })
+            end
+
+            if #qflist >= 1 then
+                local first = qflist[1]
+                vim.cmd("edit " .. first.filename);
+                vim.api.nvim_win_set_cursor(0, {first.lnum, first.col - 1})
+            end
+
+            if #qflist > 2 then
+                vim.fn.setqflist(qflist)
+                vim.cmd("copen")
+            end
+        end
+    })
 end
 
 vim.cmd([[command! -bang -nargs=* Rg call v:lua.fzf_rg(<q-args>)]])

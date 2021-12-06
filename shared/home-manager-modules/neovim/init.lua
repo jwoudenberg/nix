@@ -98,17 +98,18 @@ function _G.fzf_rg(needle)
         window = "enew",
         options = {
             "--no-height", "--ansi", "--multi", "--delimiter=:",
-            "--bind=ctrl-a:select-all,ctrl-d:deselect-all", "--with-nth=1,4"
+            "--bind=ctrl-a:select-all,ctrl-d:deselect-all", "--with-nth=1,4.."
         },
         sinklist = function(lines)
             local qflist = {}
             for _, line in pairs(lines) do
-                local line_parts = vim.fn.split(line, ":");
+                local filename, lnum, col, text = string.match(line,
+                                                               "^([^:]*):([^:]*):([^:]*):(.*)$")
                 table.insert(qflist, {
-                    filename = line_parts[1],
-                    lnum = tonumber(line_parts[2]),
-                    col = tonumber(line_parts[3]),
-                    text = line_parts[4]
+                    filename = filename,
+                    lnum = tonumber(lnum),
+                    col = tonumber(col),
+                    text = text
                 })
             end
 

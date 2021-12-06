@@ -82,7 +82,6 @@ vim.g.neoformat_enabled_json = {}
 vim.g.neoformat_enabled_html = {}
 
 -- FZF
-vim.g.fzf_layout = {window = "enew"}
 vim.cmd([[
   augroup fzf_commands
     " don't show fzf statusline
@@ -96,6 +95,7 @@ function _G.fzf_rg(needle)
     vim.fn["fzf#run"]({
         source = "rg --column --line-number --no-heading --color=always " ..
             vim.fn.shellescape(needle),
+        window = "enew",
         options = {
             "--no-height", "--ansi", "--multi", "--delimiter=:",
             "--bind=ctrl-a:select-all,ctrl-d:deselect-all", "--with-nth=1,4"
@@ -134,6 +134,7 @@ function _G.fzf_files()
         source = vim.env.FZF_DEFAULT_COMMAND .. " | similar-sort " ..
             vim.fn.expand('%'),
         sink = "edit",
+        window = "enew",
         options = {"--tiebreak=index", "--no-height"}
     })
 end
@@ -155,6 +156,7 @@ function _G.fzf_buffers()
 
     vim.fn["fzf#run"]({
         source = buffers,
+        window = "enew",
         options = {
             "--tiebreak=index", "--delimiter=\t", "--with-nth=2..",
             "--no-height"
@@ -180,6 +182,7 @@ function _G.fzf_lines()
 
     vim.fn["fzf#run"]({
         source = lines,
+        window = "enew",
         options = {
             "--no-height", "--multi", "--delimiter=\t",
             "--bind=ctrl-a:select-all,ctrl-d:deselect-all", "--with-nth=2.."

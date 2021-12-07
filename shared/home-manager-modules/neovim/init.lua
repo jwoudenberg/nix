@@ -149,22 +149,26 @@ function _G.fzf_buffers()
     local current_buffer = vim.fn.bufnr()
     for _, buf in pairs(vim.api.nvim_list_bufs()) do
         if vim.api.nvim_buf_is_loaded(buf) and buf ~= current_buffer then
-            local fullname = vim.api.nvim_buf_get_name(buf)
-            local name = fullname == "" and "[no name]" or
-                             vim.fn.fnamemodify(fullname, ":.")
-            table.insert(buffers, buf .. "\t" .. name)
+            local info = vim.fn.getbufinfo(buf)[1]
+            local name = info.name == "" and "[no name]" or
+                             vim.fn.fnamemodify(info.name, ":.")
+            local lastused = info.lastused or 0
+            table.insert(buffers, lastused .. "\t" .. buf .. "\t" .. name)
         end
     end
+
+    -- Sort last-opened first
+    table.sort(buffers, function(x, y) return x > y end)
 
     vim.fn["fzf#run"]({
         source = buffers,
         window = "enew",
         options = {
-            "--tiebreak=index", "--delimiter=\t", "--with-nth=2..",
+            "--tiebreak=index", "--delimiter=\t", "--with-nth=3..",
             "--no-height"
         },
         sink = function(line)
-            local buf = string.match(line, "%d+")
+            local buf = string.match(line, "^%d*\t(%d+)\t")
             if buf then vim.api.nvim_win_set_buf(0, buf) end
         end
     })

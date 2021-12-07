@@ -132,8 +132,8 @@ vim.cmd([[command! -bang -nargs=* Rg call v:lua.fzf_rg(<q-args>)]])
 -- FZF :Files
 function _G.fzf_files()
     vim.fn["fzf#run"]({
-        source = vim.env.FZF_DEFAULT_COMMAND .. " | similar-sort " ..
-            vim.fn.expand('%'),
+        source = vim.env.FZF_DEFAULT_COMMAND .. " | grep -v '^" ..
+            vim.fn.expand('%') .. "$' | similar-sort " .. vim.fn.expand('%'),
         sink = "edit",
         window = "enew",
         options = {"--tiebreak=index", "--no-height"}
@@ -146,8 +146,9 @@ vim.api.nvim_set_keymap("n", "<C-P>", ":Files<CR>", {noremap = true})
 -- FZF :Buffers
 function _G.fzf_buffers()
     local buffers = {}
+    local current_buffer = vim.fn.bufnr()
     for _, buf in pairs(vim.api.nvim_list_bufs()) do
-        if vim.api.nvim_buf_is_loaded(buf) then
+        if vim.api.nvim_buf_is_loaded(buf) and buf ~= current_buffer then
             local fullname = vim.api.nvim_buf_get_name(buf)
             local name = fullname == "" and "[no name]" or
                              vim.fn.fnamemodify(fullname, ":.")

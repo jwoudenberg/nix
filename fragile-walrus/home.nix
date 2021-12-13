@@ -4,6 +4,7 @@
   home.packages = [
     pkgs.comma
     pkgs.croc
+    pkgs.discord
     pkgs.gotop
     pkgs.grim
     pkgs.i3status

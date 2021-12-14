@@ -38,7 +38,6 @@ inputs:
     ln -sfn /persist/rslsync/jasper /home/jasper/docs
     ln -sfn /persist/rslsync/hjgames /home/jasper/hjgames
     ln -sfn /persist/dev /home/jasper/dev
-    ln -sfn /persist/minecraft /home/jasper/.minecraft
 
     mkdir -p /home/jasper/.config
     chown jasper:users /home/jasper/.config

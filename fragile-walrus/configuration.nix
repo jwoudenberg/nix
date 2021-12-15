@@ -123,7 +123,7 @@ inputs:
   networking.hostName = "fragile-walrus";
   networking.networkmanager = {
     enable = true;
-    dns = "none";
+    # dns = "none";
   };
   networking.firewall = {
     enable = true;

@@ -120,7 +120,7 @@ function _G.fzf_rg(needle)
                 vim.api.nvim_win_set_cursor(0, {first.lnum, first.col - 1})
             end
 
-            if #qflist > 2 then
+            if #qflist > 1 then
                 vim.fn.setqflist(qflist)
                 vim.cmd("copen")
             end
@@ -211,7 +211,7 @@ function _G.fzf_lines()
                 vim.api.nvim_win_set_cursor(0, {first.lnum, 1})
             end
 
-            if #loclist > 2 then
+            if #loclist > 1 then
                 vim.fn.setloclist(0, loclist)
                 vim.cmd("lopen")
             end

@@ -57,6 +57,7 @@ vim.g.ale_sign_error = "✗"
 vim.g.ale_sign_warning = "!"
 vim.g.ale_rust_cargo_use_clippy = vim.fn.executable("cargo-clippy")
 vim.g.ale_rust_cargo_check_tests = true
+vim.g.ale_rust_ignore_secondary_spans = true
 
 vim.cmd([[
   augroup ale_commands

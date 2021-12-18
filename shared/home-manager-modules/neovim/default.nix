@@ -27,12 +27,9 @@ in {
       fzfWrapper
       gitsigns-nvim
       lightline-vim
-      luasnip # required by nvim-cmp
       neoformat
       neogit
       nord-vim
-      nvim-cmp
-      cmp-tabnine
       plenary-nvim # required by neogit
       polyglot
       quickfix-reflector-vim

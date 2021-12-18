@@ -297,24 +297,6 @@ vim.cmd([[
   endfunction
 ]])
 
--- COMPLETION
-local cmp = require('cmp')
-cmp.setup({
-    sources = {{name = 'cmp_tabnine'}},
-    mapping = {
-        ['<C-f>'] = cmp.mapping.confirm({
-            select = true,
-            behavior = cmp.SelectBehavior.Insert
-        })
-    },
-    experimental = {ghost_text = true},
-    snippet = {
-        expand = function(args) require('luasnip').lsp_expand(args.body) end
-    }
-})
-
-require('cmp_tabnine.config'):setup({max_num_results = 1})
-
 -- GIT
 require('gitsigns').setup({current_line_blame = true})
 require('plenary') -- Needs to be loaded before neogit: https://github.com/TimUntersberger/neogit/issues/206

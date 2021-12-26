@@ -15,7 +15,7 @@ inputs:
   hardware.keyboard.zsa.enable = true; # Support flashing Ergodox.
 
   boot.kernelPackages =
-    pkgs.linuxKernel.packages.linux_5_14; # Required by AMD 6700 graphics card
+    pkgs.linuxKernel.packages.linux_5_15; # Required by AMD 6700 graphics card
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 10;
   boot.loader.systemd-boot.editor = false;

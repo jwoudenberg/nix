@@ -10,7 +10,6 @@
     pkgs.tabnine
     pkgs.mosh
     pkgs.nixfmt
-    pkgs.nodePackages.prettier
     pkgs.random-colors
     pkgs.ripgrep
     pkgs.shellcheck

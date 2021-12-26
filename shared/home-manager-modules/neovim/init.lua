@@ -81,6 +81,7 @@ vim.g.neoformat_enabled_sql = {}
 vim.g.neoformat_enabled_yaml = {}
 vim.g.neoformat_enabled_json = {}
 vim.g.neoformat_enabled_html = {}
+vim.g.neoformat_enabled_markdown = {}
 
 -- FZF
 vim.cmd([[

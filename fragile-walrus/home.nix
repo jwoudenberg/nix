@@ -17,7 +17,6 @@
     pkgs.minecraft
     pkgs.nixfmt
     pkgs.nix-prefetch-github
-    pkgs.nodePackages.prettier
     pkgs.pdfgrep
     pkgs.pulsemixer
     pkgs.random-colors

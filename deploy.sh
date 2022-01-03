@@ -3,7 +3,7 @@
 # Adapted from Brian's deploy script here:
 # https://git.bytes.zone/bytes.zone/infrastructure/src/commit/ac14708d9f8804ebcb2b445dc101bc8a5e464fe2/gitea/deploy.sh
 
-set -exuo pipefail
+set -euo pipefail
 
 export HOST="${1:?'Pass host'}"
 nix build ".#nixosConfigurations.$HOST.config.system.build.toplevel" --out-link "$(pwd)/result"

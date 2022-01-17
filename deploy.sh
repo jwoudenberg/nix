@@ -10,9 +10,11 @@ nix build ".#nixosConfigurations.$HOST.config.system.build.toplevel" --out-link 
 STORE_PATH=$(realpath result)
 
 # Create a persistent ssh connection that will be reused by follow-up commands
+echo "Opening ssh connection..."
 ssh -MNf "$HOST"
 
 # Copy configuration
+echo "Copying closure..."
 nix-copy-closure --use-substitutes --to "$HOST" "$STORE_PATH"
 
 echo -n 'keepassxc password:'

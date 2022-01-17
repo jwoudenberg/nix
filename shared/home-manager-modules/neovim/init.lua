@@ -24,7 +24,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = [[\]]
 
 vim.api.nvim_set_keymap("t", "<C-O>", [[<C-\><C-n><C-O>]], {noremap = true})
-local open_bin = vim.fn.executable("xdg-open") and "xdg-open" or "open"
+local open_bin = vim.fn.executable("xdg-open") > 0 and "xdg-open" or "open"
 local open_cmd = [[:silent execute "!]] .. open_bin ..
                      [[ " . shellescape("<cWORD>")<CR>]]
 vim.api.nvim_set_keymap("n", "gx", open_cmd, {silent = true})
@@ -55,7 +55,7 @@ vim.g.ale_linters = {
 
 vim.g.ale_sign_error = "✗"
 vim.g.ale_sign_warning = "!"
-vim.g.ale_rust_cargo_use_clippy = vim.fn.executable("cargo-clippy")
+vim.g.ale_rust_cargo_use_clippy = vim.fn.executable("cargo-clippy") > 0
 vim.g.ale_rust_cargo_check_tests = true
 vim.g.ale_rust_ignore_secondary_spans = true
 

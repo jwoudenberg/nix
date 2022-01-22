@@ -201,8 +201,8 @@ in inputs:
         `
 
         redir /files /files/
-        handle_path /files/* {
-          reverse_proxy localhost:${toString webdavPort}
+        reverse_proxy /files/* {
+          to localhost:${toString webdavPort}
         }
 
         redir /paulus /paulus/
@@ -275,7 +275,7 @@ in inputs:
       ExecStart =
         "${pkgs.rclone}/bin/rclone serve webdav /srv/volume1 --addr :${
           toString webdavPort
-        }";
+        } --baseurl files/";
       Restart = "on-failure";
     };
   };

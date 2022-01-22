@@ -20,6 +20,8 @@
     shy.inputs.nixpkgs.follows = "nixpkgs-nixos";
     keepassxc-pass-frontend.url = "github:jwoudenberg/keepassxc-pass-frontend";
     keepassxc-pass-frontend.inputs.nixpkgs.follows = "nixpkgs-nixos";
+    paulus.url = "github:jwoudenberg/paulus";
+    paulus.inputs.nixpkgs.follows = "nixpkgs-nixos";
   };
 
   outputs = inputs: {
@@ -32,6 +34,7 @@
         random-colors = inputs.random-colors.defaultPackage."${system}";
         similar-sort = inputs.similar-sort.defaultPackage."${system}";
         shy = inputs.shy.defaultPackage."${system}";
+        paulus = inputs.paulus.defaultPackage."${system}";
       };
     in {
       darwinCustomPkgs = mkOverlay "x86_64-darwin";

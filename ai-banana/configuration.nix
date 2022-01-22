@@ -1,5 +1,6 @@
 let
   webdavPort = 8080;
+  paulusPort = 8081;
   kobodlPort = 8084;
 in inputs:
 { pkgs, config, modulesPath, ... }: {
@@ -187,6 +188,7 @@ in inputs:
                 <li><a href="/files/">files</a></li>
                 <li><a href="/music/">music</a></li>
                 <li><a href="/books/">books</a></li>
+                <li><a href="/paulus/">paulus</a></li>
                 <li><a href="http://ai-banana:${
                   toString (kobodlPort + 1)
                 }">kobo upload</a></li>
@@ -201,6 +203,11 @@ in inputs:
         redir /files /files/
         handle_path /files/* {
           reverse_proxy localhost:${toString webdavPort}
+        }
+
+        redir /paulus /paulus/
+        handle_path /paulus/* {
+          reverse_proxy localhost:${toString paulusPort}
         }
 
         redir /music /music/
@@ -235,6 +242,25 @@ in inputs:
     # https://github.com/janeczku/calibre-web/wiki/Setup-Reverse-Proxy
     options.reverseProxyAuth.enable = true;
     options.reverseProxyAuth.header = "Authorization";
+  };
+
+  # paulus
+  systemd.services.paulus = {
+    description = "Paulus";
+    after = [ "network-target" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "simple";
+      User = "rslsync";
+      Group = "rslsync";
+      ExecStart = builtins.concatStringsSep " " [
+        "${pkgs.paulus}/bin/paulus"
+        "--questions /srv/volume1/hjgames/paulus/questions.txt"
+        "--output /srv/volume1/hjgames/paulus/results.json"
+        "--port ${toString paulusPort}"
+      ];
+      Restart = "on-failure";
+    };
   };
 
   # rclone

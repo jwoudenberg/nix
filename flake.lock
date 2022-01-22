@@ -275,6 +275,27 @@
         "type": "github"
       }
     },
+    "paulus": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-nixos"
+        ],
+        "utils": "utils"
+      },
+      "locked": {
+        "lastModified": 1642845745,
+        "narHash": "sha256-oGprLzisPnNjYtrs4tyqzTaMNYN/uDBk1upPVfodx/w=",
+        "owner": "jwoudenberg",
+        "repo": "paulus",
+        "rev": "25097618cbf9ad6a80126499fc341be326b7cc22",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jwoudenberg",
+        "repo": "paulus",
+        "type": "github"
+      }
+    },
     "random-colors": {
       "inputs": {
         "flake-utils": "flake-utils_4",
@@ -305,6 +326,7 @@
         "launch": "launch",
         "nixpkgs-darwin": "nixpkgs-darwin",
         "nixpkgs-nixos": "nixpkgs-nixos",
+        "paulus": "paulus",
         "random-colors": "random-colors",
         "shy": "shy",
         "similar-sort": "similar-sort"
@@ -350,6 +372,21 @@
         "ref": "main",
         "type": "git",
         "url": "https://git.bytes.zone/brian/similar-sort.git"
+      }
+    },
+    "utils": {
+      "locked": {
+        "lastModified": 1642700792,
+        "narHash": "sha256-XqHrk7hFb+zBvRg6Ghl+AZDq03ov6OshJLiSWOoX5es=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "846b2ae0fc4cc943637d3d1def4454213e203cba",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
       }
     }
   },

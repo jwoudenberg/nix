@@ -71,6 +71,20 @@ inputs:
   environment.etc."NetworkManager/system-connections".source =
     "/persist/system-connections/";
 
+  # Localization
+  console.keyMap = "us";
+  i18n.defaultLocale = "en_US.UTF-8";
+  i18n.extraLocaleSettings = {
+    LC_NUMERIC = "nl_NL.UTF-8";
+    LC_TIME = "nl_NL.UTF-8";
+    LC_MONETARY = "nl_NL.UTF-8";
+    LC_PAPER = "nl_NL.UTF-8";
+    LC_ADDRESS = "nl_NL.UTF-8";
+    LC_TELEPHONE = "nl_NL.UTF-8";
+    LC_MEASUREMENT = "nl_NL.UTF-8";
+  };
+  time.timeZone = "Europe/Amsterdam";
+
   # ZFS
   boot.supportedFilesystems = [ "zfs" ];
   networking.hostId = "f1e5b37a";
@@ -129,11 +143,6 @@ inputs:
     enable = true;
     allowedUDPPorts = [ config.services.tailscale.port ];
   };
-
-  console.keyMap = "us";
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  time.timeZone = "Europe/Amsterdam";
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = [ inputs.self.overlays.linuxCustomPkgs ];

@@ -12,6 +12,7 @@
     pkgs.jq
     pkgs.keybase
     pkgs.mosh
+    pkgs.remind
     pkgs.zathura
     pkgs.haskellPackages.niv
     pkgs.minecraft

@@ -18,11 +18,9 @@ in inputs:
   };
 
   # Hardware
-  disabledModules =
-    [ "services/networking/resilio.nix" "services/networking/xandikos.nix" ];
+  disabledModules = [ "services/networking/resilio.nix" ];
   imports = [
     ../shared/nixos-modules/resilio.nix
-    ../shared/nixos-modules/xandikos.nix
     (modulesPath + "/profiles/qemu-guest.nix")
   ];
   boot.loader.grub.device = "/dev/sda";
@@ -190,7 +188,6 @@ in inputs:
                 <li><a href="/files/">files</a></li>
                 <li><a href="/music/">music</a></li>
                 <li><a href="/books/">books</a></li>
-                <li><a href="/xandikos/">xandikos</a></li>
                 <li><a href="/paulus/">paulus</a></li>
                 <li><a href="http://ai-banana:${
                   toString (kobodlPort + 1)
@@ -211,11 +208,6 @@ in inputs:
         redir /paulus /paulus/
         handle_path /paulus/* {
           reverse_proxy localhost:${toString paulusPort}
-        }
-
-        redir /xandikos /xandikos/
-        reverse_proxy /xandikos/* {
-          to localhost:${toString config.services.xandikos.port}
         }
 
         redir /music /music/
@@ -351,15 +343,6 @@ in inputs:
       User = "rslsync";
       Group = "rslsync";
     };
-  };
-
-  services.xandikos = {
-    enable = true;
-    address = "0.0.0.0";
-    port = 8082;
-    routePrefix = "/xandikos";
-    directory = "/srv/volume1/xandikos";
-    extraOptions = [ "--autocreate" "--defaults" ];
   };
 
   services.adguardhome = { enable = true; };

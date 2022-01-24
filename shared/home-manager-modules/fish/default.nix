@@ -29,6 +29,7 @@ in {
       "lock" = "swaylock";
       "ssh" = "kitty +kitten ssh";
       "todo" = "nvim ~/docs/org/todo.org";
+      "agenda" = "vim ~/hjgames/agenda/agenda.rem";
     };
   };
 }

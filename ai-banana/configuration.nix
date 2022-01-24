@@ -365,7 +365,7 @@ in inputs:
       Group = "rslsync";
     };
     script = ''
-      ${pkgs.remind}/bin/remind -ppm -b1 /srv/volume1/hjgames/agenda \
+      ${pkgs.remind}/bin/remind -pp12 -m -b1 /srv/volume1/hjgames/agenda \
         | ${pkgs.rem2html}/bin/rem2html \
         > /srv/volume1/hjgames/agenda/index.html
     '';

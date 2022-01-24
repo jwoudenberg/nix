@@ -37,7 +37,6 @@
 
   home.sessionVariables = {
     EDITOR = "nvim";
-    DEFAULT_TODO_TXT = "~/docs/org/todo.org";
     MANPAGER = "nvim +Man!";
   };
 

@@ -188,6 +188,7 @@ in inputs:
                 <li><a href="/files/">files</a></li>
                 <li><a href="/music/">music</a></li>
                 <li><a href="/books/">books</a></li>
+                <li><a href="/calendar/">calendar</a></li>
                 <li><a href="/paulus/">paulus</a></li>
                 <li><a href="http://ai-banana:${
                   toString (kobodlPort + 1)
@@ -221,6 +222,12 @@ in inputs:
           to localhost:${toString config.services.calibre-web.listen.port}
           header_up Authorization admin
           header_up X-Script-Name /books
+        }
+
+        redir /calendar /calendar/
+        handle_path /calendar/* {
+          root * /srv/volume1/hjgames/agenda
+          file_server
         }
       }
 
@@ -343,6 +350,25 @@ in inputs:
       User = "rslsync";
       Group = "rslsync";
     };
+  };
+
+  # remind
+  systemd.timers.generate_remind_calendar = {
+    wantedBy = [ "timers.target" ];
+    partOf = [ "simple-timer.service" ];
+    timerConfig.OnCalendar = "minutely";
+  };
+  systemd.services.generate_remind_calendar = {
+    serviceConfig = {
+      Type = "oneshot";
+      User = "rslsync";
+      Group = "rslsync";
+    };
+    script = ''
+      ${pkgs.remind}/bin/remind -pp /srv/volume1/hjgames/agenda \
+        | ${pkgs.rem2html}/bin/rem2html \
+        > /srv/volume1/hjgames/agenda/index.html
+    '';
   };
 
   services.adguardhome = { enable = true; };

@@ -21,6 +21,7 @@
     pkgs.pdfgrep
     pkgs.pulsemixer
     pkgs.random-colors
+    pkgs.rem2html
     pkgs.ripgrep
     pkgs.shellcheck
     pkgs.signal-desktop

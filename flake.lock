@@ -317,6 +317,23 @@
         "type": "github"
       }
     },
+    "rem2html": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1643037829,
+        "narHash": "sha256-w/MSMpRRlX/Rak/Xak3Iz0+79hPKDMt+sEvgqp8Nl+E=",
+        "ref": "master",
+        "rev": "511cdb2784438ba29affcec7ab27b2f4af8337f6",
+        "revCount": 1187,
+        "type": "git",
+        "url": "https://git.skoll.ca/Skollsoft-Public/Remind.git"
+      },
+      "original": {
+        "ref": "master",
+        "type": "git",
+        "url": "https://git.skoll.ca/Skollsoft-Public/Remind.git"
+      }
+    },
     "root": {
       "inputs": {
         "comma": "comma",
@@ -328,6 +345,7 @@
         "nixpkgs-nixos": "nixpkgs-nixos",
         "paulus": "paulus",
         "random-colors": "random-colors",
+        "rem2html": "rem2html",
         "shy": "shy",
         "similar-sort": "similar-sort"
       }

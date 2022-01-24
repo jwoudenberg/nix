@@ -14,6 +14,9 @@
     launch.inputs.nixpkgs.follows = "nixpkgs-nixos";
     random-colors.url = "github:jwoudenberg/random-colors";
     random-colors.inputs.nixpkgs.follows = "nixpkgs-nixos";
+    rem2html.url =
+      "git+https://git.skoll.ca/Skollsoft-Public/Remind.git?ref=master";
+    rem2html.flake = false;
     similar-sort.url =
       "git+https://git.bytes.zone/brian/similar-sort.git?ref=main";
     shy.url = "github:jwoudenberg/shy";
@@ -32,6 +35,11 @@
         keepassxc-pass-frontend =
           inputs.keepassxc-pass-frontend.defaultPackage."${system}";
         random-colors = inputs.random-colors.defaultPackage."${system}";
+        rem2html = let pkgs = inputs.nixpkgs-nixos.legacyPackages."${system}";
+        in pkgs.writers.writePerlBin "rem2html" {
+          libraries =
+            [ pkgs.perlPackages.JSONMaybeXS pkgs.perlPackages.GetoptLong ];
+        } (builtins.readFile "${inputs.rem2html}/rem2html/rem2html");
         similar-sort = inputs.similar-sort.defaultPackage."${system}";
         shy = inputs.shy.defaultPackage."${system}";
         paulus = inputs.paulus.defaultPackage."${system}";

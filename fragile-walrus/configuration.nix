@@ -13,6 +13,7 @@ inputs:
   hardware.system76.enableAll = true;
   hardware.enableRedistributableFirmware = true;
   hardware.keyboard.zsa.enable = true; # Support flashing Ergodox.
+  hardware.i2c.enable = true;
 
   boot.kernelPackages =
     pkgs.linuxKernel.packages.linux_5_15; # Required by AMD 6700 graphics card
@@ -209,7 +210,7 @@ inputs:
   users.users.jasper = {
     isNormalUser = true;
     home = "/home/jasper";
-    extraGroups = [ "wheel" "rslsync" "sway" "networkmanager" ];
+    extraGroups = [ "wheel" "rslsync" "sway" "networkmanager" "i2c" ];
     hashedPassword =
       "$6$h6p1ovc5FdW$w8vrupUIOdgfgDJOxEfqPdibbitT3HfZkjVQDurQ7YHfxH6hyC1AUTMZ8qlGff5KCE4XQfYfR970S6BtTin3m.";
     uid = 1000;

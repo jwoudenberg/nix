@@ -139,11 +139,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1642653493,
-        "narHash": "sha256-22mGPjiHUo2Jmze4IjXCJLjeK2mbvvCztHmUyUMr4yw=",
+        "lastModified": 1643933536,
+        "narHash": "sha256-yRmsWAG4DnLxLIUtlaZsl0kH7rN5xSoyNRlf0YZrcH4=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "28b9ae40c45c5e7711c353fee1b7af734e293979",
+        "rev": "2860d7e3bb350f18f7477858f3513f9798896831",
         "type": "github"
       },
       "original": {
@@ -229,11 +229,11 @@
     },
     "nixpkgs-darwin": {
       "locked": {
-        "lastModified": 1643292922,
-        "narHash": "sha256-wNYjwj9RnSED4xvbNfGBldU08N96TiXvoLPdTaOIvOA=",
+        "lastModified": 1643421252,
+        "narHash": "sha256-icSgAFt+EVW2etGE5Orm8fIf8NeL0OR7luQgXOAdkow=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "97885bb7dd36b559c511c20d13e13affb9fef678",
+        "rev": "46450f2f65f117459157e4ea90e39c6601e38109",
         "type": "github"
       },
       "original": {
@@ -245,11 +245,11 @@
     },
     "nixpkgs-nixos": {
       "locked": {
-        "lastModified": 1643247693,
-        "narHash": "sha256-rmShxIuNjYBz4l83J0J++sug+MURUY1koPCzX4F8hfo=",
+        "lastModified": 1643788601,
+        "narHash": "sha256-6l5Ax44pC/Oo/Muj5Y/NA27Pd38Wty/7GtGSSmYNug4=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "6c4b9f1a2fd761e2d384ef86cff0d208ca27fdca",
+        "rev": "f6ddd55d5f9d5eca08df138c248008c1ba73ecec",
         "type": "github"
       },
       "original": {
@@ -320,11 +320,11 @@
     "rem2html": {
       "flake": false,
       "locked": {
-        "lastModified": 1643337672,
-        "narHash": "sha256-Mz1rEqhy7CIXNMGGb0A7JHe57ijA/D9mt2Lc02IiOkg=",
+        "lastModified": 1643934849,
+        "narHash": "sha256-Oshsco8+27LTQcVE6MHoALw/z/+HK3xFBGSk0P7LR2w=",
         "ref": "master",
-        "rev": "db624d8a8a7464ef29e929c96b8af9b0db9d48d4",
-        "revCount": 1228,
+        "rev": "3e6259532fab3f6428c30379a08189dd81afcff2",
+        "revCount": 1289,
         "type": "git",
         "url": "https://git.skoll.ca/Skollsoft-Public/Remind.git"
       },

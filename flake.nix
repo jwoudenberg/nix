@@ -8,8 +8,8 @@
     darwin.inputs.nixpkgs.follows = "nixpkgs-darwin";
     home-manager.url = "github:nix-community/home-manager/release-21.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs-nixos";
-    comma.url = "github:jwoudenberg/comma";
-    comma.inputs.nixpkgs.follows = "nixpkgs-nixos";
+    comma.url = "github:nix-community/comma";
+    comma.flake = false;
     launch.url = "github:jwoudenberg/launch";
     launch.inputs.nixpkgs.follows = "nixpkgs-nixos";
     random-colors.url = "github:jwoudenberg/random-colors";
@@ -30,7 +30,10 @@
   outputs = inputs: {
     overlays = let
       mkOverlay = system: final: prev: {
-        comma = inputs.comma.defaultPackage.${system};
+        comma = inputs.nixpkgs-nixos.legacyPackages."${system}".callPackage
+          inputs.comma { };
+        elm-pair-neovim-plugin =
+          inputs.elm-pair.packages."${system}".neovim-plugin;
         jwlaunch = inputs.launch.defaultPackage."${system}";
         keepassxc-pass-frontend =
           inputs.keepassxc-pass-frontend.defaultPackage."${system}";

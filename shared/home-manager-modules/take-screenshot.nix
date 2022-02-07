@@ -2,16 +2,18 @@
 # Can be written using `xdg.desktopEntries` home-manager property after
 # 21.11.
 
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 let
   takeScreenshot = pkgs.writeShellScriptBin "take-screenshot" ''
     mkdir -p ~/screenshots
-    grim -g "$(slurp)" ~/screenshots/screenshot_$(date --iso=seconds).png
+    ${pkgs.grim}/bin/grim \
+      -g "$(${pkgs.slurp}/bin/slurp)" \
+      "${config.home.homeDirectory}/screenshots/screenshot_$(date --iso=seconds).png"
   '';
 
 in {
-  config.home.packages = [
+  home.packages = [
     (pkgs.makeDesktopItem {
       name = "Take Screenshot";
       desktopName = "Take Screenshot";

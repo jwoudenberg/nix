@@ -6,7 +6,6 @@
     pkgs.croc
     pkgs.discord
     pkgs.gotop
-    pkgs.grim
     pkgs.i3status
     pkgs.imv
     pkgs.jq
@@ -27,7 +26,6 @@
     pkgs.signal-desktop
     pkgs.similar-sort
     pkgs.shy
-    pkgs.slurp
     pkgs.tabnine
     pkgs.tmate
     pkgs.vale
@@ -46,6 +44,7 @@
     ../shared/home-manager-modules/keepassxc-pass-frontend.nix
     ../shared/home-manager-modules/kitty.nix
     ../shared/home-manager-modules/keepassxc.nix
+    ../shared/home-manager-modules/make-screenrec.nix
     ../shared/home-manager-modules/neovim/default.nix
     ../shared/home-manager-modules/nix-index.nix
     ../shared/home-manager-modules/qutebrowser.nix

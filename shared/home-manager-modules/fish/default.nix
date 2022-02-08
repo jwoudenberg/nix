@@ -30,8 +30,6 @@ in {
       "ssh" = "kitty +kitten ssh";
       "todo" = "nvim ~/docs/org/todo.org";
       "agenda" = "vim ~/hjgames/agenda/agenda.rem";
-      "brighter" = "${pkgs.ddcutil}/bin/ddcutil setvcp 10 + 10";
-      "duller" = "${pkgs.ddcutil}/bin/ddcutil setvcp 10 - 10";
     };
   };
 }

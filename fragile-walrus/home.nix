@@ -36,6 +36,7 @@
   ];
 
   imports = [
+    ../shared/home-manager-modules/brightness.nix
     ../shared/home-manager-modules/direnv.nix
     ../shared/home-manager-modules/fish/default.nix
     ../shared/home-manager-modules/fzf.nix

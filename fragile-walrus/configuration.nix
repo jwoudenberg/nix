@@ -30,44 +30,50 @@ inputs:
     zfs rollback -r trunk/root@blank
   '';
 
-  system.activationScripts.persist = ''
-    # Make /persist public so the rslsync user can look in it.
-    chmod 755 /persist
+  systemd.services.persist-linking = {
+    description = "Create symbolic links to /persist";
+    after = [ "persist.mount" ];
+    wantedBy = [ "multi-user.target" "tailscaled.service" "resilio.service" ];
+    serviceConfig.Type = "oneshot";
+    script = ''
+      # Make /persist public so the rslsync user can look in it.
+      chmod 755 /persist
 
-    # Symbolic links to home directory.
-    ln -sfn /persist/rslsync/books /home/jasper/books
-    ln -sfn /persist/rslsync/jasper /home/jasper/docs
-    ln -sfn /persist/rslsync/hjgames /home/jasper/hjgames
-    ln -sfn /persist/dev /home/jasper/dev
+      # Symbolic links to home directory.
+      ln -sfn /persist/rslsync/books /home/jasper/books
+      ln -sfn /persist/rslsync/jasper /home/jasper/docs
+      ln -sfn /persist/rslsync/hjgames /home/jasper/hjgames
+      ln -sfn /persist/dev /home/jasper/dev
 
-    mkdir -p /home/jasper/.config
-    chown jasper:users /home/jasper/.config
-    ln -sfn /persist/random-colors /home/jasper/.config/random-colors
-    ln -sfn /persist/signal /home/jasper/.config/Signal
-    ln -sfn /persist/keybase /home/jasper/.config/keybase
+      mkdir -p /home/jasper/.config
+      chown jasper:users /home/jasper/.config
+      ln -sfn /persist/random-colors /home/jasper/.config/random-colors
+      ln -sfn /persist/signal /home/jasper/.config/Signal
+      ln -sfn /persist/keybase /home/jasper/.config/keybase
 
-    mkdir -p /home/jasper/.cache
-    chown jasper:users /home/jasper/.cache
-    ln -sfn /persist/nix-index /home/jasper/.cache/nix-index
+      mkdir -p /home/jasper/.cache
+      chown jasper:users /home/jasper/.cache
+      ln -sfn /persist/nix-index /home/jasper/.cache/nix-index
 
-    mkdir -p /home/jasper/.config/TabNine
-    chown jasper:users /home/jasper/.config/TabNine
-    ln -sfn /persist/tabnine/tabnine_config.json /home/jasper/.config/TabNine/tabnine_config.json
+      mkdir -p /home/jasper/.config/TabNine
+      chown jasper:users /home/jasper/.config/TabNine
+      ln -sfn /persist/tabnine/tabnine_config.json /home/jasper/.config/TabNine/tabnine_config.json
 
-    mkdir -p /home/jasper/.local/share/TabNine
-    chown -R jasper:users /home/jasper/.local
-    ln -sfn /persist/tabnine/models /home/jasper/.local/share/TabNine/models
+      mkdir -p /home/jasper/.local/share/TabNine
+      chown -R jasper:users /home/jasper/.local
+      ln -sfn /persist/tabnine/models /home/jasper/.local/share/TabNine/models
 
-    # Tailscale state
-    mkdir -p /var/lib/tailscale
-    ln -sfn /persist/tailscale/files /var/lib/tailscale/files
-    ln -sfn /persist/tailscale/tailscaled.state /var/lib/tailscale/tailscaled.state
-    ln -sfn /persist/tailscale/tailscaled.log.conf /var/lib/tailscale/tailscaled.log.conf
+      # Tailscale state
+      mkdir -p /var/lib/tailscale
+      ln -sfn /persist/tailscale/files /var/lib/tailscale/files
+      ln -sfn /persist/tailscale/tailscaled.state /var/lib/tailscale/tailscaled.state
+      ln -sfn /persist/tailscale/tailscaled.log.conf /var/lib/tailscale/tailscaled.log.conf
 
-    # Set permissions for rslsync dirs (these gets reset sometimes, don't know why)
-    chown -R rslsync:rslsync /persist/rslsync
-    chmod -R 770 /persist/rslsync
-  '';
+      # Set permissions for rslsync dirs (these gets reset sometimes, don't know why)
+      chown -R rslsync:rslsync /persist/rslsync
+      chmod -R 770 /persist/rslsync
+    '';
+  };
 
   environment.etc."NetworkManager/system-connections".source =
     "/persist/system-connections/";

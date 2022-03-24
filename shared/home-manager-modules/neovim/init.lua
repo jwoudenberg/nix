@@ -1,7 +1,6 @@
 -- luacheck: globals vim
 -- VIM SETTINGS
 vim.o.completeopt = "menu,noselect"
-vim.o.digraph = true
 vim.o.expandtab = true
 vim.o.hidden = true
 vim.o.lbr = true;

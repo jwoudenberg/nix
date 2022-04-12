@@ -50,7 +50,9 @@ vim.g.ale_linters = {
     elm = {"make"},
     nim = {"nimcheck"},
     rust = {"cargo"},
-    lua = {"luacheck"}
+    lua = {"luacheck"},
+    bash = {"shellcheck"},
+    sh = {"shellcheck"}
 }
 
 vim.g.ale_sign_error = "✗"

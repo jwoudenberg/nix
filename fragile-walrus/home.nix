@@ -18,6 +18,7 @@
     pkgs.nixfmt
     pkgs.nix-prefetch-github
     pkgs.pdfgrep
+    pkgs.pijul
     pkgs.pulsemixer
     pkgs.random-colors
     pkgs.rem2html

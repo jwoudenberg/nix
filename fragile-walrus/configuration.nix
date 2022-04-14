@@ -50,6 +50,7 @@ inputs:
       ln -sfn /persist/random-colors /home/jasper/.config/random-colors
       ln -sfn /persist/signal /home/jasper/.config/Signal
       ln -sfn /persist/keybase /home/jasper/.config/keybase
+      ln -sfn /persist/pijul /home/jasper/.config/pijul
 
       mkdir -p /home/jasper/.cache
       chown jasper:users /home/jasper/.cache

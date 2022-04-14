@@ -30,6 +30,7 @@
     pkgs.tabnine
     pkgs.tmate
     pkgs.vale
+    pkgs.perlPackages.vidir
     pkgs.wally-cli
     pkgs.wl-clipboard
     pkgs.xdg_utils

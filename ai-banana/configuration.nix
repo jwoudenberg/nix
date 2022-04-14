@@ -52,7 +52,7 @@ in inputs:
   boot.kernel.sysctl."net.ipv6.conf.all.forwarding" = 1;
 
   # Packages
-  environment.systemPackages = [ pkgs.tailscale ];
+  environment.systemPackages = [ pkgs.tailscale pkgs.comma ];
 
   # Tailscale
   services.tailscale.enable = true;

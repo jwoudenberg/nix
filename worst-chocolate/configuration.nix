@@ -24,7 +24,7 @@ inputs:
   zramSwap.enable = true;
 
   # Packages
-  environment.systemPackages = [ pkgs.tailscale ];
+  environment.systemPackages = [ pkgs.tailscale pkgs.comma ];
 
   # Tailscale
   services.tailscale.enable = true;

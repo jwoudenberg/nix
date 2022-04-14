@@ -48,6 +48,7 @@ vim.g.ale_linters_explicit = true
 vim.g.ale_linters = {
     haskell = {"hlint"},
     elm = {"make"},
+    go = {"gobuild"},
     nim = {"nimcheck"},
     rust = {"cargo"},
     lua = {"luacheck"},
@@ -74,16 +75,17 @@ vim.g.polyglot_disabled = {"haskell", "markdown"}
 
 -- NEOFORMAT
 vim.g.neoformat_basic_format_retab = true
-vim.g.neoformat_enabled_nix = {"nixfmt"}
-vim.g.neoformat_enabled_rust = {"rustfmt"}
-vim.g.neoformat_enabled_lua = {"luaformat"}
+vim.g.neoformat_enabled_go = {"gofmt"}
 vim.g.neoformat_enabled_haskell = {"ormolu"}
+vim.g.neoformat_enabled_html = {}
+vim.g.neoformat_enabled_json = {}
+vim.g.neoformat_enabled_lua = {"luaformat"}
+vim.g.neoformat_enabled_markdown = {}
+vim.g.neoformat_enabled_nix = {"nixfmt"}
 vim.g.neoformat_enabled_ruby = {}
+vim.g.neoformat_enabled_rust = {"rustfmt"}
 vim.g.neoformat_enabled_sql = {}
 vim.g.neoformat_enabled_yaml = {}
-vim.g.neoformat_enabled_json = {}
-vim.g.neoformat_enabled_html = {}
-vim.g.neoformat_enabled_markdown = {}
 
 -- FZF
 vim.cmd([[

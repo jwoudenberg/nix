@@ -65,6 +65,11 @@
       modules = [ (import ./ai-banana/configuration.nix inputs) ];
     };
 
+    nixosConfigurations.worst-chocolate = inputs.nixpkgs-nixos.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [ (import ./worst-chocolate/configuration.nix inputs) ];
+    };
+
     darwinConfigurations.sentient-tshirt = inputs.darwin.lib.darwinSystem {
       system = "x86_64-darwin";
       inputs = inputs;

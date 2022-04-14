@@ -24,6 +24,7 @@ in inputs:
     (modulesPath + "/profiles/qemu-guest.nix")
   ];
   boot.loader.grub.device = "/dev/sda";
+  boot.cleanTmpDir = true;
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/bda03ef5-0d25-49a5-87d2-c79383443df8";
     fsType = "ext4";

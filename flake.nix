@@ -10,7 +10,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs-nixos";
     comma.url = "github:nix-community/comma";
     comma.flake = false;
-    elm-pair.url = "/home/jasper/dev/elm-pair";
+    elm-pair.url = "github:jwoudenberg/elm-pair";
     elm-pair.inputs.nixpkgs.follows = "nixpkgs-nixos";
     launch.url = "github:jwoudenberg/launch";
     launch.inputs.nixpkgs.follows = "nixpkgs-nixos";

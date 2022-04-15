@@ -47,17 +47,17 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1649937263,
-        "narHash": "sha256-B5BSfbQTHzo3gyP4RzAR/45A40YEC99y3IgL0I0us0M=",
-        "ref": "main",
-        "rev": "f920d0bcab3f03e8e6b25709e9cea8acf5479c61",
-        "revCount": 650,
-        "type": "git",
-        "url": "file:///persist/dev/elm-pair"
+        "lastModified": 1650022718,
+        "narHash": "sha256-Vdryq3Bn3TFjbt7MvYUsdtKPULj7LweONgQucGnsDjU=",
+        "owner": "jwoudenberg",
+        "repo": "elm-pair",
+        "rev": "eecee5057d38cee5cc02d0f239755756a9b544fe",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:///persist/dev/elm-pair"
+        "owner": "jwoudenberg",
+        "repo": "elm-pair",
+        "type": "github"
       }
     },
     "fenix": {

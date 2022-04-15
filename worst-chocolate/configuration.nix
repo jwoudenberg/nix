@@ -85,4 +85,18 @@ in {
       }
     '';
   };
+
+  systemd.timers.healthchecks = {
+    wantedBy = [ "timers.target" ];
+    partOf = [ "simple-timer.service" ];
+    timerConfig.OnCalendar = "hourly";
+  };
+  systemd.services.healthchecks = {
+    serviceConfig.Type = "oneshot";
+    script = ''
+      set -ux    # No -e because I want to run all checks.
+
+      ${pkgs.curl}/bin/curl https://licensing.elm-pair.com/v1/ping
+    '';
+  };
 }

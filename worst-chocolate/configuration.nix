@@ -59,4 +59,17 @@ inputs:
     ];
   };
 
+  # Elm-pair licensing server
+  systemd.services.elm-pair-licensing-server = {
+    description = "Elm-pair licensing server";
+    after = [ "network-target" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "simple";
+      DynamicUser = true;
+      ExecStart = "${pkgs.elm-pair-licensing-server}/bin/licensing-server";
+      Restart = "on-failure";
+      EnvironmentFile = "/run/secrets/elm-pair-licensing-server-env";
+    };
+  };
 }

@@ -10,6 +10,8 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs-nixos";
     comma.url = "github:nix-community/comma";
     comma.flake = false;
+    elm-pair.url = "/home/jasper/dev/elm-pair";
+    elm-pair.inputs.nixpkgs.follows = "nixpkgs-nixos";
     launch.url = "github:jwoudenberg/launch";
     launch.inputs.nixpkgs.follows = "nixpkgs-nixos";
     random-colors.url = "github:jwoudenberg/random-colors";
@@ -32,8 +34,8 @@
       mkOverlay = system: final: prev: {
         comma = inputs.nixpkgs-nixos.legacyPackages."${system}".callPackage
           inputs.comma { };
-        elm-pair-neovim-plugin =
-          inputs.elm-pair.packages."${system}".neovim-plugin;
+        elm-pair-licensing-server =
+          inputs.elm-pair.packages."${system}".licensing-server;
         jwlaunch = inputs.launch.defaultPackage."${system}";
         keepassxc-pass-frontend =
           inputs.keepassxc-pass-frontend.defaultPackage."${system}";

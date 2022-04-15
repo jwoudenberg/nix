@@ -177,7 +177,6 @@ in inputs:
   services.caddy = {
     enable = true;
     email = "letsencrypt@jasperwoudenberg.com";
-    # Hashes generated with the `caddy hash-password` command.
     config = ''
       :80 {
         respond / `

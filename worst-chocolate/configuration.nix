@@ -1,5 +1,7 @@
 inputs:
-{ config, pkgs, modulesPath, ... }: {
+{ config, pkgs, modulesPath, ... }:
+let elmPairLicensingPort = 8080;
+in {
   # Nix
   system.stateVersion = "21.11";
   networking.hostName = "worst-chocolate";
@@ -49,17 +51,16 @@ inputs:
     allowedTCPPorts = [
       config.services.resilio.listeningPort
       22 # ssh admin
-      80 # webserver
+      443 # webserver
     ];
     allowedUDPPorts = [
       config.services.resilio.listeningPort
       config.services.tailscale.port
       22 # ssh admin
-      80 # webserver
+      443 # webserver
     ];
   };
 
-  # Elm-pair licensing server
   systemd.services.elm-pair-licensing-server = {
     description = "Elm-pair licensing server";
     after = [ "network-target" ];
@@ -69,7 +70,19 @@ inputs:
       DynamicUser = true;
       ExecStart = "${pkgs.elm-pair-licensing-server}/bin/licensing-server";
       Restart = "on-failure";
+      Environment =
+        "ELM_PAIR_LICENSING_SERVER_PORT=${toString elmPairLicensingPort}";
       EnvironmentFile = "/run/secrets/elm-pair-licensing-server-env";
     };
+  };
+
+  services.caddy = {
+    enable = true;
+    email = "letsencrypt@jasperwoudenberg.com";
+    config = ''
+      https://licensing.elm-pair.com {
+        reverse_proxy http://localhost:${toString elmPairLicensingPort}
+      }
+    '';
   };
 }

@@ -47,11 +47,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1650022718,
-        "narHash": "sha256-Vdryq3Bn3TFjbt7MvYUsdtKPULj7LweONgQucGnsDjU=",
+        "lastModified": 1650464924,
+        "narHash": "sha256-BjHT+XnoWSn0+lFc5YpJbWHQgkUYeBgnfofhzUdf2mE=",
         "owner": "jwoudenberg",
         "repo": "elm-pair",
-        "rev": "eecee5057d38cee5cc02d0f239755756a9b544fe",
+        "rev": "dd1479fbad96b497aca32037f7d0062eec6209df",
         "type": "github"
       },
       "original": {

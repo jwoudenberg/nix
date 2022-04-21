@@ -47,6 +47,7 @@
     automatic = true;
     interval = { Weekday = 7; }; # Every sunday
     options = "--delete-older-than 7d";
+    user = "root";
   };
 
   users.users.jasper = { home = "/Users/jasper"; };
@@ -56,27 +57,7 @@
   home-manager.users.jasper = import ./home.nix;
 
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.overlays = [
-    inputs.self.overlays.darwinCustomPkgs
-    # The beautifulsoup python package currently doesn't compile on darwin. It's
-    # needed by kitty. This is a hack 'fixing' it. Can be removed once the
-    # following PR is live: https://github.com/NixOS/nixpkgs/pull/137870
-    (self: super:
-      let lib = super.lib;
-      in rec {
-        python39 = super.python39.override {
-          packageOverrides = self: super: {
-            beautifulsoup4 = super.beautifulsoup4.overrideAttrs (old: {
-              # doCheck = false;
-              propagatedBuildInputs =
-                lib.remove super.lxml old.propagatedBuildInputs;
-            });
-          };
-        };
-        python39Packages = python39.pkgs;
-      })
-
-  ];
+  nixpkgs.overlays = [ inputs.self.overlays.darwinCustomPkgs ];
 
   system.defaults.NSGlobalDomain.AppleKeyboardUIMode = 3;
   system.defaults.NSGlobalDomain.ApplePressAndHoldEnabled = false;

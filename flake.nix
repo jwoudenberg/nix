@@ -9,7 +9,7 @@
     home-manager.url = "github:nix-community/home-manager/release-21.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs-nixos";
     comma.url = "github:nix-community/comma";
-    comma.flake = false;
+    comma.inputs.nixpkgs.follows = "nixpkgs-nixos";
     elm-pair.url = "github:jwoudenberg/elm-pair";
     elm-pair.inputs.nixpkgs.follows = "nixpkgs-nixos";
     launch.url = "github:jwoudenberg/launch";
@@ -32,8 +32,7 @@
   outputs = inputs: {
     overlays = let
       mkOverlay = system: final: prev: {
-        comma = inputs.nixpkgs-nixos.legacyPackages."${system}".callPackage
-          inputs.comma { };
+        comma = inputs.comma.packages."${system}".comma;
         elm-pair-licensing-server =
           inputs.elm-pair.packages."${system}".licensing-server;
         jwlaunch = inputs.launch.defaultPackage."${system}";

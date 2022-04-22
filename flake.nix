@@ -9,7 +9,10 @@
     home-manager.url = "github:nix-community/home-manager/release-21.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs-nixos";
     comma.url = "github:nix-community/comma";
-    comma.inputs.nixpkgs.follows = "nixpkgs-nixos";
+    # letting comma follow pinned nixpkgs currently doesn't work, because it
+    # requires nix version at least 2.4, which isn't in release-21.11. Once
+    # I switch to 22.05 I can comment out the line below.
+    # comma.inputs.nixpkgs.follows = "nixpkgs-nixos";
     elm-pair.url = "github:jwoudenberg/elm-pair";
     elm-pair.inputs.nixpkgs.follows = "nixpkgs-nixos";
     launch.url = "github:jwoudenberg/launch";

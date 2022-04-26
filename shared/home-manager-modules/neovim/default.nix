@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 let
   sources = import ../../nix/sources.nix;
   nivSourceAsPlugin = p:
@@ -6,7 +6,14 @@ let
       name = p.repo;
       src = p;
     };
+  nvim-spell-nl-utf8-dictionary = builtins.fetchurl {
+    url = "http://ftp.vim.org/vim/runtime/spell/nl.utf-8.spl";
+    sha256 = "sha256:1v4knd9i4zf3lhacnkmhxrq0lgk9aj4iisbni9mxi1syhs4lfgni";
+  };
 in {
+  home.file."${config.xdg.configHome}/nvim/spell/nl.utf-8.spl".source =
+    nvim-spell-nl-utf8-dictionary;
+
   programs.neovim = {
     enable = true;
 

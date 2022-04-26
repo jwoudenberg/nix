@@ -11,6 +11,7 @@ vim.o.number = true
 vim.o.path = "**"
 vim.o.shiftround = true
 vim.o.shiftwidth = 2
+vim.o.spelllang = "en_us,nl"
 vim.o.splitbelow = true
 vim.o.splitright = true
 vim.o.tabstop = 2
@@ -32,6 +33,7 @@ vim.api.nvim_set_keymap("n", "gx", open_cmd, {silent = true})
 vim.cmd([[
   augroup custom_commands
     autocmd BufNewFile,BufRead *.pl :set ft=prolog
+    autocmd BufNewFile,BufRead *.md,qutebrowser-editor-* :setlocal spell
     autocmd BufWritePre * :%s/\s\+$//e
     au TextYankPost * silent! lua vim.highlight.on_yank({ timeout = 500 })
   augroup END

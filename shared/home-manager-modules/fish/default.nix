@@ -18,6 +18,8 @@ let
     ${builtins.foldl' (xs: x: ''
       ${xs}
       ${builtins.readFile x}'') "" fishFunctionFiles}
+
+    ${pkgs.remind}/bin/remind -q -g -b1 ~/hjgames/agenda/
   '';
 in {
   programs.fish = {

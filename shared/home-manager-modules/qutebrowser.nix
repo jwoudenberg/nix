@@ -17,6 +17,7 @@
       content.pdfjs = true;
       content.notifications.enabled = false;
       content.register_protocol_handler = false;
+      editor.command = [ "kitty" "nvim" "{file}" ];
     };
   };
 }

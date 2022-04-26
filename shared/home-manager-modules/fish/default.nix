@@ -30,7 +30,7 @@ in {
       "cat" = "${pkgs.bat}/bin/bat";
       "lock" = "swaylock";
       "ssh" = "kitty +kitten ssh";
-      "todo" = "nvim ~/docs/org/todo.org";
+      "todo" = "nvim ~/docs/todo.txt";
       "agenda" = "vim ~/hjgames/agenda/agenda.rem";
     };
   };

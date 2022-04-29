@@ -1,8 +1,11 @@
-{ config, pkgs, inputs, ... }:
+inputs:
+{ config, pkgs, ... }:
 
 {
-
-  imports = [ ../shared/darwin-modules/yubikey-agent.nix ];
+  imports = [
+    ../shared/darwin-modules/yubikey-agent.nix
+    inputs.home-manager.darwinModules.home-manager
+  ];
 
   # List packages installed in system profile.
   environment.systemPackages = [ ];

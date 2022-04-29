@@ -73,12 +73,7 @@
 
     darwinConfigurations.sentient-tshirt = inputs.darwin.lib.darwinSystem {
       system = "x86_64-darwin";
-      inputs = inputs;
-
-      modules = [
-        (import ./sentient-tshirt/configuration.nix)
-        inputs.home-manager.darwinModules.home-manager
-      ];
+      modules = [ (import ./sentient-tshirt/configuration.nix inputs) ];
     };
 
     devShell = let

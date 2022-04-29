@@ -58,10 +58,7 @@
 
     nixosConfigurations.fragile-walrus = inputs.nixpkgs-nixos.lib.nixosSystem {
       system = "x86_64-linux";
-      modules = [
-        (import ./fragile-walrus/configuration.nix inputs)
-        inputs.home-manager.nixosModules.home-manager
-      ];
+      modules = [ (import ./fragile-walrus/configuration.nix inputs) ];
     };
 
     nixosConfigurations.ai-banana = inputs.nixpkgs-nixos.lib.nixosSystem {

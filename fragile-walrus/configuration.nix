@@ -3,8 +3,11 @@ inputs:
 
 {
   disabledModules = [ "services/networking/resilio.nix" ];
-  imports =
-    [ ../shared/nixos-modules/resilio.nix ./hardware-configuration.nix ];
+  imports = [
+    ../shared/nixos-modules/resilio.nix
+    ./hardware-configuration.nix
+    inputs.home-manager.nixosModules.home-manager
+  ];
 
   hardware.cpu.amd.updateMicrocode = true;
   hardware.opengl.enable = true;

@@ -19,7 +19,13 @@ let
       ${xs}
       ${builtins.readFile x}'') "" fishFunctionFiles}
 
-    ${pkgs.remind}/bin/remind -q -g -b1 ~/hjgames/agenda/
+    function today
+      ${pkgs.remind}/bin/remind -q -n -b1 ~/hjgames/agenda/ \
+        | grep (date '+%Y/%m/%d') \
+        | sort
+    end
+
+    today
   '';
 in {
   programs.fish = {

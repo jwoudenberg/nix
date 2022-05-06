@@ -387,15 +387,41 @@ in inputs:
       YARR_ADDR = "127.0.0.1:${toString yarrPort}";
       YARR_BASE = "feeds";
       YARR_DB = "/var/lib/yarr/storage.db";
-      HOME = "/run/yarr"; # yarr won't start without this.
+      HOME = "/var/lib/yarr"; # yarr won't start without this.
     };
     serviceConfig = {
       Type = "simple";
       ExecStart = "${pkgs.yarr}/bin/yarr";
       Restart = "on-failure";
+
+      # Create a user with access to a /var/lib/yarr state directory.
       DynamicUser = true;
       StateDirectory = "yarr";
-      RuntimeDirectory = "yarr";
+
+      # Restrict files yarr can access.
+      TemporaryFileSystem = "/:ro";
+      BindPaths = "/var/lib/yarr";
+      BindReadOnlyPaths = "/nix/store";
+
+      # Various security settings, via `systemd-analyze security yarr`.
+      CapabilityBoundingSet = "";
+      LockPersonality = true;
+      MemoryDenyWriteExecute = true;
+      PrivateDevices = true;
+      PrivateUsers = true;
+      ProtectClock = true;
+      ProtectControlGroups = true;
+      ProtectHome = true;
+      ProtectHostname = true;
+      ProtectKernelLogs = true;
+      ProtectKernelModules = true;
+      ProtectKernelTunables = true;
+      ProtectProc = "invisible";
+      RestrictAddressFamilies = "AF_UNIX AF_INET";
+      RestrictNamespaces = true;
+      RestrictRealtime = true;
+      SystemCallArchitectures = "native";
+      SystemCallFilter = [ "@system-service" "~@privileged @resources" ];
     };
   };
 

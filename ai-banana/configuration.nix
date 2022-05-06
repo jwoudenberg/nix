@@ -455,7 +455,7 @@ in inputs:
       #   }
       # '';
       {
-        image = "subdavis/kobodl";
+        image = "ghcr.io/subdavis/kobodl:latest";
         autoStart = true;
         extraOptions = [ "--network=host" ];
         ports = [ "${toString kobodlPort}:${toString kobodlPort}" ];

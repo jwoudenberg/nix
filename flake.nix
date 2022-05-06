@@ -30,27 +30,39 @@
     keepassxc-pass-frontend.inputs.nixpkgs.follows = "nixpkgs-nixos";
     paulus.url = "github:jwoudenberg/paulus";
     paulus.inputs.nixpkgs.follows = "nixpkgs-nixos";
+    yarr.url = "github:nkanaev/yarr";
+    yarr.flake = false;
   };
 
   outputs = inputs: {
     overlays = let
-      mkOverlay = system: final: prev: {
-        comma = inputs.comma.packages."${system}".comma;
-        elm-pair-licensing-server =
-          inputs.elm-pair.packages."${system}".licensing-server;
-        jwlaunch = inputs.launch.defaultPackage."${system}";
-        keepassxc-pass-frontend =
-          inputs.keepassxc-pass-frontend.defaultPackage."${system}";
-        random-colors = inputs.random-colors.defaultPackage."${system}";
-        rem2html = let pkgs = inputs.nixpkgs-nixos.legacyPackages."${system}";
-        in pkgs.writers.writePerlBin "rem2html" {
-          libraries =
-            [ pkgs.perlPackages.JSONMaybeXS pkgs.perlPackages.GetoptLong ];
-        } (builtins.readFile "${inputs.rem2html}/rem2html/rem2html");
-        similar-sort = inputs.similar-sort.defaultPackage."${system}";
-        shy = inputs.shy.defaultPackage."${system}";
-        paulus = inputs.paulus.defaultPackage."${system}";
-      };
+      mkOverlay = system: final: prev:
+        let pkgs = inputs.nixpkgs-nixos.legacyPackages."${system}";
+        in {
+          comma = inputs.comma.packages."${system}".comma;
+          elm-pair-licensing-server =
+            inputs.elm-pair.packages."${system}".licensing-server;
+          jwlaunch = inputs.launch.defaultPackage."${system}";
+          keepassxc-pass-frontend =
+            inputs.keepassxc-pass-frontend.defaultPackage."${system}";
+          random-colors = inputs.random-colors.defaultPackage."${system}";
+          rem2html = pkgs.writers.writePerlBin "rem2html" {
+            libraries =
+              [ pkgs.perlPackages.JSONMaybeXS pkgs.perlPackages.GetoptLong ];
+          } (builtins.readFile "${inputs.rem2html}/rem2html/rem2html");
+          similar-sort = inputs.similar-sort.defaultPackage."${system}";
+          shy = inputs.shy.defaultPackage."${system}";
+          paulus = inputs.paulus.defaultPackage."${system}";
+          yarr = pkgs.buildGoModule {
+            name = "yarr";
+            src = inputs.yarr;
+            vendorSha256 = "yXnoibqa0+lHhX3I687thGgasaVeNiHpGFmtEnH7oWY=";
+            subPackages = [ "src" ];
+            tags = [ "sqlite_foreign_keys" "release" "linux" ];
+            ldflags = [ "-s" "-w" ];
+            postInstall = "mv $out/bin/src $out/bin/yarr";
+          };
+        };
     in {
       darwinCustomPkgs = mkOverlay "x86_64-darwin";
       linuxCustomPkgs = mkOverlay "x86_64-linux";

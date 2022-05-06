@@ -2,6 +2,8 @@ let
   webdavPort = 8080;
   paulusPort = 8081;
   kobodlPort = 8084;
+  kobodlPort2 = 8085;
+  yarrPort = 8086;
 in inputs:
 { pkgs, config, modulesPath, ... }: {
 
@@ -187,11 +189,12 @@ in inputs:
               <ul>
                 <li><a href="/files/">files</a></li>
                 <li><a href="/music/">music</a></li>
+                <li><a href="/feeds/">feeds</a></li>
                 <li><a href="/books/">books</a></li>
                 <li><a href="/calendar/">calendar</a></li>
                 <li><a href="/paulus/">paulus</a></li>
                 <li><a href="http://ai-banana:${
-                  toString (kobodlPort + 1)
+                  toString kobodlPort2
                 }">kobo upload</a></li>
                 <li><a href="http://ai-banana:${
                   toString config.services.adguardhome.port
@@ -204,6 +207,11 @@ in inputs:
         redir /files /files/
         reverse_proxy /files/* {
           to localhost:${toString webdavPort}
+        }
+
+        redir /feeds /feeds/
+        reverse_proxy /feeds/* {
+          to localhost:${toString yarrPort}
         }
 
         redir /paulus /paulus/
@@ -231,7 +239,7 @@ in inputs:
         }
       }
 
-      :${toString (kobodlPort + 1)} {
+      :${toString kobodlPort2} {
         reverse_proxy localhost:${toString kobodlPort}
       }
     '';
@@ -371,7 +379,41 @@ in inputs:
     '';
   };
 
+  systemd.services.yarr = {
+    description = "yarr";
+    after = [ "network.target" ];
+    wantedBy = [ "multi-user.target" ];
+    environment = {
+      YARR_ADDR = "127.0.0.1:${toString yarrPort}";
+      YARR_BASE = "feeds";
+      YARR_DB = "/var/lib/yarr/storage.db";
+      HOME = "/run/yarr"; # yarr won't start without this.
+    };
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.yarr}/bin/yarr";
+      Restart = "on-failure";
+      DynamicUser = true;
+      StateDirectory = "yarr";
+      RuntimeDirectory = "yarr";
+    };
+  };
+
   services.adguardhome = { enable = true; };
+
+  systemd.timers.backup_var_lib = {
+    wantedBy = [ "timers.target" ];
+    partOf = [ "simple-timer.service" ];
+    timerConfig.OnCalendar = "hourly";
+  };
+  systemd.services.backup_var_lib = {
+    serviceConfig = { Type = "oneshot"; };
+    script = ''
+      ${pkgs.rsync}/bin/rsync --archive --human-readable --partial --delete \
+        /var/lib \
+        /srv/volume1/varlib.backup
+    '';
+  };
 
   virtualisation.oci-containers = {
     containers.kobodl =

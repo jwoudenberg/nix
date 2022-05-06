@@ -453,7 +453,8 @@
         "random-colors": "random-colors",
         "rem2html": "rem2html",
         "shy": "shy",
-        "similar-sort": "similar-sort"
+        "similar-sort": "similar-sort",
+        "yarr": "yarr"
       }
     },
     "rust-analyzer-src": {
@@ -557,6 +558,22 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "yarr": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1651607964,
+        "narHash": "sha256-oZVu13p1cskxwevbpIhUP5nS3lg4AMfT/Vif79nw3/w=",
+        "owner": "nkanaev",
+        "repo": "yarr",
+        "rev": "e1a6ccf1330cbf4a3ccbf41a41d93369ac4919fa",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nkanaev",
+        "repo": "yarr",
         "type": "github"
       }
     }

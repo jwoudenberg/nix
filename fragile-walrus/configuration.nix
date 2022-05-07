@@ -209,12 +209,44 @@ inputs:
   services.pcscd.enable = true; # For Yubikey support
   services.fwupd.enable = true;
 
+  # zrepl
+  services.zrepl = {
+    enable = true;
+    settings = {
+      jobs = [{
+        type = "push";
+        name = "backup_persist";
+        filesystems = {
+          "trunk" = false;
+          "trunk/persist" = true;
+        };
+        connect = {
+          type = "tcp";
+          address = "ai-banana:8087";
+        };
+        snapshotting = { type = "manual"; };
+        send = { encrypted = true; };
+        pruning = {
+          # Keep all snapshots locally. Pruning of local snapshots is performed
+          # by the services.zfs.autoSnapshot configuration.
+          keep_sender = [{
+            type = "regex";
+            regex = ".*";
+          }];
+          keep_receiver = [{
+            type = "regex";
+            negate = true;
+            regex = ".*";
+          }];
+        };
+      }];
+    };
+  };
+
   xdg.portal = {
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
   };
-
-  users.extraGroups.vboxusers.members = [ "jasper" ];
 
   users.mutableUsers = false;
   users.users.jasper = {

@@ -4,6 +4,7 @@ let
   kobodlPort = 8084;
   kobodlPort2 = 8085;
   yarrPort = 8086;
+  zreplPort = 8087;
 in inputs:
 { pkgs, config, modulesPath, ... }: {
 
@@ -471,5 +472,23 @@ in inputs:
       "--port"
       "${toString kobodlPort}"
     ];
+  };
+
+  # zrepl
+  services.zrepl = {
+    enable = true;
+    settings = {
+      jobs = [{
+        type = "sink";
+        name = "tailscale_backups_sink";
+        root_fs = "trunk/tailscale_backups";
+        serve = {
+          type = "tcp";
+          listen = ":${toString zreplPort}";
+          listen_freebind = true;
+          clients = { "100.64.0.0/10" = "tailscale-*"; };
+        };
+      }];
+    };
   };
 }

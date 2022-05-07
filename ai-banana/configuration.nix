@@ -287,10 +287,9 @@ in inputs:
       Type = "simple";
       User = "rslsync";
       Group = "rslsync";
-      ExecStart =
-        "${pkgs.rclone}/bin/rclone serve webdav /srv/volume1 --addr :${
+      ExecStart = "${pkgs.rclone}/bin/rclone serve http /srv/volume1 --addr :${
           toString webdavPort
-        } --baseurl files/";
+        } --read-only --baseurl files/";
       Restart = "on-failure";
     };
   };

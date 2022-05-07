@@ -164,6 +164,7 @@ in inputs:
     in builtins.attrValues (builtins.mapAttrs configFor dirs);
   };
 
+  # navidrome
   services.navidrome = {
     enable = true;
     settings = {
@@ -278,7 +279,7 @@ in inputs:
     };
   };
 
-  # rclone
+  # web-based filebrowser
   systemd.services.rclone-serve-webdav = {
     description = "Rclone Serve";
     after = [ "network.target" ];
@@ -294,6 +295,7 @@ in inputs:
     };
   };
 
+  # scanner sftp
   systemd.services.rclone-serve-sftp = {
     description = "Rclone Serve";
     after = [ "network.target" ];
@@ -326,7 +328,6 @@ in inputs:
       MakeDirectory = true;
     };
   };
-
   systemd.services.ocrmypdf = {
     enable = true;
     description =
@@ -378,6 +379,7 @@ in inputs:
     '';
   };
 
+  # yarr
   systemd.services.yarr = {
     description = "yarr";
     after = [ "network.target" ];
@@ -424,8 +426,10 @@ in inputs:
     };
   };
 
+  # adguard
   services.adguardhome = { enable = true; };
 
+  # backup /var/lib
   systemd.timers.backup_var_lib = {
     wantedBy = [ "timers.target" ];
     partOf = [ "simple-timer.service" ];
@@ -440,34 +444,32 @@ in inputs:
     '';
   };
 
-  virtualisation.oci-containers = {
-    containers.kobodl =
-      # configDir = pkgs.writeTextDir "config/kobodl.json" ''
-      #   {
-      #     "users": [];
-      #     "calibre_web": {
-      #       "enabled" = true,
-      #       "url" = "localhost/books/upload",
-      #       "username" = "",
-      #       "password" = ""
-      #     }
-      #   }
-      # '';
-      {
-        image = "ghcr.io/subdavis/kobodl:latest";
-        autoStart = true;
-        extraOptions = [ "--network=host" ];
-        ports = [ "${toString kobodlPort}:${toString kobodlPort}" ];
-        volumes = [ "/srv/volume1/kobodl:/kobodl" ];
-        cmd = [
-          "--config"
-          "/kobodl/kobodl.json"
-          "serve"
-          "--host"
-          "0.0.0.0"
-          "--port"
-          "${toString kobodlPort}"
-        ];
-      };
+  # kobodl
+  virtualisation.oci-containers.containers.kobodl = {
+    # configDir = pkgs.writeTextDir "config/kobodl.json" ''
+    #   {
+    #     "users": [];
+    #     "calibre_web": {
+    #       "enabled" = true,
+    #       "url" = "localhost/books/upload",
+    #       "username" = "",
+    #       "password" = ""
+    #     }
+    #   }
+    # '';
+    image = "ghcr.io/subdavis/kobodl:latest";
+    autoStart = true;
+    extraOptions = [ "--network=host" ];
+    ports = [ "${toString kobodlPort}:${toString kobodlPort}" ];
+    volumes = [ "/srv/volume1/kobodl:/kobodl" ];
+    cmd = [
+      "--config"
+      "/kobodl/kobodl.json"
+      "serve"
+      "--host"
+      "0.0.0.0"
+      "--port"
+      "${toString kobodlPort}"
+    ];
   };
 }

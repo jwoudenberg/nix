@@ -108,6 +108,11 @@ inputs:
     enable = true;
     vt = 2;
     settings = {
+      # Automatically login. I already entered a password to unlock the disk.
+      initial_session = {
+        command = "sway";
+        user = "jasper";
+      };
       default_session = {
         command =
           "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --greeting 'Hoi!' --cmd sway";

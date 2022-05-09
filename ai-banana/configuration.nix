@@ -45,7 +45,6 @@ in inputs:
   services.zfs = {
     autoScrub.enable = true;
     trim.enable = true;
-    autoSnapshot.enable = true;
   };
 
   # Enable IP forwarding to allow this machine to function as a tailscale exit
@@ -478,17 +477,39 @@ in inputs:
   services.zrepl = {
     enable = true;
     settings = {
-      jobs = [{
-        type = "sink";
-        name = "tailscale_backups_sink";
-        root_fs = "trunk/tailscale_backups";
-        serve = {
-          type = "tcp";
-          listen = ":${toString zreplPort}";
-          listen_freebind = true;
-          clients = { "100.64.0.0/10" = "tailscale-*"; };
-        };
-      }];
+      jobs = [
+        {
+          type = "sink";
+          name = "tailscale_backups_sink";
+          root_fs = "trunk/tailscale_backups";
+          serve = {
+            type = "tcp";
+            listen = ":${toString zreplPort}";
+            listen_freebind = true;
+            clients = { "100.64.0.0/10" = "tailscale-*"; };
+          };
+        }
+        {
+          type = "snap";
+          name = "volume1_backups";
+          filesystems = {
+            "trunk" = false;
+            "trunk/volume1" = true;
+          };
+          snapshotting = {
+            type = "periodic";
+            prefix = "zrepl_";
+            interval = "10m";
+          };
+          pruning = {
+            keep = [{
+              type = "grid";
+              regex = ".*";
+              grid = "1x1h(keep=all) | 24x1h | 6x1d | 4x7d | 120x30d";
+            }];
+          };
+        }
+      ];
     };
   };
 }

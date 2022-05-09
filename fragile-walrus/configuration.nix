@@ -30,7 +30,7 @@ inputs:
   # Reset root filesystem at boot
   boot.initrd.supportedFilesystems = [ "zfs" ];
   boot.initrd.postDeviceCommands = lib.mkAfter ''
-    zfs rollback -r trunk/root@blank
+    zfs rollback -r trunk/encrypted/root@blank
   '';
 
   systemd.services.persist-linking = {
@@ -102,14 +102,6 @@ inputs:
   services.zfs = {
     autoScrub.enable = true;
     trim.enable = true;
-    autoSnapshot = {
-      enable = true;
-      frequent = 4;
-      hourly = 24;
-      daily = 7;
-      weekly = 4;
-      monthly = 10 * 12;
-    };
   };
 
   services.greetd = {
@@ -218,25 +210,30 @@ inputs:
         name = "backup_persist";
         filesystems = {
           "trunk" = false;
-          "trunk/persist" = true;
+          "trunk/encrypted/persist" = true;
         };
         connect = {
           type = "tcp";
           address = "ai-banana:8087";
         };
-        snapshotting = { type = "manual"; };
+        snapshotting = {
+          type = "periodic";
+          prefix = "zrepl_";
+          interval = "10m";
+        };
         send = { encrypted = true; };
         pruning = {
           # Keep all snapshots locally. Pruning of local snapshots is performed
           # by the services.zfs.autoSnapshot configuration.
           keep_sender = [{
-            type = "regex";
-            regex = ".*";
+            type = "grid";
+            regex = "zrepl_.*";
+            grid = "1x1h(keep=all) | 24x1h | 6x1d | 4x7d | 120x30d";
           }];
           keep_receiver = [{
-            type = "regex";
-            negate = true;
-            regex = ".*";
+            type = "grid";
+            regex = "zrepl_.*";
+            grid = "1x1h(keep=all) | 24x1h | 6x1d | 4x7d | 120x30d";
           }];
         };
       }];

@@ -12,18 +12,21 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
-    device = "trunk/root";
+    device = "trunk/encrypted/root";
     fsType = "zfs";
+    options = [ "zfsutil" ];
   };
 
   fileSystems."/nix" = {
-    device = "trunk/nix";
+    device = "trunk/encrypted/nix";
     fsType = "zfs";
+    options = [ "zfsutil" ];
   };
 
   fileSystems."/persist" = {
-    device = "trunk/persist";
+    device = "trunk/encrypted/persist";
     fsType = "zfs";
+    options = [ "zfsutil" ];
   };
 
   fileSystems."/boot" = {

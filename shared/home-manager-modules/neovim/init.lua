@@ -83,6 +83,7 @@ vim.g.neoformat_enabled_html = {}
 vim.g.neoformat_enabled_json = {}
 vim.g.neoformat_enabled_lua = {"luaformat"}
 vim.g.neoformat_enabled_markdown = {}
+vim.g.neoformat_enabled_nim = {"nimpretty"}
 vim.g.neoformat_enabled_nix = {"nixfmt"}
 vim.g.neoformat_enabled_ruby = {}
 vim.g.neoformat_enabled_rust = {"rustfmt"}

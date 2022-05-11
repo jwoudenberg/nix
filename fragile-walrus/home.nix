@@ -31,6 +31,7 @@
     pkgs.tmate
     pkgs.vale
     pkgs.perlPackages.vidir
+    pkgs.visidata
     pkgs.wally-cli
     pkgs.wl-clipboard
     pkgs.xdg_utils

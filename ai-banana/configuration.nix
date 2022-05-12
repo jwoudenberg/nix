@@ -5,6 +5,7 @@ let
   kobodlPort2 = 8085;
   yarrPort = 8086;
   zreplPort = 8087;
+  todoTxtWebPort = 8088;
 in inputs:
 { pkgs, config, modulesPath, ... }: {
 
@@ -193,6 +194,7 @@ in inputs:
                 <li><a href="/feeds/">feeds</a></li>
                 <li><a href="/books/">books</a></li>
                 <li><a href="/calendar/">calendar</a></li>
+                <li><a href="/todos/">todos</a></li>
                 <li><a href="/paulus/">paulus</a></li>
                 <li><a href="http://ai-banana:${
                   toString kobodlPort2
@@ -238,6 +240,12 @@ in inputs:
           root * /srv/volume1/hjgames/agenda
           file_server
         }
+
+        redir /todos /todos/
+        reverse_proxy /todos/* {
+          to localhost:${toString todoTxtWebPort}
+        }
+
       }
 
       :${toString kobodlPort2} {
@@ -423,6 +431,24 @@ in inputs:
       RestrictRealtime = true;
       SystemCallArchitectures = "native";
       SystemCallFilter = [ "@system-service" "~@privileged @resources" ];
+    };
+  };
+
+  # todo-txt-web
+  systemd.services.todo-txt-web = {
+    description = "todo.txt web";
+    after = [ "network-target" ];
+    wantedBy = [ "multi-user.target" ];
+    environment = {
+      PORT = toString todoTxtWebPort;
+      TODO_TXT_PATH = "/srv/volume1/hjgames/todo.txt";
+    };
+    serviceConfig = {
+      Type = "simple";
+      User = "rslsync";
+      Group = "rslsync";
+      ExecStart = "${pkgs.todo-txt-web}/bin/todo-txt-web";
+      Restart = "on-failure";
     };
   };
 

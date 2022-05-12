@@ -178,6 +178,21 @@
         "type": "github"
       }
     },
+    "flake-utils_6": {
+      "locked": {
+        "lastModified": 1649676176,
+        "narHash": "sha256-OWKJratjt2RW151VUlJPRALb7OU2S5s+f0vLj4o1bHM=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "a4b154ebbdc88c8498a5c7b01589addc9e9cb678",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -454,6 +469,7 @@
         "rem2html": "rem2html",
         "shy": "shy",
         "similar-sort": "similar-sort",
+        "todo-txt-web": "todo-txt-web",
         "yarr": "yarr"
       }
     },
@@ -514,6 +530,27 @@
         "ref": "main",
         "type": "git",
         "url": "https://git.bytes.zone/brian/similar-sort.git"
+      }
+    },
+    "todo-txt-web": {
+      "inputs": {
+        "flake-utils": "flake-utils_6",
+        "nixpkgs": [
+          "nixpkgs-nixos"
+        ]
+      },
+      "locked": {
+        "lastModified": 1652358324,
+        "narHash": "sha256-RIGRnkPlGSwTd/wlGe3zwenum78BzhzTGtrhVOFlgDI=",
+        "owner": "jwoudenberg",
+        "repo": "todo-txt-web",
+        "rev": "ec0ad193b1eb32e79792217e90a802097f7e35f0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jwoudenberg",
+        "repo": "todo-txt-web",
+        "type": "github"
       }
     },
     "utils": {

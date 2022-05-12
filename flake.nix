@@ -30,6 +30,8 @@
     keepassxc-pass-frontend.inputs.nixpkgs.follows = "nixpkgs-nixos";
     paulus.url = "github:jwoudenberg/paulus";
     paulus.inputs.nixpkgs.follows = "nixpkgs-nixos";
+    todo-txt-web.url = "github:jwoudenberg/todo-txt-web";
+    todo-txt-web.inputs.nixpkgs.follows = "nixpkgs-nixos";
     yarr.url = "github:nkanaev/yarr";
     yarr.flake = false;
   };
@@ -53,6 +55,7 @@
           similar-sort = inputs.similar-sort.defaultPackage."${system}";
           shy = inputs.shy.defaultPackage."${system}";
           paulus = inputs.paulus.defaultPackage."${system}";
+          todo-txt-web = inputs.todo-txt-web.defaultPackage."${system}";
           yarr = pkgs.buildGoModule {
             name = "yarr";
             src = inputs.yarr;

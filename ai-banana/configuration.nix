@@ -191,7 +191,7 @@ in inputs:
         }
 
         respond / `
-          <! DOCTYPE html>
+          <!DOCTYPE html>
           <html>
             <head><title>ai-banana</title></head>
             <body>

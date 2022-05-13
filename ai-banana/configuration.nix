@@ -449,6 +449,7 @@ in inputs:
     environment = {
       PORT = toString todoTxtWebPort;
       TODO_TXT_PATH = "/srv/volume1/hjgames/todo.txt";
+      TITLE = "Hiske + Jasper Todos";
     };
     serviceConfig = {
       Type = "simple";

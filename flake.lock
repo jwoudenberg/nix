@@ -540,11 +540,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1652358324,
-        "narHash": "sha256-RIGRnkPlGSwTd/wlGe3zwenum78BzhzTGtrhVOFlgDI=",
+        "lastModified": 1652456263,
+        "narHash": "sha256-G5TgBJZ9S3G9ud7MepLcL9V2uruQYWP9D0SsLHgHYyo=",
         "owner": "jwoudenberg",
         "repo": "todo-txt-web",
-        "rev": "ec0ad193b1eb32e79792217e90a802097f7e35f0",
+        "rev": "9e1874c26a707f5792c563200dc0686553c72c3d",
         "type": "github"
       },
       "original": {

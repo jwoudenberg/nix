@@ -191,6 +191,7 @@ in inputs:
         }
 
         respond / `
+          <! DOCTYPE html>
           <html>
             <head><title>ai-banana</title></head>
             <body>
@@ -210,6 +211,12 @@ in inputs:
                   toString config.services.adguardhome.port
                 }">ad-blocking</a></li>
               </ul>
+              <style>
+                body {
+                  font-family: arial, sans-serif;
+                  font-size: 1.4em;
+                }
+              </style>
             </body>
           </html>
         `

@@ -533,6 +533,23 @@ in inputs:
             type = "periodic";
             prefix = "zrepl_";
             interval = "10m";
+            hooks = [{
+              type = "command";
+              timeout = "30s";
+              err_is_fatal = false;
+              path = let
+                script = pkgs.writeShellApplication {
+                  name = "zrepl-healthchecks-update";
+                  text = ''
+                    if [ "$ZREPL_HOOKTYPE" != "post_snapshot" ]; then exit 0; fi
+                    if [ "$ZREPL_DRYRUN" == "true" ]; then exit 0; fi
+                    ${pkgs.curl}/bin/curl -fsS -m 10 --retry 5 \
+                      --data-raw "$ZREPL_FS: $ZREPL_SNAPNAME" \
+                      https://hc-ping.com/97cfd67a-ff76-43d6-bebd-511847e0f6d5
+                  '';
+                };
+              in "${script}/bin/zrepl-healthchecks-update";
+            }];
           };
           pruning = {
             keep = [{

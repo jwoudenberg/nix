@@ -183,6 +183,13 @@ in inputs:
     email = "letsencrypt@jasperwoudenberg.com";
     config = ''
       :80 {
+        file_server /favicon.ico {
+          root ${
+            pkgs.runCommand "ai-banana-favicon-dir" { }
+            "install -DT ${./favicon.ico} $out/favicon.ico"
+          }
+        }
+
         respond / `
           <html>
             <head><title>ai-banana</title></head>

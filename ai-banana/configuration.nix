@@ -6,6 +6,7 @@ let
   yarrPort = 8086;
   zreplPort = 8087;
   todoTxtWebPort = 8088;
+  bookAlertPort = 8089;
 in inputs:
 { pkgs, config, modulesPath, ... }: {
 
@@ -512,6 +513,20 @@ in inputs:
       "--port"
       "${toString kobodlPort}"
     ];
+  };
+
+  # book-alert
+  systemd.services.book-alert = {
+    description = "Book-alert";
+    after = [ "network-target" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "simple";
+      DynamicUser = true;
+      ExecStart = "${pkgs.book-alert}/bin/book-alert";
+      Restart = "on-failure";
+      Environment = "PORT=${toString bookAlertPort}";
+    };
   };
 
   # zrepl

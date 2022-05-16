@@ -8,6 +8,8 @@
     darwin.inputs.nixpkgs.follows = "nixpkgs-darwin";
     home-manager.url = "github:nix-community/home-manager/release-21.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs-nixos";
+    book-alert.url = "github:jwoudenberg/book-alert";
+    book-alert.inputs.nixpkgs.follows = "nixpkgs-nixos";
     comma.url = "github:nix-community/comma";
     # letting comma follow pinned nixpkgs currently doesn't work, because it
     # requires nix version at least 2.4, which isn't in release-21.11. Once
@@ -41,6 +43,7 @@
       mkOverlay = system: final: prev:
         let pkgs = inputs.nixpkgs-nixos.legacyPackages."${system}";
         in {
+          book-alert = inputs.book-alert.defaultPackage."${system}";
           comma = inputs.comma.packages."${system}".comma;
           elm-pair-licensing-server =
             inputs.elm-pair.packages."${system}".licensing-server;

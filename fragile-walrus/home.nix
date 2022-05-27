@@ -22,14 +22,12 @@
     pkgs.pulsemixer
     pkgs.random-colors
     pkgs.rem2html
-    pkgs.ripgrep
     pkgs.shellcheck
     pkgs.signal-desktop
     pkgs.similar-sort
     pkgs.shy
     pkgs.tabnine
     pkgs.tmate
-    pkgs.vale
     pkgs.perlPackages.vidir
     pkgs.visidata
     pkgs.wally-cli
@@ -57,7 +55,7 @@
     ../shared/home-manager-modules/ssh.nix
     ../shared/home-manager-modules/sway.nix
     ../shared/home-manager-modules/take-screenshot.nix
-    ../shared/home-manager-modules/vale/default.nix
+    ../shared/home-manager-modules/vale.nix
     ../shared/home-manager-modules/wlsunset.nix
   ];
 

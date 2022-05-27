@@ -33,7 +33,7 @@ vim.api.nvim_set_keymap("n", "gx", open_cmd, {silent = true})
 vim.cmd([[
   augroup custom_commands
     autocmd BufNewFile,BufRead *.pl :set ft=prolog
-    autocmd BufNewFile,BufRead *.md,qutebrowser-editor-* :setlocal spell
+    autocmd BufNewFile,BufRead *.md,COMMIT_EDITMSG,qutebrowser-editor-* :setlocal spell
     autocmd BufWritePre * :%s/\s\+$//e
     au TextYankPost * silent! lua vim.highlight.on_yank({ timeout = 500 })
   augroup END
@@ -47,13 +47,16 @@ vim.g.lightline = {colorscheme = "nord"}
 -- ALE
 vim.g.ale_use_global_executables = true
 vim.g.ale_linters_explicit = true
+vim.g.ale_linter_aliases = {gitcommit = {"markdown", "gitcommit"}}
 vim.g.ale_linters = {
     haskell = {"hlint"},
     elm = {"make"},
+    gitcommit = {"vale"},
     go = {"gobuild"},
     nim = {"nimcheck"},
     rust = {"cargo"},
     lua = {"luacheck"},
+    markdown = {"vale"},
     bash = {"shellcheck"},
     sh = {"shellcheck"}
 }
@@ -82,7 +85,7 @@ vim.g.neoformat_enabled_haskell = {"ormolu"}
 vim.g.neoformat_enabled_html = {}
 vim.g.neoformat_enabled_json = {}
 vim.g.neoformat_enabled_lua = {"luaformat"}
-vim.g.neoformat_enabled_markdown = {}
+vim.g.neoformat_enabled_markdown = {"vale"}
 vim.g.neoformat_enabled_nim = {"nimpretty"}
 vim.g.neoformat_enabled_nix = {"nixfmt"}
 vim.g.neoformat_enabled_ruby = {}

@@ -11,11 +11,9 @@
     pkgs.mosh
     pkgs.nixfmt
     pkgs.random-colors
-    pkgs.ripgrep
     pkgs.shellcheck
     pkgs.shy
     pkgs.similar-sort
-    pkgs.vale
   ];
 
   imports = [
@@ -30,7 +28,7 @@
     ../shared/home-manager-modules/readline.nix
     ../shared/home-manager-modules/ripgrep.nix
     ../shared/home-manager-modules/ssh.nix
-    ../shared/home-manager-modules/vale/default.nix
+    ../shared/home-manager-modules/vale.nix
   ];
 
   programs.kitty.settings.font_size = 18;

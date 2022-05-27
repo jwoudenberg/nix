@@ -507,6 +507,10 @@
         "shy": "shy",
         "similar-sort": "similar-sort",
         "todo-txt-web": "todo-txt-web",
+        "vale-Joblint": "vale-Joblint",
+        "vale-alex": "vale-alex",
+        "vale-proselint": "vale-proselint",
+        "vale-write-good": "vale-write-good",
         "yarr": "yarr"
       }
     },
@@ -632,6 +636,70 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "vale-Joblint": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1617823289,
+        "narHash": "sha256-zRz5ThOg5RLTZj3dYPe0PDvOF5DjO31lduSpi2Us87U=",
+        "owner": "errata-ai",
+        "repo": "Joblint",
+        "rev": "0be7f386e90ac7490663d7582754f0179a69d882",
+        "type": "github"
+      },
+      "original": {
+        "owner": "errata-ai",
+        "repo": "Joblint",
+        "type": "github"
+      }
+    },
+    "vale-alex": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1629756665,
+        "narHash": "sha256-wrsZgLE8MwVLzJuVSzeq8kUSpkHkeInAIaZRp+qXEIw=",
+        "owner": "errata-ai",
+        "repo": "alex",
+        "rev": "94685793eb1d1101170653b6a754ce1d6ad36d02",
+        "type": "github"
+      },
+      "original": {
+        "owner": "errata-ai",
+        "repo": "alex",
+        "type": "github"
+      }
+    },
+    "vale-proselint": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1604717132,
+        "narHash": "sha256-zOSQ7tvZH8v0nS5E8YhvZhA4L+GvkdMugM+eXqJbaxU=",
+        "owner": "errata-ai",
+        "repo": "proselint",
+        "rev": "f9cc800a459bddebdac1ad517bc2bc4b5522153d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "errata-ai",
+        "repo": "proselint",
+        "type": "github"
+      }
+    },
+    "vale-write-good": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1588623410,
+        "narHash": "sha256-A0vuV4BdumbCb14wxiH5Sc9S75Yx8xwQqWzpfi43+ls=",
+        "owner": "errata-ai",
+        "repo": "write-good",
+        "rev": "2d116619b7662d9d59201e8808254e715fc83cc8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "errata-ai",
+        "repo": "write-good",
         "type": "github"
       }
     },

@@ -34,6 +34,14 @@
     paulus.inputs.nixpkgs.follows = "nixpkgs-nixos";
     todo-txt-web.url = "github:jwoudenberg/todo-txt-web";
     todo-txt-web.inputs.nixpkgs.follows = "nixpkgs-nixos";
+    vale-Joblint.flake = false;
+    vale-Joblint.url = "github:errata-ai/Joblint";
+    vale-alex.flake = false;
+    vale-alex.url = "github:errata-ai/alex";
+    vale-proselint.flake = false;
+    vale-proselint.url = "github:errata-ai/proselint";
+    vale-write-good.flake = false;
+    vale-write-good.url = "github:errata-ai/write-good";
     yarr.url = "github:nkanaev/yarr";
     yarr.flake = false;
   };
@@ -59,6 +67,24 @@
           shy = inputs.shy.defaultPackage."${system}";
           paulus = inputs.paulus.defaultPackage."${system}";
           todo-txt-web = inputs.todo-txt-web.defaultPackage."${system}";
+          valeStyles = pkgs.linkFarm "vale-styles" [
+            {
+              name = "alex";
+              path = "${inputs.vale-alex}/alex";
+            }
+            {
+              name = "Joblint";
+              path = "${inputs.vale-Joblint}/Joblint";
+            }
+            {
+              name = "proselint";
+              path = "${inputs.vale-proselint}/proselint";
+            }
+            {
+              name = "write-good";
+              path = "${inputs.vale-write-good}/write-good";
+            }
+          ];
           yarr = pkgs.buildGoModule {
             name = "yarr";
             src = inputs.yarr;

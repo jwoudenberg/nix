@@ -35,9 +35,7 @@ in {
       gitsigns-nvim
       lightline-vim
       neoformat
-      neogit
       nord-vim
-      plenary-nvim # required by neogit
       polyglot
       quickfix-reflector-vim
       todo-txt-vim

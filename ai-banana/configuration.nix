@@ -59,7 +59,10 @@ in inputs:
   environment.systemPackages = [ pkgs.tailscale pkgs.comma ];
 
   # Tailscale
-  services.tailscale.enable = true;
+  services.tailscale = {
+    enable = true;
+    permitCertUid = "caddy";
+  };
 
   # SSH
   services.openssh.enable = true;
@@ -183,7 +186,11 @@ in inputs:
     enable = true;
     email = "letsencrypt@jasperwoudenberg.com";
     extraConfig = ''
-      :80 {
+      http://${config.networking.hostName}:80 {
+        redir https://ai-banana.panther-trout.ts.net{uri} permanent
+      }
+
+      https://ai-banana.panther-trout.ts.net {
         file_server /favicon.ico {
           root ${
             pkgs.runCommand "ai-banana-favicon-dir" { }
@@ -194,9 +201,9 @@ in inputs:
         respond / `
           <!DOCTYPE html>
           <html>
-            <head><title>ai-banana</title></head>
+            <head><title>${config.networking.hostName}</title></head>
             <body>
-              <h1>ai-banana</h1>
+              <h1>${config.networking.hostName}</h1>
               <ul>
                 <li><a href="/files/">files</a></li>
                 <li><a href="/music/">music</a></li>
@@ -205,10 +212,10 @@ in inputs:
                 <li><a href="/calendar/">calendar</a></li>
                 <li><a href="/todos/">todos</a></li>
                 <li><a href="/paulus/">paulus</a></li>
-                <li><a href="http://ai-banana:${
+                <li><a href="http://${config.networking.hostName}:${
                   toString kobodlPort2
                 }">kobo upload</a></li>
-                <li><a href="http://ai-banana:${
+                <li><a href="http://${config.networking.hostName}:${
                   toString config.services.adguardhome.port
                 }">ad-blocking</a></li>
               </ul>

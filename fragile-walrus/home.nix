@@ -27,7 +27,6 @@
     pkgs.similar-sort
     pkgs.shy
     pkgs.tabnine
-    pkgs.tmate
     pkgs.perlPackages.vidir
     pkgs.visidata
     pkgs.wally-cli

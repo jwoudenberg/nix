@@ -20,6 +20,7 @@ vim.o.wildignorecase = true
 vim.o.colorcolumn = "81"
 vim.o.clipboard = "unnamedplus"
 vim.o.foldenable = false
+vim.o.laststatus = 3
 vim.g.showbreak = "↪ "
 vim.g.mapleader = " "
 vim.g.maplocalleader = [[\]]
@@ -94,7 +95,7 @@ vim.cmd([[
   augroup fzf_commands
     " don't show fzf statusline
     autocmd  FileType fzf set laststatus=0 noshowmode noruler
-      \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+      \| autocmd BufLeave <buffer> set laststatus=3 showmode ruler
   augroup END
 ]])
 

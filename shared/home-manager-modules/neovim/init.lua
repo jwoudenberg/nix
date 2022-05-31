@@ -105,11 +105,11 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     callback = function() vim.api.nvim_command("Neoformat") end
 })
 
--- FZF :Rg
-function _G.fzf_rg(needle)
+-- FZF
+vim.api.nvim_create_user_command("Rg", function(args)
     vim.fn["fzf#run"]({
         source = "rg --column --line-number --no-heading --color=always " ..
-            vim.fn.shellescape(needle),
+            vim.fn.shellescape(args.args),
         window = "enew",
         options = {
             "--no-height", "--ansi", "--multi", "--delimiter=:",
@@ -140,101 +140,107 @@ function _G.fzf_rg(needle)
             end
         end
     })
-end
+end, {
+    desc = "Search for pattern in current working directory",
+    nargs = "*",
+    bang = true
+})
 
-vim.cmd([[command! -bang -nargs=* Rg call v:lua.fzf_rg(<q-args>)]])
-
--- FZF :Files
-function _G.fzf_files()
-    vim.fn["fzf#run"]({
-        source = vim.env.FZF_DEFAULT_COMMAND .. " | grep -v '^" ..
-            vim.fn.expand('%') .. "$' | similar-sort " .. vim.fn.expand('%'),
-        sink = "edit",
-        window = "enew",
-        options = {"--tiebreak=index", "--no-height"}
-    })
-end
-
-vim.cmd([[command! -bang -nargs=? Files call v:lua.fzf_files()]])
-vim.api.nvim_set_keymap("n", "<C-P>", ":Files<CR>", {noremap = true})
-
--- FZF :Buffers
-function _G.fzf_buffers()
-    local buffers = {}
-    local current_buffer = vim.fn.bufnr()
-    for _, buf in pairs(vim.api.nvim_list_bufs()) do
-        if vim.api.nvim_buf_is_loaded(buf) and buf ~= current_buffer then
-            local info = vim.fn.getbufinfo(buf)[1]
-            local name = info.name == "" and "[no name]" or
-                             vim.fn.fnamemodify(info.name, ":.")
-            local lastused = info.lastused or 0
-            table.insert(buffers, lastused .. "\t" .. buf .. "\t" .. name)
-        end
+vim.api.nvim_set_keymap("n", "<C-P>", "", {
+    desc = "Search for files in current directory",
+    noremap = true,
+    callback = function()
+        vim.fn["fzf#run"]({
+            source = vim.env.FZF_DEFAULT_COMMAND .. " | grep -v '^" ..
+                vim.fn.expand('%') .. "$' | similar-sort " .. vim.fn.expand('%'),
+            sink = "edit",
+            window = "enew",
+            options = {"--tiebreak=index", "--no-height"}
+        })
     end
+})
 
-    -- Sort last-opened first
-    table.sort(buffers, function(x, y) return x > y end)
-
-    vim.fn["fzf#run"]({
-        source = buffers,
-        window = "enew",
-        options = {
-            "--tiebreak=index", "--delimiter=\t", "--with-nth=3..",
-            "--no-height"
-        },
-        sink = function(line)
-            local buf = string.match(line, "^%d*\t(%d+)\t")
-            if buf then vim.api.nvim_win_set_buf(0, buf) end
+vim.api.nvim_set_keymap("n", "<C-B>", "", {
+    desc = "Search for open buffers",
+    noremap = true,
+    callback = function()
+        local buffers = {}
+        local current_buffer = vim.fn.bufnr()
+        for _, buf in pairs(vim.api.nvim_list_bufs()) do
+            if vim.api.nvim_buf_is_loaded(buf) and buf ~= current_buffer then
+                local info = vim.fn.getbufinfo(buf)[1]
+                local name = info.name == "" and "[no name]" or
+                                 vim.fn.fnamemodify(info.name, ":.")
+                local lastused = info.lastused or 0
+                table.insert(buffers, lastused .. "\t" .. buf .. "\t" .. name)
+            end
         end
-    })
-end
 
-vim.cmd([[command! -bang -nargs=? Buffers call v:lua.fzf_buffers()]])
-vim.api.nvim_set_keymap("n", "<C-B>", ":Buffers<CR>", {noremap = true})
+        -- Sort last-opened first
+        table.sort(buffers, function(x, y) return x > y end)
 
--- FZF :Lines
-function _G.fzf_lines()
-    local lines = {}
-    for index, line in pairs(vim.api.nvim_buf_get_lines(0, 0, -1, false)) do
-        table.insert(lines, index .. "\t" .. line)
+        vim.fn["fzf#run"]({
+            source = buffers,
+            window = "enew",
+            options = {
+                "--tiebreak=index", "--delimiter=\t", "--with-nth=3..",
+                "--no-height"
+            },
+            sink = function(line)
+                local buf = string.match(line, "^%d*\t(%d+)\t")
+                if buf then
+                    vim.api.nvim_win_set_buf(0, tonumber(buf))
+                else
+                    error("Unexpected line: " .. line)
+                end
+            end
+        })
     end
+})
 
-    local bufnr = vim.fn.bufnr()
-
-    vim.fn["fzf#run"]({
-        source = lines,
-        window = "enew",
-        options = {
-            "--no-height", "--multi", "--delimiter=\t",
-            "--bind=ctrl-a:select-all,ctrl-d:deselect-all", "--with-nth=2.."
-        },
-        sinklist = function(selected_lines)
-            local loclist = {}
-            for _, line in pairs(selected_lines) do
-                local line_parts = vim.fn.split(line, "\t");
-                table.insert(loclist, {
-                    bufnr = bufnr,
-                    lnum = tonumber(line_parts[1]),
-                    col = 1,
-                    text = line_parts[2]
-                })
-            end
-
-            if #loclist >= 1 then
-                local first = loclist[1]
-                vim.api.nvim_win_set_cursor(0, {first.lnum, 1})
-            end
-
-            if #loclist > 1 then
-                vim.fn.setloclist(0, loclist)
-                vim.cmd("lopen")
-            end
+vim.api.nvim_set_keymap("n", "<C-L>", "", {
+    desc = "Search for lines in current buffer",
+    noremap = true,
+    callback = function()
+        local lines = {}
+        for index, line in pairs(vim.api.nvim_buf_get_lines(0, 0, -1, false)) do
+            table.insert(lines, index .. "\t" .. line)
         end
-    })
-end
 
-vim.cmd([[command! -bang -nargs=? Lines call v:lua.fzf_lines()]])
-vim.api.nvim_set_keymap("n", "<C-L>", ":Lines<CR>", {noremap = true})
+        local bufnr = vim.fn.bufnr()
+
+        vim.fn["fzf#run"]({
+            source = lines,
+            window = "enew",
+            options = {
+                "--no-height", "--multi", "--delimiter=\t",
+                "--bind=ctrl-a:select-all,ctrl-d:deselect-all", "--with-nth=2.."
+            },
+            sinklist = function(selected_lines)
+                local loclist = {}
+                for _, line in pairs(selected_lines) do
+                    local line_parts = vim.fn.split(line, "\t");
+                    table.insert(loclist, {
+                        bufnr = bufnr,
+                        lnum = tonumber(line_parts[1]),
+                        col = 1,
+                        text = line_parts[2]
+                    })
+                end
+
+                if #loclist >= 1 then
+                    local first = loclist[1]
+                    vim.api.nvim_win_set_cursor(0, {first.lnum, 1})
+                end
+
+                if #loclist > 1 then
+                    vim.fn.setloclist(0, loclist)
+                    vim.cmd("lopen")
+                end
+            end
+        })
+    end
+})
 
 -- DIRVISH
 vim.api.nvim_create_autocmd("FileType", {

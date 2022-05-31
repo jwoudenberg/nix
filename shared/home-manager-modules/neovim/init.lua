@@ -25,10 +25,6 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = [[\]]
 
 vim.api.nvim_set_keymap("t", "<C-O>", [[<C-\><C-n><C-O>]], {noremap = true})
-local open_bin = vim.fn.executable("xdg-open") > 0 and "xdg-open" or "open"
-local open_cmd = [[:silent execute "!]] .. open_bin ..
-                     [[ " . shellescape("<cWORD>")<CR>]]
-vim.api.nvim_set_keymap("n", "gx", open_cmd, {silent = true})
 
 vim.cmd([[
   augroup custom_commands

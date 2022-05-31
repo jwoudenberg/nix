@@ -27,14 +27,28 @@ vim.g.maplocalleader = [[\]]
 
 vim.api.nvim_set_keymap("t", "<C-O>", [[<C-\><C-n><C-O>]], {noremap = true})
 
-vim.cmd([[
-  augroup custom_commands
-    autocmd BufNewFile,BufRead *.pl :set ft=prolog
-    autocmd BufNewFile,BufRead *.md,COMMIT_EDITMSG,qutebrowser-editor-* :setlocal spell
-    autocmd BufWritePre * :%s/\s\+$//e
-    au TextYankPost * silent! lua vim.highlight.on_yank({ timeout = 500 })
-  augroup END
-]])
+vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
+    desc = "Assume .pl files contain prolog, not perl",
+    pattern = "*.pl",
+    callback = function(args)
+        vim.api.nvim_buf_set_option(args.buf, "filetype", "prolog")
+    end
+})
+vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
+    desc = "Enable spell-checking on buffers that contain prose",
+    pattern = {"*.md", "COMMIT_EDITMSG", "qutebrowser-editor-*"},
+    callback = function() vim.api.nvim_win_set_option(0, "spell", true) end
+})
+vim.api.nvim_create_autocmd("BufWritePre", {
+    desc = "Trim trailing whitespace before saving a file",
+    pattern = "*",
+    callback = function() vim.api.nvim_command([[%s/\s\+$//e]]) end
+})
+vim.api.nvim_create_autocmd("TextYankPost", {
+    desc = "Briefly highlight text that was yanked",
+    pattern = "*",
+    callback = function() vim.highlight.on_yank({timeout = 500}) end
+})
 
 -- COLORSCHEME
 vim.o.background = "dark"
@@ -64,13 +78,8 @@ vim.g.ale_rust_cargo_use_clippy = vim.fn.executable("cargo-clippy") > 0
 vim.g.ale_rust_cargo_check_tests = true
 vim.g.ale_rust_ignore_secondary_spans = true
 
-vim.cmd([[
-  augroup ale_commands
-    autocmd!
-    nmap <silent> <localleader>e <Plug>(ale_detail)
-    autocmd BufWritePre * Neoformat
-  augroup END
-]])
+vim.api.nvim_set_keymap("n", "<localleader>e", "<Plug>(ale_detail)",
+                        {noremap = true})
 
 -- POLYGLOT
 vim.g.polyglot_disabled = {"haskell", "markdown"}
@@ -90,14 +99,11 @@ vim.g.neoformat_enabled_rust = {"rustfmt"}
 vim.g.neoformat_enabled_sql = {}
 vim.g.neoformat_enabled_yaml = {}
 
--- FZF
-vim.cmd([[
-  augroup fzf_commands
-    " don't show fzf statusline
-    autocmd  FileType fzf set laststatus=0 noshowmode noruler
-      \| autocmd BufLeave <buffer> set laststatus=3 showmode ruler
-  augroup END
-]])
+vim.api.nvim_create_autocmd("BufWritePre", {
+    desc = "Run code formatters",
+    pattern = "*",
+    callback = function() vim.api.nvim_command("Neoformat") end
+})
 
 -- FZF :Rg
 function _G.fzf_rg(needle)
@@ -231,14 +237,14 @@ vim.cmd([[command! -bang -nargs=? Lines call v:lua.fzf_lines()]])
 vim.api.nvim_set_keymap("n", "<C-L>", ":Lines<CR>", {noremap = true})
 
 -- DIRVISH
-vim.cmd([[
-  augroup dirvish_commands
-    autocmd!
-
-    " Undo Dirvish' default binding of <C-P>
-    autocmd FileType dirvish silent! unmap <buffer> <C-P>
-  augroup END
-]])
+vim.api.nvim_create_autocmd("FileType", {
+    desc = "Undo Dirvis' default binding of <C-P>",
+    pattern = "dirvish",
+    callback = function()
+        -- Using nvim_buf_del_keymap fails saying no <C-P> mapping is defined.
+        vim.cmd([[silent! unmap <buffer> <C-P>]])
+    end
+})
 
 -- FILE SEARCH
 

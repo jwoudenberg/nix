@@ -11,7 +11,7 @@ in inputs:
 { pkgs, config, modulesPath, ... }: {
 
   # Nix
-  system.stateVersion = "21.11";
+  system.stateVersion = "22.05";
   networking.hostName = "ai-banana";
   nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = [ inputs.self.overlays.linuxCustomPkgs ];
@@ -182,7 +182,7 @@ in inputs:
   services.caddy = {
     enable = true;
     email = "letsencrypt@jasperwoudenberg.com";
-    config = ''
+    extraConfig = ''
       :80 {
         file_server /favicon.ico {
           root ${
@@ -286,7 +286,7 @@ in inputs:
   # paulus
   systemd.services.paulus = {
     description = "Paulus";
-    after = [ "network-target" ];
+    after = [ "network.target" ];
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Type = "simple";
@@ -452,7 +452,7 @@ in inputs:
   # todo-txt-web
   systemd.services.todo-txt-web = {
     description = "todo.txt web";
-    after = [ "network-target" ];
+    after = [ "network.target" ];
     wantedBy = [ "multi-user.target" ];
     environment = {
       PORT = toString todoTxtWebPort;
@@ -518,7 +518,7 @@ in inputs:
   # book-alert
   systemd.services.book-alert = {
     description = "Book-alert";
-    after = [ "network-target" ];
+    after = [ "network.target" ];
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Type = "simple";

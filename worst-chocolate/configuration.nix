@@ -3,7 +3,7 @@ inputs:
 let elmPairLicensingPort = 8080;
 in {
   # Nix
-  system.stateVersion = "21.11";
+  system.stateVersion = "22.05";
   networking.hostName = "worst-chocolate";
   nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = [ inputs.self.overlays.linuxCustomPkgs ];
@@ -63,7 +63,7 @@ in {
 
   systemd.services.elm-pair-licensing-server = {
     description = "Elm-pair licensing server";
-    after = [ "network-target" ];
+    after = [ "network.target" ];
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Type = "simple";
@@ -79,7 +79,7 @@ in {
   services.caddy = {
     enable = true;
     email = "letsencrypt@jasperwoudenberg.com";
-    config = ''
+    extraConfig = ''
       https://licensing.elm-pair.com {
         reverse_proxy http://localhost:${toString elmPairLicensingPort}
       }

@@ -1,7 +1,3 @@
-# Create desktop entry for creating screenshots.
-# Can be written using `xdg.desktopEntries` home-manager property after
-# 21.11.
-
 { pkgs, config, ... }:
 
 let
@@ -13,11 +9,8 @@ let
   '';
 
 in {
-  home.packages = [
-    (pkgs.makeDesktopItem {
-      name = "Take Screenshot";
-      desktopName = "Take Screenshot";
-      exec = "${takeScreenshot}/bin/take-screenshot";
-    })
-  ];
+  xdg.desktopEntries.take-screenshot = {
+    name = "Take Screenshot";
+    exec = "${takeScreenshot}/bin/take-screenshot";
+  };
 }

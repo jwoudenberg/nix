@@ -39,6 +39,8 @@ inputs:
     wantedBy = [ "multi-user.target" "tailscaled.service" "resilio.service" ];
     serviceConfig.Type = "oneshot";
     script = ''
+      set -euxo pipefail
+
       # Make /persist public so the rslsync user can look in it.
       chmod 755 /persist
 
@@ -162,7 +164,6 @@ inputs:
     dates = "weekly";
     options = "--delete-older-than 7d";
   };
-  nix.package = pkgs.nix_2_4;
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
@@ -264,6 +265,6 @@ inputs:
   home-manager.useGlobalPkgs = true;
   home-manager.users.jasper = (import ./home.nix);
 
-  system.stateVersion = "21.11";
+  system.stateVersion = "22.05";
   system.autoUpgrade.enable = false;
 }

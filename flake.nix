@@ -2,19 +2,16 @@
   description = "Jaspers Nix configuration";
 
   inputs = {
-    nixpkgs-nixos.url = "github:NixOS/nixpkgs/nixos-21.11";
-    nixpkgs-darwin.url = "github:NixOS/nixpkgs/nixpkgs-21.11-darwin";
+    nixpkgs-nixos.url = "github:NixOS/nixpkgs/nixos-22.05";
+    nixpkgs-darwin.url = "github:NixOS/nixpkgs/nixpkgs-22.05-darwin";
     darwin.url = "github:LnL7/nix-darwin/master";
     darwin.inputs.nixpkgs.follows = "nixpkgs-darwin";
-    home-manager.url = "github:nix-community/home-manager/release-21.11";
+    home-manager.url = "github:nix-community/home-manager/release-22.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs-nixos";
     book-alert.url = "github:jwoudenberg/book-alert";
     book-alert.inputs.nixpkgs.follows = "nixpkgs-nixos";
     comma.url = "github:nix-community/comma";
-    # letting comma follow pinned nixpkgs currently doesn't work, because it
-    # requires nix version at least 2.4, which isn't in release-21.11. Once
-    # I switch to 22.05 I can comment out the line below.
-    # comma.inputs.nixpkgs.follows = "nixpkgs-nixos";
+    comma.inputs.nixpkgs.follows = "nixpkgs-nixos";
     elm-pair.url = "github:jwoudenberg/elm-pair";
     elm-pair.inputs.nixpkgs.follows = "nixpkgs-nixos";
     launch.url = "github:jwoudenberg/launch";

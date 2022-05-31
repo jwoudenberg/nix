@@ -9,8 +9,7 @@
     ignores = [ "todo.txt" ".direnv" ".lvimrc" ];
 
     extraConfig = {
-      core.pager = ''
-        ${pkgs.gitAndTools.delta}/bin/delta --plus-color="#012800" --minus-color="#340001"'';
+      core.pager = "${pkgs.gitAndTools.delta}/bin/delta";
       branch.sort = "-committerdate";
       pull.rebase = false;
       init.defaultBranch = "main";

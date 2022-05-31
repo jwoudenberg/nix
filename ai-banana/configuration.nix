@@ -7,6 +7,7 @@ let
   zreplPort = 8087;
   todoTxtWebPort = 8088;
   bookAlertPort = 8089;
+  adguardHomePort = 8090;
 in inputs:
 { pkgs, config, modulesPath, ... }: {
 
@@ -216,7 +217,7 @@ in inputs:
                   toString kobodlPort2
                 }">kobo upload</a></li>
                 <li><a href="http://${config.networking.hostName}:${
-                  toString config.services.adguardhome.port
+                  toString adguardHomePort
                 }">ad-blocking</a></li>
               </ul>
               <style>
@@ -476,7 +477,32 @@ in inputs:
   };
 
   # adguard
-  services.adguardhome = { enable = true; };
+  services.adguardhome = {
+    enable = true;
+    mutableSettings = false;
+    host = "0.0.0.0";
+    port = adguardHomePort;
+    settings = {
+      schema_version = 12;
+      users = [ ];
+      dns = {
+        bind_hosts = [ "100.118.235.97" ];
+        port = 53;
+        protection_enabled = true;
+        filtering_enabled = true;
+        parental_enabled = false;
+        safesearch_enabled = false;
+        safebrowsing_enabled = false;
+        upstream_dns = [ "https://dns10.quad9.net/dns-query" ];
+        bootstrap_dns =
+          [ "9.9.9.10" "149.112.112.10" "2620:fe::10" "2620:fe::fe:10" ];
+        querylog_enabled = true;
+        querylog_file_enabled = false;
+      };
+      dhcp.enabled = false;
+      tls.enabled = false;
+    };
+  };
 
   # backup /var/lib
   systemd.timers.backup_var_lib = {

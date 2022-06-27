@@ -144,6 +144,8 @@ inputs:
   };
   security.rtkit.enable = true;
 
+  services.resolved.enable = true;
+
   networking.hostName = "fragile-walrus";
   networking.networkmanager = {
     enable = true;

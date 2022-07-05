@@ -10,8 +10,6 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs-nixos";
     book-alert.url = "github:jwoudenberg/book-alert";
     book-alert.inputs.nixpkgs.follows = "nixpkgs-nixos";
-    elm-pair.url = "github:jwoudenberg/elm-pair";
-    elm-pair.inputs.nixpkgs.follows = "nixpkgs-nixos";
     launch.url = "github:jwoudenberg/launch";
     launch.inputs.nixpkgs.follows = "nixpkgs-nixos";
     random-colors.url = "github:jwoudenberg/random-colors";
@@ -47,8 +45,6 @@
         let pkgs = inputs.nixpkgs-nixos.legacyPackages."${system}";
         in {
           book-alert = inputs.book-alert.defaultPackage."${system}";
-          elm-pair-licensing-server =
-            inputs.elm-pair.packages."${system}".licensing-server;
           jwlaunch = inputs.launch.defaultPackage."${system}";
           keepassxc-pass-frontend =
             inputs.keepassxc-pass-frontend.defaultPackage."${system}";

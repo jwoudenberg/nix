@@ -85,6 +85,12 @@ vim.api.nvim_set_keymap("n", "<localleader>e", "<Plug>(ale_detail)",
 -- POLYGLOT
 vim.g.polyglot_disabled = {"haskell", "markdown"}
 
+-- TREESITTER
+
+require'nvim-treesitter.configs'.setup {
+    highlight = {enable = true, additional_vim_regex_highlighting = false}
+}
+
 -- NEOFORMAT
 vim.g.neoformat_basic_format_retab = true
 vim.g.neoformat_enabled_go = {"gofmt"}

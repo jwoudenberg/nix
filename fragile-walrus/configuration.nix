@@ -81,9 +81,6 @@ inputs:
     '';
   };
 
-  environment.etc."NetworkManager/system-connections".source =
-    "/persist/system-connections/";
-
   # Localization
   console.keyMap = "us";
   i18n.defaultLocale = "en_US.UTF-8";
@@ -147,10 +144,7 @@ inputs:
   services.resolved.enable = true;
 
   networking.hostName = "fragile-walrus";
-  networking.networkmanager = {
-    enable = true;
-    # dns = "none";
-  };
+  networking.networkmanager.enable = true;
   networking.firewall = {
     enable = true;
     allowedUDPPorts = [ config.services.tailscale.port ];
@@ -257,7 +251,7 @@ inputs:
   users.users.jasper = {
     isNormalUser = true;
     home = "/home/jasper";
-    extraGroups = [ "wheel" "rslsync" "sway" "networkmanager" "i2c" ];
+    extraGroups = [ "wheel" "rslsync" "sway" "i2c" ];
     hashedPassword =
       "$6$h6p1ovc5FdW$w8vrupUIOdgfgDJOxEfqPdibbitT3HfZkjVQDurQ7YHfxH6hyC1AUTMZ8qlGff5KCE4XQfYfR970S6BtTin3m.";
     uid = 1000;

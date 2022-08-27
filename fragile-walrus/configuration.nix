@@ -145,6 +145,7 @@ inputs:
 
   networking.hostName = "fragile-walrus";
   networking.networkmanager.enable = true;
+  systemd.services.NetworkManager-wait-online.enable = false;
   networking.firewall = {
     enable = true;
     allowedUDPPorts = [ config.services.tailscale.port ];

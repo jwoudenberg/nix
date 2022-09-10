@@ -39,25 +39,7 @@ in {
       polyglot
       quickfix-reflector-vim
       todo-txt-vim
-      (nvim-treesitter.withPlugins (plugins: [
-        pkgs.tree-sitter-grammars.tree-sitter-bash
-        pkgs.tree-sitter-grammars.tree-sitter-css
-        pkgs.tree-sitter-grammars.tree-sitter-dockerfile
-        pkgs.tree-sitter-grammars.tree-sitter-dot
-        pkgs.tree-sitter-grammars.tree-sitter-fish
-        pkgs.tree-sitter-grammars.tree-sitter-go
-        pkgs.tree-sitter-grammars.tree-sitter-hcl
-        pkgs.tree-sitter-grammars.tree-sitter-html
-        pkgs.tree-sitter-grammars.tree-sitter-javascript
-        pkgs.tree-sitter-grammars.tree-sitter-json
-        pkgs.tree-sitter-grammars.tree-sitter-lua
-        pkgs.tree-sitter-grammars.tree-sitter-nix
-        pkgs.tree-sitter-grammars.tree-sitter-python
-        pkgs.tree-sitter-grammars.tree-sitter-ruby
-        pkgs.tree-sitter-grammars.tree-sitter-rust
-        pkgs.tree-sitter-grammars.tree-sitter-toml
-        pkgs.tree-sitter-grammars.tree-sitter-yaml
-      ]))
+      (nvim-treesitter.withPlugins (plugins: builtins.attrValues plugins))
       vim-abolish
       vim-commentary
       vim-dirvish

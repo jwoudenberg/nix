@@ -40,8 +40,9 @@ inputs:
 
   # You should generally set this to the total number of logical cores in your system.
   # $ sysctl -n hw.ncpu
-  nix.maxJobs = 8;
-  nix.buildCores = 8;
+  nix.settings.max-jobs = 8;
+  nix.settings.build-cores = 8;
+  nix.configureBuildUsers = true;
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
@@ -53,7 +54,6 @@ inputs:
   };
 
   users.users.jasper = { home = "/Users/jasper"; };
-  users.nix.configureBuildUsers = true;
 
   home-manager.useGlobalPkgs = true;
   home-manager.users.jasper = import ./home.nix;

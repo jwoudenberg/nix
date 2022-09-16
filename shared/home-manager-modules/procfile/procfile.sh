@@ -5,29 +5,42 @@
 #
 #     procfile ./path/to/Procfile
 #
-# This requires the Kitty config option allow_remote_control=yes to be set:
-# https://sw.kovidgoyal.net/kitty/conf/#opt-kitty.allow_remote_control
-#
 # Procfile documentation can be found here:
 # https://devcenter.heroku.com/articles/procfile
 
 set -euo pipefail
 
-PROCFILE="${1:?'Pass a Procfile'}"
+PROCFILE="${1:-Procfile}"
+SOCKET="unix:/tmp/kittyprocfile"
+LAUNCH=launchFirst
 
-TARGET=("--type" "os-window" "--window-title" "$(realpath "$PROCFILE")")
+launchFirst () {
+  local LINE="$1"
+  local CMD_NAME="${LINE%%:*}"
+  local CMD="${LINE#*:}"
+  kitty \
+    -o allow_remote_control=socket-only \
+    --listen-on "$SOCKET" \
+    --title "$(realpath "$PROCFILE")" \
+    bash -c "$CMD" \
+    &>/dev/null \ &
+  sleep 1
+  kitty @ --to "$SOCKET" set-tab-title "$CMD_NAME"
+  LAUNCH=launchRest
+}
 
-launchCommand () {
-  LINE="$1"
-  CMD_NAME="${LINE%%:*}"
-  CMD="${LINE#*:}"
-  kitty @ launch "${TARGET[@]}" \
+launchRest () {
+  local LINE="$1"
+  local CMD_NAME="${LINE%%:*}"
+  local CMD="${LINE#*:}"
+  kitty @ --to "$SOCKET" \
+    launch "${TARGET[@]}" \
+    --type tab \
     --tab-title "$CMD_NAME" \
     --cwd current \
     --copy-env \
     bash -c "$CMD" \
     > /dev/null
-  TARGET=("--match" "window_title:$PROCFILE" "--type" "tab")
 }
 
-while read -r line; do launchCommand "$line"; done < "$PROCFILE"
+while read -r line; do "$LAUNCH" "$line"; done < "$PROCFILE"

@@ -15,7 +15,6 @@
       macos_quit_when_last_window_closed = true;
       scrollback_pager =
         "nvim -c 'set ft=man' -c 'autocmd VimEnter * normal G' -";
-      allow_remote_control = "yes";
     };
 
     keybindings = {

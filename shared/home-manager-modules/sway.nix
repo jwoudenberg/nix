@@ -26,7 +26,7 @@ in {
     client.urgent $caccent $clight $cdark $caccent $caccent
 
     for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 350 px 350 px, border pixel 3
-    set $menu exec kitty --class=launcher -- ${pkgs.jwlaunch}/bin/launch
+    set $menu exec kitty --single-instance --class=launcher -- ${pkgs.jwlaunch}/bin/launch
 
     bindsym {
       Mod4+0 workspace 10
@@ -41,7 +41,7 @@ in {
       Mod4+9 workspace 9
       Mod4+Down focus down
       Mod4+Left focus left
-      Mod4+Return exec kitty -e fish
+      Mod4+Return exec kitty --single-instance -e fish
       Mod4+Right focus right
       Mod4+Shift+0 move container to workspace 10
       Mod4+Shift+1 move container to workspace 1

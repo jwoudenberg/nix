@@ -20,8 +20,6 @@
     keybindings = {
       "cmd+k" = "next_tab";
       "cmd+j" = "previous_tab";
-      "ctrl+c" = "copy_or_interrupt";
-      "ctrl+v" = "paste_from_clipboard";
     };
 
     extraConfig = ''

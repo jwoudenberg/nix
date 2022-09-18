@@ -175,8 +175,8 @@ vim.api.nvim_set_keymap("n", "<C-B>", "", {
         local buffers = {}
         local current_buffer = vim.fn.bufnr()
         for _, buf in pairs(vim.api.nvim_list_bufs()) do
-            if vim.api.nvim_buf_is_loaded(buf) and buf ~= current_buffer then
-                local info = vim.fn.getbufinfo(buf)[1]
+            local info = vim.fn.getbufinfo(buf)[1]
+            if info.listed == 1 and buf ~= current_buffer then
                 local name = info.name == "" and "[no name]" or
                                  vim.fn.fnamemodify(info.name, ":.")
                 local lastused = info.lastused or 0

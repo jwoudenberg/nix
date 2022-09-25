@@ -100,6 +100,11 @@
       modules = [ (import ./ai-banana/configuration.nix inputs) ];
     };
 
+    nixosConfigurations.jubilant-moss = inputs.nixpkgs-nixos.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [ (import ./jubilant-moss/configuration.nix inputs) ];
+    };
+
     darwinConfigurations.sentient-tshirt = inputs.darwin.lib.darwinSystem {
       system = "x86_64-darwin";
       modules = [ (import ./sentient-tshirt/configuration.nix inputs) ];

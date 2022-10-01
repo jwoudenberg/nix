@@ -4,19 +4,14 @@
   home.packages = [
     pkgs.comma
     pkgs.croc
-    pkgs.discord
     pkgs.gotop
     pkgs.i3status
     pkgs.imv
     pkgs.jq
-    pkgs.keybase
     pkgs.mosh
     pkgs.remind
     pkgs.zathura
-    pkgs.haskellPackages.niv
-    pkgs.minecraft
     pkgs.nixfmt
-    pkgs.nix-prefetch-github
     pkgs.pdfgrep
     pkgs.pijul
     pkgs.pulsemixer
@@ -32,7 +27,6 @@
     pkgs.wally-cli
     pkgs.wl-clipboard
     pkgs.xdg_utils
-    pkgs.zoom-us
   ];
 
   imports = [

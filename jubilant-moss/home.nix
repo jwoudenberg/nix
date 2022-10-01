@@ -7,15 +7,12 @@ inputs:
     pkgs.croc
     pkgs.gotop
     pkgs.home-manager
-    pkgs.imv
     pkgs.jq
     pkgs.remind
-    pkgs.zathura
     pkgs.nixfmt
     pkgs.pdfgrep
     pkgs.random-colors
     pkgs.shellcheck
-    pkgs.signal-desktop
     pkgs.similar-sort
     pkgs.shy
     pkgs.perlPackages.vidir

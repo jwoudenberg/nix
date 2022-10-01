@@ -28,11 +28,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1663677921,
-        "narHash": "sha256-NfQnUfRrjv8DXeugdbQC5El+MMhShP42ohc8iM+UAdM=",
+        "lastModified": 1664210064,
+        "narHash": "sha256-df6nKVZe/yAhmJ9csirTPahc0dldwm3HBhCVNA6qWr0=",
         "owner": "LnL7",
         "repo": "nix-darwin",
-        "rev": "088c98a584a38b5f844bb9e9cd32eb28479ca6d7",
+        "rev": "02d2551c927b7d65ded1b3c7cd13da5cc7ae3fcf",
         "type": "github"
       },
       "original": {
@@ -244,11 +244,11 @@
     },
     "nixpkgs-darwin": {
       "locked": {
-        "lastModified": 1663981975,
-        "narHash": "sha256-TKaxWAVJR+a5JJauKZqibmaM5e/Pi5tBDx9s8fl/kSE=",
+        "lastModified": 1664158485,
+        "narHash": "sha256-OJjPilaj2R0yAwjg4O96iJLWKoW2+TeLlDpk0yF73xE=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "309faedb8338d3ae8ad8f1043b3ccf48c9cc2970",
+        "rev": "058d97782ed561787a6b2186854d29c94fd4fc0c",
         "type": "github"
       },
       "original": {
@@ -260,11 +260,11 @@
     },
     "nixpkgs-nixos": {
       "locked": {
-        "lastModified": 1664029467,
-        "narHash": "sha256-ir7JbsLp2mqseCs3qI+Z/pkt+Gh+GfANbYcI5I+Gvnk=",
+        "lastModified": 1664491521,
+        "narHash": "sha256-1Zj7Vi7zswETSHXueX8Oh1OA2f68DS7TOHoelLukA1U=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "893b6b9f6c4ed0c7efdb84bd300a499a2da9fa51",
+        "rev": "c9389643ae662834fd584ffa1898dc52956e1fba",
         "type": "github"
       },
       "original": {
@@ -335,11 +335,11 @@
     "rem2html": {
       "flake": false,
       "locked": {
-        "lastModified": 1664031452,
-        "narHash": "sha256-jJ4Pi1W3tyf6/MV/CYCb2RTquLSoCxfGspFb70udPUw=",
+        "lastModified": 1664329773,
+        "narHash": "sha256-GTF4n4t+EaoOHE8CQ1+sul75syi6Ld+z47PjajMdTl8=",
         "ref": "master",
-        "rev": "f8ea124b1ff59499cc23d59362c8cf298d354822",
-        "revCount": 1565,
+        "rev": "2c2b1440b3f871605cf7afe9f9bde4f68b26f6db",
+        "revCount": 1567,
         "type": "git",
         "url": "https://git.skoll.ca/Skollsoft-Public/Remind.git"
       },
@@ -516,11 +516,11 @@
     "yarr": {
       "flake": false,
       "locked": {
-        "lastModified": 1662758201,
-        "narHash": "sha256-jiD66nzdRF1cdCY2hHrZbFsqZkG7oQEbJemajSFALIk=",
+        "lastModified": 1664304809,
+        "narHash": "sha256-96bGhNJyZnaJbEyThcGwAViHmDEE1f03vcym3hEsNPU=",
         "owner": "nkanaev",
         "repo": "yarr",
-        "rev": "57d9421c7f87c1f07a98d1af6df6b92c0edf093d",
+        "rev": "56e5625adca9e935a7c135b6c1d161eb7f363e44",
         "type": "github"
       },
       "original": {

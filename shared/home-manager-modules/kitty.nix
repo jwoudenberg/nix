@@ -18,8 +18,8 @@
     };
 
     keybindings = {
-      "cmd+k" = "next_tab";
-      "cmd+j" = "previous_tab";
+      "ctrl+shift+k" = "next_tab";
+      "ctrl+shift+j" = "previous_tab";
     };
 
     extraConfig = ''

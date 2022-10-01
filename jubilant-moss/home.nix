@@ -39,6 +39,7 @@ inputs:
     ../shared/home-manager-modules/ripgrep.nix
     ../shared/home-manager-modules/ssh.nix
     ../shared/home-manager-modules/vale.nix
+    ../shared/home-manager-modules/yubikey-agent.nix
   ];
 
   programs.kitty.settings.font_size = 15;

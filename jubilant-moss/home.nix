@@ -43,7 +43,6 @@ inputs:
   ];
 
   programs.kitty.settings.font_size = 15;
-  programs.ssh.userKnownHostsFile = "/persist/ssh/known_hosts";
 
   home.sessionVariables = {
     EDITOR = "nvim";

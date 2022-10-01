@@ -1,1 +1,0 @@
-../fragile-walrus/home.nix

@@ -410,6 +410,55 @@ in inputs:
     '';
   };
 
+  # mbsync
+  systemd.timers.mbsync = {
+    wantedBy = [ "timers.target" ];
+    partOf = [ "simple-timer.service" ];
+    timerConfig.OnCalendar = "minutely";
+  };
+  systemd.services.mbsync = {
+    description = "mbsync";
+    serviceConfig = {
+      Type = "oneshot";
+      User = "rslsync";
+      Group = "rslsync";
+    };
+    script = let
+      mbsyncConfigFile = pkgs.writeTextFile {
+        name = "mbsync.conf";
+        text = ''
+          MaildirStore jasper
+          Path /srv/volume1/jasper/email/
+          Inbox /srv/volume1/jasper/email/INBOX
+
+          IMAPAccount freedom
+          Host imap.freedom.nl
+          Port 993
+          User jwoudenberg@freedom.nl
+          PassCmd "cat /run/secrets/freedom_imap_password"
+          SSLType IMAPS
+          SSLVersions TLSv1.3
+          CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+          IMAPStore freedom
+          Account freedom
+
+          Channel freedom
+          Far :freedom:
+          Near :jasper:
+          Patterns INBOX Spam Sent
+          Sync Pull
+          Create Near
+          SyncState *
+        '';
+      };
+    in ''
+      ${pkgs.isync}/bin/mbsync \
+        --config ${mbsyncConfigFile} \
+        --all
+    '';
+  };
+
   # yarr
   systemd.services.yarr = {
     description = "yarr";

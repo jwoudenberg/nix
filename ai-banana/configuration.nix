@@ -148,7 +148,7 @@ in inputs:
         "music" = "readonly";
         "photo" = "readonly";
         "books" = "readwrite";
-        "jasper" = "readonly";
+        "jasper" = "readwrite";
         "hiske" = "readonly";
         "hjgames" = "readwrite";
         "gilles1" = "encrypted";

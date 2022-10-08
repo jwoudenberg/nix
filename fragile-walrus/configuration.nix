@@ -45,7 +45,6 @@ inputs:
       chmod 755 /persist
 
       # Symbolic links to home directory.
-      ln -sfn /persist/rslsync/books /home/jasper/books
       ln -sfn /persist/rslsync/jasper /home/jasper/docs
       ln -sfn /persist/rslsync/hjgames /home/jasper/hjgames
       ln -sfn /persist/dev /home/jasper/dev
@@ -192,11 +191,7 @@ inputs:
         useSyncTrash = false;
         knownHosts = [ ];
       };
-    in [
-      (mkSharedFolder "books")
-      (mkSharedFolder "hjgames")
-      (mkSharedFolder "jasper")
-    ];
+    in [ (mkSharedFolder "hjgames") (mkSharedFolder "jasper") ];
   };
 
   services.tailscale.enable = true;

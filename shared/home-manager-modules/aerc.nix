@@ -8,11 +8,12 @@
     unsafe-accounts-conf = true
 
     [ui]
-    timestamp-format = Mon Jan 2 2006 15:04
-    this-day-time-format = 15:04
-    this-week-time-format = Mon 15:04
-    this-year-time-format = Mon Jan 2 15:04
+    timestamp-format = "Mon 06-01-02 15:04"
+    this-day-time-format = "             15:04"
+    this-week-time-format = "Mon          15:04"
+    this-year-time-format = "Mon    01-02 15:04"
     new-message-bell = false
+    sort = -r date
 
     [viewer]
     pager = nvim +Man!

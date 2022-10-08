@@ -14,6 +14,9 @@
     this-year-time-format = Mon Jan 2 15:04
     new-message-bell = false
 
+    [viewer]
+    pager = nvim +Man!
+
     [compose]
     reply-to-self = false
 
@@ -28,5 +31,6 @@
     archive = archive
     from = mail@jasperwoudenberg.com
     source = maildir://~/docs/email
+    copy-to = Sent
   '';
 }

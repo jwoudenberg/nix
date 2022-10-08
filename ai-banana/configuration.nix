@@ -447,7 +447,7 @@ in inputs:
           Far :freedom:
           Near :jasper:
           Patterns INBOX Spam Sent
-          Sync Pull
+          Sync Pull New
           Create Near
           SyncState *
         '';

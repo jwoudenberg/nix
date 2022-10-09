@@ -276,7 +276,8 @@ in {
       wantedBy = [ "multi-user.target" ];
       after = [ "network.target" ];
       serviceConfig = {
-        Restart = "on-abort";
+        Restart = "on-failure";
+        RestartSec = 5;
         UMask = "0002";
         User = "rslsync";
         RuntimeDirectory = "rslsync";

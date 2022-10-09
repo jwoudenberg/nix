@@ -33,5 +33,6 @@
     from = mail@jasperwoudenberg.com
     source = maildir://~/docs/email
     copy-to = Sent
+    outgoing = smtp+none://ai-banana.panther-trout.ts.net:8025
   '';
 }

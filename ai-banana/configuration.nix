@@ -1,4 +1,5 @@
 let
+  smtpPort = 8025;
   webdavPort = 8080;
   paulusPort = 8081;
   kobodlPort = 8084;
@@ -445,6 +446,45 @@ in inputs:
       ${pkgs.fdm}/bin/fdm -vv -f ${mbsyncConfigFile} fetch
       ${pkgs.curl}/bin/curl --retry 3 https://hc-ping.com/f4f0e24f-9d45-4191-96b6-914759ef4bb2/$?
     '';
+  };
+
+  # smtprelay
+  systemd.services.smtprelay = {
+    description = "smtprelay";
+    after = [ "network.target" ];
+    wantedBy = [ "multi-user.target" ];
+    script = ''
+      ${pkgs.smtprelay}/bin/smtprelay \
+        -listen "0.0.0.0:${toString smtpPort}" \
+        -allowed_nets "100.64.0.0/10" \
+        -remotes "smtps://jwoudenberg@freedom.nl:$SMTP_PASS@smtp.freedom.nl"
+    '';
+    serviceConfig = {
+      Type = "simple";
+      Restart = "on-failure";
+      EnvironmentFile = "/run/secrets/freedom_smtp_password";
+
+      # Various security settings, via `systemd-analyze security yarr`.
+      DynamicUser = true;
+      CapabilityBoundingSet = "";
+      LockPersonality = true;
+      MemoryDenyWriteExecute = true;
+      PrivateDevices = true;
+      PrivateUsers = true;
+      ProtectClock = true;
+      ProtectControlGroups = true;
+      ProtectHome = true;
+      ProtectHostname = true;
+      ProtectKernelLogs = true;
+      ProtectKernelModules = true;
+      ProtectKernelTunables = true;
+      ProtectProc = "invisible";
+      RestrictAddressFamilies = "AF_UNIX AF_INET";
+      RestrictNamespaces = true;
+      RestrictRealtime = true;
+      SystemCallArchitectures = "native";
+      SystemCallFilter = [ "@system-service" "~@privileged @resources" ];
+    };
   };
 
   # yarr

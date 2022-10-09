@@ -363,6 +363,7 @@
         "rem2html": "rem2html",
         "shy": "shy",
         "similar-sort": "similar-sort",
+        "smtprelay": "smtprelay",
         "todo-txt-web": "todo-txt-web",
         "vale-Joblint": "vale-Joblint",
         "vale-alex": "vale-alex",
@@ -411,6 +412,22 @@
         "ref": "main",
         "type": "git",
         "url": "https://git.bytes.zone/brian/similar-sort.git"
+      }
+    },
+    "smtprelay": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1664258217,
+        "narHash": "sha256-bVY8kNkGMQasSimL6zOkGW4Jbfxx0wvs30FlJHRs0ME=",
+        "owner": "decke",
+        "repo": "smtprelay",
+        "rev": "42d111695de9c3357bec5cb3cd721c2a7d314ad9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "decke",
+        "repo": "smtprelay",
+        "type": "github"
       }
     },
     "todo-txt-web": {

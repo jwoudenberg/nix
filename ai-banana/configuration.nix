@@ -410,14 +410,14 @@ in inputs:
     '';
   };
 
-  # mbsync
-  systemd.timers.mbsync = {
+  # fdm
+  systemd.timers.fdm = {
     wantedBy = [ "timers.target" ];
     partOf = [ "simple-timer.service" ];
     timerConfig.OnCalendar = "minutely";
   };
-  systemd.services.mbsync = {
-    description = "mbsync";
+  systemd.services.fdm = {
+    description = "fdm";
     serviceConfig = {
       Type = "oneshot";
       User = "rslsync";
@@ -425,39 +425,25 @@ in inputs:
     };
     script = let
       mbsyncConfigFile = pkgs.writeTextFile {
-        name = "mbsync.conf";
+        name = "fdm.conf";
         text = ''
-          MaildirStore jasper
-          Path /srv/volume1/jasper/email/
-          Inbox /srv/volume1/jasper/email/INBOX
+          account "freedom" imaps
+            server "imap.freedom.nl"
+            port 993
+            user "jwoudenberg@freedom.nl"
+            pass $(cat /run/secrets/freedom_imap_password)
+            folder "INBOX"
+            no-cram-md5
 
-          IMAPAccount freedom
-          Host imap.freedom.nl
-          Port 993
-          User jwoudenberg@freedom.nl
-          PassCmd "cat /run/secrets/freedom_imap_password"
-          SSLType IMAPS
-          SSLVersions TLSv1.3
-          CertificateFile /etc/ssl/certs/ca-certificates.crt
+          action "fetch"
+            maildir "/srv/volume1/jasper/email/INBOX"
 
-          IMAPStore freedom
-          Account freedom
-
-          Channel freedom
-          Far :freedom:
-          Near :jasper:
-          Patterns INBOX Spam Sent
-          Sync Pull New
-          Create Near
-          SyncState *
+          match all action "fetch"
         '';
       };
     in ''
-      ${pkgs.isync}/bin/mbsync \
-        --config ${mbsyncConfigFile} \
-        --all
-      ${pkgs.curl}/bin/curl --retry 3 \
-        https://hc-ping.com/f4f0e24f-9d45-4191-96b6-914759ef4bb2/$?
+      ${pkgs.fdm}/bin/fdm -vv -f ${mbsyncConfigFile} fetch
+      ${pkgs.curl}/bin/curl --retry 3 https://hc-ping.com/f4f0e24f-9d45-4191-96b6-914759ef4bb2/$?
     '';
   };
 

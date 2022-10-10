@@ -41,8 +41,6 @@ inputs:
     ../shared/home-manager-modules/yubikey-agent.nix
   ];
 
-  programs.kitty.settings.font_size = 15;
-
   home.sessionVariables = {
     EDITOR = "nvim";
     MANPAGER = "nvim +Man!";

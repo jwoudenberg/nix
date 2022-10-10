@@ -8,6 +8,7 @@
     };
 
     settings = {
+      font_size = 15;
       shell = "${pkgs.fish}/bin/fish";
       tab_bar_edge = "top";
       tab_bar_style = "separator";

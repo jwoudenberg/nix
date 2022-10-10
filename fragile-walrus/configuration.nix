@@ -152,8 +152,8 @@ inputs:
   nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = [ inputs.self.overlays.linuxCustomPkgs ];
 
-  nix.registry.nixpkgs.flake = inputs.nixpkgs-nixos;
-  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs-nixos}" ];
+  nix.registry.nixpkgs.flake = inputs.nixpkgs;
+  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
   nix.gc = {
     automatic = true;
     dates = "weekly";

@@ -54,7 +54,6 @@
     ../shared/home-manager-modules/wlsunset.nix
   ];
 
-  programs.kitty.settings.font_size = 15;
   programs.ssh.userKnownHostsFile = "/persist/ssh/known_hosts";
 
   home.sessionVariables = {

@@ -32,7 +32,7 @@
     [jasper]
     default = INBOX
     archive = archive
-    from = mail@jasperwoudenberg.com
+    from = "Jasper Woudenberg <mail@jasperwoudenberg.com>"
     source = maildir://~/docs/email
     copy-to = sent
     outgoing = smtp+none://ai-banana.panther-trout.ts.net:8025

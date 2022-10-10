@@ -72,6 +72,7 @@
       "x-www-browser" = [ "qutebrowser.desktop" ];
       "x-scheme-handler/http" = [ "qutebrowser.desktop" ];
       "x-scheme-handler/https" = [ "qutebrowser.desktop" ];
+      "x-scheme-handler/mailto" = [ "aerc.desktop" ];
       "image/bmp" = [ "imv.desktop" ];
       "image/gif" = [ "imv.desktop" ];
       "image/jpeg" = [ "imv.desktop" ];

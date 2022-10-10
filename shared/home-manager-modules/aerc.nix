@@ -21,6 +21,7 @@
 
     [compose]
     reply-to-self = false
+    editor = ${pkgs.neovim}/bin/nvim
 
     [filters]
     text/html = ${pkgs.aerc}/share/aerc/filters/html
@@ -159,4 +160,10 @@
     <C-p> = :prev-tab<Enter>
     <C-n> = :next-tab<Enter>
   '';
+
+  xdg.desktopEntries.aerc = {
+    name = "aerc";
+    exec = "${pkgs.kitty}/bin/kitty ${pkgs.aerc}/bin/aerc %F";
+    terminal = true;
+  };
 }

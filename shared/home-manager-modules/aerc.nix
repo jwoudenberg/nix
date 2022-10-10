@@ -1,9 +1,26 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   home.packages = [ pkgs.aerc ];
 
-  xdg.configFile."aerc/aerc.conf".text = ''
+  xdg.configFile."aerc/aerc.conf".text = let
+    addressBook = "${config.home.homeDirectory}/hjgames/agenda/mensen.ini";
+    addressBookCmd = pkgs.writers.writePython3 "address-book-cmd" { } ''
+      import configparser
+      import sys
+
+      config = configparser.ConfigParser()
+      config.read('${addressBook}')
+      needle = ' '.join(sys.argv[1:]).lower().strip()
+
+      for key in config:
+          email = config[key].get('email')
+          if email is None:
+              continue
+          if needle in key.lower() or needle in email.lower():
+              print(f'{email}\t{key}')
+    '';
+  in ''
     [general]
     unsafe-accounts-conf = true
 
@@ -22,6 +39,7 @@
     [compose]
     reply-to-self = false
     editor = ${pkgs.neovim}/bin/nvim
+    address-book-cmd = "${addressBookCmd} '%s'"
 
     [filters]
     text/html = ${pkgs.aerc}/share/aerc/filters/html

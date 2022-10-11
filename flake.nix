@@ -85,7 +85,7 @@
           yarr = pkgs.buildGoModule {
             name = "yarr";
             src = inputs.yarr;
-            vendorSha256 = "yXnoibqa0+lHhX3I687thGgasaVeNiHpGFmtEnH7oWY=";
+            vendorSha256 = null;
             subPackages = [ "src" ];
             tags = [ "sqlite_foreign_keys" "release" "linux" ];
             ldflags = [ "-s" "-w" ];

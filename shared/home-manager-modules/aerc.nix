@@ -114,8 +114,6 @@
     N = :prev-result<Enter>
     <Esc> = :clear<Enter>
 
-    A = :archive flat<Enter>
-
     [view]
     / = :toggle-key-passthrough<Enter>/
     q = :close<Enter>
@@ -123,7 +121,7 @@
     S = :save<space>
     | = :pipe<space>
     D = :delete<Enter>
-    A = :archive flat<Enter>
+    A = :archive flat<Enter>q
 
     f = :forward<Enter>
     rr = :reply -a<Enter>
@@ -136,8 +134,6 @@
     <C-j> = :next-part<Enter>
     J = :next<Enter>
     K = :prev<Enter>
-
-    A = :archive flat<Enter>
 
     [view::passthrough]
     $noinherit = true

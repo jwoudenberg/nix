@@ -50,6 +50,7 @@
     [jasper]
     default = INBOX
     archive = archive
+    postpone = drafts
     from = "Jasper Woudenberg <mail@jasperwoudenberg.com>"
     source = maildir://~/docs/email
     copy-to = sent

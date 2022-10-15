@@ -21,7 +21,6 @@
     pkgs.signal-desktop
     pkgs.similar-sort
     pkgs.shy
-    pkgs.tabnine
     pkgs.perlPackages.vidir
     pkgs.visidata
     pkgs.wally-cli

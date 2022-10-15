@@ -69,6 +69,15 @@ in {
       Mod4+k focus up
       Mod4+l focus right
       Mod4+p exec $menu
+
+      XF86AudioRaiseVolume exec ${pkgs.pamixer}/bin/pamixer --increase 5
+      XF86AudioLowerVolume exec ${pkgs.pamixer}/bin/pamixer --decrease 5
+      XF86AudioMute exec ${pkgs.pamixer}/bin/pamixer --toggle-mute
+      XF86MonBrightnessDown exec ${pkgs.brightnessctl}/bin/brightnessctl set 5%-
+      XF86MonBrightnessUp exec ${pkgs.brightnessctl}/bin/brightnessctl set 5%+
+      XF86AudioPlay exec ${pkgs.playerctl}/bin/playerctl play-pause
+      XF86AudioNext exec ${pkgs.playerctl}/bin/playerctl next
+      XF86AudioPrev exec ${pkgs.playerctl}/bin/playerctl previous
     }
 
     mode "resize" bindsym {

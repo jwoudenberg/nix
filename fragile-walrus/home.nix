@@ -28,6 +28,8 @@
     pkgs.xdg_utils
   ];
 
+  programs.kitty.settings.font_size = 15;
+
   imports = [
     ../shared/home-manager-modules/aerc.nix
     ../shared/home-manager-modules/brightness.nix

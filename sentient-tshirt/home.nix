@@ -27,6 +27,8 @@
     pkgs.xdg_utils
   ];
 
+  programs.kitty.settings.font_size = 12;
+
   imports = [
     ../shared/home-manager-modules/aerc.nix
     ../shared/home-manager-modules/direnv.nix

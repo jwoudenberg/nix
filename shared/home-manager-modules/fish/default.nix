@@ -34,7 +34,6 @@ in {
     shellAliases = {
       "ls" = "${pkgs.exa}/bin/exa";
       "cat" = "${pkgs.bat}/bin/bat";
-      "lock" = "swaylock";
       "ssh" = "kitty +kitten ssh";
       "todo" = "nvim ~/docs/todo.txt";
       "agenda" = "vim ~/hjgames/agenda/agenda.rem";

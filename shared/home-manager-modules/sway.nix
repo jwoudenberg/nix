@@ -1,5 +1,19 @@
 { pkgs, ... }:
-let wallpaper = ../wallpaper/wallpaper.png;
+let
+  wallpaper = ../wallpaper/wallpaper.png;
+  swaylockConfig = pkgs.writeTextFile {
+    name = "swaylock.conf";
+    text = ''
+      no-unlock-indicator
+      image=${wallpaper}
+      scaling=fill
+    '';
+  };
+  lock = pkgs.writeShellScriptBin "lock" ''
+    exec ${pkgs.swaylock}/bin/swaylock \
+      --config ${swaylockConfig} \
+      --daemonize
+  '';
 in {
   home.file.".config/sway/config".text = ''
     font pango:FiraCode 12
@@ -126,7 +140,7 @@ in {
 
     exec "systemctl --user import-environment; systemctl --user start sway-session.target"
 
-    exec "${pkgs.swayidle}/bin/swayidle -w before-sleep '${pkgs.swaylock}/bin/swaylock --daemonize'"
+    exec "${pkgs.swayidle}/bin/swayidle -w before-sleep '${lock}/bin/lock'"
   '';
 
   # This is needed for other wayland tools like wlsunset to trigger in the
@@ -142,9 +156,5 @@ in {
     };
   };
 
-  home.file.".config/swaylock/config".text = ''
-    no-unlock-indicator
-    image=${wallpaper}
-    scaling=fill
-  '';
+  home.packages = [ lock ];
 }

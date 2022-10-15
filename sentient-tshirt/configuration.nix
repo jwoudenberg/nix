@@ -32,6 +32,15 @@ inputs:
     "i915.enable_psr=1"
     # Without this sway won't find the GPU
     "i915.force_probe=4626"
+    # My first attempt to hibernate resulted in weird screen flickering when I
+    # came out of hibernation and then a failing 'zfs import trunk' after that,
+    # which required 'zfs import -f -FX trunk' on a recovery system to repair.
+    #
+    # The link below suggests it might be fixed, but it wasn't on my system.
+    # Maybe it requires a newer kernel version or ZFS? Let's not hibernate until
+    # I figure it out.
+    # https://github.com/NixOS/nixpkgs/pull/171680
+    "nohibernate"
   ];
 
   # This enables the brightness keys to work

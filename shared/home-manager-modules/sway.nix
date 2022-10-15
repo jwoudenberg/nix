@@ -10,6 +10,7 @@ let
     '';
   };
   lock = pkgs.writeShellScriptBin "lock" ''
+    ${pkgs.playerctl}/bin/playerctl pause
     exec ${pkgs.swaylock}/bin/swaylock \
       --config ${swaylockConfig} \
       --daemonize

@@ -7,11 +7,12 @@
 # If the above line is not correctly displayed, fix your editor first!
 
 general {
-        colors = true
+        colors = false
         interval = 5
 }
 
 order += "battery 1"
+order += "wireless wlp166s0"
 order += "tztime local"
 
 tztime local {
@@ -24,4 +25,9 @@ battery 1 {
         path = "/sys/class/power_supply/BAT%d/uevent"
         low_threshold = 10
         format_percentage = "%.00f%s"
+}
+
+wireless wlp166s0 {
+        format_up = "%essid"
+        format_down = ""
 }

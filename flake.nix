@@ -99,6 +99,11 @@
       modules = [ (import ./fragile-walrus/configuration.nix inputs) ];
     };
 
+    nixosConfigurations.sentient-tshirt = inputs.nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [ (import ./sentient-tshirt/configuration.nix inputs) ];
+    };
+
     nixosConfigurations.ai-banana = inputs.nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [ (import ./ai-banana/configuration.nix inputs) ];

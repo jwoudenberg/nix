@@ -654,6 +654,7 @@ in inputs:
             listen_freebind = true;
             clients = { "100.64.0.0/10" = "tailscale-*"; };
           };
+          recv.placeholder.encryption = "off";
         }
         {
           type = "snap";

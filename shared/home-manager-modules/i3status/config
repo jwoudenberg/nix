@@ -11,8 +11,17 @@ general {
         interval = 5
 }
 
+order += "battery 1"
 order += "tztime local"
 
 tztime local {
         format = "%Y-%m-%d %H:%M:%S"
+}
+
+battery 1 {
+        format = "%percentage"
+        format_down = ""
+        path = "/sys/class/power_supply/BAT%d/uevent"
+        low_threshold = 10
+        format_percentage = "%.00f%s"
 }

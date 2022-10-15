@@ -6,7 +6,7 @@ in {
     floating_modifier Mod4
     default_border pixel 2
     default_floating_border normal 2
-    hide_edge_borders none
+    smart_borders on
     focus_wrapping no
     focus_follows_mouse yes
     focus_on_window_activation smart

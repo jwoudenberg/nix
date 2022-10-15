@@ -56,6 +56,7 @@ inputs:
   powerManagement.enable = true;
   powerManagement.powertop.enable = true;
   services.tlp.enable = true;
+  services.logind.lidSwitch = "suspend";
 
   # Reset root filesystem at boot
   boot.initrd.supportedFilesystems = [ "zfs" ];

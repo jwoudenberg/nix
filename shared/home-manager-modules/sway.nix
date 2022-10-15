@@ -125,6 +125,8 @@ in {
     }
 
     exec "systemctl --user import-environment; systemctl --user start sway-session.target"
+
+    exec "${pkgs.swayidle}/bin/swayidle -w before-sleep '${pkgs.swaylock}/bin/swaylock --daemonize'"
   '';
 
   # This is needed for other wayland tools like wlsunset to trigger in the

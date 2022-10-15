@@ -23,7 +23,30 @@ inputs:
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.timeout = 10;
   boot.kernel.sysctl."fs.inotify.max_user_watches" = 524288;
-  boot.kernelParams = [ "i915.enable_psr=1" "i915.force_probe=4626" ];
+  boot.kernelParams = [
+    # For Power consumption
+    # https://kvark.github.io/linux/framework/2021/10/17/framework-nixos.html
+    "mem_sleep_default=deep"
+    # Workaround iGPU hangs
+    # https://discourse.nixos.org/t/intel-12th-gen-igpu-freezes/21768/4
+    "i915.enable_psr=1"
+    # Without this sway won't find the GPU
+    "i915.force_probe=4626"
+  ];
+
+  # This enables the brightness keys to work
+  # https://community.frame.work/t/12th-gen-not-sending-xf86monbrightnessup-down/20605/11
+  boot.blacklistedKernelModules = [ "hid-sensor-hub" ];
+
+  # Mis-detected by nixos-generate-config
+  # https://github.com/NixOS/nixpkgs/issues/171093
+  # https://wiki.archlinux.org/title/Framework_Laptop#Changing_the_brightness_of_the_monitor_does_not_work
+  hardware.acpilight.enable = lib.mkDefault true;
+
+  # Power management and saving
+  powerManagement.enable = true;
+  powerManagement.powertop.enable = true;
+  services.tlp.enable = true;
 
   # Reset root filesystem at boot
   boot.initrd.supportedFilesystems = [ "zfs" ];

@@ -27,9 +27,9 @@ inputs:
 
   # Reset root filesystem at boot
   boot.initrd.supportedFilesystems = [ "zfs" ];
-  # boot.initrd.postDeviceCommands = lib.mkAfter ''
-  #   zfs rollback -r trunk/root@blank
-  # '';
+  boot.initrd.postDeviceCommands = lib.mkAfter ''
+    zfs rollback -r trunk/root@blank
+  '';
 
   systemd.services.persist-linking = {
     description = "Create symbolic links to /persist";
@@ -68,6 +68,9 @@ inputs:
       chmod -R 770 /persist/rslsync
     '';
   };
+
+  environment.etc."NetworkManager/system-connections".source =
+    "/persist/system-connections/";
 
   # Localization
   console.keyMap = "us";

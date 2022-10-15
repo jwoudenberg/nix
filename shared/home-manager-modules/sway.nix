@@ -111,6 +111,10 @@ in {
       xkb_options ctrl:nocaps
     }
 
+    input type:touchpad {
+      tap enabled
+    }
+
     exec "systemctl --user import-environment; systemctl --user start sway-session.target"
   '';
 

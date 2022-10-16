@@ -359,21 +359,3 @@ require('gitsigns').setup({
         map({'n', 'v'}, '<leader>hr', ':Gitsigns reset_hunk<CR>')
     end
 })
-
--- SUBSTITUTIONS
-vim.api.nvim_set_keymap("n", "s", [[<plug>(SubversiveSubstitute)]], {})
-vim.api.nvim_set_keymap("n", "ss", [[<plug>(SubversiveSubstituteLine)]], {})
-vim.api.nvim_set_keymap("n", "S", [[<plug>(SubversiveSubstituteToEndOfLine)]],
-                        {})
--- PAREN PAIRS
-vim.api.nvim_set_keymap("i", "<C-s>(", "()<Left>", {})
-vim.api.nvim_set_keymap("i", "<C-s>)", "()<Left>", {})
-vim.api.nvim_set_keymap("i", "<C-s>[", "[]<Left>", {})
-vim.api.nvim_set_keymap("i", "<C-s>]", "[]<Left>", {})
-vim.api.nvim_set_keymap("i", "<C-s>{", "{}<Left>", {})
-vim.api.nvim_set_keymap("i", "<C-s>}", "{}<Left>", {})
-vim.api.nvim_set_keymap("i", "<C-s><", "<><Left>", {})
-vim.api.nvim_set_keymap("i", "<C-s>>", "<><Left>", {})
-vim.api.nvim_set_keymap("i", "<C-s>(", "()<Left>", {})
-vim.api.nvim_set_keymap("i", "<C-s>)", "()<Left>", {})
-vim.api.nvim_set_keymap("i", "<C-s>|", "||<Left>", {})

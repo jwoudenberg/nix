@@ -51,7 +51,6 @@
       vim-rhubarb
       vim-signature
       vim-speeddating
-      vim-subversive
       vim-surround
       vim-unimpaired
       vim-visualstar

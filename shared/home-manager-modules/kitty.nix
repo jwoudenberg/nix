@@ -13,6 +13,7 @@
       tab_bar_style = "separator";
       tab_separator = " | ";
       macos_quit_when_last_window_closed = true;
+      shell_integration = "enabled";
       scrollback_pager =
         "nvim -R -c 'silent write! /tmp/kitty_scrollback_buffer | te cat /tmp/kitty_scrollback_buffer -'";
 

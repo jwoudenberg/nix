@@ -5,6 +5,7 @@
   imports = [
     ../shared/nixos-modules/ergodox.nix
     ../shared/nixos-modules/localization.nix
+    ../shared/nixos-modules/networking.nix
     ../shared/nixos-modules/nix.nix
     ../shared/nixos-modules/pipewire.nix
     ../shared/nixos-modules/resilio.nix
@@ -33,15 +34,7 @@
 
   services.keybase.enable = true;
 
-  services.resolved.enable = true;
-
   networking.hostName = "fragile-walrus";
-  networking.networkmanager.enable = true;
-  systemd.services.NetworkManager-wait-online.enable = false;
-  networking.firewall = {
-    enable = true;
-    allowedUDPPorts = [ config.services.tailscale.port ];
-  };
 
   security.sudo.extraConfig = ''
     Defaults lecture=never
@@ -68,7 +61,6 @@
     in [ (mkSharedFolder "hjgames") (mkSharedFolder "jasper") ];
   };
 
-  services.tailscale.enable = true;
   services.fwupd.enable = true;
 
   # zrepl

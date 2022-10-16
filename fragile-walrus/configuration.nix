@@ -4,6 +4,7 @@ inputs:
 {
   disabledModules = [ "services/networking/resilio.nix" ];
   imports = [
+    ../shared/nixos-modules/ergodox.nix
     ../shared/nixos-modules/resilio.nix
     ../shared/nixos-modules/localization.nix
     ./hardware-configuration.nix
@@ -16,7 +17,6 @@ inputs:
   hardware.opengl.driSupport32Bit = true;
   hardware.system76.enableAll = true;
   hardware.enableRedistributableFirmware = true;
-  hardware.keyboard.zsa.enable = true; # Support flashing Ergodox.
   hardware.i2c.enable = true;
 
   boot.kernelPackages =

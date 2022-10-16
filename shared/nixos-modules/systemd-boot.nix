@@ -4,4 +4,6 @@
   boot.loader.systemd-boot.editor = false;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.timeout = 10;
+
+  environment.systemPackages = [ pkgs.efibootmgr ];
 }

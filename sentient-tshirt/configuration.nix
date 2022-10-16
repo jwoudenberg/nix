@@ -9,6 +9,7 @@
     ../shared/nixos-modules/resilio.nix
     ../shared/nixos-modules/sway.nix
     ../shared/nixos-modules/systemd-boot.nix
+    ../shared/nixos-modules/yubikey.nix
     ./hardware-configuration.nix
     flakeInputs.home-manager.nixosModules.home-manager
   ];
@@ -109,14 +110,6 @@
     trim.enable = true;
   };
 
-  # Use yubikey-agent for ssh access. Need to use a graphical pinentry option
-  # here instead of curses, because pinentry is called by the yubikey-agent
-  # daemon and so doesn't have a connection with the active terminal.
-  services.yubikey-agent.enable = true;
-  programs.gnupg.agent.pinentryFlavor = "qt";
-  systemd.user.services.yubikey-agent.wantedBy =
-    [ "graphical-session.target" ]; # Start automatically.
-
   services.resolved.enable = true;
 
   networking.hostName = "sentient-tshirt";
@@ -130,8 +123,6 @@
   security.sudo.extraConfig = ''
     Defaults lecture=never
   '';
-
-  environment.systemPackages = [ pkgs.efibootmgr pkgs.pinentry ];
 
   environment.pathsToLink = [ "/share/fish" ]; # Needed for direnv integration.
 
@@ -155,7 +146,6 @@
   };
 
   services.tailscale.enable = true;
-  services.pcscd.enable = true; # For Yubikey support
   services.fwupd.enable = true;
 
   # zrepl

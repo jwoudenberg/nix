@@ -19,9 +19,13 @@
 
     vimAlias = true;
 
-    extraConfig = ''
+    extraConfig = let
+      configText = builtins.replaceStrings [ "similar-sort" ]
+        [ "${pkgs.similar-sort}/bin/similar-sort" ]
+        (builtins.readFile ./init.lua);
+    in ''
       lua << EOF
-      ${builtins.readFile ./init.lua}
+      ${configText}
       EOF
     '';
 

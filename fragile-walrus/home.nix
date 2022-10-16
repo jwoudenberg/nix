@@ -16,7 +16,6 @@
     pkgs.rem2html
     pkgs.shellcheck
     pkgs.signal-desktop
-    pkgs.similar-sort
     pkgs.shy
     pkgs.perlPackages.vidir
     pkgs.visidata

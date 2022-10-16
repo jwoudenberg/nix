@@ -5,6 +5,11 @@
       sha256 = "sha256:1v4knd9i4zf3lhacnkmhxrq0lgk9aj4iisbni9mxi1syhs4lfgni";
     };
 
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    MANPAGER = "nvim -c 'colors noctu | set laststatus=0 nonumber' +Man!";
+  };
+
   programs.neovim = {
     enable = true;
 
@@ -37,6 +42,7 @@
       vim-eunuch
       vim-fugitive
       vim-illuminate
+      vim-noctu # colorscheme when using Vim as a pager
       vim-repeat
       vim-rhubarb
       vim-signature

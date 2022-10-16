@@ -41,11 +41,6 @@ inputs:
     ../shared/home-manager-modules/yubikey-agent.nix
   ];
 
-  home.sessionVariables = {
-    EDITOR = "nvim";
-    MANPAGER = "nvim +Man!";
-  };
-
   xdg.configFile."nixpkgs/config.nix".text = ''
     { allowUnfree = true; }
   '';

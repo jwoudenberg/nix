@@ -1,14 +1,13 @@
 { pkgs, config, lib, flakeInputs, ... }:
 
 {
-  disabledModules = [ "services/networking/resilio.nix" ];
   imports = [
     ../shared/nixos-modules/ergodox.nix
     ../shared/nixos-modules/localization.nix
     ../shared/nixos-modules/networking.nix
     ../shared/nixos-modules/nix.nix
     ../shared/nixos-modules/pipewire.nix
-    ../shared/nixos-modules/resilio.nix
+    ../shared/nixos-modules/resilio-custom.nix
     ../shared/nixos-modules/sway.nix
     ../shared/nixos-modules/systemd-boot.nix
     ../shared/nixos-modules/yubikey.nix
@@ -43,23 +42,6 @@
   environment.pathsToLink = [ "/share/fish" ]; # Needed for direnv integration.
 
   programs.command-not-found.enable = false;
-
-  services.resilio = {
-    enable = true;
-    deviceName = "fragile-walrus";
-    sharedFolders = let
-      mkSharedFolder = name: {
-        directory = "/persist/rslsync/" + name;
-        secretFile = "/persist/rslsync/.secrets/" + name;
-        useRelayServer = false;
-        useTracker = true;
-        useDHT = true;
-        searchLAN = true;
-        useSyncTrash = false;
-        knownHosts = [ ];
-      };
-    in [ (mkSharedFolder "hjgames") (mkSharedFolder "jasper") ];
-  };
 
   services.fwupd.enable = true;
 

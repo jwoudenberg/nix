@@ -7,6 +7,7 @@ inputs:
     ../shared/nixos-modules/localization.nix
     ../shared/nixos-modules/resilio.nix
     ../shared/nixos-modules/sway.nix
+    ../shared/nixos-modules/systemd-boot.nix
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.home-manager
   ];
@@ -16,11 +17,6 @@ inputs:
   hardware.enableRedistributableFirmware = true;
   environment.variables.VDPAU_DRIVER = lib.mkDefault "va_gl";
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.configurationLimit = 10;
-  boot.loader.systemd-boot.editor = false;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.timeout = 10;
   boot.kernel.sysctl."fs.inotify.max_user_watches" = 524288;
   boot.kernelParams = [
     # For Power consumption

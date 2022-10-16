@@ -8,6 +8,7 @@ inputs:
     ../shared/nixos-modules/localization.nix
     ../shared/nixos-modules/resilio.nix
     ../shared/nixos-modules/sway.nix
+    ../shared/nixos-modules/systemd-boot.nix
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.home-manager
   ];
@@ -19,11 +20,6 @@ inputs:
 
   boot.kernelPackages =
     pkgs.linuxKernel.packages.linux_5_15; # Required by AMD 6700 graphics card
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.configurationLimit = 10;
-  boot.loader.systemd-boot.editor = false;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.timeout = 10;
   boot.kernel.sysctl."fs.inotify.max_user_watches" = 524288;
 
   # Reset root filesystem at boot

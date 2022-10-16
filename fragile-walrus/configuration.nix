@@ -6,6 +6,7 @@ inputs:
   imports = [
     ../shared/nixos-modules/ergodox.nix
     ../shared/nixos-modules/localization.nix
+    ../shared/nixos-modules/pipewire.nix
     ../shared/nixos-modules/resilio.nix
     ../shared/nixos-modules/sway.nix
     ../shared/nixos-modules/systemd-boot.nix
@@ -83,14 +84,6 @@ inputs:
     [ "graphical-session.target" ]; # Start automatically.
 
   services.keybase.enable = true;
-
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
-  security.rtkit.enable = true;
 
   services.resolved.enable = true;
 

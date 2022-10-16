@@ -5,6 +5,7 @@
   services.resilio = {
     enable = true;
     deviceName = "fragile-walrus";
+    storagePath = "/persist/rslsync/state";
     sharedFolders = let
       mkSharedFolder = name: {
         directory = "/persist/rslsync/" + name;

@@ -4,15 +4,13 @@ inputs:
 {
   disabledModules = [ "services/networking/resilio.nix" ];
   imports = [
-    ../shared/nixos-modules/resilio.nix
     ../shared/nixos-modules/localization.nix
+    ../shared/nixos-modules/resilio.nix
+    ../shared/nixos-modules/sway.nix
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.home-manager
   ];
 
-  hardware.opengl.enable = true;
-  hardware.opengl.driSupport = true;
-  hardware.opengl.driSupport32Bit = true;
   hardware.opengl.extraPackages =
     [ pkgs.vaapiIntel pkgs.libvdpau-va-gl pkgs.intel-media-driver ];
   hardware.enableRedistributableFirmware = true;
@@ -114,26 +112,6 @@ inputs:
     trim.enable = true;
   };
 
-  services.greetd = {
-    enable = true;
-    vt = 2;
-    settings = {
-      # Automatically login. I already entered a password to unlock the disk.
-      initial_session = {
-        command = "sway";
-        user = "jasper";
-      };
-      default_session = {
-        command =
-          "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --greeting 'Hoi!' --cmd sway";
-        user = "jasper";
-      };
-    };
-  };
-  # To avoid interleaving tuigreet output with booting output:
-  # https://github.com/apognu/tuigreet/issues/17
-  systemd.services.greetd.serviceConfig.Type = "idle";
-
   # Use yubikey-agent for ssh access. Need to use a graphical pinentry option
   # here instead of curses, because pinentry is called by the yubikey-agent
   # daemon and so doesn't have a connection with the active terminal.
@@ -182,10 +160,6 @@ inputs:
 
   environment.pathsToLink = [ "/share/fish" ]; # Needed for direnv integration.
 
-  fonts.fonts = [ pkgs.fira-code ];
-
-  programs.sway.enable = true;
-  programs.xwayland.enable = false;
   programs.command-not-found.enable = false;
 
   services.resilio = {
@@ -246,11 +220,6 @@ inputs:
         };
       }];
     };
-  };
-
-  xdg.portal = {
-    enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
   };
 
   users.mutableUsers = false;

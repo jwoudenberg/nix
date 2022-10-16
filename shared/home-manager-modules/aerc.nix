@@ -3,6 +3,9 @@
 {
   home.packages = [ pkgs.aerc ];
 
+  xdg.mimeApps.defaultApplications."x-scheme-handler/mailto" =
+    [ "aerc.desktop" ];
+
   xdg.configFile."aerc/aerc.conf".text = let
     addressBook = "${config.home.homeDirectory}/hjgames/agenda/mensen.ini";
     addressBookCmd = pkgs.writers.writePython3 "address-book-cmd" { } ''

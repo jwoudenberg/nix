@@ -6,11 +6,9 @@
     pkgs.croc
     pkgs.gotop
     pkgs.i3status
-    pkgs.imv
     pkgs.jq
     pkgs.mosh
     pkgs.remind
-    pkgs.zathura
     pkgs.nixfmt
     pkgs.pdfgrep
     pkgs.pijul
@@ -38,6 +36,7 @@
     ../shared/home-manager-modules/fzf.nix
     ../shared/home-manager-modules/git.nix
     ../shared/home-manager-modules/i3status/default.nix
+    ../shared/home-manager-modules/imv.nix
     ../shared/home-manager-modules/keepassxc-pass-frontend.nix
     ../shared/home-manager-modules/kitty.nix
     ../shared/home-manager-modules/keepassxc.nix
@@ -53,6 +52,7 @@
     ../shared/home-manager-modules/take-screenshot.nix
     ../shared/home-manager-modules/vale.nix
     ../shared/home-manager-modules/wlsunset.nix
+    ../shared/home-manager-modules/zathura.nix
   ];
 
   programs.ssh.userKnownHostsFile = "/persist/ssh/known_hosts";
@@ -61,20 +61,5 @@
     { allowUnfree = true; }
   '';
 
-  xdg.mimeApps = {
-    enable = true;
-    defaultApplications = {
-      "application/pdf" = [ "org.pwmt.zathura.desktop" ];
-      "x-www-browser" = [ "qutebrowser.desktop" ];
-      "x-scheme-handler/http" = [ "qutebrowser.desktop" ];
-      "x-scheme-handler/https" = [ "qutebrowser.desktop" ];
-      "x-scheme-handler/mailto" = [ "aerc.desktop" ];
-      "image/bmp" = [ "imv.desktop" ];
-      "image/gif" = [ "imv.desktop" ];
-      "image/jpeg" = [ "imv.desktop" ];
-      "image/jpg" = [ "imv.desktop" ];
-      "image/png" = [ "imv.desktop" ];
-      "image/tiff" = [ "imv.desktop" ];
-    };
-  };
+  xdg.mimeApps.enable = true;
 }

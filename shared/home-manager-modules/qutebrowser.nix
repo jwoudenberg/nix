@@ -1,4 +1,10 @@
 { pkgs, lib, config, ... }: {
+  xdg.mimeApps.defaultApplications = {
+    "x-www-browser" = [ "qutebrowser.desktop" ];
+    "x-scheme-handler/http" = [ "qutebrowser.desktop" ];
+    "x-scheme-handler/https" = [ "qutebrowser.desktop" ];
+  };
+
   programs.qutebrowser = {
     enable = true;
     aliases = { "q" = "tab-close"; };

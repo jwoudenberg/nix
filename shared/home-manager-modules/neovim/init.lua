@@ -26,6 +26,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = [[\]]
 
 vim.api.nvim_set_keymap("t", "<C-O>", [[<C-\><C-n><C-O>]], {noremap = true})
+vim.api.nvim_set_keymap("n", "<leader>v", "<c-v>", {noremap = true})
 
 vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
     desc = "Assume .pl files contain prolog, not perl",

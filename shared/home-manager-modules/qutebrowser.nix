@@ -7,6 +7,7 @@
       "<Ctrl-I>" = "forward";
       "gt" = "tab-next";
       "gT" = "tab-prev";
+      "d" = "nop";
     };
     settings = {
       downloads.location.prompt = false;

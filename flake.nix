@@ -96,17 +96,20 @@
 
     nixosConfigurations.fragile-walrus = inputs.nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      modules = [ (import ./fragile-walrus/configuration.nix inputs) ];
+      specialArgs = { flakeInputs = inputs; };
+      modules = [ (import ./fragile-walrus/configuration.nix) ];
     };
 
     nixosConfigurations.sentient-tshirt = inputs.nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      modules = [ (import ./sentient-tshirt/configuration.nix inputs) ];
+      specialArgs = { flakeInputs = inputs; };
+      modules = [ (import ./sentient-tshirt/configuration.nix) ];
     };
 
     nixosConfigurations.ai-banana = inputs.nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      modules = [ (import ./ai-banana/configuration.nix inputs) ];
+      specialArgs = { flakeInputs = inputs; };
+      modules = [ (import ./ai-banana/configuration.nix) ];
     };
 
     homeConfigurations.jubilant-moss =

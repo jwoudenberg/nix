@@ -1,17 +1,17 @@
-inputs:
-{ pkgs, config, lib, ... }:
+{ pkgs, config, lib, flakeInputs, ... }:
 
 {
   disabledModules = [ "services/networking/resilio.nix" ];
   imports = [
     ../shared/nixos-modules/ergodox.nix
     ../shared/nixos-modules/localization.nix
+    ../shared/nixos-modules/nix.nix
     ../shared/nixos-modules/pipewire.nix
     ../shared/nixos-modules/resilio.nix
     ../shared/nixos-modules/sway.nix
     ../shared/nixos-modules/systemd-boot.nix
     ./hardware-configuration.nix
-    inputs.home-manager.nixosModules.home-manager
+    flakeInputs.home-manager.nixosModules.home-manager
   ];
 
   hardware.cpu.amd.updateMicrocode = true;
@@ -94,20 +94,6 @@ inputs:
     enable = true;
     allowedUDPPorts = [ config.services.tailscale.port ];
   };
-
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.overlays = [ inputs.self.overlays.linuxCustomPkgs ];
-
-  nix.registry.nixpkgs.flake = inputs.nixpkgs;
-  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 7d";
-  };
-  nix.extraOptions = ''
-    experimental-features = nix-command flakes
-  '';
 
   security.sudo.extraConfig = ''
     Defaults lecture=never

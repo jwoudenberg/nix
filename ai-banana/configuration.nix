@@ -9,14 +9,13 @@ let
   todoTxtWebPort = 8088;
   bookAlertPort = 8089;
   adguardHomePort = 8090;
-in inputs:
-{ pkgs, config, modulesPath, ... }: {
+in { pkgs, config, modulesPath, flakeInputs, ... }: {
 
   # Nix
   system.stateVersion = "22.05";
   networking.hostName = "ai-banana";
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.overlays = [ inputs.self.overlays.linuxCustomPkgs ];
+  nixpkgs.overlays = [ flakeInputs.self.overlays.linuxCustomPkgs ];
 
   nix.gc = {
     automatic = true;

@@ -5,7 +5,6 @@
     pkgs.comma
     pkgs.croc
     pkgs.gotop
-    pkgs.i3status
     pkgs.jq
     pkgs.mosh
     pkgs.remind
@@ -35,7 +34,6 @@
     ../shared/home-manager-modules/fish/default.nix
     ../shared/home-manager-modules/fzf.nix
     ../shared/home-manager-modules/git.nix
-    ../shared/home-manager-modules/i3status/default.nix
     ../shared/home-manager-modules/imv.nix
     ../shared/home-manager-modules/keepassxc-pass-frontend.nix
     ../shared/home-manager-modules/kitty.nix

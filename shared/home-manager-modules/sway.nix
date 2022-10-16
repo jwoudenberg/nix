@@ -1,6 +1,37 @@
 { pkgs, ... }:
 let
   wallpaper = ../wallpaper/wallpaper.png;
+  i3statusConfig = pkgs.writeTextFile {
+    name = "i3status.conf";
+    text = ''
+      # see "man i3status" for documentation.
+      general {
+              colors = false
+              interval = 5
+      }
+
+      order += "battery 1"
+      order += "wireless wlp166s0"
+      order += "tztime local"
+
+      tztime local {
+              format = "%Y-%m-%d %H:%M:%S"
+      }
+
+      battery 1 {
+              format = "%percentage"
+              format_down = ""
+              path = "/sys/class/power_supply/BAT%d/uevent"
+              low_threshold = 10
+              format_percentage = "%.00f%s"
+      }
+
+      wireless wlp166s0 {
+              format_up = "%essid"
+              format_down = ""
+      }
+    '';
+  };
   swaylockConfig = pkgs.writeTextFile {
     name = "swaylock.conf";
     text = ''
@@ -110,7 +141,7 @@ in {
       mode hide
       hidden_state hide
       position top
-      status_command i3status
+      status_command "${pkgs.i3status}/bin/i3status -c ${i3statusConfig}"
       workspace_buttons yes
       strip_workspace_numbers no
       tray_output primary

@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, lib, config, ... }: {
   programs.qutebrowser = {
     enable = true;
     aliases = { "q" = "tab-close"; };
@@ -18,6 +18,23 @@
       content.notifications.enabled = false;
       content.register_protocol_handler = false;
       editor.command = [ "kitty" "nvim" "{file}" ];
+      url.start_pages = [ "http://ai-banana" ];
     };
   };
+
+  home.activation.writeStateFile = let
+    initialStateFile = pkgs.writeTextFile {
+      name = "state";
+      text = ''
+        [general]
+        quickstart-done = 1
+      '';
+    };
+  in lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    QUTEBROWSER_STATE_PATH="${config.home.homeDirectory}/.local/share/qutebrowser/state"
+    if [ ! -f "$QUTEBROWSER_STATE_PATH" ]; then
+      $DRY_RUN_CMD mkdir -p $(dirname "$QUTEBROWSER_STATE_PATH")
+      $DRY_RUN_CMD cat ${initialStateFile} > "$QUTEBROWSER_STATE_PATH"
+    fi
+  '';
 }

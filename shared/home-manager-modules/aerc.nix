@@ -34,7 +34,7 @@
     dirlist-format = %n
 
     [viewer]
-    pager = nvim -R -c 'set ft=mail laststatus=0 nomod nolist'
+    pager = nvim -R -c 'set ft=mail laststatus=0 nomod nolist nonumber'
 
     [compose]
     reply-to-self = false

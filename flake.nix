@@ -7,7 +7,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     book-alert.url = "github:jwoudenberg/book-alert";
     book-alert.inputs.nixpkgs.follows = "nixpkgs";
-    launch.url = "github:jwoudenberg/launch";
+    launch.url = "github:jwoudenberg/launch/v2";
     launch.inputs.nixpkgs.follows = "nixpkgs";
     random-colors.url = "github:jwoudenberg/random-colors";
     random-colors.inputs.nixpkgs.follows = "nixpkgs";

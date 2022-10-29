@@ -6,19 +6,21 @@
 set -euo pipefail
 
 export HOST="${1:?'Pass host'}"
-nix build ".#nixosConfigurations.$HOST.config.system.build.toplevel" --out-link "$(pwd)/result"
-STORE_PATH=$(realpath result)
 
 # Create a persistent ssh connection that will be reused by follow-up commands
 echo "Opening ssh connection..."
 ssh -MNf "$HOST"
 
+# Get password for reading machine secrets later
+echo -n 'keepassxc password:'
+read -s PASSWORD
+
+nix build ".#nixosConfigurations.$HOST.config.system.build.toplevel" --out-link "$(pwd)/result"
+STORE_PATH=$(realpath result)
+
 # Copy configuration
 echo "Copying closure..."
 nix-copy-closure --use-substitutes --to "$HOST" "$STORE_PATH"
-
-echo -n 'keepassxc password:'
-read -s PASSWORD
 
 # Copy over secrets
 write_secret () {

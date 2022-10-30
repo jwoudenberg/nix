@@ -139,7 +139,6 @@ in {
     bar {
       font pango:FiraCode 12
       mode hide
-      hidden_state hide
       position top
       status_command "${pkgs.i3status}/bin/i3status -c ${i3statusConfig}"
       workspace_buttons yes

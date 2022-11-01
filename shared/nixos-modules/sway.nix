@@ -31,6 +31,4 @@
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
   };
-
-  environment.sessionVariables = { MOZ_ENABLE_WAYLAND = "1"; };
 }

@@ -31,4 +31,7 @@
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
   };
+
+  # Enable wayland for Chrome and Electron apps.
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 }

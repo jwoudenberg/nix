@@ -80,7 +80,7 @@
             name = "smtprelay";
             src = inputs.smtprelay;
             vendorSha256 =
-              "sha256-mit4wM4WQJiGaKzEW5ZSaZoe/bRMtq16f5JPk6mRq1k=";
+              "sha256-QC1URBrGsh14f5almSNbAbP/m/tDZ2VsDSUFh5o6WzI=";
           };
           yarr = pkgs.buildGoModule {
             name = "yarr";

@@ -67,13 +67,10 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
 
   # SSH
   services.openssh.enable = true;
-  users.users.root.openssh.authorizedKeys.keys = let
-    sshKeysSrc = builtins.fetchurl {
-      url = "https://github.com/jwoudenberg.keys";
-      sha256 = "sha256:0xkz5p74a462f98zl6md8s48gaac8gbvyn2701cm4zhjncv8byji";
-    };
-  in builtins.filter (line: line != "")
-  (pkgs.lib.splitString "\n" (builtins.readFile sshKeysSrc));
+  users.users.root.openssh.authorizedKeys.keys = [
+    "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPm2jdW8FNbI0lwVWbJBJXU8Ib1GVZRhY6Sy10hZFlSobt2RChtPBAUV/WNsG+Cb7jjtNnrHZWKJnO9mvClfg6c="
+    "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBCpYScAJfuGpIjYWS1Xf02y5jVFmXD3fsZ0rv364N2uHEKpt7YHaiWX+vCOaNf3j6pW9CPp7jtf/+udwtcXrcb4="
+  ];
 
   # Mosh
   programs.mosh.enable = true;

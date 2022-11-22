@@ -6,15 +6,17 @@
     ../shared/nixos-modules/localization.nix
     ../shared/nixos-modules/networking.nix
     ../shared/nixos-modules/nix.nix
-    ../shared/nixos-modules/pipewire.nix
     ../shared/nixos-modules/resilio-custom.nix
-    ../shared/nixos-modules/sway.nix
     ../shared/nixos-modules/systemd-boot.nix
     ../shared/nixos-modules/yubikey.nix
     ../shared/nixos-modules/zfs.nix
     ./hardware-configuration.nix
+    ./specialisation-default.nix
     flakeInputs.home-manager.nixosModules.home-manager
   ];
+
+  specialisation.gaming.configuration =
+    import ./specialisation-gaming.nix { pkgs = pkgs; };
 
   hardware.cpu.amd.updateMicrocode = true;
   hardware.system76.enableAll = true;

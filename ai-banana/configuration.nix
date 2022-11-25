@@ -5,7 +5,6 @@ let
   kobodlPort = 8084;
   kobodlPort2 = 8085;
   yarrPort = 8086;
-  zreplPort = 8087;
   todoTxtWebPort = 8088;
   bookAlertPort = 8089;
   adguardHomePort = 8090;
@@ -639,57 +638,43 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
   services.zrepl = {
     enable = true;
     settings = {
-      jobs = [
-        {
-          type = "sink";
-          name = "tailscale_backups_sink";
-          root_fs = "trunk/tailscale_backups";
-          serve = {
-            type = "tcp";
-            listen = ":${toString zreplPort}";
-            listen_freebind = true;
-            clients = { "100.64.0.0/10" = "tailscale-*"; };
-          };
-          recv.placeholder.encryption = "off";
-        }
-        {
-          type = "snap";
-          name = "volume1_backups";
-          filesystems = {
-            "trunk" = false;
-            "trunk/volume1" = true;
-          };
-          snapshotting = {
-            type = "periodic";
-            prefix = "zrepl_";
-            interval = "10m";
-            hooks = [{
-              type = "command";
-              timeout = "30s";
-              err_is_fatal = false;
-              path = let
-                script = pkgs.writeShellApplication {
-                  name = "zrepl-healthchecks-update";
-                  text = ''
-                    if [ "$ZREPL_HOOKTYPE" != "post_snapshot" ]; then exit 0; fi
-                    if [ "$ZREPL_DRYRUN" == "true" ]; then exit 0; fi
-                    ${pkgs.curl}/bin/curl -fsS -m 10 --retry 5 \
-                      --data-raw "$ZREPL_FS: $ZREPL_SNAPNAME" \
-                      https://hc-ping.com/97cfd67a-ff76-43d6-bebd-511847e0f6d5
-                  '';
-                };
-              in "${script}/bin/zrepl-healthchecks-update";
-            }];
-          };
-          pruning = {
-            keep = [{
-              type = "grid";
-              regex = ".*";
-              grid = "1x1h(keep=all) | 24x1h | 6x1d | 4x7d | 120x30d";
-            }];
-          };
-        }
-      ];
+      jobs = [{
+        type = "snap";
+        name = "volume1_backups";
+        filesystems = {
+          "trunk" = false;
+          "trunk/volume1" = true;
+        };
+        snapshotting = {
+          type = "periodic";
+          prefix = "zrepl_";
+          interval = "10m";
+          hooks = [{
+            type = "command";
+            timeout = "30s";
+            err_is_fatal = false;
+            path = let
+              script = pkgs.writeShellApplication {
+                name = "zrepl-healthchecks-update";
+                text = ''
+                  if [ "$ZREPL_HOOKTYPE" != "post_snapshot" ]; then exit 0; fi
+                  if [ "$ZREPL_DRYRUN" == "true" ]; then exit 0; fi
+                  ${pkgs.curl}/bin/curl -fsS -m 10 --retry 5 \
+                    --data-raw "$ZREPL_FS: $ZREPL_SNAPNAME" \
+                    https://hc-ping.com/97cfd67a-ff76-43d6-bebd-511847e0f6d5
+                '';
+              };
+            in "${script}/bin/zrepl-healthchecks-update";
+          }];
+        };
+        pruning = {
+          keep = [{
+            type = "grid";
+            regex = ".*";
+            grid = "1x1h(keep=all) | 24x1h | 6x1d | 4x7d | 120x30d";
+          }];
+        };
+      }];
     };
   };
 }

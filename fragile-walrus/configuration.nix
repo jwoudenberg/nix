@@ -47,36 +47,23 @@
 
   services.fwupd.enable = true;
 
-  # zrepl
   services.zrepl = {
     enable = true;
     settings = {
       jobs = [{
-        type = "push";
+        type = "snap";
         name = "backup_persist";
         filesystems = {
           "trunk" = false;
           "trunk/encrypted/persist" = true;
-        };
-        connect = {
-          type = "tcp";
-          address = "ai-banana:8087";
         };
         snapshotting = {
           type = "periodic";
           prefix = "zrepl_";
           interval = "10m";
         };
-        send = { encrypted = true; };
         pruning = {
-          # Keep all snapshots locally. Pruning of local snapshots is performed
-          # by the services.zfs.autoSnapshot configuration.
-          keep_sender = [{
-            type = "grid";
-            regex = "zrepl_.*";
-            grid = "1x1h(keep=all) | 24x1h | 6x1d | 4x7d | 120x30d";
-          }];
-          keep_receiver = [{
+          keep = [{
             type = "grid";
             regex = "zrepl_.*";
             grid = "1x1h(keep=all) | 24x1h | 6x1d | 4x7d | 120x30d";

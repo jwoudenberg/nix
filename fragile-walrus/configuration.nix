@@ -87,6 +87,6 @@
   home-manager.useGlobalPkgs = true;
   home-manager.users.jasper = (import ./home.nix);
 
-  system.stateVersion = "22.05";
+  system.stateVersion = "22.11";
   system.autoUpgrade.enable = false;
 }

@@ -11,7 +11,7 @@ let
 in { pkgs, config, modulesPath, flakeInputs, ... }: {
 
   # Nix
-  system.stateVersion = "22.05";
+  system.stateVersion = "22.11";
   networking.hostName = "ai-banana";
   nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = [ flakeInputs.self.overlays.linuxCustomPkgs ];

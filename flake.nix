@@ -2,8 +2,8 @@
   description = "Jaspers Nix configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.05";
-    home-manager.url = "github:nix-community/home-manager/release-22.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
+    home-manager.url = "github:nix-community/home-manager/release-22.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     book-alert.url = "github:jwoudenberg/book-alert";
     book-alert.inputs.nixpkgs.follows = "nixpkgs";
@@ -38,13 +38,13 @@
     yarr.flake = false;
   };
 
-  outputs = inputs: {
-    overlays = {
-      linuxCustomPkgs = final: prev:
-        let
-          system = "x86_64-linux";
-          pkgs = inputs.nixpkgs.legacyPackages."${system}";
-        in {
+  outputs = inputs:
+    let
+      pkgs = inputs.nixpkgs.legacyPackages."x86_64-linux";
+      system = "x86_64-linux";
+    in {
+      overlays = {
+        linuxCustomPkgs = final: prev: {
           book-alert = inputs.book-alert.defaultPackage."${system}";
           jwlaunch = inputs.launch.defaultPackage."${system}";
           keepassxc-pass-frontend =
@@ -92,40 +92,37 @@
             postInstall = "mv $out/bin/src $out/bin/yarr";
           };
         };
-    };
-
-    nixosConfigurations.fragile-walrus = inputs.nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = { flakeInputs = inputs; };
-      modules = [ (import ./fragile-walrus/configuration.nix) ];
-    };
-
-    nixosConfigurations.sentient-tshirt = inputs.nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = { flakeInputs = inputs; };
-      modules = [ (import ./sentient-tshirt/configuration.nix) ];
-    };
-
-    nixosConfigurations.ai-banana = inputs.nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = { flakeInputs = inputs; };
-      modules = [ (import ./ai-banana/configuration.nix) ];
-    };
-
-    homeConfigurations.jubilant-moss =
-      inputs.home-manager.lib.homeManagerConfiguration {
-        configuration = import ./jubilant-moss/home.nix inputs;
-        system = "x86_64-linux";
-        username = "jasper";
-        homeDirectory = "/home/jasper";
-        stateVersion = "22.05";
       };
 
-    devShell."x86_64-linux" =
-      let pkgs = inputs.nixpkgs.legacyPackages."x86_64-linux";
-      in pkgs.mkShell {
+      nixosConfigurations.fragile-walrus = inputs.nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { flakeInputs = inputs; };
+        modules = [ (import ./fragile-walrus/configuration.nix) ];
+      };
+
+      nixosConfigurations.sentient-tshirt = inputs.nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { flakeInputs = inputs; };
+        modules = [ (import ./sentient-tshirt/configuration.nix) ];
+      };
+
+      nixosConfigurations.ai-banana = inputs.nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { flakeInputs = inputs; };
+        modules = [ (import ./ai-banana/configuration.nix) ];
+      };
+
+      homeConfigurations.jubilant-moss =
+        inputs.home-manager.lib.homeManagerConfiguration {
+          pkgs = pkgs;
+          modules = [ ./jubilant-moss/home.nix ];
+          extraSpecialArgs.linuxCustomPkgs =
+            inputs.self.overlays.linuxCustomPkgs;
+        };
+
+      devShell."x86_64-linux" = pkgs.mkShell {
         buildInputs = [ pkgs.luaformatter pkgs.lua53Packages.luacheck ];
       };
 
-  };
+    };
 }

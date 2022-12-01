@@ -1,5 +1,4 @@
-inputs:
-{ pkgs, ... }:
+{ linuxCustomPkgs, pkgs, ... }:
 
 {
   home.packages = [
@@ -45,5 +44,9 @@ inputs:
     { allowUnfree = true; }
   '';
 
-  nixpkgs.overlays = [ inputs.self.overlays.linuxCustomPkgs ];
+  nixpkgs.overlays = [ linuxCustomPkgs ];
+
+  home.username = "jasper";
+  home.homeDirectory = "/home/jasper";
+  home.stateVersion = "22.11";
 }

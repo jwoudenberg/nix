@@ -39,7 +39,7 @@
       polyglot
       quickfix-reflector-vim
       todo-txt-vim
-      (nvim-treesitter.withPlugins (plugins: builtins.attrValues plugins))
+      nvim-treesitter.withAllGrammars
       vim-abolish
       vim-commentary
       vim-dirvish

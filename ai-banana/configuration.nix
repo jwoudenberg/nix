@@ -509,26 +509,6 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
       TemporaryFileSystem = "/:ro";
       BindPaths = "/var/lib/yarr";
       BindReadOnlyPaths = "/nix/store";
-
-      # Various security settings, via `systemd-analyze security yarr`.
-      CapabilityBoundingSet = "";
-      LockPersonality = true;
-      MemoryDenyWriteExecute = true;
-      PrivateDevices = true;
-      PrivateUsers = true;
-      ProtectClock = true;
-      ProtectControlGroups = true;
-      ProtectHome = true;
-      ProtectHostname = true;
-      ProtectKernelLogs = true;
-      ProtectKernelModules = true;
-      ProtectKernelTunables = true;
-      ProtectProc = "invisible";
-      RestrictAddressFamilies = "AF_UNIX AF_INET";
-      RestrictNamespaces = true;
-      RestrictRealtime = true;
-      SystemCallArchitectures = "native";
-      SystemCallFilter = [ "@system-service" "~@privileged @resources" ];
     };
   };
 

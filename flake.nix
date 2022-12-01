@@ -34,8 +34,6 @@
     vale-proselint.url = "github:errata-ai/proselint";
     vale-write-good.flake = false;
     vale-write-good.url = "github:errata-ai/write-good";
-    yarr.url = "github:nkanaev/yarr";
-    yarr.flake = false;
   };
 
   outputs = inputs:
@@ -81,15 +79,6 @@
             src = inputs.smtprelay;
             vendorSha256 =
               "sha256-QC1URBrGsh14f5almSNbAbP/m/tDZ2VsDSUFh5o6WzI=";
-          };
-          yarr = pkgs.buildGoModule {
-            name = "yarr";
-            src = inputs.yarr;
-            vendorSha256 = null;
-            subPackages = [ "src" ];
-            tags = [ "sqlite_foreign_keys" "release" "linux" ];
-            ldflags = [ "-s" "-w" ];
-            postInstall = "mv $out/bin/src $out/bin/yarr";
           };
         };
       };

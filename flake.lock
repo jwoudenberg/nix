@@ -330,8 +330,7 @@
         "vale-Joblint": "vale-Joblint",
         "vale-alex": "vale-alex",
         "vale-proselint": "vale-proselint",
-        "vale-write-good": "vale-write-good",
-        "yarr": "yarr"
+        "vale-write-good": "vale-write-good"
       }
     },
     "shy": {
@@ -504,22 +503,6 @@
       "original": {
         "owner": "errata-ai",
         "repo": "write-good",
-        "type": "github"
-      }
-    },
-    "yarr": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1668594115,
-        "narHash": "sha256-mrDwAFHK6CkgfmRqlQwq17LBDb+JOuGvN4f0vKRayJM=",
-        "owner": "nkanaev",
-        "repo": "yarr",
-        "rev": "91da7742861c6d69965e2b815ebfbbceefa4b80a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nkanaev",
-        "repo": "yarr",
         "type": "github"
       }
     }

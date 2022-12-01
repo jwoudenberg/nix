@@ -156,11 +156,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1636043052,
-        "narHash": "sha256-0S5R1surPw/rnHXZ8iBb8HuCSZfMwOmh4UJjKwoLqgM=",
+        "lastModified": 1669929991,
+        "narHash": "sha256-1TiYwJ4P5K8BuwUxLOvlRddoDub4pCQrxQMnumlLhmc=",
         "owner": "jwoudenberg",
         "repo": "keepassxc-pass-frontend",
-        "rev": "a26413bf2a24a1675ce728bf6c426c4feb992e42",
+        "rev": "c7a1e8ae1f6e0b9bde07e9bd6c4038a4824cd3b0",
         "type": "github"
       },
       "original": {

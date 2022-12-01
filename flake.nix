@@ -38,8 +38,11 @@
 
   outputs = inputs:
     let
-      pkgs = inputs.nixpkgs.legacyPackages."x86_64-linux";
       system = "x86_64-linux";
+      pkgs = import inputs.nixpkgs {
+        system = system;
+        config.allowUnfree = true;
+      };
     in {
       overlays = {
         linuxCustomPkgs = final: prev: {
@@ -47,6 +50,7 @@
           jwlaunch = inputs.launch.defaultPackage."${system}";
           keepassxc-pass-frontend =
             inputs.keepassxc-pass-frontend.defaultPackage."${system}";
+          qutebrowser = pkgs.qutebrowser.override { enableWideVine = true; };
           random-colors = inputs.random-colors.defaultPackage."${system}";
           rem2html = pkgs.writers.writePerlBin "rem2html" {
             libraries =

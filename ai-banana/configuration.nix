@@ -195,36 +195,39 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
           }
         }
 
-        respond / `
-          <!DOCTYPE html>
-          <html>
-            <head><title>${config.networking.hostName}</title></head>
-            <body>
-              <h1>${config.networking.hostName}</h1>
-              <ul>
-                <li><a href="/files/">files</a></li>
-                <li><a href="/music/">music</a></li>
-                <li><a href="/feeds/">feeds</a></li>
-                <li><a href="/books/">books</a></li>
-                <li><a href="/calendar/">calendar</a></li>
-                <li><a href="/todos/">todos</a></li>
-                <li><a href="/paulus/">paulus</a></li>
-                <li><a href="http://${config.networking.hostName}:${
-                  toString kobodlPort2
-                }">kobo upload</a></li>
-                <li><a href="http://${config.networking.hostName}:${
-                  toString adguardHomePort
-                }">ad-blocking</a></li>
-              </ul>
-              <style>
-                body {
-                  font-family: arial, sans-serif;
-                  font-size: 1.4em;
-                }
-              </style>
-            </body>
-          </html>
-        `
+        route / {
+          header +Content-Type "text/html; charset=utf-8"
+          respond `
+            <!DOCTYPE html>
+            <html>
+              <head><title>${config.networking.hostName}</title></head>
+              <body>
+                <h1>${config.networking.hostName}</h1>
+                <ul>
+                  <li><a href="/files/">files</a></li>
+                  <li><a href="/music/">music</a></li>
+                  <li><a href="/feeds/">feeds</a></li>
+                  <li><a href="/books/">books</a></li>
+                  <li><a href="/calendar/">calendar</a></li>
+                  <li><a href="/todos/">todos</a></li>
+                  <li><a href="/paulus/">paulus</a></li>
+                  <li><a href="http://${config.networking.hostName}:${
+                    toString kobodlPort2
+                  }">kobo upload</a></li>
+                  <li><a href="http://${config.networking.hostName}:${
+                    toString adguardHomePort
+                  }">ad-blocking</a></li>
+                </ul>
+                <style>
+                  body {
+                    font-family: arial, sans-serif;
+                    font-size: 1.4em;
+                  }
+                </style>
+              </body>
+            </html>
+          `
+        }
 
         redir /files /files/
         reverse_proxy /files/* {

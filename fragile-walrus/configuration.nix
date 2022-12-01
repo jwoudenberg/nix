@@ -6,6 +6,7 @@
     ../shared/nixos-modules/localization.nix
     ../shared/nixos-modules/networking.nix
     ../shared/nixos-modules/nix.nix
+    ../shared/nixos-modules/pipewire.nix
     ../shared/nixos-modules/resilio-custom.nix
     ../shared/nixos-modules/systemd-boot.nix
     ../shared/nixos-modules/yubikey.nix

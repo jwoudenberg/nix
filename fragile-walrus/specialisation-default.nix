@@ -2,8 +2,7 @@
 
 {
   config = let
-    modules =
-      [ ../shared/nixos-modules/sway.nix ../shared/nixos-modules/pipewire.nix ];
+    modules = [ ../shared/nixos-modules/sway.nix ];
     otherConfig = { system.nixos.tags = [ "sway" ]; };
   in lib.mkIf (config.specialisation != { })
   (lib.fold lib.recursiveUpdate otherConfig

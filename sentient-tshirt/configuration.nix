@@ -61,9 +61,6 @@
     zfs rollback -r trunk/root@blank
   '';
 
-  environment.etc."NetworkManager/system-connections".source =
-    "/persist/system-connections/";
-
   networking.hostId = "bbc4755f";
 
   networking.hostName = "sentient-tshirt";

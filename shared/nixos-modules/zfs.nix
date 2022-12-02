@@ -9,7 +9,7 @@
   systemd.services.persist-linking = {
     description = "Create symbolic links to /persist";
     after = [ "persist.mount" ];
-    wantedBy = [ "multi-user.target" "tailscaled.service" "resilio.service" ];
+    wantedBy = [ "multi-user.target" "resilio.service" ];
     serviceConfig.Type = "oneshot";
     script = ''
       set -euxo pipefail
@@ -31,12 +31,6 @@
       mkdir -p /home/jasper/.cache
       chown jasper:users /home/jasper/.cache
       ln -sfn /persist/nix-index /home/jasper/.cache/nix-index
-
-      # Tailscale state
-      mkdir -p /var/lib/tailscale
-      ln -sfn /persist/tailscale/files /var/lib/tailscale/files
-      ln -sfn /persist/tailscale/tailscaled.state /var/lib/tailscale/tailscaled.state
-      ln -sfn /persist/tailscale/tailscaled.log.conf /var/lib/tailscale/tailscaled.log.conf
 
       # Set permissions for rslsync dirs (these gets reset sometimes, don't know why)
       chown -R rslsync:rslsync /persist/rslsync

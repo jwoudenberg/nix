@@ -36,6 +36,7 @@
     ../shared/home-manager-modules/readline.nix
     ../shared/home-manager-modules/ripgrep.nix
     ../shared/home-manager-modules/ssh.nix
+    ../shared/home-manager-modules/usb-scripts/default.nix
     ../shared/home-manager-modules/vale.nix
     ../shared/home-manager-modules/yubikey-agent.nix
   ];

@@ -46,6 +46,7 @@
     ../shared/home-manager-modules/ssh.nix
     ../shared/home-manager-modules/sway.nix
     ../shared/home-manager-modules/take-screenshot.nix
+    ../shared/home-manager-modules/usb-scripts/default.nix
     ../shared/home-manager-modules/vale.nix
     ../shared/home-manager-modules/wlsunset.nix
     ../shared/home-manager-modules/zathura.nix

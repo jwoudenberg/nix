@@ -1,6 +1,5 @@
 -- luacheck: globals vim
 -- VIM SETTINGS
-vim.o.cmdheight = 0
 vim.o.completeopt = "menu,noselect"
 vim.o.expandtab = true
 vim.o.hidden = true

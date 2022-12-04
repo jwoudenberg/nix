@@ -41,7 +41,7 @@
 
     [compose]
     reply-to-self = false
-    editor = ${pkgs.neovim}/bin/nvim
+    editor = nvim
     address-book-cmd = "${addressBookCmd} '%s'"
 
     [filters]

@@ -9,6 +9,7 @@
     pkgs.jq
     pkgs.remind
     pkgs.nixfmt
+    pkgs.openvpn3
     pkgs.pdfgrep
     pkgs.random-colors
     pkgs.shellcheck

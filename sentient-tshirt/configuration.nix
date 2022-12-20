@@ -49,7 +49,7 @@
   powerManagement.enable = true;
   powerManagement.powertop.enable = true;
   services.tlp.enable = true;
-  services.logind.lidSwitch = "suspend";
+  services.logind.lidSwitch = "hibernate";
 
   networking.hostId = "bbc4755f";
 

@@ -6,6 +6,7 @@
     ../shared/nixos-modules/localization.nix
     ../shared/nixos-modules/networking.nix
     ../shared/nixos-modules/nix.nix
+    ../shared/nixos-modules/persist-linking.nix
     ../shared/nixos-modules/pipewire.nix
     ../shared/nixos-modules/resilio-custom.nix
     ../shared/nixos-modules/systemd-boot.nix
@@ -43,6 +44,8 @@
   '';
 
   environment.pathsToLink = [ "/share/fish" ]; # Needed for direnv integration.
+
+  systemd.services.networking-persist-linking.after = [ "persist.mount" ];
 
   programs.command-not-found.enable = false;
 

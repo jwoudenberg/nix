@@ -17,7 +17,6 @@
 
   systemd.services.networking-persist-linking = {
     description = "Mount networking dirs from /persist";
-    after = [ "persist.mount" ];
     wantedBy = [ "iwd.service" "tailscaled.service" ];
     serviceConfig.Type = "oneshot";
     script = ''

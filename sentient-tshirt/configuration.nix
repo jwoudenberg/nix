@@ -20,6 +20,7 @@
   hardware.enableRedistributableFirmware = true;
   environment.variables.VDPAU_DRIVER = lib.mkDefault "va_gl";
 
+  boot.initrd.systemd.enable = true;
   boot.initrd.luks.devices.crypted = {
     device = "/dev/disk/by-uuid/7f495c9a-8ee9-4f31-ab35-e91000524639";
     preLVM = true;

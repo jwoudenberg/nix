@@ -45,8 +45,6 @@
 
   environment.pathsToLink = [ "/share/fish" ]; # Needed for direnv integration.
 
-  systemd.services.networking-persist-linking.after = [ "persist.mount" ];
-
   programs.command-not-found.enable = false;
 
   services.fwupd.enable = true;

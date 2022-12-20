@@ -27,6 +27,7 @@
     device = "trunk/encrypted/persist";
     fsType = "zfs";
     options = [ "zfsutil" ];
+    neededForBoot = true;
   };
 
   fileSystems."/boot" = {

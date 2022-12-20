@@ -15,7 +15,6 @@
   programs.steam.enable = true;
   systemd.services.persist-linking-steam = {
     description = "Create symbolic links for Steam to /persist";
-    after = [ "persist.mount" ];
     wantedBy = [ "multi-user.target" ];
     serviceConfig.Type = "oneshot";
     script = ''

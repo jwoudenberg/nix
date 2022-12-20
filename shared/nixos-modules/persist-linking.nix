@@ -1,7 +1,6 @@
 { pkgs, ... }: {
   systemd.services.persist-linking = {
     description = "Create symbolic links to /persist";
-    after = [ "persist.mount" ];
     wantedBy = [ "multi-user.target" "resilio.service" ];
     serviceConfig.Type = "oneshot";
     script = ''

@@ -74,6 +74,7 @@
   programs.command-not-found.enable = false;
 
   services.fwupd.enable = true;
+  services.udisks2.enable = true;
 
   services.zrepl = {
     enable = true;

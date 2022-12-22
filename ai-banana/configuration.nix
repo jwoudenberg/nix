@@ -34,7 +34,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
     device = "/dev/disk/by-uuid/bda03ef5-0d25-49a5-87d2-c79383443df8";
     fsType = "ext4";
   };
-  fileSystems."/srv/volume1" = {
+  fileSystems."/persist" = {
     device = "trunk/volume1";
     fsType = "zfs";
   };
@@ -103,7 +103,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
       set -ux    # No -e because I want to run all checks.
 
       # No scans waiting for processing
-      ls -1qA /srv/volume1/hjgames/scans-to-process/ | grep -q . || \
+      ls -1qA /persist/hjgames/scans-to-process/ | grep -q . || \
         ${pkgs.curl}/bin/curl -fsS -m 10 --retry 5 -o /dev/null \
         https://hc-ping.com/8ff8704b-d08e-47eb-b879-02ddb7442fe2
 
@@ -122,7 +122,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
           --data-raw "Used space on $1: $PCT%" "$URL"
       }
       check_free_diskspace '/'
-      check_free_diskspace '/srv/volume1'
+      check_free_diskspace '/persist'
     '';
   };
 
@@ -132,7 +132,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
       config.services.resilio.sharedFolders;
   in ''
     mkdir -p ${pathList}
-    chown rslsync:rslsync -R ${pathList}
+    chown rslsync:rslsync ${pathList}
   '';
 
   services.resilio = {
@@ -155,7 +155,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
       };
       configFor = dir: perms: {
         secretFile = "/run/secrets/resilio_key_${dir}_${perms}";
-        directory = "/srv/volume1/${dir}";
+        directory = "/persist/${dir}";
         useRelayServer = false;
         useTracker = true;
         useDHT = true;
@@ -170,7 +170,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
   services.navidrome = {
     enable = true;
     settings = {
-      MusicFolder = "/srv/volume1/music";
+      MusicFolder = "/persist/music";
       Port = 4533;
       BaseUrl = "/music";
       ReverseProxyUserHeader = "Remote-User";
@@ -259,7 +259,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
 
         redir /calendar /calendar/
         handle_path /calendar/* {
-          root * /srv/volume1/hjgames/agenda
+          root * /persist/hjgames/agenda
           file_server
         }
 
@@ -282,7 +282,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
     listen.port = 8083;
     user = "rslsync";
     group = "rslsync";
-    options.calibreLibrary = "/srv/volume1/books";
+    options.calibreLibrary = "/persist/books";
     options.enableBookUploading = true;
     # Documentation on this reverse proxy setup:
     # https://github.com/janeczku/calibre-web/wiki/Setup-Reverse-Proxy
@@ -301,8 +301,8 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
       Group = "rslsync";
       ExecStart = builtins.concatStringsSep " " [
         "${pkgs.paulus}/bin/paulus"
-        "--questions /srv/volume1/hjgames/paulus/questions.txt"
-        "--output /srv/volume1/hjgames/paulus/results.json"
+        "--questions /persist/hjgames/paulus/questions.txt"
+        "--output /persist/hjgames/paulus/results.json"
         "--port ${toString paulusPort}"
       ];
       Restart = "on-failure";
@@ -318,7 +318,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
       Type = "simple";
       User = "rslsync";
       Group = "rslsync";
-      ExecStart = "${pkgs.rclone}/bin/rclone serve http /srv/volume1 --addr :${
+      ExecStart = "${pkgs.rclone}/bin/rclone serve http /persist --addr :${
           toString webdavPort
         } --read-only --baseurl files/";
       Restart = "on-failure";
@@ -332,7 +332,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
     wantedBy = [ "multi-user.target" ];
     script = ''
       exec ${pkgs.rclone}/bin/rclone serve sftp \
-        /srv/volume1/hjgames/scans-to-process \
+        /persist/hjgames/scans-to-process \
         --key /run/secrets/ssh-key \
         --user sftp \
         --pass "$RCLONE_PASS" \
@@ -354,7 +354,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
     description =
       "Triggers ocrmypdf service when a file is placed in the scans-to-process directory.";
     pathConfig = {
-      DirectoryNotEmpty = "/srv/volume1/hjgames/scans-to-process";
+      DirectoryNotEmpty = "/persist/hjgames/scans-to-process";
       MakeDirectory = true;
     };
   };
@@ -363,7 +363,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
     description =
       "Run ocrmypdf on all files in the scans-to-process directory.";
     script = ''
-      for file in /srv/volume1/hjgames/scans-to-process/*; do
+      for file in /persist/hjgames/scans-to-process/*; do
         # Notify healthchecks.io that we're about to start scanning.
         ${pkgs.curl}/bin/curl --retry 3 https://hc-ping.com/c10a6886-0cb9-4ec5-89fc-b8a2e65dbe1e/start
 
@@ -377,7 +377,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
           "$file" \
           "$output" \
           && rm "$file" \
-          && mv "$output" /srv/volume1/hjgames/documenten
+          && mv "$output" /persist/hjgames/documenten
 
         # Notify healthchecks.io of the status of the previous command.
         ${pkgs.curl}/bin/curl --retry 3 https://hc-ping.com/c10a6886-0cb9-4ec5-89fc-b8a2e65dbe1e/$?
@@ -403,9 +403,9 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
       Group = "rslsync";
     };
     script = ''
-      ${pkgs.remind}/bin/remind -pp12 -m -b1 /srv/volume1/hjgames/agenda \
+      ${pkgs.remind}/bin/remind -pp12 -m -b1 /persist/hjgames/agenda \
         | ${pkgs.rem2html}/bin/rem2html \
-        > /srv/volume1/hjgames/agenda/index.html
+        > /persist/hjgames/agenda/index.html
     '';
   };
 
@@ -435,7 +435,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
             no-cram-md5
 
           action "fetch"
-            maildir "/srv/volume1/jasper/email/INBOX"
+            maildir "/persist/jasper/email/INBOX"
 
           match all action "fetch"
         '';
@@ -519,7 +519,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
     wantedBy = [ "multi-user.target" ];
     environment = {
       PORT = toString todoTxtWebPort;
-      TODO_TXT_PATH = "/srv/volume1/hjgames/todo.txt";
+      TODO_TXT_PATH = "/persist/hjgames/todo.txt";
       TITLE = "Hiske + Jasper Todos";
     };
     serviceConfig = {
@@ -570,7 +570,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
     script = ''
       ${pkgs.rsync}/bin/rsync --archive --human-readable --partial --delete \
         /var/lib \
-        /srv/volume1/varlib.backup
+        /persist/varlib.backup
     '';
   };
 
@@ -591,7 +591,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
     autoStart = true;
     extraOptions = [ "--network=host" ];
     ports = [ "${toString kobodlPort}:${toString kobodlPort}" ];
-    volumes = [ "/srv/volume1/kobodl:/kobodl" ];
+    volumes = [ "/persist/kobodl:/kobodl" ];
     cmd = [
       "--config"
       "/kobodl/kobodl.json"

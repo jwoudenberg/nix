@@ -7,7 +7,10 @@
 
   programs.qutebrowser = {
     enable = true;
-    aliases = { "q" = "tab-close"; };
+    aliases = {
+      "q" = "tab-close";
+      "reader" = "spawn --userscript readability";
+    };
     keyBindings.normal = {
       "<Ctrl-O>" = "back";
       "<Ctrl-I>" = "forward";

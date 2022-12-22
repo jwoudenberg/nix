@@ -13,6 +13,10 @@
       "<Ctrl-I>" = "forward";
       "gt" = "tab-next";
       "gT" = "tab-prev";
+      "<Ctrl-K>" = "tab-next";
+      "<Ctrl-J>" = "tab-prev";
+      "<Ctrl-Shift-K>" = "tab-move -1";
+      "<Ctrl-Shift-J>" = "tab-move +1";
       "d" = "nop";
     };
     settings = {

@@ -9,18 +9,11 @@ export HOST="${1:?'Pass host'}"
 
 # Create a persistent ssh connection that will be reused by follow-up commands
 echo "Opening ssh connection..."
-ssh -MNf "$HOST"
+nixos-rebuild switch --flake .#"$HOST" --target-host "$HOST" --use-remote-sudo
 
 # Get password for reading machine secrets later
 echo -n 'keepassxc password:'
 read -s PASSWORD
-
-nix build ".#nixosConfigurations.$HOST.config.system.build.toplevel" --out-link "$(pwd)/result"
-STORE_PATH=$(realpath result)
-
-# Copy configuration
-echo "Copying closure..."
-nix-copy-closure --use-substitutes --to "$HOST" "$STORE_PATH"
 
 # Copy over secrets
 write_secret () {
@@ -37,7 +30,3 @@ ssh "$HOST" -- "mkdir -p /run/secrets"
 for pass in $(echo "$PASSWORD" | keepassxc-cli ls -y 1 ~/docs/passwords.kdbx "$HOST"); do
   write_secret "$pass"
 done
-
-# Activate new configuration
-ssh "$HOST" -- "sudo nix-env --profile /nix/var/nix/profiles/system --set $STORE_PATH"
-ssh "$HOST" -- "sudo /nix/var/nix/profiles/system/bin/switch-to-configuration switch"

@@ -20,6 +20,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
     ../shared/nixos-modules/nix.nix
     ../shared/nixos-modules/resilio.nix
     ../shared/nixos-modules/users.nix
+    ../shared/nixos-modules/zfs.nix
     (modulesPath + "/profiles/qemu-guest.nix")
   ];
   boot.loader.grub.device = "/dev/sda";
@@ -62,16 +63,6 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
     neededForBoot = true;
   };
 
-  # ZFS
-  boot.initrd.supportedFilesystems = [ "zfs" ];
-  boot.zfs.requestEncryptionCredentials = true;
-  boot.supportedFilesystems = [ "zfs" ];
-  networking.hostId = "d26b29e3";
-  services.zfs = {
-    autoScrub.enable = true;
-    trim.enable = true;
-  };
-
   # Enable IP forwarding to allow this machine to function as a tailscale exit
   # node.
   # See: https://tailscale.com/kb/1104/enable-ip-forwarding/
@@ -92,6 +83,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
   programs.mosh.enable = true;
 
   # Network
+  networking.hostId = "d26b29e3";
   networking.firewall = {
     enable = true;
     trustedInterfaces = [ "tailscale0" ];

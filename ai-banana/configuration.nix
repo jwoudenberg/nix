@@ -37,6 +37,35 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
   fileSystems."/persist" = {
     device = "trunk/volume1";
     fsType = "zfs";
+    neededForBoot = true;
+  };
+  fileSystems."/var/lib/navidrome" = {
+    device = "/persist/navidrome";
+    fsType = "none";
+    options = [ "bind" ];
+    depends = [ "/persist" ];
+    neededForBoot = true;
+  };
+  fileSystems."/var/lib/resilio-sync" = {
+    device = "/persist/resilio-sync";
+    fsType = "none";
+    options = [ "bind" ];
+    depends = [ "/persist" ];
+    neededForBoot = true;
+  };
+  fileSystems."/var/lib/tailscale" = {
+    device = "/persist/tailscale";
+    fsType = "none";
+    options = [ "bind" ];
+    depends = [ "/persist" ];
+    neededForBoot = true;
+  };
+  fileSystems."/var/lib/yarr" = {
+    device = "/persist/yarr";
+    fsType = "none";
+    options = [ "bind" ];
+    depends = [ "/persist" ];
+    neededForBoot = true;
   };
 
   # ZFS
@@ -557,21 +586,6 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
       dhcp.enabled = false;
       tls.enabled = false;
     };
-  };
-
-  # backup /var/lib
-  systemd.timers.backup_var_lib = {
-    wantedBy = [ "timers.target" ];
-    partOf = [ "simple-timer.service" ];
-    timerConfig.OnCalendar = "hourly";
-  };
-  systemd.services.backup_var_lib = {
-    serviceConfig = { Type = "oneshot"; };
-    script = ''
-      ${pkgs.rsync}/bin/rsync --archive --human-readable --partial --delete \
-        /var/lib \
-        /persist/varlib.backup
-    '';
   };
 
   # kobodl

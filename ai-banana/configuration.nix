@@ -6,7 +6,6 @@ let
   kobodlPort2 = 8085;
   yarrPort = 8086;
   todoTxtWebPort = 8088;
-  bookAlertPort = 8089;
   adguardHomePort = 8090;
 in { pkgs, config, modulesPath, flakeInputs, ... }: {
 
@@ -595,20 +594,6 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
       "--port"
       "${toString kobodlPort}"
     ];
-  };
-
-  # book-alert
-  systemd.services.book-alert = {
-    description = "Book-alert";
-    after = [ "network.target" ];
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      Type = "simple";
-      DynamicUser = true;
-      ExecStart = "${pkgs.book-alert}/bin/book-alert";
-      Restart = "on-failure";
-      Environment = "PORT=${toString bookAlertPort}";
-    };
   };
 
   # zrepl

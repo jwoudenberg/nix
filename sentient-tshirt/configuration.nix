@@ -10,6 +10,7 @@
     ../shared/nixos-modules/resilio-custom.nix
     ../shared/nixos-modules/sway.nix
     ../shared/nixos-modules/systemd-boot.nix
+    ../shared/nixos-modules/users.nix
     ../shared/nixos-modules/yubikey.nix
     ./hardware-configuration.nix
     flakeInputs.home-manager.nixosModules.home-manager
@@ -58,26 +59,12 @@
 
   networking.hostName = "sentient-tshirt";
 
-  security.sudo.extraConfig = ''
-    Defaults lecture=never
-  '';
-
   environment.pathsToLink = [ "/share/fish" ]; # Needed for direnv integration.
 
   programs.command-not-found.enable = false;
 
   services.fwupd.enable = true;
   services.udisks2.enable = true;
-
-  users.mutableUsers = false;
-  users.users.jasper = {
-    isNormalUser = true;
-    home = "/home/jasper";
-    extraGroups = [ "wheel" "rslsync" "sway" ];
-    hashedPassword =
-      "$6$h6p1ovc5FdW$w8vrupUIOdgfgDJOxEfqPdibbitT3HfZkjVQDurQ7YHfxH6hyC1AUTMZ8qlGff5KCE4XQfYfR970S6BtTin3m.";
-    uid = 1000;
-  };
 
   home-manager.useUserPackages = true;
   home-manager.useGlobalPkgs = true;

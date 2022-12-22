@@ -13,19 +13,13 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
   # Nix
   system.stateVersion = "22.11";
   networking.hostName = "ai-banana";
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.overlays = [ flakeInputs.self.overlays.linuxCustomPkgs ];
-
-  nix.gc = {
-    automatic = true;
-    dates = "daily";
-    options = "--delete-older-than 1d";
-  };
 
   # Hardware
   disabledModules = [ "services/networking/resilio.nix" ];
   imports = [
+    ../shared/nixos-modules/nix.nix
     ../shared/nixos-modules/resilio.nix
+    ../shared/nixos-modules/users.nix
     (modulesPath + "/profiles/qemu-guest.nix")
   ];
   boot.loader.grub.device = "/dev/sda";
@@ -95,12 +89,6 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
 
   # SSH
   services.openssh.enable = true;
-  users.users.root.openssh.authorizedKeys.keys = [
-    "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPm2jdW8FNbI0lwVWbJBJXU8Ib1GVZRhY6Sy10hZFlSobt2RChtPBAUV/WNsG+Cb7jjtNnrHZWKJnO9mvClfg6c="
-    "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBCpYScAJfuGpIjYWS1Xf02y5jVFmXD3fsZ0rv364N2uHEKpt7YHaiWX+vCOaNf3j6pW9CPp7jtf/+udwtcXrcb4="
-  ];
-
-  # Mosh
   programs.mosh.enable = true;
 
   # Network

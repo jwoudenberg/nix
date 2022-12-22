@@ -7,12 +7,12 @@ set -euo pipefail
 
 export HOST="${1:?'Pass host'}"
 
-# # Create a persistent ssh connection that will be reused by follow-up commands
-# echo "Opening ssh connection..."
-# NIX_SSHOPTS="-t" nixos-rebuild switch \
-#   --flake .#"$HOST" \
-#   --target-host jasper@"$HOST" \
-#   --use-remote-sudo
+# Create a persistent ssh connection that will be reused by follow-up commands
+echo "Opening ssh connection..."
+NIX_SSHOPTS="-t" nixos-rebuild switch \
+  --flake .#"$HOST" \
+  --target-host jasper@"$HOST" \
+  --use-remote-sudo
 
 # Create a persistent ssh connection that will be reused by follow-up commands
 echo "Opening ssh connection..."

@@ -18,8 +18,8 @@
       "gT" = "tab-prev";
       "<Ctrl-K>" = "tab-next";
       "<Ctrl-J>" = "tab-prev";
-      "<Ctrl-Shift-K>" = "tab-move -1";
-      "<Ctrl-Shift-J>" = "tab-move +1";
+      "<Ctrl-Shift-K>" = "tab-move +";
+      "<Ctrl-Shift-J>" = "tab-move -";
       "d" = "nop";
     };
     settings = {

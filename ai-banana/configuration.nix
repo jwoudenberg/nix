@@ -25,7 +25,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
   boot.loader.grub.device = "/dev/sda";
   boot.cleanTmpDir = true;
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/bda03ef5-0d25-49a5-87d2-c79383443df8";
+    device = "/dev/disk/by-uuid/4bfb0e3a-8710-43b8-a5db-cbfe114b3932";
     fsType = "ext4";
   };
   fileSystems."/persist" = {
@@ -82,7 +82,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
   programs.mosh.enable = true;
 
   # Network
-  networking.hostId = "d26b29e3";
+  networking.hostId = "981a793c";
   networking.firewall = {
     enable = true;
     trustedInterfaces = [ "tailscale0" ];

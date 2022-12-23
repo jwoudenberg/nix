@@ -33,6 +33,10 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
     fsType = "zfs";
     neededForBoot = true;
   };
+  fileSystems."/nix" = {
+    device = "trunk/nix";
+    fsType = "zfs";
+  };
   fileSystems."/var/lib/navidrome" = {
     device = "/persist/navidrome";
     fsType = "none";

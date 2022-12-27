@@ -69,7 +69,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
   boot.kernel.sysctl."net.ipv6.conf.all.forwarding" = 1;
 
   # Packages
-  environment.systemPackages = [ pkgs.tailscale pkgs.comma ];
+  environment.systemPackages = [ ];
 
   # Tailscale
   services.tailscale = {

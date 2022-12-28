@@ -52,8 +52,6 @@
     ../shared/home-manager-modules/zathura.nix
   ];
 
-  programs.ssh.userKnownHostsFile = "/persist/ssh/known_hosts";
-
   xdg.configFile."nixpkgs/config.nix".text = ''
     { allowUnfree = true; }
   '';

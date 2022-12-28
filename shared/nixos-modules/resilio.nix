@@ -63,7 +63,7 @@ let
       '.shared_folders |= map(.secret = $ARGS.named[.dir])' \
       ${
         lib.concatMapStringsSep " \\\n  "
-        (entry: ''--arg '${entry.dir}' "$(cat '${entry.secret_file}')"'')
+        (entry: ''--arg '${entry.dir}' "$(cat "${entry.secret_file}")"'')
         sharedFoldersSecretFiles
       } \
       <${configFile} \
@@ -281,11 +281,11 @@ in {
         UMask = "0002";
         User = "rslsync";
         RuntimeDirectory = "rslsync";
-        ExecStartPre = "${createConfig}/bin/create-resilio-config";
-        ExecStart = ''
-          ${resilioSync}/bin/rslsync --nodaemon --config ${runConfigPath}
-        '';
       };
+      script = ''
+        ${createConfig}/bin/create-resilio-config
+        ${resilioSync}/bin/rslsync --nodaemon --config ${runConfigPath}
+      '';
     };
   };
 }

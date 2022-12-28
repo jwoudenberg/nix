@@ -15,16 +15,17 @@
   systemd.services.tailscaled.after =
     [ "systemd-networkd-wait-online.service" ];
 
-  systemd.services.networking-persist-linking = {
-    description = "Mount networking dirs from /persist";
-    wantedBy = [ "iwd.service" "tailscaled.service" ];
-    serviceConfig.Type = "oneshot";
-    script = ''
-      set -euxo pipefail
+  fileSystems."/var/lib/tailscale" = {
+    device = "/persist/tailscale";
+    fsType = "none";
+    options = [ "bind" ];
+    depends = [ "/persist" ];
+  };
 
-      mkdir -p /persist/iwd /var/lib/tailscale
-      ${pkgs.mount}/bin/mount --bind /persist/iwd /var/lib/iwd
-      ${pkgs.mount}/bin/mount --bind /persist/tailscale /var/lib/tailscale
-    '';
+  fileSystems."/var/lib/iwd" = {
+    device = "/persist/iwd";
+    fsType = "none";
+    options = [ "bind" ];
+    depends = [ "/persist" ];
   };
 }

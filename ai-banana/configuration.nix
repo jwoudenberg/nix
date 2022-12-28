@@ -78,7 +78,11 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
   };
 
   # SSH
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    passwordAuthentication = false;
+    kbdInteractiveAuthentication = false;
+  };
   programs.mosh.enable = true;
 
   # Network

@@ -33,7 +33,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
     fsType = "zfs";
     neededForBoot = true;
   };
-  fileSystems."/var/lib/navidrome" = {
+  fileSystems."/var/lib/private/navidrome" = {
     device = "/persist/navidrome";
     fsType = "none";
     options = [ "bind" ];
@@ -54,7 +54,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
     depends = [ "/persist" ];
     neededForBoot = true;
   };
-  fileSystems."/var/lib/yarr" = {
+  fileSystems."/var/lib/private/yarr" = {
     device = "/persist/yarr";
     fsType = "none";
     options = [ "bind" ];

@@ -415,6 +415,17 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
       Type = "oneshot";
       User = "rslsync";
       Group = "rslsync";
+      StateDirectory = "fdm";
+      WorkingDirectory = "/var/lib/fdm";
+      RuntimeDirectory = "fdm";
+      RootDirectory = "/run/fdm";
+      PrivateTmp = true;
+      BindReadOnlyPaths = [
+        builtins.storeDir
+        "/etc" # Needed for getting info about current user with getpwuid
+        "/bin" # fdm calls /bin/sh to run $(..) and %(..) commands in config
+      ];
+      BindPaths = [ "/persist/jasper/email/INBOX" ];
       LoadCredential =
         [ "freedom_imap_password:/persist/credentials/freedom_imap_password" ];
     };
@@ -422,11 +433,13 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
       mbsyncConfigFile = pkgs.writeTextFile {
         name = "fdm.conf";
         text = ''
+          set lock-file "/var/lib/fdm/fdm.lock"
+
           account "freedom" imaps
             server "imap.freedom.nl"
             port 993
             user "jwoudenberg@freedom.nl"
-            pass $(cat "$CREDENTIALS_DIRECTORY/freedom_imap_password")
+            pass $(${pkgs.coreutils}/bin/cat "$CREDENTIALS_DIRECTORY/freedom_imap_password")
             folder "INBOX"
             no-cram-md5
 

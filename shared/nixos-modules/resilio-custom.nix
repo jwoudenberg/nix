@@ -7,15 +7,13 @@
     "secret_for_hjgames:/persist/credentials/resilio_hjgames"
   ];
 
-  systemd.services.resilio.serviceConfig.BindPaths =
-    [ "/persist/hjgames:/run/hjgames" "/persist/jasper:/run/jasper" ];
-
   services.resilio = {
     enable = true;
     deviceName = "fragile-walrus";
+    storagePath = "/persist/resilio-sync";
     sharedFolders = [
       {
-        directory = "/run/hjgames";
+        directory = "/persist/hjgames";
         secretFile = "$CREDENTIALS_DIRECTORY/secret_for_hjgames";
         useRelayServer = false;
         useTracker = true;
@@ -25,7 +23,7 @@
         knownHosts = [ ];
       }
       {
-        directory = "/run/jasper";
+        directory = "/persist/jasper";
         secretFile = "$CREDENTIALS_DIRECTORY/secret_for_jasper";
         useRelayServer = false;
         useTracker = true;
@@ -35,13 +33,6 @@
         knownHosts = [ ];
       }
     ];
-  };
-
-  fileSystems."/var/lib/resilio-sync" = {
-    device = "/persist/resilio-sync";
-    fsType = "none";
-    options = [ "bind" ];
-    depends = [ "/persist" ];
   };
 
   fileSystems."/home/jasper/docs" = {

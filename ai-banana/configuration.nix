@@ -1,6 +1,5 @@
 let
   smtpPort = 8025;
-  webdavPort = 8080;
   paulusPort = 8081;
   kobodlPort = 8084;
   kobodlPort2 = 8085;
@@ -48,13 +47,6 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
   };
   fileSystems."/var/lib/private/navidrome" = {
     device = "/persist/navidrome";
-    fsType = "none";
-    options = [ "bind" ];
-    depends = [ "/persist" ];
-    neededForBoot = true;
-  };
-  fileSystems."/var/lib/resilio-sync" = {
-    device = "/persist/resilio-sync";
     fsType = "none";
     options = [ "bind" ];
     depends = [ "/persist" ];
@@ -169,6 +161,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
     enable = true;
     enableWebUI = false;
     listeningPort = 18776;
+    storagePath = "/persist/resilio-sync/";
     sharedFolders = let
       configFor = dir: perms: {
         secretFile = "$CREDENTIALS_DIRECTORY/resilio_key_${dir}_${perms}";
@@ -196,6 +189,8 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
   };
 
   # Caddy
+  systemd.services.caddy.serviceConfig.BindReadOnlyPaths =
+    [ "/persist/hjgames/agenda:/run/agenda" ];
   services.caddy = {
     enable = true;
     email = "letsencrypt@jasperwoudenberg.com";
@@ -221,7 +216,6 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
               <body>
                 <h1>${config.networking.hostName}</h1>
                 <ul>
-                  <li><a href="/files/">files</a></li>
                   <li><a href="/music/">music</a></li>
                   <li><a href="/feeds/">feeds</a></li>
                   <li><a href="/books/">books</a></li>
@@ -244,11 +238,6 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
               </body>
             </html>
           `
-        }
-
-        redir /files /files/
-        reverse_proxy /files/* {
-          to localhost:${toString webdavPort}
         }
 
         redir /feeds /feeds/
@@ -276,7 +265,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
 
         redir /calendar /calendar/
         handle_path /calendar/* {
-          root * /persist/hjgames/agenda
+          root * /run/agenda
           file_server
         }
 
@@ -294,12 +283,12 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
   };
 
   # calibre-web
+  systemd.services.calibre-web.serviceConfig.BindReadOnlyPaths =
+    [ "/persist/books:/run/books" ];
   services.calibre-web = {
     enable = true;
     listen.port = 8083;
-    user = "rslsync";
-    group = "rslsync";
-    options.calibreLibrary = "/persist/books";
+    options.calibreLibrary = "/run/books";
     options.enableBookUploading = true;
     # Documentation on this reverse proxy setup:
     # https://github.com/janeczku/calibre-web/wiki/Setup-Reverse-Proxy
@@ -318,27 +307,12 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
       Group = "rslsync";
       ExecStart = builtins.concatStringsSep " " [
         "${pkgs.paulus}/bin/paulus"
-        "--questions /persist/hjgames/paulus/questions.txt"
-        "--output /persist/hjgames/paulus/results.json"
+        "--questions /run/paulus/questions.txt"
+        "--output /run/paulus/results.json"
         "--port ${toString paulusPort}"
       ];
       Restart = "on-failure";
-    };
-  };
-
-  # web-based filebrowser
-  systemd.services.rclone-serve-webdav = {
-    description = "Rclone Serve";
-    after = [ "network.target" ];
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      Type = "simple";
-      User = "rslsync";
-      Group = "rslsync";
-      ExecStart = "${pkgs.rclone}/bin/rclone serve http /persist --addr :${
-          toString webdavPort
-        } --read-only --baseurl files/";
-      Restart = "on-failure";
+      BindPaths = [ "/persist/hjgames/paulus:/run/paulus" ];
     };
   };
 
@@ -543,7 +517,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
     wantedBy = [ "multi-user.target" ];
     environment = {
       PORT = toString todoTxtWebPort;
-      TODO_TXT_PATH = "/persist/hjgames/todo.txt";
+      TODO_TXT_PATH = "/run/hjgames-todo.txt";
       TITLE = "Hiske + Jasper Todos";
     };
     serviceConfig = {
@@ -552,6 +526,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
       Group = "rslsync";
       ExecStart = "${pkgs.todo-txt-web}/bin/todo-txt-web";
       Restart = "on-failure";
+      BindPaths = [ "/persist/hjgames/todo.txt:/run/hjgames-todo.txt" ];
     };
   };
 

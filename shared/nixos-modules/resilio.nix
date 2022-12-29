@@ -281,6 +281,10 @@ in {
         UMask = "0002";
         User = "rslsync";
         RuntimeDirectory = "rslsync";
+        RootDirectory = "/run/rslsync";
+        BindReadOnlyPaths = [ builtins.storeDir ];
+        BindPaths = [ cfg.storagePath ]
+          ++ (map (entry: entry.directory) cfg.sharedFolders);
       };
       script = ''
         ${createConfig}/bin/create-resilio-config

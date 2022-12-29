@@ -10,6 +10,6 @@
           ai-banana ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJJtiovfQ9l6ewuahB3Zh1AnJ8+NNABHwwrqmKtVHXiQ
         '';
       };
-    in "${knownHosts} ~/.ssh/known_hosts";
+    in "~/.ssh/known_hosts ${knownHosts}";
   };
 }

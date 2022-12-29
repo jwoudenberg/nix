@@ -7,6 +7,19 @@ let
   yarrPort = 8086;
   todoTxtWebPort = 8088;
   adguardHomePort = 8090;
+  resilioDirs = {
+    "music" = "readonly";
+    "photo" = "readonly";
+    "books" = "readwrite";
+    "jasper" = "readwrite";
+    "hiske" = "readonly";
+    "hjgames" = "readwrite";
+    "gilles1" = "encrypted";
+    "gilles4" = "encrypted";
+    "gilles5" = "encrypted";
+    "gilles6" = "encrypted";
+    "gilles7" = "encrypted";
+  };
 in { pkgs, config, modulesPath, flakeInputs, ... }: {
 
   # Nix
@@ -147,26 +160,18 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
     chown rslsync:rslsync ${pathList}
   '';
 
+  systemd.services.resilio.serviceConfig.LoadCredential = let
+    credentialFor = dir: perms:
+      "resilio_key_${dir}_${perms}:/persist/credentials/resilio_key_${dir}_${perms}";
+  in builtins.attrValues (builtins.mapAttrs credentialFor resilioDirs);
+
   services.resilio = {
     enable = true;
     enableWebUI = false;
     listeningPort = 18776;
     sharedFolders = let
-      dirs = {
-        "music" = "readonly";
-        "photo" = "readonly";
-        "books" = "readwrite";
-        "jasper" = "readwrite";
-        "hiske" = "readonly";
-        "hjgames" = "readwrite";
-        "gilles1" = "encrypted";
-        "gilles4" = "encrypted";
-        "gilles5" = "encrypted";
-        "gilles6" = "encrypted";
-        "gilles7" = "encrypted";
-      };
       configFor = dir: perms: {
-        secretFile = "/run/secrets/resilio_key_${dir}_${perms}";
+        secretFile = "$CREDENTIALS_DIRECTORY/resilio_key_${dir}_${perms}";
         directory = "/persist/${dir}";
         useRelayServer = false;
         useTracker = true;
@@ -175,7 +180,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
         useSyncTrash = false;
         knownHosts = [ ];
       };
-    in builtins.attrValues (builtins.mapAttrs configFor dirs);
+    in builtins.attrValues (builtins.mapAttrs configFor resilioDirs);
   };
 
   # navidrome
@@ -345,9 +350,9 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
     script = ''
       exec ${pkgs.rclone}/bin/rclone serve sftp \
         /persist/hjgames/scans-to-process \
-        --key /run/secrets/ssh-key \
+        --key "$CREDENTIALS_DIRECTORY/ssh-key" \
         --user sftp \
-        --pass "$RCLONE_PASS" \
+        --pass "$(cat "$CREDENTIALS_DIRECTORY/sftp-password")" \
         --addr :2022
     '';
     serviceConfig = {
@@ -355,7 +360,10 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
       User = "rslsync";
       Group = "rslsync";
       Restart = "on-failure";
-      EnvironmentFile = "/run/secrets/sftp-password";
+      LoadCredential = [
+        "ssh-key:/persist/credentials/ssh-key"
+        "sftp-password:/persist/credentials/sftp-password"
+      ];
     };
   };
 
@@ -433,6 +441,8 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
       Type = "oneshot";
       User = "rslsync";
       Group = "rslsync";
+      LoadCredential =
+        [ "freedom_imap_password:/persist/credentials/freedom_imap_password" ];
     };
     script = let
       mbsyncConfigFile = pkgs.writeTextFile {
@@ -442,7 +452,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
             server "imap.freedom.nl"
             port 993
             user "jwoudenberg@freedom.nl"
-            pass $(cat /run/secrets/freedom_imap_password)
+            pass $(cat "$CREDENTIALS_DIRECTORY/freedom_imap_password")
             folder "INBOX"
             no-cram-md5
 
@@ -464,6 +474,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
     after = [ "network.target" ];
     wantedBy = [ "multi-user.target" ];
     script = ''
+      SMTP_PASS=$(cat "$CREDENTIALS_DIRECTORY/freedom_smtp_password")
       ${pkgs.smtprelay}/bin/smtprelay \
         -listen "0.0.0.0:${toString smtpPort}" \
         -allowed_nets "100.64.0.0/10" \
@@ -472,7 +483,8 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
     serviceConfig = {
       Type = "simple";
       Restart = "on-failure";
-      EnvironmentFile = "/run/secrets/freedom_smtp_password";
+      LoadCredential =
+        [ "freedom_smtp_password:/persist/credentials/freedom_smtp_password" ];
 
       # Various security settings, via `systemd-analyze security yarr`.
       DynamicUser = true;

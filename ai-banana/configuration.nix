@@ -24,15 +24,19 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
   users.groups.syncdata.gid = 7;
 
   systemd.tmpfiles.rules = [
-    # archive and sent email directories should never be deleted from.
-    "d /persist/jasper 0775 root syncdata - -"
-    "d /persist/jasper/email 0775 root syncdata - -"
-    "d /persist/jasper/email/archive 0775 root syncdata - -"
-    "d /persist/jasper/email/archive/cur 0775 root syncdata - -"
-    "h /persist/jasper/email/archive/cur - - - - =a"
+    "d /persist/jasper 0770 root syncdata - -"
+    "Z /persist/jasper 0770 - syncdata - -"
 
-    "d /persist/jasper/email/sent 0775 root syncdata - -"
-    "d /persist/jasper/email/sent/cur 0775 root syncdata - -"
+    "d /persist/hjgames 0770 root syncdata - -"
+    "Z /persist/hjgames 0770 - syncdata - -"
+
+    # archive and sent email directories should never be deleted from.
+    "d /persist/jasper/email 0770 root syncdata - -"
+    "d /persist/jasper/email/archive 0770 root syncdata - -"
+    "d /persist/jasper/email/archive/cur 0770 root syncdata - -"
+    "h /persist/jasper/email/archive/cur - - - - =a"
+    "d /persist/jasper/email/sent 0770 root syncdata - -"
+    "d /persist/jasper/email/sent/cur 0770 root syncdata - -"
     "h /persist/jasper/email/sent/cur - - - - =a"
   ];
 

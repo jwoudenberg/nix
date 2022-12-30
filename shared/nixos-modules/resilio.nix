@@ -266,7 +266,7 @@ in {
       home = cfg.storagePath;
       createHome = true;
       uid = config.ids.uids.rslsync;
-      group = "rslsync";
+      group = "syncdata";
     };
 
     users.groups.rslsync = { };

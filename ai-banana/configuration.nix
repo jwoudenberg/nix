@@ -21,6 +21,8 @@ let
   };
 in { pkgs, config, modulesPath, flakeInputs, ... }: {
 
+  users.groups.syncdata.gid = 7;
+
   # Nix
   system.stateVersion = "22.11";
   networking.hostName = "ai-banana";
@@ -304,7 +306,6 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
     serviceConfig = {
       Type = "simple";
       User = "rslsync";
-      Group = "rslsync";
       ExecStart = builtins.concatStringsSep " " [
         "${pkgs.paulus}/bin/paulus"
         "--questions /run/paulus/questions.txt"
@@ -332,7 +333,6 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
     serviceConfig = {
       Type = "simple";
       User = "rslsync";
-      Group = "rslsync";
       Restart = "on-failure";
       LoadCredential = [
         "ssh-key:/persist/credentials/ssh-key"
@@ -380,7 +380,6 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
     serviceConfig = {
       Type = "oneshot";
       User = "rslsync";
-      Group = "rslsync";
     };
   };
 
@@ -394,7 +393,6 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
     serviceConfig = {
       Type = "oneshot";
       User = "rslsync";
-      Group = "rslsync";
     };
     script = ''
       ${pkgs.remind}/bin/remind -pp12 -m -b1 /persist/hjgames/agenda \
@@ -414,7 +412,6 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
     serviceConfig = {
       Type = "oneshot";
       User = "rslsync";
-      Group = "rslsync";
       StateDirectory = "fdm";
       WorkingDirectory = "/var/lib/fdm";
       RuntimeDirectory = "fdm";
@@ -536,7 +533,6 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
     serviceConfig = {
       Type = "simple";
       User = "rslsync";
-      Group = "rslsync";
       ExecStart = "${pkgs.todo-txt-web}/bin/todo-txt-web";
       Restart = "on-failure";
       BindPaths = [ "/persist/hjgames/todo.txt:/run/hjgames-todo.txt" ];

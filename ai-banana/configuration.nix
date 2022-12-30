@@ -397,6 +397,11 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
   };
 
   # remind
+  users.users.generate_remind_calendar = {
+    uid = 8;
+    group = "syncdata";
+    isSystemUser = true;
+  };
   systemd.timers.generate_remind_calendar = {
     wantedBy = [ "timers.target" ];
     partOf = [ "simple-timer.service" ];
@@ -405,7 +410,12 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
   systemd.services.generate_remind_calendar = {
     serviceConfig = {
       Type = "oneshot";
-      User = "rslsync";
+      User = "generate_remind_calendar";
+      UMask = "002";
+      RuntimeDirectory = "generate_remind_calendar";
+      RootDirectory = "/run/generate_remind_calendar";
+      BindReadOnlyPaths = [ builtins.storeDir ];
+      BindPaths = [ "/persist/hjgames/agenda" ];
     };
     script = ''
       ${pkgs.remind}/bin/remind -pp12 -m -b1 /persist/hjgames/agenda \

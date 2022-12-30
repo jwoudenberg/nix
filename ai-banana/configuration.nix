@@ -19,6 +19,11 @@ let
     "gilles6" = "encrypted";
     "gilles7" = "encrypted";
   };
+  uids = {
+    fdm = 7;
+    generate_remind_calendar = 8;
+    rclone_serve_sftp = 9;
+  };
 in { pkgs, config, modulesPath, flakeInputs, ... }: {
 
   users.groups.syncdata.gid = 7;
@@ -339,6 +344,11 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
   };
 
   # scanner sftp
+  users.users.rclone_serve_sftp = {
+    uid = uids.rclone_serve_sftp;
+    group = "syncdata";
+    isSystemUser = true;
+  };
   systemd.services.rclone-serve-sftp = {
     description = "Rclone Serve";
     after = [ "network.target" ];
@@ -353,8 +363,13 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
     '';
     serviceConfig = {
       Type = "simple";
-      User = "rslsync";
+      User = "rclone_serve_sftp";
+      UMask = "002";
       Restart = "on-failure";
+      RuntimeDirectory = "rclone_serve_sftp";
+      RootDirectory = "/run/rclone_serve_sftp";
+      BindReadOnlyPaths = [ builtins.storeDir ];
+      BindPaths = [ "/persist/hjgames/scans-to-process" ];
       LoadCredential = [
         "ssh-key:/persist/credentials/ssh-key"
         "sftp-password:/persist/credentials/sftp-password"
@@ -406,7 +421,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
 
   # remind
   users.users.generate_remind_calendar = {
-    uid = 8;
+    uid = uids.generate_remind_calendar;
     group = "syncdata";
     isSystemUser = true;
   };
@@ -434,7 +449,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
 
   # fdm
   users.users.fdm = {
-    uid = 7;
+    uid = uids.fdm;
     group = "syncdata";
     isSystemUser = true;
   };

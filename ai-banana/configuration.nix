@@ -603,15 +603,19 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
     wantedBy = [ "multi-user.target" ];
     environment = {
       PORT = toString todoTxtWebPort;
-      TODO_TXT_PATH = "/run/hjgames-todo.txt";
+      TODO_TXT_PATH = "/persist/hjgames/todo.txt";
       TITLE = "Hiske + Jasper Todos";
     };
     serviceConfig = {
       Type = "simple";
-      User = "rslsync";
+      DynamicUser = true;
+      Group = "syncdata";
       ExecStart = "${pkgs.todo-txt-web}/bin/todo-txt-web";
       Restart = "on-failure";
-      BindPaths = [ "/persist/hjgames/todo.txt:/run/hjgames-todo.txt" ];
+      RuntimeDirectory = "todo-txt-web";
+      RootDirectory = "/run/todo-txt-web";
+      BindReadOnlyPaths = [ builtins.storeDir ];
+      BindPaths = [ "/persist/hjgames/todo.txt" ];
     };
   };
 

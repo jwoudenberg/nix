@@ -31,10 +31,10 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
 
   systemd.tmpfiles.rules = [
     "d /persist/jasper 0770 root syncdata - -"
-    "Z /persist/jasper 0770 - syncdata - -"
+    "Z /persist/jasper ~0770 - syncdata - -"
 
     "d /persist/hjgames 0770 root syncdata - -"
-    "Z /persist/hjgames 0770 - syncdata - -"
+    "Z /persist/hjgames ~0770 - syncdata - -"
 
     # archive and sent email directories should never be deleted from.
     "d /persist/jasper/email 0770 root syncdata - -"

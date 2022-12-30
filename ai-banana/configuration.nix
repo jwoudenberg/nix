@@ -318,16 +318,20 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Type = "simple";
-      User = "rslsync";
-      ExecStart = builtins.concatStringsSep " " [
-        "${pkgs.paulus}/bin/paulus"
-        "--questions /run/paulus/questions.txt"
-        "--output /run/paulus/results.json"
-        "--port ${toString paulusPort}"
-      ];
+      DynamicUser = true;
+      Group = "syncdata";
       Restart = "on-failure";
-      BindPaths = [ "/persist/hjgames/paulus:/run/paulus" ];
+      RuntimeDirectory = "paulus";
+      RootDirectory = "/run/paulus";
+      BindReadOnlyPaths = [ builtins.storeDir ];
+      BindPaths = [ "/persist/hjgames/paulus" ];
     };
+    script = ''
+      exec ${pkgs.paulus}/bin/paulus \
+        --questions /persist/hjgames/paulus/questions.txt \
+        --output /persist/hjgames/paulus/results.json \
+        --port ${toString paulusPort}
+    '';
   };
 
   # scanner sftp

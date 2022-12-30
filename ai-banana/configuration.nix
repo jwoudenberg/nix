@@ -415,6 +415,11 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
   };
 
   # fdm
+  users.users.fdm = {
+    uid = 7;
+    group = "syncdata";
+    isSystemUser = true;
+  };
   systemd.timers.fdm = {
     wantedBy = [ "timers.target" ];
     partOf = [ "simple-timer.service" ];
@@ -424,7 +429,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
     description = "fdm";
     serviceConfig = {
       Type = "oneshot";
-      User = "rslsync";
+      User = "fdm";
       StateDirectory = "fdm";
       WorkingDirectory = "/var/lib/fdm";
       RuntimeDirectory = "fdm";
@@ -444,6 +449,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
         name = "fdm.conf";
         text = ''
           set lock-file "/var/lib/fdm/fdm.lock"
+          set file-umask 002
 
           account "freedom" imaps
             server "imap.freedom.nl"

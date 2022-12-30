@@ -23,6 +23,7 @@ let
     fdm = 7;
     generate_remind_calendar = 8;
     rclone_serve_sftp = 9;
+    ocrmypdf = 10;
   };
 in { pkgs, config, modulesPath, flakeInputs, ... }: {
 
@@ -363,8 +364,8 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
     '';
     serviceConfig = {
       Type = "simple";
-      User = "rclone_serve_sftp";
-      UMask = "002";
+      User = uids.rclone_serve_sftp;
+      UMask = "007";
       Restart = "on-failure";
       RuntimeDirectory = "rclone_serve_sftp";
       RootDirectory = "/run/rclone_serve_sftp";
@@ -378,6 +379,11 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
   };
 
   # ocrmypdf
+  users.users.ocrmypdf = {
+    uid = uids.ocrmypdf;
+    group = "syncdata";
+    isSystemUser = true;
+  };
   systemd.paths.ocrmypdf = {
     enable = true;
     wantedBy = [ "multi-user.target" ];
@@ -398,7 +404,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
         ${pkgs.curl}/bin/curl --retry 3 https://hc-ping.com/c10a6886-0cb9-4ec5-89fc-b8a2e65dbe1e/start
 
         # Run ocrmypdf on the scanned file.
-        output="$(mktemp -u "/tmp/$(date '+%Y%m%d')_XXXXXX.pdf")"
+        output="$(${pkgs.coreutils}/bin/mktemp -u "/tmp/$(date '+%Y%m%d')_XXXXXX.pdf")"
         ${pkgs.ocrmypdf}/bin/ocrmypdf \
           --output-type pdf \
           --rotate-pages \
@@ -415,7 +421,25 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
     '';
     serviceConfig = {
       Type = "oneshot";
-      User = "rslsync";
+      User = uids.ocrmypdf;
+      UMask = "007";
+      PrivateTmp = true;
+      RuntimeDirectory = "ocrmypdf";
+      RootDirectory = "/run/ocrmypdf";
+      BindReadOnlyPaths = [
+        builtins.storeDir
+        # For curl-ing https:// endponits
+        "${
+          config.environment.etc."ssl/certs/ca-certificates.crt".source
+        }:/etc/ssl/certs/ca-certificates.crt"
+        "/etc"
+      ];
+      BindPaths =
+        [ "/persist/hjgames/scans-to-process" "/persist/hjgames/documenten" ];
+      LoadCredential = [
+        "ssh-key:/persist/credentials/ssh-key"
+        "sftp-password:/persist/credentials/sftp-password"
+      ];
     };
   };
 
@@ -433,8 +457,8 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
   systemd.services.generate_remind_calendar = {
     serviceConfig = {
       Type = "oneshot";
-      User = "generate_remind_calendar";
-      UMask = "002";
+      User = uids.generate_remind_calendar;
+      UMask = "007";
       RuntimeDirectory = "generate_remind_calendar";
       RootDirectory = "/run/generate_remind_calendar";
       BindReadOnlyPaths = [ builtins.storeDir ];
@@ -462,7 +486,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
     description = "fdm";
     serviceConfig = {
       Type = "oneshot";
-      User = "fdm";
+      User = uids.fdm;
       StateDirectory = "fdm";
       WorkingDirectory = "/var/lib/fdm";
       RuntimeDirectory = "fdm";

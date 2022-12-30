@@ -164,7 +164,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
       config.services.resilio.sharedFolders;
   in ''
     mkdir -p ${pathList}
-    chown rslsync:rslsync ${pathList}
+    chown root:syncdata ${pathList}
   '';
 
   systemd.services.resilio.serviceConfig.LoadCredential = let

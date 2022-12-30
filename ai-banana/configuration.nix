@@ -30,6 +30,8 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
   users.groups.syncdata.gid = 7;
 
   systemd.tmpfiles.rules = [
+    "d /persist 0700 root root - -"
+
     "d /persist/jasper 0770 root syncdata - -"
     "Z /persist/jasper ~0770 - syncdata - -"
 

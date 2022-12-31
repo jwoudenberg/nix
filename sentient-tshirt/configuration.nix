@@ -29,12 +29,6 @@
   };
   boot.kernel.sysctl."fs.inotify.max_user_watches" = 524288;
   boot.kernelParams = [
-    # For Power consumption
-    # https://kvark.github.io/linux/framework/2021/10/17/framework-nixos.html
-    "mem_sleep_default=deep"
-    # Workaround iGPU hangs
-    # https://discourse.nixos.org/t/intel-12th-gen-igpu-freezes/21768/4
-    "i915.enable_psr=1"
     # Without this sway won't find the GPU
     "i915.force_probe=4626"
   ];

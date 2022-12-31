@@ -38,6 +38,8 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
     "d /persist/hjgames 0770 root syncdata - -"
     "Z /persist/hjgames ~0770 - syncdata - -"
 
+    "d /persist/webcalendar 0777 root syncdata - -"
+
     # archive and sent email directories should never be deleted from.
     "d /persist/jasper/email 0770 root syncdata - -"
     "d /persist/jasper/email/archive 0770 root syncdata - -"
@@ -217,7 +219,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
 
   # Caddy
   systemd.services.caddy.serviceConfig.BindReadOnlyPaths =
-    [ "/persist/hjgames/agenda:/run/agenda" ];
+    [ "/persist/webcalendar:/run/agenda" ];
   services.caddy = {
     enable = true;
     email = "letsencrypt@jasperwoudenberg.com";
@@ -460,16 +462,16 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
     serviceConfig = {
       Type = "oneshot";
       User = uids.generate_remind_calendar;
-      UMask = "007";
+      UMask = "000";
       RuntimeDirectory = "generate_remind_calendar";
       RootDirectory = "/run/generate_remind_calendar";
-      BindReadOnlyPaths = [ builtins.storeDir ];
-      BindPaths = [ "/persist/hjgames/agenda" ];
+      BindReadOnlyPaths = [ builtins.storeDir "/persist/hjgames/agenda" ];
+      BindPaths = [ "/persist/webcalendar" ];
     };
     script = ''
       ${pkgs.remind}/bin/remind -pp12 -m -b1 /persist/hjgames/agenda \
         | ${pkgs.rem2html}/bin/rem2html \
-        > /persist/hjgames/agenda/index.html
+        > /persist/webcalendar/index.html
     '';
   };
 

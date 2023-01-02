@@ -34,16 +34,11 @@
     depends = [ "/persist" ];
   };
 
-  systemd.services.persist-permissions = {
-    description = "Set correct permissions for bind mounts to /persist";
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig.Type = "oneshot";
-    script = ''
-      set -euxo pipefail
+  systemd.tmpfiles.rules = [
+    "d /persist 0700 root root - -"
 
-      # chown directories in home we're bind-mounting into
-      mkdir -p /home/jasper/{.config,.cache}
-      chown jasper:users /home/jasper/{.config,.cache}
-    '';
-  };
+    "d /home/jasper/.config 0700 jasper users - -"
+    "d /home/jasper/.cache 0700 jasper users - -"
+    "d /home/jasper/.local 0700 jasper users - -"
+  ];
 }

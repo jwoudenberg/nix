@@ -38,6 +38,9 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
     "d /persist/hjgames 0770 root syncdata - -"
     "Z /persist/hjgames ~0770 - syncdata - -"
 
+    "d /persist/books 0770 root syncdata - -"
+    "Z /persist/books ~0770 - syncdata - -"
+
     "d /persist/webcalendar 0777 root syncdata - -"
 
     # archive and sent email directories should never be deleted from.
@@ -315,10 +318,11 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
   };
 
   # calibre-web
-  systemd.services.calibre-web.serviceConfig.BindReadOnlyPaths =
+  systemd.services.calibre-web.serviceConfig.BindPaths =
     [ "/persist/books:/run/books" ];
   services.calibre-web = {
     enable = true;
+    group = "syncdata";
     listen.port = 8083;
     options.calibreLibrary = "/run/books";
     options.enableBookUploading = true;

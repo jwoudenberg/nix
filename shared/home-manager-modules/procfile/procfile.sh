@@ -22,6 +22,7 @@ launchFirst () {
     -o allow_remote_control=socket-only \
     --listen-on "$SOCKET" \
     --title "$(realpath "$PROCFILE")" \
+    --hold \
     bash -c "$CMD" \
     &>/dev/null \ &
   sleep 1
@@ -39,6 +40,7 @@ launchRest () {
     --tab-title "$CMD_NAME" \
     --cwd current \
     --copy-env \
+    --hold \
     bash -c "$CMD" \
     > /dev/null
 }

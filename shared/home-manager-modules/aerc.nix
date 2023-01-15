@@ -56,7 +56,7 @@
     postpone = drafts
     from = "Jasper Woudenberg <mail@jasperwoudenberg.com>"
     source = maildir://~/docs/email
-    copy-to = sent
+    copy-to = archive
     outgoing = smtp+none://ai-banana.panther-trout.ts.net:8025
   '';
 

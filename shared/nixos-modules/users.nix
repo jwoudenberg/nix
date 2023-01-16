@@ -3,7 +3,7 @@
   users.users.jasper = {
     isNormalUser = true;
     home = "/home/jasper";
-    extraGroups = [ "wheel" "rslsync" "sway" "ic2" ];
+    extraGroups = [ "wheel" "syncdata" "sway" "ic2" ];
     hashedPassword =
       "$6$h6p1ovc5FdW$w8vrupUIOdgfgDJOxEfqPdibbitT3HfZkjVQDurQ7YHfxH6hyC1AUTMZ8qlGff5KCE4XQfYfR970S6BtTin3m.";
     openssh.authorizedKeys.keys = [

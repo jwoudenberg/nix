@@ -5,14 +5,9 @@ let
   kobodlPort2 = 8085;
   yarrPort = 8086;
   todoTxtWebPort = 8088;
+  syncthingPort = 8089;
   adguardHomePort = 8090;
   resilioDirs = {
-    "music" = "readonly";
-    "photo" = "readonly";
-    "books" = "readwrite";
-    "jasper" = "readwrite";
-    "hiske" = "readonly";
-    "hjgames" = "readwrite";
     "gilles1" = "encrypted";
     "gilles4" = "encrypted";
     "gilles5" = "encrypted";
@@ -38,10 +33,15 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
     "d /persist/hjgames 0770 root syncdata - -"
     "Z /persist/hjgames ~0770 - syncdata - -"
 
+    "d /persist/hiske 0770 root syncdata - -"
+    "Z /persist/hiske ~0770 - syncdata - -"
+
     "d /persist/books 0770 root syncdata - -"
     "Z /persist/books ~0770 - syncdata - -"
 
     "d /persist/webcalendar 0777 root syncdata - -"
+
+    "d /persist/syncthing 0700 syncthing syncdata - -"
 
     # archive and sent email directories should never be deleted from.
     "d /persist/jasper/email 0770 root syncdata - -"
@@ -208,6 +208,64 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
     in builtins.attrValues (builtins.mapAttrs configFor resilioDirs);
   };
 
+  # syncthing
+  systemd.services.syncthing.serviceConfig = {
+    RuntimeDirectory = "syncthing";
+    BindPaths = [
+      "/run/syncthing:/persist"
+      "/persist/jasper"
+      "/persist/hiske"
+      "/persist/hjgames"
+      "/persist/syncthing"
+    ];
+  };
+  systemd.services.syncthing-init.serviceConfig = {
+    BindPaths = [ "/run/syncthing-init:/persist" "/persist/syncthing" ];
+  };
+  services.syncthing = {
+    enable = true;
+    group = "syncdata";
+    extraOptions = {
+      gui.insecureSkipHostcheck = true;
+      options = {
+        relaysEnabled = false;
+        natEnabled = false;
+        globalAnnounceEnabled = false;
+        localAnnounceEnabled = false;
+        urAccepted = -1;
+      };
+    };
+    overrideFolders = true;
+    overrideDevices = true;
+    dataDir = "/persist";
+    configDir = "/persist/syncthing";
+    guiAddress = "127.0.0.1:${toString syncthingPort}";
+    folders = {
+      "jasper" = {
+        path = "/persist/jasper";
+        devices = [ "sentient-tshirt" ];
+      };
+      "hjgames" = {
+        path = "/persist/hjgames";
+        devices = [ "sentient-tshirt" "hiske-macbook" ];
+      };
+      "hiske" = {
+        path = "/persist/hiske";
+        devices = [ "hiske-macbook" ];
+      };
+    };
+    devices = {
+      "sentient-tshirt" = {
+        id = "NQANURT-2P4WV4U-J72CBNC-2PB2NTQ-3TIA7RE-W222D6W-4UN7UTF-225KBAZ";
+        addresses = [ "tcp://sentient-tshirt" ];
+      };
+      "hiske-macbook" = {
+        id = "X6P3C6P-RTXOTRN-SVAPQ3T-4ZFB6FM-TTZVYJF-ZKDE3PG-5JAFJ6L-VYBRHQC";
+        addresses = [ "tcp://hiske-macbook" ];
+      };
+    };
+  };
+
   # navidrome
   services.navidrome = {
     enable = true;
@@ -254,6 +312,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
                   <li><a href="/calendar/">calendar</a></li>
                   <li><a href="/todos/">todos</a></li>
                   <li><a href="/paulus/">paulus</a></li>
+                  <li><a href="/syncthing/">syncthing</a></li>
                   <li><a href="http://${config.networking.hostName}:${
                     toString kobodlPort2
                   }">kobo upload</a></li>
@@ -306,6 +365,10 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
           to localhost:${toString todoTxtWebPort}
         }
 
+        redir /syncthing /syncthing/
+        handle_path /syncthing/* {
+          reverse_proxy localhost:${toString syncthingPort}
+        }
       }
 
       :${toString kobodlPort2} {

@@ -42,15 +42,6 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
     "d /persist/webcalendar 0777 root syncdata - -"
 
     "d /persist/syncthing 0700 syncthing syncdata - -"
-
-    # archive and sent email directories should never be deleted from.
-    "d /persist/jasper/email 0770 root syncdata - -"
-    "d /persist/jasper/email/archive 0770 root syncdata - -"
-    "d /persist/jasper/email/archive/cur 0770 root syncdata - -"
-    "h /persist/jasper/email/archive/cur - - - - =a"
-
-    "d /persist/hjgames/documenten 0770 root syncdata - -"
-    "h /persist/hjgames/documenten - - - - =a"
   ];
 
   # Nix

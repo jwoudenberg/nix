@@ -234,11 +234,16 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
     folders = {
       "jasper" = {
         path = "/persist/jasper";
-        devices = [ "sentient-tshirt" "fragile-walrus-popos" ];
+        devices = [ "fragile-walrus" "sentient-tshirt" "fragile-walrus-popos" ];
       };
       "hjgames" = {
         path = "/persist/hjgames";
-        devices = [ "sentient-tshirt" "hiske-macbook" "fragile-walrus-popos" ];
+        devices = [
+          "fragile-walrus"
+          "sentient-tshirt"
+          "hiske-macbook"
+          "fragile-walrus-popos"
+        ];
       };
       "hiske" = {
         path = "/persist/hiske";
@@ -246,6 +251,10 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
       };
     };
     devices = {
+      "fragile-walrus" = {
+        id = "ZKTWYFA-UHXFVSQ-J2NVTBT-PFQQUBE-DLRMWUG-3DVNWQK-LMSGYKB-ZEIAOQ7";
+        addresses = [ "tcp://fragile-walrus" ];
+      };
       "sentient-tshirt" = {
         id = "NQANURT-2P4WV4U-J72CBNC-2PB2NTQ-3TIA7RE-W222D6W-4UN7UTF-225KBAZ";
         addresses = [ "tcp://sentient-tshirt" ];

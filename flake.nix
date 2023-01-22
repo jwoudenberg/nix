@@ -102,6 +102,12 @@
         modules = [ (import ./ai-banana/configuration.nix) ];
       };
 
+      nixosConfigurations.airborne-cactus = inputs.nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { flakeInputs = inputs; };
+        modules = [ (import ./airborne-cactus/configuration.nix) ];
+      };
+
       homeConfigurations.jubilant-moss =
         inputs.home-manager.lib.homeManagerConfiguration {
           pkgs = pkgs;

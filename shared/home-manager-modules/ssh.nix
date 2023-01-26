@@ -2,6 +2,9 @@
   programs.ssh = {
     enable = true;
     compression = true; # Needed by tmate
+    extraConfig = ''
+      VisualHostKey yes
+    '';
     userKnownHostsFile = let
       knownHosts = pkgs.writeTextFile {
         name = "known_hosts";

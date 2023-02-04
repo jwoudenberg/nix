@@ -1,5 +1,6 @@
 let
   smtpPort = 8025;
+  filesPort = 8080;
   paulusPort = 8081;
   kobodlPort = 8084;
   kobodlPort2 = 8085;
@@ -310,6 +311,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
               <body>
                 <h1>${config.networking.hostName}</h1>
                 <ul>
+                  <li><a href="/files/">files</a></li>
                   <li><a href="/music/">music</a></li>
                   <li><a href="/feeds/">feeds</a></li>
                   <li><a href="/books/">books</a></li>
@@ -333,6 +335,11 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
               </body>
             </html>
           `
+        }
+
+        redir /files /files/
+        reverse_proxy /files/* {
+          to localhost:${toString filesPort}
         }
 
         redir /feeds /feeds/
@@ -417,6 +424,28 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
         --output /persist/hjgames/paulus/results.json \
         --port ${toString paulusPort}
     '';
+  };
+
+  # files
+  systemd.services.rclone-serve-files = {
+    description = "Rclone Serve Files";
+    after = [ "network.target" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "simple";
+      DynamicUser = true;
+      Group = "syncdata";
+      ExecStart = ''
+        ${pkgs.rclone}/bin/rclone serve http /persist/hjgames \
+          --addr ':${toString filesPort}' \
+          --read-only \
+          --baseurl 'files/'
+      '';
+      Restart = "on-failure";
+      RuntimeDirectory = "rclone_serve_files";
+      RootDirectory = "/run/rclone_serve_files";
+      BindReadOnlyPaths = [ builtins.storeDir "/persist/hjgames" ];
+    };
   };
 
   # scanner sftp

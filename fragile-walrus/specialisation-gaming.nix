@@ -1,13 +1,23 @@
 { pkgs, ... }: {
-  services.xserver.enable = true;
-
-  services.xserver.displayManager.gdm = {
+  services.xserver = {
     enable = true;
-    autoSuspend = false;
+    libinput.enable = true;
   };
-  services.xserver.displayManager.autoLogin = {
-    enable = true;
-    user = "jasper";
+
+  services.xserver.displayManager = {
+    session = [{
+      manage = "desktop";
+      name = "steam";
+      start = ''
+        ${pkgs.steam}/bin/steam -bigpicture &
+        waitPID=$!
+      '';
+    }];
+    defaultSession = "steam";
+    autoLogin = {
+      enable = true;
+      user = "jasper";
+    };
   };
 
   fileSystems."/home/jasper/.steam" = {
@@ -24,10 +34,5 @@
     depends = [ "/persist" ];
   };
 
-  services.xserver.desktopManager.gnome.enable = true;
-
   programs.steam.enable = true;
-
-  # Without this system76-power will exit shortly after it is started.
-  services.power-profiles-daemon.enable = false;
 }

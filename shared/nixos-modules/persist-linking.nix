@@ -40,5 +40,6 @@
     "d /home/jasper/.config 0700 jasper users - -"
     "d /home/jasper/.cache 0700 jasper users - -"
     "d /home/jasper/.local 0700 jasper users - -"
+    "d /home/jasper/.local/share 0700 jasper users - -"
   ];
 }

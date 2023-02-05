@@ -19,8 +19,6 @@
   boot.loader.grub.device =
     "/dev/disk/by-id/ata-SSE064GMLCC-SBC-2S_C295072701DE00012853";
 
-  networking.hostName = "airborne-cactus";
-
   time.timeZone = "Europe/Amsterdam";
 
   i18n.defaultLocale = "en_US.UTF-8";
@@ -35,7 +33,14 @@
   };
   programs.mosh.enable = true;
 
-  services.tailscale.enable = true;
+  system.stateVersion = "22.11";
 
-  system.stateVersion = "22.11"; # Did you read the comment?
+  # Networking
+  networking.hostName = "airborne-cactus";
+
+  networking.useNetworkd = true;
+  systemd.network.wait-online = { anyInterface = true; };
+
+  services.resolved.enable = true;
+  services.tailscale.enable = true;
 }

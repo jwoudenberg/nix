@@ -8,6 +8,7 @@ let
   todoTxtWebPort = 8088;
   syncthingPort = 8089;
   adguardHomePort = 8090;
+  boodschappenPort = 8091;
   resilioDirs = {
     "gilles1" = "encrypted";
     "gilles4" = "encrypted";
@@ -317,6 +318,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
                   <li><a href="/books/">books</a></li>
                   <li><a href="/calendar/">calendar</a></li>
                   <li><a href="/todos/">todos</a></li>
+                  <li><a href="/boodschappen/">boodschappen</a></li>
                   <li><a href="/paulus/">paulus</a></li>
                   <li><a href="/syncthing/">syncthing</a></li>
                   <li><a href="http://${config.networking.hostName}:${
@@ -374,6 +376,11 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
         redir /todos /todos/
         reverse_proxy /todos/* {
           to localhost:${toString todoTxtWebPort}
+        }
+
+        redir /boodschappen /boodschappen/
+        reverse_proxy /boodschappen/* {
+          to localhost:${toString boodschappenPort}
         }
 
         redir /syncthing /syncthing/
@@ -720,6 +727,29 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
       RootDirectory = "/run/todo-txt-web";
       BindReadOnlyPaths = [ builtins.storeDir ];
       BindPaths = [ "/persist/hjgames/todo.txt" ];
+    };
+  };
+
+  # boodschappen
+  systemd.services.boodschappen = {
+    description = "boodschappen";
+    after = [ "network.target" ];
+    wantedBy = [ "multi-user.target" ];
+    environment = {
+      PORT = toString boodschappenPort;
+      TODO_TXT_PATH = "/persist/hjgames/boodschappen/groceries.txt";
+      TITLE = "Boodschappen";
+    };
+    serviceConfig = {
+      Type = "simple";
+      DynamicUser = true;
+      Group = "syncdata";
+      ExecStart = "${pkgs.todo-txt-web}/bin/todo-txt-web";
+      Restart = "on-failure";
+      RuntimeDirectory = "boodschappen";
+      RootDirectory = "/run/boodschappen";
+      BindReadOnlyPaths = [ builtins.storeDir ];
+      BindPaths = [ "/persist/hjgames/boodschappen/groceries.txt" ];
     };
   };
 

@@ -1,23 +1,9 @@
 { pkgs, ... }: {
-  services.xserver = {
+  services.xserver.enable = true;
+  services.xserver.desktopManager.lxqt.enable = true;
+  services.xserver.displayManager.autoLogin = {
     enable = true;
-    libinput.enable = true;
-  };
-
-  services.xserver.displayManager = {
-    session = [{
-      manage = "desktop";
-      name = "steam";
-      start = ''
-        ${pkgs.steam}/bin/steam -bigpicture &
-        waitPID=$!
-      '';
-    }];
-    defaultSession = "steam";
-    autoLogin = {
-      enable = true;
-      user = "jasper";
-    };
+    user = "jasper";
   };
 
   fileSystems."/home/jasper/.steam" = {

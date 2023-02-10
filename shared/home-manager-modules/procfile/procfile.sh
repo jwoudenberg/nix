@@ -33,4 +33,4 @@ kitty \
   --listen-on "$SOCKET" \
   --title "$(realpath "$PROCFILE")" \
   bash -c "while read -r line; do launch_line \"\$line\"; done < \"$PROCFILE\"" \
-  &>/dev/null \
+  &>/dev/null \ &

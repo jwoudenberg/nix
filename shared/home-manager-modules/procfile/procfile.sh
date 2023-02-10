@@ -12,30 +12,12 @@ set -euo pipefail
 
 PROCFILE="${1:-Procfile}"
 SOCKET="unix:/tmp/kittyprocfile"
-LAUNCH=launchFirst
 
-launchFirst () {
+launch_line () {
   local LINE="$1"
   local CMD_NAME="${LINE%%:*}"
   local CMD="${LINE#*:}"
-  kitty \
-    -o allow_remote_control=socket-only \
-    --listen-on "$SOCKET" \
-    --title "$(realpath "$PROCFILE")" \
-    --hold \
-    bash -c "$CMD" \
-    &>/dev/null \ &
-  sleep 1
-  kitty @ --to "$SOCKET" set-tab-title "$CMD_NAME"
-  LAUNCH=launchRest
-}
-
-launchRest () {
-  local LINE="$1"
-  local CMD_NAME="${LINE%%:*}"
-  local CMD="${LINE#*:}"
-  kitty @ --to "$SOCKET" \
-    launch "${TARGET[@]}" \
+  kitty @ --to "$SOCKET" launch \
     --type tab \
     --tab-title "$CMD_NAME" \
     --cwd current \
@@ -44,5 +26,11 @@ launchRest () {
     bash -c "$CMD" \
     > /dev/null
 }
+export -f launch_line
 
-while read -r line; do "$LAUNCH" "$line"; done < "$PROCFILE"
+kitty \
+  -o allow_remote_control=socket-only \
+  --listen-on "$SOCKET" \
+  --title "$(realpath "$PROCFILE")" \
+  bash -c "while read -r line; do launch_line \"\$line\"; done < \"$PROCFILE\"" \
+  &>/dev/null \

@@ -1,8 +1,16 @@
 { pkgs, ... }: {
   users.groups.syncdata.gid = 7;
 
-  systemd.tmpfiles.rules =
-    [ "d /persist/syncthing 0700 syncthing syncdata - -" ];
+  systemd.tmpfiles.rules = [
+    "d /persist/syncthing 0700 jasper users - -"
+    "Z /persist/syncthing ~0700 jasper users - -"
+
+    "d /persist/jasper 0700 jasper users - -"
+    "Z /persist/jasper ~0700 jasper users - -"
+
+    "d /persist/hjgames 0700 jasper users - -"
+    "Z /persist/hjgames ~0700 jasper users - -"
+  ];
 
   systemd.services.syncthing.serviceConfig = {
     RuntimeDirectory = "syncthing";
@@ -18,7 +26,8 @@
   };
   services.syncthing = {
     enable = true;
-    group = "syncdata";
+    user = "jasper";
+    group = "users";
     extraOptions = {
       options = {
         relaysEnabled = false;

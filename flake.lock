@@ -174,11 +174,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1675410244,
-        "narHash": "sha256-ODj6egMoH/HgAF/0wIy0EfRBeUx5FMuLl6uAdUW3kCI=",
+        "lastModified": 1675918889,
+        "narHash": "sha256-hy7re4F9AEQqwZxubct7jBRos6md26bmxnCjxf5utJA=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "f7543a7539a007e9562e4d8d24e17a4bcf369b68",
+        "rev": "49efda9011e8cdcd6c1aad30384cb1dc230c82fe",
         "type": "github"
       },
       "original": {
@@ -263,11 +263,11 @@
     "rem2html": {
       "flake": false,
       "locked": {
-        "lastModified": 1675367154,
-        "narHash": "sha256-stRzU/FjUoc3m7tJl4QPTnOBiPucaHwOK83fOIwVuIM=",
+        "lastModified": 1676051873,
+        "narHash": "sha256-pk5tpMSzlcdq7tp0fLczJPot2ZiYWqSFabYkYIzS1l4=",
         "ref": "master",
-        "rev": "6fa500a8604962e10078d7e85b0697e713df5995",
-        "revCount": 1709,
+        "rev": "ffbba7d4d1aaf6f9b9f1a15c2900c75838955006",
+        "revCount": 1719,
         "type": "git",
         "url": "https://git.skoll.ca/Skollsoft-Public/Remind.git"
       },

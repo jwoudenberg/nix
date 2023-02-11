@@ -41,6 +41,11 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
     "d /persist/books 0770 root syncdata - -"
     "Z /persist/books ~0770 - syncdata - -"
 
+    "d /persist/music 0570 navidrome syncdata - -"
+    "Z /persist/music ~0570 navidrome syncdata - -"
+    "d /persist/navidrome 0700 navidrome navidrome - -"
+    "Z /persist/navidrome ~0700 navidrome navidrome - -"
+
     "d /persist/webcalendar 0777 root syncdata - -"
 
     "d /persist/syncthing 0700 syncthing syncdata - -"

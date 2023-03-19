@@ -239,6 +239,22 @@
         "type": "github"
       }
     },
+    "python-remind": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1665046246,
+        "narHash": "sha256-Z3OVjnuSfKLFtXUcrOfq8+ULkMqAgTDFlR1S/eg9ZRY=",
+        "owner": "jspricke",
+        "repo": "python-remind",
+        "rev": "599b939463bf90ca94e8ef0d62d0b68a77496c5d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jspricke",
+        "repo": "python-remind",
+        "type": "github"
+      }
+    },
     "random-colors": {
       "inputs": {
         "flake-utils": "flake-utils_3",
@@ -284,6 +300,7 @@
         "launch": "launch",
         "nixpkgs": "nixpkgs",
         "paulus": "paulus",
+        "python-remind": "python-remind",
         "random-colors": "random-colors",
         "rem2html": "rem2html",
         "shy": "shy",

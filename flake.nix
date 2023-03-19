@@ -20,6 +20,8 @@
     keepassxc-pass-frontend.inputs.nixpkgs.follows = "nixpkgs";
     paulus.url = "github:jwoudenberg/paulus";
     paulus.inputs.nixpkgs.follows = "nixpkgs";
+    python-remind.url = "github:jspricke/python-remind";
+    python-remind.flake = false;
     smtprelay.url = "github:decke/smtprelay";
     smtprelay.flake = false;
     todo-txt-web.url = "github:jwoudenberg/todo-txt-web";
@@ -56,6 +58,13 @@
           similar-sort = inputs.similar-sort.defaultPackage."${system}";
           shy = inputs.shy.defaultPackage."${system}";
           paulus = inputs.paulus.defaultPackage."${system}";
+          python-remind = let pythonPackages = pkgs.python3Packages;
+          in pythonPackages.buildPythonPackage {
+            name = "python-remind";
+            src = inputs.python-remind;
+            propagatedBuildInputs =
+              [ pythonPackages.vobject pythonPackages.python-dateutil ];
+          };
           todo-txt-web = inputs.todo-txt-web.defaultPackage."${system}";
           valeStyles = pkgs.linkFarm "vale-styles" [
             {

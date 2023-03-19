@@ -12,6 +12,7 @@
     pkgs.pdfgrep
     pkgs.pijul
     pkgs.pulsemixer
+    pkgs.python-remind
     pkgs.random-colors
     pkgs.rem2html
     pkgs.shellcheck

@@ -23,6 +23,7 @@
   };
   systemd.services.syncthing-init.serviceConfig = {
     BindPaths = [ "/run/syncthing-init:/persist" "/persist/syncthing" ];
+    UMask = "0007";
   };
   services.syncthing = {
     enable = true;

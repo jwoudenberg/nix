@@ -218,6 +218,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
       "/persist/hjgames"
       "/persist/syncthing"
     ];
+    UMask = "0007";
   };
   systemd.services.syncthing-init.serviceConfig = {
     BindPaths = [ "/run/syncthing-init:/persist" "/persist/syncthing" ];

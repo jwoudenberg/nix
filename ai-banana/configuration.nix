@@ -734,7 +734,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
       RuntimeDirectory = "todo-txt-web";
       RootDirectory = "/run/todo-txt-web";
       BindReadOnlyPaths = [ builtins.storeDir ];
-      BindPaths = [ "/persist/hjgames/todo.txt" ];
+      BindPaths = [ "/persist/hjgames" ];
     };
   };
 
@@ -757,7 +757,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
       RuntimeDirectory = "boodschappen";
       RootDirectory = "/run/boodschappen";
       BindReadOnlyPaths = [ builtins.storeDir ];
-      BindPaths = [ "/persist/hjgames/boodschappen/groceries.txt" ];
+      BindPaths = [ "/persist/hjgames/boodschappen" ];
     };
   };
 

@@ -35,6 +35,7 @@
     ../shared/home-manager-modules/neovim/default.nix
     ../shared/home-manager-modules/nix-index.nix
     ../shared/home-manager-modules/procfile/default.nix
+    ../shared/home-manager-modules/qrcode.nix
     ../shared/home-manager-modules/readline.nix
     ../shared/home-manager-modules/ripgrep.nix
     ../shared/home-manager-modules/ssh.nix

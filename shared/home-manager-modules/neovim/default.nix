@@ -41,6 +41,7 @@
       todo-txt-vim
       nvim-treesitter.withAllGrammars
       vim-abolish
+      pkgs.vim-apl
       vim-commentary
       vim-dirvish
       vim-eunuch

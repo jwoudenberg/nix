@@ -34,6 +34,8 @@
     vale-proselint.url = "github:errata-ai/proselint";
     vale-write-good.flake = false;
     vale-write-good.url = "github:errata-ai/write-good";
+    vim-apl.url = "github:zoomlogo/vim-apl";
+    vim-apl.flake = false;
   };
 
   outputs = inputs:
@@ -84,6 +86,10 @@
               path = "${inputs.vale-write-good}/write-good";
             }
           ];
+          vim-apl = pkgs.vimUtils.buildVimPluginFrom2Nix {
+            name = "vim-apl";
+            src = inputs.vim-apl;
+          };
           smtprelay = pkgs.buildGo118Module {
             name = "smtprelay";
             src = inputs.smtprelay;

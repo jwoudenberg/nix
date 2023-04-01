@@ -159,11 +159,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1679710833,
-        "narHash": "sha256-9yKVvGX1oAnlc8vTVvN2lRH35q6ETudQbM1w9ragMRU=",
+        "lastModified": 1680122840,
+        "narHash": "sha256-zCQ/9iFHzCW5JMYkkHMwgK1/1/kTMgCMHq4THPINpAU=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "83607dae4e05e1de755bbc7d7949b33fc1cfbbb9",
+        "rev": "a575c243c23e2851b78c00e9fa245232926ec32f",
         "type": "github"
       },
       "original": {
@@ -227,11 +227,11 @@
     "python-remind": {
       "flake": false,
       "locked": {
-        "lastModified": 1665046246,
-        "narHash": "sha256-Z3OVjnuSfKLFtXUcrOfq8+ULkMqAgTDFlR1S/eg9ZRY=",
+        "lastModified": 1679904976,
+        "narHash": "sha256-Zotp1M87zesCeBkNoqmaXU1ruY/Wgp5eE+ux/ABjVtY=",
         "owner": "jspricke",
         "repo": "python-remind",
-        "rev": "599b939463bf90ca94e8ef0d62d0b68a77496c5d",
+        "rev": "35e0a4fde0a5da67759fab654729affd185c2fcd",
         "type": "github"
       },
       "original": {

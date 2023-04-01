@@ -92,6 +92,10 @@ require'nvim-treesitter.configs'.setup {
     highlight = {enable = true, additional_vim_regex_highlighting = false}
 }
 
+-- AUTO-SESSION
+
+require("auto-session").setup {log_level = "error"}
+
 -- NEOFORMAT
 vim.g.neoformat_basic_format_retab = true
 vim.g.neoformat_enabled_go = {"gofmt"}

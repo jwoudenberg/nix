@@ -33,6 +33,15 @@
       content.register_protocol_handler = false;
       editor.command = [ "kitty" "nvim" "{file}" ];
       url.start_pages = [ "http://ai-banana" ];
+
+      # Fingerprinting protection, see: https://coveryourtracks.eff.org
+      # Nushell command to fetch most common user-agent of the moment:
+      #     fetch https://www.useragents.me/api | get data.0.ua
+      content.headers.user_agent =
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36";
+      content.headers.do_not_track = null;
+      content.canvas_reading = false;
+      content.webgl = false;
     };
   };
 

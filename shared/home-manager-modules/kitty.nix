@@ -8,7 +8,7 @@
     };
 
     settings = {
-      shell = "${pkgs.fish}/bin/fish";
+      shell = "${pkgs.nushell}/bin/nu";
       tab_bar_edge = "top";
       tab_bar_style = "separator";
       tab_separator = " | ";

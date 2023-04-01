@@ -5,7 +5,6 @@
     pkgs.comma
     pkgs.croc
     pkgs.gotop
-    pkgs.jq
     pkgs.mosh
     pkgs.remind
     pkgs.nixfmt
@@ -17,7 +16,6 @@
     pkgs.rem2html
     pkgs.shellcheck
     pkgs.signal-desktop
-    pkgs.shy
     pkgs.perlPackages.vidir
     pkgs.visidata
     pkgs.wl-clipboard
@@ -29,7 +27,6 @@
   imports = [
     ../shared/home-manager-modules/aerc.nix
     ../shared/home-manager-modules/direnv.nix
-    ../shared/home-manager-modules/fish/default.nix
     ../shared/home-manager-modules/fzf.nix
     ../shared/home-manager-modules/git.nix
     ../shared/home-manager-modules/imv.nix
@@ -39,6 +36,7 @@
     ../shared/home-manager-modules/make-screenrec.nix
     ../shared/home-manager-modules/neovim/default.nix
     ../shared/home-manager-modules/nix-index.nix
+    ../shared/home-manager-modules/nushell/default.nix
     ../shared/home-manager-modules/procfile/default.nix
     ../shared/home-manager-modules/qrcode.nix
     ../shared/home-manager-modules/qutebrowser.nix

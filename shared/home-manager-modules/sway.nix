@@ -88,7 +88,7 @@ in {
       Mod4+9 workspace 9
       Mod4+Down focus down
       Mod4+Left focus left
-      Mod4+Return exec kitty --single-instance -e fish
+      Mod4+Return exec kitty --single-instance
       Mod4+Right focus right
       Mod4+Shift+0 move container to workspace 10
       Mod4+Shift+1 move container to workspace 1

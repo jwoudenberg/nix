@@ -40,8 +40,6 @@
 
   networking.hostName = "fragile-walrus";
 
-  environment.pathsToLink = [ "/share/fish" ]; # Needed for direnv integration.
-
   programs.command-not-found.enable = false;
 
   services.fwupd.enable = true;

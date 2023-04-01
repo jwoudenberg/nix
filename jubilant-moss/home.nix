@@ -6,7 +6,6 @@
     pkgs.croc
     pkgs.gotop
     pkgs.home-manager
-    pkgs.jq
     pkgs.remind
     pkgs.nixfmt
     pkgs.openvpn3
@@ -15,7 +14,6 @@
     pkgs.random-colors
     pkgs.shellcheck
     pkgs.similar-sort
-    pkgs.shy
     pkgs.perlPackages.vidir
     pkgs.visidata
     pkgs.wally-cli
@@ -26,7 +24,6 @@
   imports = [
     ../shared/home-manager-modules/aerc.nix
     ../shared/home-manager-modules/direnv.nix
-    ../shared/home-manager-modules/fish/default.nix
     ../shared/home-manager-modules/fzf.nix
     ../shared/home-manager-modules/git.nix
     ../shared/home-manager-modules/keepassxc.nix
@@ -34,6 +31,7 @@
     ../shared/home-manager-modules/kitty.nix
     ../shared/home-manager-modules/neovim/default.nix
     ../shared/home-manager-modules/nix-index.nix
+    ../shared/home-manager-modules/nushell/default.nix
     ../shared/home-manager-modules/procfile/default.nix
     ../shared/home-manager-modules/qrcode.nix
     ../shared/home-manager-modules/readline.nix

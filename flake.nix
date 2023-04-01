@@ -14,8 +14,6 @@
     rem2html.flake = false;
     similar-sort.url =
       "git+https://git.bytes.zone/brian/similar-sort.git?ref=main";
-    shy.url = "github:jwoudenberg/shy";
-    shy.inputs.nixpkgs.follows = "nixpkgs";
     keepassxc-pass-frontend.url = "github:jwoudenberg/keepassxc-pass-frontend";
     keepassxc-pass-frontend.inputs.nixpkgs.follows = "nixpkgs";
     paulus.url = "github:jwoudenberg/paulus";
@@ -58,7 +56,6 @@
               [ pkgs.perlPackages.JSONMaybeXS pkgs.perlPackages.GetoptLong ];
           } (builtins.readFile "${inputs.rem2html}/rem2html/rem2html");
           similar-sort = inputs.similar-sort.defaultPackage."${system}";
-          shy = inputs.shy.defaultPackage."${system}";
           paulus = inputs.paulus.defaultPackage."${system}";
           python-remind = let pythonPackages = pkgs.python3Packages;
           in pythonPackages.buildPythonPackage {

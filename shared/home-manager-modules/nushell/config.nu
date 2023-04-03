@@ -32,10 +32,11 @@ let-env config = {
 
 let-env PROMPT_COMMAND = { pwd | path basename }
 let-env PROMPT_COMMAND_RIGHT = {
-  do --ignore-errors { git branch --format='%(refname:short)' }
+  do --ignore-errors { git branch }
     | complete
     | get stdout
-    | head -n 1
+    | grep '^* '
+    | str substring '2,'
 }
 let-env PROMPT_INDICATOR = " "
 let-env PROMPT_INDICATOR_VI_INSERT = " "

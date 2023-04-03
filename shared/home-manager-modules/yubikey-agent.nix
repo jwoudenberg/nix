@@ -28,6 +28,6 @@
   };
 
   home.sessionVariables = {
-    SSH_AUTH_SOCK = "$XDG_RUNTIME_DIR/yubikey-agent/yubikey-agent.sock";
+    SSH_AUTH_SOCK = "($env.XDG_RUNTIME_DIR)/yubikey-agent/yubikey-agent.sock";
   };
 }

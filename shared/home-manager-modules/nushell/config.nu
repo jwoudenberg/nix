@@ -10,20 +10,37 @@ let-env config = {
     modifier: control
     keycode: char_u
     mode: [emacs, vi_insert, vi_normal]
-    event: {
-      until: [
-        {edit: cutfromlinestart}
-      ]
-    }
+    event: { until: [{edit: cutfromlinestart}] }
   }, {
     name: insert-file-using-fzf
     modifier: control
     keycode: char_t
     mode: [emacs, vi_insert, vi_normal]
-    event: [{
-      send: ExecuteHostCommand,
-      cmd: "commandline --insert (fzf)"
-    }]
+    event: { send: ExecuteHostCommand, cmd: "commandline --insert (fzf)" }
+  }, {
+    name: menu-left
+    modifier: control
+    keycode: char_h
+    mode: [emacs, vi_insert, vi_normal]
+    event: { until: [{send: MenuLeft}] }
+  }, {
+    name: menu-right
+    modifier: control
+    keycode: char_l
+    mode: [emacs, vi_insert, vi_normal]
+    event: { until: [{send: MenuRight}] }
+  }, {
+    name: menu-up
+    modifier: control
+    keycode: char_k
+    mode: [emacs, vi_insert, vi_normal]
+    event: { until: [{send: MenuUp}] }
+  }, {
+    name: menu-down
+    modifier: control
+    keycode: char_j
+    mode: [emacs, vi_insert, vi_normal]
+    event: { until: [{send: MenuDown}] }
   }]
   hooks: {
     pre_prompt: {

@@ -9,12 +9,21 @@ let-env config = {
     name: unix-line-discard
     modifier: control
     keycode: char_u
-    mode: [emacs, vi_insert]
+    mode: [emacs, vi_insert, vi_normal]
     event: {
       until: [
         {edit: cutfromlinestart}
       ]
     }
+  }, {
+    name: insert-file-using-fzf
+    modifier: control
+    keycode: char_t
+    mode: [emacs, vi_insert, vi_normal]
+    event: [{
+      send: ExecuteHostCommand,
+      cmd: "commandline --insert (fzf)"
+    }]
   }]
   hooks: {
     pre_prompt: {

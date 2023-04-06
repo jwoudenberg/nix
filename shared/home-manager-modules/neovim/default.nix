@@ -31,7 +31,6 @@
 
     plugins = with pkgs.vimPlugins; [
       ale
-      auto-session
       fzfWrapper
       gitsigns-nvim
       lightline-vim

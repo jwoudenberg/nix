@@ -50,6 +50,13 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     pattern = "*",
     callback = function() vim.highlight.on_yank({timeout = 500}) end
 })
+vim.api.nvim_create_autocmd("VimSuspend", {
+    desc = "Create a session and exit Vim on suspend",
+    callback = function()
+        vim.api.nvim_command([[mksession!]])
+        vim.api.nvim_command([[wqa]])
+    end
+})
 
 -- COLORSCHEME
 vim.o.background = "dark"
@@ -91,10 +98,6 @@ vim.g.polyglot_disabled = {"haskell", "markdown"}
 require'nvim-treesitter.configs'.setup {
     highlight = {enable = true, additional_vim_regex_highlighting = false}
 }
-
--- AUTO-SESSION
-
-require("auto-session").setup {log_level = "error"}
 
 -- NEOFORMAT
 vim.g.neoformat_basic_format_retab = true

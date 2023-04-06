@@ -6,7 +6,7 @@
 
     lfs.enable = true;
 
-    ignores = [ "todo.txt" ".direnv" ".lvimrc" ];
+    ignores = [ "todo.txt" ".direnv" ".lvimrc" "Session.vim" ];
 
     extraConfig = {
       core.pager = "${pkgs.gitAndTools.delta}/bin/delta";

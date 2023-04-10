@@ -253,11 +253,12 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
           "sentient-tshirt"
           "hiske-macbook"
           "fragile-walrus-popos"
+          "klarinet"
         ];
       };
       "hiske" = {
         path = "/persist/hiske";
-        devices = [ "hiske-macbook" ];
+        devices = [ "hiske-macbook" "klarinet" ];
       };
     };
     devices = {
@@ -276,6 +277,10 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
       "hiske-macbook" = {
         id = "X6P3C6P-RTXOTRN-SVAPQ3T-4ZFB6FM-TTZVYJF-ZKDE3PG-5JAFJ6L-VYBRHQC";
         addresses = [ "tcp://hiske-macbook" ];
+      };
+      "klarinet" = {
+        id = "W3G65QI-CEWVZ4R-ZBBH4R4-2IF4WZS-WWEOAS3-WWC2UCR-JRITAEG-XHTAIAK";
+        addresses = [ "tcp://klarinet" ];
       };
     };
   };

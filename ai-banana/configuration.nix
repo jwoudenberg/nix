@@ -309,19 +309,15 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
       }
 
       https://ai-banana.panther-trout.ts.net {
-        file_server /favicon.ico {
-          root ${
-            pkgs.runCommand "ai-banana-favicon-dir" { }
-            "install -DT ${./favicon.ico} $out/favicon.ico"
-          }
-        }
-
         route / {
           header +Content-Type "text/html; charset=utf-8"
           respond `
             <!DOCTYPE html>
-            <html>
-              <head><title>${config.networking.hostName}</title></head>
+              <html>
+              <head>
+                <title>${config.networking.hostName}</title>
+                <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍌</text></svg>">
+                </head>
               <body>
                 <h1>${config.networking.hostName}</h1>
                 <ul>
@@ -344,7 +340,20 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
                 <style>
                   body {
                     font-family: arial, sans-serif;
-                    font-size: 1.4em;
+                    font-size: 1.7em;
+                    background: #FCFAD9;
+                    color: #232323;
+                    text-align: center;
+                  }
+                  ul {
+                    list-style-type: none;
+                    padding: 0;
+                  }
+                  li {
+                    margin: 0.3em 0;
+                  }
+                  a {
+                    color: inherit;
                   }
                 </style>
               </body>

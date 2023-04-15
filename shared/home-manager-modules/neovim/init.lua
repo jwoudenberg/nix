@@ -104,9 +104,6 @@ vim.g.ale_rust_ignore_secondary_spans = true
 vim.api.nvim_set_keymap("n", "<localleader>e", "<Plug>(ale_detail)",
                         {noremap = true})
 
--- POLYGLOT
-vim.g.polyglot_disabled = {"haskell", "markdown"}
-
 -- TREESITTER
 require'nvim-treesitter.configs'.setup {
     highlight = {enable = true, additional_vim_regex_highlighting = false}

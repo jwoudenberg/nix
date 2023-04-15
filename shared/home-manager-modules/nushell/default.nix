@@ -6,6 +6,27 @@
     configFile.source = ./config.nu;
     extraConfig = ''
       alias diary = ${./diary.nu}
+
+      def remind [--months (-m): int = 1] {
+        let startOfToday = (date now | date format '%Y/%m/%d' | into datetime)
+        (
+          ${pkgs.remind}/bin/remind $"-ppp($months)" ~/hjgames/agenda/
+            | from json
+            | each { get entries }
+            | flatten
+            | each {
+                |event| {
+                  body: $event.body
+                  date: ($event | get -i eventstart | default $event.date | into datetime)
+                }
+              }
+            | where date >= $startOfToday
+            | sort-by date
+        )
+      }
+
+      # Display events for today
+      remind | where date < (date now) + 1day | get body | str join "\n"
     '';
     envFile.text = let
       # Adapted from similar logic for other shells in home-manager:

@@ -1,5 +1,3 @@
-today
-
 let-env config = {
   show_banner: false
   edit_mode: vi
@@ -73,7 +71,3 @@ alias opn = xdg-open
 alias ssh = kitty +kitten ssh
 alias todo = ^$env.EDITOR ~/docs/todo.txt
 alias agenda = ^$env.EDITOR ~/hjgames/agenda/agenda.rem
-
-def today [] {
-  remind -q -n -b1 ~/hjgames/agenda/ | grep (date now | date format '%Y/%m/%d') | ^sort
-}

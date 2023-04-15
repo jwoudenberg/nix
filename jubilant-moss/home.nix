@@ -6,11 +6,9 @@
     pkgs.croc
     pkgs.gotop
     pkgs.home-manager
-    pkgs.remind
     pkgs.nixfmt
     pkgs.openvpn3
     pkgs.pdfgrep
-    pkgs.python-remind
     pkgs.random-colors
     pkgs.shellcheck
     pkgs.similar-sort

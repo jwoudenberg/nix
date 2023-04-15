@@ -6,12 +6,10 @@
     pkgs.croc
     pkgs.gotop
     pkgs.mosh
-    pkgs.remind
     pkgs.nixfmt
     pkgs.pdfgrep
     pkgs.pijul
     pkgs.pulsemixer
-    pkgs.python-remind
     pkgs.random-colors
     pkgs.rem2html
     pkgs.shellcheck

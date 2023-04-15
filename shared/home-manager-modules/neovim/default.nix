@@ -35,12 +35,10 @@
       gitsigns-nvim
       lightline-vim
       nord-vim
-      polyglot
       quickfix-reflector-vim
       todo-txt-vim
       nvim-treesitter.withAllGrammars
       vim-abolish
-      pkgs.vim-apl
       vim-commentary
       vim-dirvish
       vim-eunuch
@@ -53,7 +51,6 @@
       vim-speeddating
       vim-surround
       vim-unimpaired
-      vim-visualstar
     ];
   };
 }

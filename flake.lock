@@ -294,8 +294,7 @@
         "vale-Joblint": "vale-Joblint",
         "vale-alex": "vale-alex",
         "vale-proselint": "vale-proselint",
-        "vale-write-good": "vale-write-good",
-        "vim-apl": "vim-apl"
+        "vale-write-good": "vale-write-good"
       }
     },
     "similar-sort": {
@@ -447,22 +446,6 @@
       "original": {
         "owner": "errata-ai",
         "repo": "write-good",
-        "type": "github"
-      }
-    },
-    "vim-apl": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1678103715,
-        "narHash": "sha256-efv145G0tlZ2KrqjtBQSz7hphM+mo0nsdSAaCkPqgZs=",
-        "owner": "zoomlogo",
-        "repo": "vim-apl",
-        "rev": "beedb4c4928bba6495633f0521655866449439a3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "zoomlogo",
-        "repo": "vim-apl",
         "type": "github"
       }
     }

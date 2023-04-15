@@ -66,21 +66,35 @@ vim.g.lightline = {colorscheme = "nord"}
 -- ALE
 vim.g.ale_use_global_executables = true
 vim.g.ale_linters_explicit = true
-vim.g.ale_linter_aliases = {gitcommit = {"markdown", "gitcommit"}}
 vim.g.ale_linters = {
     haskell = {"hlint"},
-    elm = {"make"},
+    elm = {"elm-make"},
     gitcommit = {"vale"},
     go = {"gobuild"},
     nim = {"nimcheck"},
     python = {"flake8"},
     rust = {"cargo"},
     lua = {"luacheck"},
+    mail = {"vale"},
     markdown = {"vale"},
     bash = {"shellcheck"},
     sh = {"shellcheck"}
 }
+vim.g.ale_fixers = {
+    ['*'] = {"remove_trailing_lines", "trim_whitespace"},
+    ["elm"] = {"elm-format"},
+    ["go"] = {"gofmt"},
+    ["haskell"] = {"ormolu"},
+    ["kotlin"] = {"ktlint"},
+    ["lua"] = {"lua-format"},
+    ["nim"] = {"nimpretty"},
+    ["nix"] = {"nixfmt"},
+    ["python"] = {"black"},
+    ["ruby"] = {"rubocop"},
+    ["rust"] = {"rustfmt"}
+}
 
+vim.g.ale_fix_on_save = true
 vim.g.ale_sign_error = "✗"
 vim.g.ale_sign_warning = "!"
 vim.g.ale_rust_cargo_use_clippy = vim.fn.executable("cargo-clippy") > 0
@@ -94,32 +108,9 @@ vim.api.nvim_set_keymap("n", "<localleader>e", "<Plug>(ale_detail)",
 vim.g.polyglot_disabled = {"haskell", "markdown"}
 
 -- TREESITTER
-
 require'nvim-treesitter.configs'.setup {
     highlight = {enable = true, additional_vim_regex_highlighting = false}
 }
-
--- NEOFORMAT
-vim.g.neoformat_basic_format_retab = true
-vim.g.neoformat_enabled_go = {"gofmt"}
-vim.g.neoformat_enabled_haskell = {"ormolu"}
-vim.g.neoformat_enabled_html = {}
-vim.g.neoformat_enabled_json = {}
-vim.g.neoformat_enabled_lua = {"luaformat"}
-vim.g.neoformat_enabled_markdown = {"vale"}
-vim.g.neoformat_enabled_nim = {"nimpretty"}
-vim.g.neoformat_enabled_nix = {"nixfmt"}
-vim.g.neoformat_enabled_python = {"black"}
-vim.g.neoformat_enabled_ruby = {"rubocop"}
-vim.g.neoformat_enabled_rust = {"rustfmt"}
-vim.g.neoformat_enabled_sql = {}
-vim.g.neoformat_enabled_yaml = {}
-
-vim.api.nvim_create_autocmd("BufWritePre", {
-    desc = "Run code formatters",
-    pattern = "*",
-    callback = function() vim.api.nvim_command("Neoformat") end
-})
 
 -- FZF
 vim.api.nvim_create_user_command("Rg", function(args)

@@ -34,7 +34,6 @@
       fzfWrapper
       gitsigns-nvim
       lightline-vim
-      neoformat
       nord-vim
       polyglot
       quickfix-reflector-vim

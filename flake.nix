@@ -32,6 +32,8 @@
     vale-proselint.url = "github:errata-ai/proselint";
     vale-write-good.flake = false;
     vale-write-good.url = "github:errata-ai/write-good";
+    vim-spell-nl.url = "http://ftp.vim.org/vim/runtime/spell/nl.utf-8.spl";
+    vim-spell-nl.flake = false;
   };
 
   outputs = inputs:
@@ -81,6 +83,7 @@
               path = "${inputs.vale-write-good}/write-good";
             }
           ];
+          vim-spell-nl = "${inputs.vim-spell-nl}";
           smtprelay = pkgs.buildGo118Module {
             name = "smtprelay";
             src = inputs.smtprelay;

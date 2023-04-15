@@ -1,9 +1,6 @@
 { pkgs, config, ... }: {
   home.file."${config.xdg.configHome}/nvim/spell/nl.utf-8.spl".source =
-    builtins.fetchurl {
-      url = "http://ftp.vim.org/vim/runtime/spell/nl.utf-8.spl";
-      sha256 = "sha256:1v4knd9i4zf3lhacnkmhxrq0lgk9aj4iisbni9mxi1syhs4lfgni";
-    };
+    pkgs.vim-spell-nl;
 
   home.sessionVariables = {
     EDITOR = "nvim";

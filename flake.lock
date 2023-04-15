@@ -294,7 +294,8 @@
         "vale-Joblint": "vale-Joblint",
         "vale-alex": "vale-alex",
         "vale-proselint": "vale-proselint",
-        "vale-write-good": "vale-write-good"
+        "vale-write-good": "vale-write-good",
+        "vim-spell-nl": "vim-spell-nl"
       }
     },
     "similar-sort": {
@@ -447,6 +448,18 @@
         "owner": "errata-ai",
         "repo": "write-good",
         "type": "github"
+      }
+    },
+    "vim-spell-nl": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-wA98rE9uTZ+63p17KVSDigOwk1MocscSvmIOQokM7iw=",
+        "type": "file",
+        "url": "http://ftp.vim.org/vim/runtime/spell/nl.utf-8.spl"
+      },
+      "original": {
+        "type": "file",
+        "url": "http://ftp.vim.org/vim/runtime/spell/nl.utf-8.spl"
       }
     }
   },

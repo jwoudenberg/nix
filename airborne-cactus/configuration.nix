@@ -43,4 +43,23 @@
 
   services.resolved.enable = true;
   services.tailscale.enable = true;
+
+  services.hostapd = {
+    enable = false;
+    interface = "wlp5s0";
+    ssid = "Bergweg beta";
+    countryCode = "NL";
+    hwMode = "g";
+    wpa = false; # Set in extraConfig below, to be able to use a password file.
+
+    # The hostapd.wpa_psk file should contain lines with the following format:
+    #    ma:ca:dd:re:ss:00 The Passphrase For Device A
+    # The MAC address 00:00:00:00:00:00 works as a wildcard.
+    # More info here: https://s3lph.me/automatically-rotating-guest-wifi-passwords-with-hostapd.html
+    extraConfig = ''
+      wpa=2
+      wpa_key_mgmt=WPA-PSK
+      wpa_psk_file=/persist/credentials/hostapd.wpa_psk
+    '';
+  };
 }

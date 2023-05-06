@@ -38,15 +38,53 @@
   # Networking
   networking.hostName = "airborne-cactus";
 
-  networking.useNetworkd = true;
-  systemd.network.wait-online = { anyInterface = true; };
+  systemd.network = {
+    enable = true;
+    wait-online = { anyInterface = true; };
+
+    links."10-wan" = {
+      matchConfig = {
+        MACAddress = "00:0d:b9:5f:c8:f9";
+        Type = "ether";
+      };
+      linkConfig = { Name = "wan"; };
+    };
+    links."10-opt" = {
+      matchConfig = {
+        MACAddress = "00:0d:b9:5f:c8:f8";
+        Type = "ether";
+      };
+      linkConfig = { Name = "opt"; };
+    };
+    links."10-lan1" = {
+      matchConfig = {
+        MACAddress = "00:0d:b9:5f:c8:fa";
+        Type = "ether";
+      };
+      linkConfig = { Name = "lan1"; };
+    };
+    links."10-lan2" = {
+      matchConfig = {
+        MACAddress = "00:0d:b9:5f:c8:fb";
+        Type = "ether";
+      };
+      linkConfig = { Name = "lan2"; };
+    };
+    links."10-wlan" = {
+      matchConfig = {
+        MACAddress = "04:f0:21:b2:61:c5";
+        Type = "wlan";
+      };
+      linkConfig = { Name = "wlan"; };
+    };
+  };
 
   services.resolved.enable = true;
   services.tailscale.enable = true;
 
   services.hostapd = {
     enable = false;
-    interface = "wlp5s0";
+    interface = "wlan";
     ssid = "Bergweg beta";
     countryCode = "NL";
     hwMode = "g";

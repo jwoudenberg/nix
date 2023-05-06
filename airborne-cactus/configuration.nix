@@ -40,7 +40,6 @@
 
   systemd.network = {
     enable = true;
-    wait-online = { anyInterface = true; };
 
     links."10-wan" = {
       matchConfig = {
@@ -76,6 +75,62 @@
         Type = "wlan";
       };
       linkConfig = { Name = "wlan"; };
+    };
+
+    # Note: netdevs don't currently auto-update when changed.
+    # See: https://github.com/systemd/systemd/issues/9627
+    netdevs."10-bridge0" = {
+      netdevConfig = {
+        MACAddress = "00:0d:b9:5f:c8:ff";
+        Kind = "bridge";
+        Name = "bridge0";
+      };
+    };
+
+    networks."10-wan" = {
+      matchConfig = { Name = "wan"; };
+      networkConfig = { LinkLocalAddressing = "no"; };
+    };
+    networks."10-bridge0" = {
+      matchConfig.Name = "bridge0";
+      linkConfig.RequiredForOnline = "no";
+      networkConfig = {
+        Address = "10.38.38.1/24";
+        DHCPServer = true;
+      };
+      dhcpServerConfig = {
+        PoolOffset = 10;
+        PoolSize = 100;
+      };
+    };
+    networks."10-opt" = {
+      matchConfig.Name = "opt";
+      linkConfig.RequiredForOnline = "no";
+      networkConfig = { LinkLocalAddressing = "no"; };
+    };
+    networks."10-lan1" = {
+      matchConfig.Name = "lan1";
+      linkConfig.RequiredForOnline = "no";
+      networkConfig = {
+        Bridge = "bridge0";
+        LinkLocalAddressing = "no";
+      };
+    };
+    networks."10-lan2" = {
+      matchConfig.Name = "lan2";
+      linkConfig.RequiredForOnline = "no";
+      networkConfig = {
+        Bridge = "bridge0";
+        LinkLocalAddressing = "no";
+      };
+    };
+    networks."10-wlan" = {
+      matchConfig.Name = "wlan";
+      linkConfig.RequiredForOnline = "no";
+      networkConfig = {
+        Bridge = "bridge0";
+        LinkLocalAddressing = "no";
+      };
     };
   };
 

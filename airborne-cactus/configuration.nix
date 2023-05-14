@@ -38,6 +38,8 @@
   # Networking
   networking.hostName = "airborne-cactus";
 
+  boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
+
   systemd.network = {
     enable = true;
 
@@ -96,7 +98,9 @@
       linkConfig.RequiredForOnline = "no";
       networkConfig = {
         Address = "10.38.38.1/24";
-        DHCPServer = true;
+        DHCPServer = "yes";
+        IPForward = "yes";
+        IPMasquerade = "yes";
       };
       dhcpServerConfig = {
         PoolOffset = 10;

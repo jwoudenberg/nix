@@ -635,7 +635,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
         [ "freedom_imap_password:/persist/credentials/freedom_imap_password" ];
     };
     script = let
-      mbsyncConfigFile = pkgs.writeTextFile {
+      fdmConfigFile = pkgs.writeTextFile {
         name = "fdm.conf";
         text = ''
           set lock-file "/var/lib/fdm/fdm.lock"
@@ -656,7 +656,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
         '';
       };
     in ''
-      ${pkgs.fdm}/bin/fdm -vv -f ${mbsyncConfigFile} fetch
+      ${pkgs.fdm}/bin/fdm -vv -f ${fdmConfigFile} fetch
       ${pkgs.curl}/bin/curl --retry 3 https://hc-ping.com/f4f0e24f-9d45-4191-96b6-914759ef4bb2/$?
     '';
   };

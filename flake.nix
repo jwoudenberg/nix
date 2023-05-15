@@ -88,7 +88,7 @@
             name = "smtprelay";
             src = inputs.smtprelay;
             vendorSha256 =
-              "sha256-eICrbpXdibVQz3yvxLa7MmLq2kRd93JC90BzO/FpEIM=";
+              "sha256-wsK8Zo8pX0aSI7fsagt/unLTRdLpBqG7X+a2QgqjBww=";
           };
         };
       };

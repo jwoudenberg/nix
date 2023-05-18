@@ -110,11 +110,13 @@
         Address = "10.38.38.1/24";
         DHCPServer = "yes";
         IPForward = "yes";
-        IPMasquerade = "yes";
+        IPMasquerade = "ipv4";
       };
       dhcpServerConfig = {
         PoolOffset = 10;
         PoolSize = 100;
+        EmitDNS = "yes";
+        DNS = "9.9.9.9";
       };
     };
     networks."10-opt" = {

@@ -6,7 +6,10 @@
 # https://francis.begyn.be/blog/ipv6-nixos-router
 # https://www.jjpdev.com/posts/home-router-nixos/
 # https://dataswamp.org/~solene/2022-08-03-nixos-with-live-usb-router.html
-{
+let
+
+  bridge0Subnet = "10.38.38.1/24";
+in {
   imports = [
     ./hardware-configuration.nix
     ../shared/nixos-modules/nix.nix
@@ -107,10 +110,8 @@
       matchConfig.Name = "bridge0";
       linkConfig.RequiredForOnline = "no";
       networkConfig = {
-        Address = "10.38.38.1/24";
+        Address = bridge0Subnet;
         DHCPServer = "yes";
-        IPForward = "yes";
-        IPMasquerade = "ipv4";
       };
       dhcpServerConfig = {
         PoolOffset = 10;
@@ -150,16 +151,68 @@
     };
   };
 
-  # Maybe change this to use nftables to guard ip-forwarding? Resouces:
-  # http://ayekat.ch/blog/qemu-networkd-nftables
+  # Resources for configuring nftables:
   # https://wiki.nftables.org/wiki-nftables/index.php/Simple_ruleset_for_a_home_router
-  networking.firewall.enable = true;
+  # http://ayekat.ch/blog/qemu-networkd-nftables
+  # https://tailscale.com/kb/1096/nixos-minecraft/
+  networking.firewall.enable = false;
+  networking.nftables = {
+    enable = true;
+    ruleset = ''
+      table inet global {
+
+          chain inbound_wan {
+              ip protocol . th dport vmap { tcp . 22 : accept }
+          }
+
+          chain inbound_bridge0 {
+              # accepting ping (icmp-echo-request) for diagnostic purposes.
+              icmp type echo-request limit rate 5/second accept
+
+              # allow DHCP, DNS and SSH
+              ip protocol . th dport vmap { tcp . 22 : accept, udp . 53 : accept, tcp . 53 : accept, udp . 67 : accept }
+          }
+
+          chain inbound {
+              type filter hook input priority 0; policy drop;
+
+              # Allow traffic from established and related packets, drop invalid
+              ct state vmap { established : accept, related : accept, invalid : drop }
+
+              # allow loopback traffic, anything else jump to chain for further evaluation
+              iifname vmap { lo : accept, wan : jump inbound_wan, bridge0 : jump inbound_bridge0, tailscale0: accept }
+
+              # the rest is dropped by the above policy
+          }
+
+          chain forward {
+              type filter hook forward priority 0; policy drop;
+
+              # Allow traffic from established and related packets, drop invalid
+              ct state vmap { established : accept, related : accept, invalid : drop }
+
+              # connections from the internal net to the internet or to other
+              # internal nets are allowed
+              iifname bridge0 accept
+
+              # the rest is dropped by the above policy
+          }
+
+          chain postrouting {
+              type nat hook postrouting priority 100; policy accept;
+
+              # masquerade private IP addresses
+              ip saddr ${bridge0Subnet} oifname wan masquerade
+          }
+      }
+    '';
+  };
 
   services.resolved.enable = true;
   services.tailscale.enable = true;
 
   services.hostapd = {
-    enable = false;
+    enable = true;
     interface = "wlan";
     ssid = "Bergweg beta";
     countryCode = "NL";

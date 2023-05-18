@@ -210,6 +210,11 @@ in {
   services.resolved.enable = true;
   services.tailscale.enable = true;
 
+  # Some resources for upgrading to a 802.11ac endpoint at some point:
+  # https://wiki.gentoo.org/wiki/Hostapd#802.11a.2Fn.2Fac_with_WPA2-PSK_and_CCMP
+  # https://blog.fraggod.net/2017/04/27/wifi-hostapd-configuration-for-80211ac-networks.html
+  # http://pisarenko.net/blog/2015/02/01/beginners-guide-to-802-dot-11ac-setup/
+  # https://github.com/NixOS/nixpkgs/pull/222536
   services.hostapd = {
     enable = true;
     interface = "wlan";

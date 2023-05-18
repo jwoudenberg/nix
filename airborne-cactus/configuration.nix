@@ -1,5 +1,11 @@
 { config, pkgs, ... }:
 
+# This is the configuration for my home router. Some useful resources I found
+# to help me put this together:
+# https://francis.begyn.be/blog/nixos-home-router
+# https://francis.begyn.be/blog/ipv6-nixos-router
+# https://www.jjpdev.com/posts/home-router-nixos/
+# https://dataswamp.org/~solene/2022-08-03-nixos-with-live-usb-router.html
 {
   imports = [
     ./hardware-configuration.nix
@@ -7,6 +13,8 @@
     ../shared/nixos-modules/users.nix
   ];
 
+  # Allow serial-console connection using a program like minicom. Instrutions:
+  # https://www.centennialsoftwaresolutions.com/post/configure-minicom-for-a-usb-to-serial-converter
   boot.kernelParams = [ "console=ttyS0,115200n8" ];
   boot.loader.grub.extraConfig = ''
     serial --speed=115200 --unit=0 --word=8 --parity=no --stop=1
@@ -40,6 +48,8 @@
 
   boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
 
+  # Define network topology using systemd-networkd. Used resources:
+  # https://www.sherbers.de/diy-linux-router-part-2-interfaces-dhcp-and-vlan/
   systemd.network = {
     enable = true;
 
@@ -137,6 +147,11 @@
       };
     };
   };
+
+  # Maybe change this to use nftables to guard ip-forwarding? Resouces:
+  # http://ayekat.ch/blog/qemu-networkd-nftables
+  # https://wiki.nftables.org/wiki-nftables/index.php/Simple_ruleset_for_a_home_router
+  networking.firewall.enable = true;
 
   services.resolved.enable = true;
   services.tailscale.enable = true;

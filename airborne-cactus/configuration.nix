@@ -162,7 +162,6 @@ in {
       table inet global {
 
           chain inbound_wan {
-              ip protocol . th dport vmap { tcp . 22 : accept }
           }
 
           chain inbound_bridge0 {

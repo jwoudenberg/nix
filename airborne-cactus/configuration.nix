@@ -233,4 +233,8 @@ in {
       wpa_psk_file=/persist/credentials/hostapd.wpa_psk
     '';
   };
+
+  # PPPoE
+  # https://helpdesk.freedom.nl/algemene-instellingen-eigen-modem
+  # https://github.com/systemd/systemd/issues/481#issuecomment-543308915
 }

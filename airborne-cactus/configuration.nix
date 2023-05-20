@@ -55,6 +55,7 @@ in {
   # https://www.sherbers.de/diy-linux-router-part-2-interfaces-dhcp-and-vlan/
   systemd.network = {
     enable = true;
+    wait-online.ignoredInterfaces = [ "tailscale0" ];
 
     links."10-wan" = {
       matchConfig = {

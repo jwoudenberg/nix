@@ -3,7 +3,10 @@
   systemd.network.wait-online = { anyInterface = true; };
 
   networking.wireless.iwd = {
-    settings.General.EnableNetworkConfiguration = true;
+    settings.General = {
+      EnableNetworkConfiguration = true;
+      AddressRandomization = "once";
+    };
     enable = true;
   };
 

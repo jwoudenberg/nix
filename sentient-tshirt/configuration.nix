@@ -7,17 +7,14 @@
     ../shared/nixos-modules/networking.nix
     ../shared/nixos-modules/nix.nix
     ../shared/nixos-modules/persist-linking.nix
+    ../shared/nixos-modules/sway.nix
     ../shared/nixos-modules/syncthing.nix
     ../shared/nixos-modules/systemd-boot.nix
     ../shared/nixos-modules/users.nix
     ../shared/nixos-modules/yubikey.nix
     ./hardware-configuration.nix
-    ../fragile-walrus/specialisation-default.nix
     flakeInputs.home-manager.nixosModules.home-manager
   ];
-
-  specialisation.gaming.configuration =
-    import ../fragile-walrus/specialisation-gaming.nix { pkgs = pkgs; };
 
   hardware.opengl.extraPackages =
     [ pkgs.vaapiIntel pkgs.libvdpau-va-gl pkgs.intel-media-driver ];

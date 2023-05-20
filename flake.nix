@@ -49,7 +49,6 @@
           jwlaunch = inputs.launch.defaultPackage."${system}";
           keepassxc-pass-frontend =
             inputs.keepassxc-pass-frontend.defaultPackage."${system}";
-          qutebrowser = pkgs.qutebrowser.override { enableWideVine = true; };
           random-colors = inputs.random-colors.defaultPackage."${system}";
           rem2html = pkgs.writers.writePerlBin "rem2html" {
             libraries =

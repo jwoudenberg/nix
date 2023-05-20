@@ -35,10 +35,13 @@
       url.start_pages = [ "http://ai-banana" ];
 
       # Fingerprinting protection, see: https://coveryourtracks.eff.org
-      # Nushell command to fetch most common user-agent of the moment:
-      #     fetch https://www.useragents.me/api | get data.0.ua
+      # For sites that do require JS, I'm going to use Firefox because it has
+      # better built-in fingerprinting protection and more users.
+      content.javascript.enabled = false;
+      # User-Agent lifted from Firefox with `privacy.resistFingerprinting`
+      # enabled in about:config
       content.headers.user_agent =
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36";
+        "Mozilla/5.0 (Windows NT 10.0; rv:113.0) Gecko/20100101 Firefox/113.0";
       content.headers.do_not_track = null;
       content.canvas_reading = false;
       content.webgl = false;

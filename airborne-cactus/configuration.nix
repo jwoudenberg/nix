@@ -113,6 +113,9 @@ in {
       networkConfig = {
         Address = bridge0Subnet;
         DHCPServer = "yes";
+        # Allow this bridge to be configured before lan or wlan connections to
+        # it are made, to avoid blocking on boot.
+        ConfigureWithoutCarrier = "yes";
       };
       dhcpServerConfig = {
         PoolOffset = 10;
@@ -146,7 +149,10 @@ in {
       matchConfig.Name = "wlan";
       linkConfig.RequiredForOnline = "no";
       networkConfig = {
-        Bridge = "bridge0";
+        # Not adding this interface to a bridge (yet), because hostapd has to
+        # start first for it to work. Hostapd can then add it to the bridge
+        # itself.
+        # Bridge = "bridge0";
         LinkLocalAddressing = "no";
       };
     };
@@ -232,6 +238,7 @@ in {
       wpa=2
       wpa_key_mgmt=WPA-PSK
       wpa_psk_file=/persist/credentials/hostapd.wpa_psk
+      bridge=bridge0
     '';
   };
 

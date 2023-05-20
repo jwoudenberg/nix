@@ -58,13 +58,6 @@ in {
     enable = true;
     wait-online.ignoredInterfaces = [ "tailscale0" ];
 
-    links."10-wan" = {
-      matchConfig = {
-        MACAddress = "00:0d:b9:5f:c8:f9";
-        Type = "ether";
-      };
-      linkConfig = { Name = "wan"; };
-    };
     links."10-opt" = {
       matchConfig = {
         MACAddress = "00:0d:b9:5f:c8:f8";
@@ -72,6 +65,27 @@ in {
       };
       linkConfig = { Name = "opt"; };
     };
+    networks."10-opt" = {
+      matchConfig.Name = "opt";
+      linkConfig.RequiredForOnline = "no";
+      networkConfig = { LinkLocalAddressing = "no"; };
+    };
+
+    links."10-lan0" = {
+      matchConfig = {
+        MACAddress = "00:0d:b9:5f:c8:f9";
+        Type = "ether";
+      };
+      linkConfig = { Name = "lan0"; };
+    };
+    networks."10-lan0" = {
+      matchConfig.Name = "lan0";
+      networkConfig = {
+        LinkLocalAddressing = "no";
+        VLAN = "pppoe";
+      };
+    };
+
     links."10-lan1" = {
       matchConfig = {
         MACAddress = "00:0d:b9:5f:c8:fa";
@@ -79,6 +93,15 @@ in {
       };
       linkConfig = { Name = "lan1"; };
     };
+    networks."10-lan1" = {
+      matchConfig.Name = "lan1";
+      linkConfig.RequiredForOnline = "no";
+      networkConfig = {
+        Bridge = "bridge0";
+        LinkLocalAddressing = "no";
+      };
+    };
+
     links."10-lan2" = {
       matchConfig = {
         MACAddress = "00:0d:b9:5f:c8:fb";
@@ -86,12 +109,32 @@ in {
       };
       linkConfig = { Name = "lan2"; };
     };
+    networks."10-lan2" = {
+      matchConfig.Name = "lan2";
+      linkConfig.RequiredForOnline = "no";
+      networkConfig = {
+        Bridge = "bridge0";
+        LinkLocalAddressing = "no";
+      };
+    };
+
     links."10-wlan" = {
       matchConfig = {
         MACAddress = "04:f0:21:b2:61:c5";
         Type = "wlan";
       };
       linkConfig = { Name = "wlan"; };
+    };
+    networks."10-wlan" = {
+      matchConfig.Name = "wlan";
+      linkConfig.RequiredForOnline = "no";
+      networkConfig = {
+        # Not adding this interface to a bridge (yet), because hostapd has to
+        # start first for it to work. Hostapd can then add it to the bridge
+        # itself.
+        # Bridge = "bridge0";
+        LinkLocalAddressing = "no";
+      };
     };
 
     # Note: netdevs don't currently auto-update when changed.
@@ -102,11 +145,6 @@ in {
         Kind = "bridge";
         Name = "bridge0";
       };
-    };
-
-    networks."10-wan" = {
-      matchConfig = { Name = "wan"; };
-      networkConfig = { LinkLocalAddressing = "no"; };
     };
     networks."10-bridge0" = {
       matchConfig.Name = "bridge0";
@@ -125,38 +163,53 @@ in {
         DNS = "9.9.9.9";
       };
     };
-    networks."10-opt" = {
-      matchConfig.Name = "opt";
-      linkConfig.RequiredForOnline = "no";
-      networkConfig = { LinkLocalAddressing = "no"; };
+
+    # My internet provider (freedom.nl) requires me to connect through PPPoE,
+    # with a vlan set. Details:
+    # https://helpdesk.freedom.nl/algemene-instellingen-eigen-modem
+    netdevs."10-pppoe" = {
+      netdevConfig = {
+        Kind = "vlan";
+        Name = "pppoe";
+      };
+      vlanConfig.Id = 6;
     };
-    networks."10-lan1" = {
-      matchConfig.Name = "lan1";
-      linkConfig.RequiredForOnline = "no";
+    networks."10-pppoe" = {
+      matchConfig.Name = "pppoe";
+      linkConfig.ARP = "no";
       networkConfig = {
-        Bridge = "bridge0";
         LinkLocalAddressing = "no";
+        IPv6AcceptRA = "no";
+        DHCP = "no";
+        LLMNR = "no";
       };
     };
-    networks."10-lan2" = {
-      matchConfig.Name = "lan2";
-      linkConfig.RequiredForOnline = "no";
+
+    # The wan interface is created by pppd.
+    networks."10-wan" = {
+      matchConfig = { Name = "wan"; };
       networkConfig = {
-        Bridge = "bridge0";
-        LinkLocalAddressing = "no";
+        LinkLocalAddressing = "ipv6";
+        DHCP = "no";
+        IPv6AcceptRA = "yes";
+        KeepConfiguration = "static";
+        LLMNR = "no";
+        LLDP = "no";
       };
+      # Make this the default route, equivalent to setting:
+      #   DefaultRouteOnDevice = "yes";
+      # We don't use the above because we'd like to add a configuration
+      # option for the route, performing MSS clamping.
+      #
+      # Using 'extraConfig' for this bit, because
+      # 'TCPAdvertisedMaximumSegmentSize' is not known yet by the nixos module.
+      extraConfig = ''
+        [Route]
+        Gateway=0.0.0.0
+        TCPAdvertisedMaximumSegmentSize=1448
+      '';
     };
-    networks."10-wlan" = {
-      matchConfig.Name = "wlan";
-      linkConfig.RequiredForOnline = "no";
-      networkConfig = {
-        # Not adding this interface to a bridge (yet), because hostapd has to
-        # start first for it to work. Hostapd can then add it to the bridge
-        # itself.
-        # Bridge = "bridge0";
-        LinkLocalAddressing = "no";
-      };
-    };
+
   };
 
   # Resources for configuring nftables:
@@ -170,6 +223,9 @@ in {
       table inet global {
 
           chain inbound_wan {
+            # accepting ping (icmp-echo-request) for diagnostic purposes.
+            # However, it also lets probes discover this host is alive.
+            icmp type echo-request limit rate 5/second accept
           }
 
           chain inbound_bridge0 {
@@ -194,6 +250,9 @@ in {
 
           chain forward {
               type filter hook forward priority 0; policy drop;
+
+              #
+              tcp flags syn tcp option maxseg size set rt mtu
 
               # Allow traffic from established and related packets, drop invalid
               ct state vmap { established : accept, related : accept, invalid : drop }
@@ -245,5 +304,23 @@ in {
 
   # PPPoE
   # https://helpdesk.freedom.nl/algemene-instellingen-eigen-modem
+  # https://community.freedom.nl/t/voorbeeldconfiguratie-dualstack-router-met-systemd-networkd/2058
   # https://github.com/systemd/systemd/issues/481#issuecomment-543308915
+  services.pppd = {
+    enable = true;
+    peers.freedom.config = ''
+      ifname wan
+      local
+      noauth
+      defaultroute
+      +ipv6
+      persist
+      mru 1492
+      mtu 1492
+      plugin pppoe.so
+      user fake@freedom.nl
+      password 1234
+      nic-pppoe
+    '';
+  };
 }

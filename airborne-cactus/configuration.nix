@@ -218,7 +218,7 @@ in {
   services.hostapd = {
     enable = true;
     interface = "wlan";
-    ssid = "Bergweg beta";
+    ssid = "Bergweg";
     countryCode = "NL";
     hwMode = "g";
     wpa = false; # Set in extraConfig below, to be able to use a password file.

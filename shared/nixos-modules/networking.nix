@@ -2,7 +2,10 @@
   networking.useNetworkd = true;
   systemd.network.wait-online = { anyInterface = true; };
 
-  networking.wireless.iwd.enable = true;
+  networking.wireless.iwd = {
+    settings.General.EnableNetworkConfiguration = true;
+    enable = true;
+  };
 
   services.resolved.enable = true;
 

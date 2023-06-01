@@ -26,7 +26,6 @@ in {
   '';
 
   boot.loader.grub.enable = true;
-  boot.loader.grub.version = 2;
   boot.loader.grub.device =
     "/dev/disk/by-id/ata-SSE064GMLCC-SBC-2S_C295072701DE00012853";
 
@@ -39,12 +38,14 @@ in {
   # SSH
   services.openssh = {
     enable = true;
-    passwordAuthentication = false;
-    kbdInteractiveAuthentication = false;
+    settings = {
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
+    };
   };
   programs.mosh.enable = true;
 
-  system.stateVersion = "22.11";
+  system.stateVersion = "23.05";
 
   # Networking
   networking.hostName = "airborne-cactus";

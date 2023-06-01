@@ -26,8 +26,6 @@
   hardware.enableRedistributableFirmware = true;
   hardware.i2c.enable = true;
 
-  boot.kernelPackages =
-    pkgs.linuxKernel.packages.linux_5_15; # Required by AMD 6700 graphics card
   boot.kernel.sysctl."fs.inotify.max_user_watches" = 524288;
 
   # Reset root filesystem at boot
@@ -75,6 +73,6 @@
   home-manager.useGlobalPkgs = true;
   home-manager.users.jasper = (import ./home.nix);
 
-  system.stateVersion = "22.11";
+  system.stateVersion = "23.05";
   system.autoUpgrade.enable = false;
 }

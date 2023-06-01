@@ -1,7 +1,7 @@
 let-env config = {
   show_banner: false
   edit_mode: vi
-  table_mode: compact
+  table: { mode: compact }
   render_right_prompt_on_last_line: true
   keybindings: [{
     name: unix-line-discard
@@ -60,7 +60,7 @@ let-env PROMPT_COMMAND_RIGHT = {
     | complete
     | get stdout
     | grep '^* '
-    | str substring '2,'
+    | str substring 2..
 }
 let-env PROMPT_INDICATOR = " "
 let-env PROMPT_INDICATOR_VI_INSERT = " "

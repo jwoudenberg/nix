@@ -54,7 +54,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
   ];
 
   # Nix
-  system.stateVersion = "22.11";
+  system.stateVersion = "23.05";
   networking.hostName = "ai-banana";
 
   # Hardware
@@ -67,7 +67,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
     (modulesPath + "/profiles/qemu-guest.nix")
   ];
   boot.loader.grub.device = "/dev/sda";
-  boot.cleanTmpDir = true;
+  boot.tmp.cleanOnBoot = true;
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/4bfb0e3a-8710-43b8-a5db-cbfe114b3932";
     fsType = "ext4";
@@ -117,8 +117,10 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
   # SSH
   services.openssh = {
     enable = true;
-    passwordAuthentication = false;
-    kbdInteractiveAuthentication = false;
+    settings = {
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
+    };
   };
   programs.mosh.enable = true;
 
@@ -789,9 +791,9 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
   services.adguardhome = {
     enable = true;
     mutableSettings = false;
-    host = "0.0.0.0";
-    port = adguardHomePort;
     settings = {
+      bind_host = "0.0.0.0";
+      bind_port = adguardHomePort;
       schema_version = 12;
       users = [ ];
       dns = {

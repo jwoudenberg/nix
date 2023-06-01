@@ -32,7 +32,6 @@
     # Without this sway won't find the GPU
     "i915.force_probe=4626"
   ];
-  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_1;
 
   # This enables the brightness keys to work
   # https://community.frame.work/t/12th-gen-not-sending-xf86monbrightnessup-down/20605/11
@@ -62,6 +61,6 @@
   home-manager.useGlobalPkgs = true;
   home-manager.users.jasper = (import ./home.nix);
 
-  system.stateVersion = "22.11";
+  system.stateVersion = "23.05";
   system.autoUpgrade.enable = false;
 }

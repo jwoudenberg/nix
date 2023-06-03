@@ -33,7 +33,7 @@
     this-week-time-format = "Mon          15:04"
     this-year-time-format = "Mon    01-02 15:04"
     new-message-bell = false
-    sort = -r date
+    reverse-msglist-order = false
     dirlist-format = %n
 
     [viewer]

@@ -46,6 +46,14 @@
       content.canvas_reading = false;
       content.webgl = false;
     };
+    # Enabling javascript for some sites. Far as I can tell there's no way to
+    # express this using the `settings.*` values above, because we need to set
+    # the same `content.javascript.enabled` key multiple times and also because
+    # we need to pass an extra argument (the URL pattern).
+    extraConfig = ''
+      config.set('content.javascript.enabled', True, 'ai-banana.panther-trout.ts.net')
+      config.set('content.javascript.enabled', True, 'bandcamp.com')
+    '';
   };
 
   home.activation.writeStateFile = let

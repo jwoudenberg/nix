@@ -164,7 +164,7 @@ in {
     input type:keyboard {
       xkb_layout us
       xkb_variant ,nodeadkeys
-      xkb_options ctrl:nocaps
+      xkb_options ctrl:nocaps,compose:prsc
     }
 
     input type:touchpad {

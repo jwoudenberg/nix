@@ -34,4 +34,7 @@
 
   # Enable wayland for Chrome and Electron apps.
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+  # Some QT applications like puddletag do not start without this.
+  environment.systemPackages = [ pkgs.qt5.qtwayland ];
 }

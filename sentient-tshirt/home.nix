@@ -17,7 +17,6 @@
     pkgs.perlPackages.vidir
     pkgs.visidata
     pkgs.wl-clipboard
-    pkgs.xdg_utils
   ];
 
   programs.kitty.settings.font_size = 12;

@@ -16,6 +16,7 @@
     pkgs.visidata
     pkgs.wally-cli
     pkgs.xclip
+    pkgs.xdg_utils
   ];
 
   imports = [

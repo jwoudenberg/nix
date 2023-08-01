@@ -67,6 +67,7 @@ let-env PROMPT_INDICATOR_VI_INSERT = " "
 let-env PROMPT_INDICATOR_VI_NORMAL = " "
 let-env PROMPT_MULTILINE_INDICATOR = " "
 
+alias opn = xdg-open
 alias ssh = kitty +kitten ssh
 alias todo = ^$env.EDITOR ~/docs/todo.txt
 alias agenda = ^$env.EDITOR ~/hjgames/agenda/agenda.rem

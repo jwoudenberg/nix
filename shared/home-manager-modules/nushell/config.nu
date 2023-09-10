@@ -1,4 +1,4 @@
-let-env config = {
+$env.config = {
   show_banner: false
   edit_mode: vi
   table: { mode: compact }
@@ -54,18 +54,18 @@ let-env config = {
   }
 }
 
-let-env PROMPT_COMMAND = { pwd | path basename }
-let-env PROMPT_COMMAND_RIGHT = {
+$env.PROMPT_COMMAND = { pwd | path basename }
+$env.PROMPT_COMMAND_RIGHT = {
   do --ignore-errors { git branch }
     | complete
     | get stdout
     | grep '^* '
     | str substring 2..
 }
-let-env PROMPT_INDICATOR = " "
-let-env PROMPT_INDICATOR_VI_INSERT = " "
-let-env PROMPT_INDICATOR_VI_NORMAL = " "
-let-env PROMPT_MULTILINE_INDICATOR = " "
+$env.PROMPT_INDICATOR = " "
+$env.PROMPT_INDICATOR_VI_INSERT = " "
+$env.PROMPT_INDICATOR_VI_NORMAL = " "
+$env.PROMPT_MULTILINE_INDICATOR = " "
 
 alias opn = xdg-open
 alias ssh = kitty +kitten ssh

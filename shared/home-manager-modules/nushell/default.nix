@@ -33,7 +33,7 @@
       # https://github.com/nix-community/home-manager/blob/master/modules/lib/shell.nix
 
       # Produces a nushell export statement
-      export = n: v: ''let-env ${n} = $"${toString v}"'';
+      export = n: v: ''$env.${n} = $"${toString v}"'';
 
       # Given an attribute set containing shell variable names and their
       # assignment, this function produces a string containing an export

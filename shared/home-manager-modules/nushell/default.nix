@@ -26,7 +26,7 @@
       }
 
       # Display events for today
-      remind | where date < (date now) + 1day | get --ignore-errors body | str join "\n"
+      ^echo (remind | where date < (date now) + 1day | get --ignore-errors body | str join "\n")
     '';
     envFile.text = let
       # Adapted from similar logic for other shells in home-manager:

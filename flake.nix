@@ -86,8 +86,7 @@
           smtprelay = pkgs.buildGo118Module {
             name = "smtprelay";
             src = inputs.smtprelay;
-            vendorSha256 =
-              "sha256-0g+7k7BgTUiPbjQpuOB2b02R9s3x37/Nfa7CTeLDg3A=";
+            vendorSha256 = "sha256-l9pu3xxkiQThhxwF0s4r7fDOS8XLGC6IBjr9rA7yPGI=";
           };
         };
       };

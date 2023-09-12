@@ -24,6 +24,7 @@ vim.o.laststatus = 3
 vim.g.showbreak = "↪ "
 vim.g.mapleader = " "
 vim.g.maplocalleader = [[\]]
+vim.g.editorconfig = false -- Enabling this affects line-length in commit messages
 
 vim.api.nvim_set_keymap("t", "<C-O>", [[<C-\><C-n><C-O>]], {noremap = true})
 vim.api.nvim_set_keymap("n", "<leader>v", "<c-v>", {noremap = true})

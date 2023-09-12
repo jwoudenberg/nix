@@ -358,3 +358,5 @@ require('gitsigns').setup({
         map({'n', 'v'}, '<leader>hr', ':Gitsigns reset_hunk<CR>')
     end
 })
+
+require('illuminate').configure({})

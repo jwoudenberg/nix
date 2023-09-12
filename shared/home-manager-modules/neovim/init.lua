@@ -85,13 +85,14 @@ vim.g.ale_fixers = {
     ["elm"] = {"elm-format"},
     ["go"] = {"gofmt"},
     ["haskell"] = {"ormolu"},
-    ["kotlin"] = {"ktlint"},
     ["lua"] = {"lua-format"},
     ["nim"] = {"nimpretty"},
     ["nix"] = {"nixfmt"},
     ["python"] = {"black"},
     ["ruby"] = {"rubocop"},
-    ["rust"] = {"rustfmt"}
+    ["rust"] = {"rustfmt"},
+    ["typescript"] = {"prettier"},
+    ["vue"] = {"prettier"}
 }
 
 vim.g.ale_fix_on_save = true

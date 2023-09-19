@@ -13,6 +13,7 @@
       branch.sort = "-committerdate";
       pull.rebase = false;
       init.defaultBranch = "main";
+      push.useForceIfIncludes = true;
     };
   };
 }

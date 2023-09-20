@@ -6,7 +6,7 @@
     pkgs.croc
     pkgs.gotop
     pkgs.home-manager
-    pkgs.nixfmt
+    pkgs.nixpkgs-fmt
     pkgs.openvpn3
     pkgs.pdfgrep
     pkgs.random-colors

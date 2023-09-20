@@ -6,7 +6,7 @@
     pkgs.croc
     pkgs.gotop
     pkgs.mosh
-    pkgs.nixfmt
+    pkgs.nixpkgs-fmt
     pkgs.pdfgrep
     pkgs.pijul
     pkgs.pulsemixer

@@ -8,7 +8,8 @@ let
       "${config.home.homeDirectory}/screenshots/screenshot_$(date --iso=seconds).png"
   '';
 
-in {
+in
+{
   xdg.desktopEntries.take-screenshot = {
     name = "Take Screenshot";
     exec = "${takeScreenshot}/bin/take-screenshot";

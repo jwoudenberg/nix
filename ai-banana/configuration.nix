@@ -22,7 +22,8 @@ let
     rclone_serve_sftp = 9;
     ocrmypdf = 10;
   };
-in { pkgs, config, modulesPath, flakeInputs, ... }: {
+in
+{ pkgs, config, modulesPath, flakeInputs, ... }: {
 
   users.groups.syncdata.gid = 7;
 
@@ -178,36 +179,42 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
   };
 
   # Resilio Sync
-  system.activationScripts.mkResilioSharedFolders = let
-    pathList = pkgs.lib.concatMapStringsSep " " (config: config.directory)
-      config.services.resilio.sharedFolders;
-  in ''
-    mkdir -p ${pathList}
-    chown root:syncdata ${pathList}
-  '';
+  system.activationScripts.mkResilioSharedFolders =
+    let
+      pathList = pkgs.lib.concatMapStringsSep " " (config: config.directory)
+        config.services.resilio.sharedFolders;
+    in
+    ''
+      mkdir -p ${pathList}
+      chown root:syncdata ${pathList}
+    '';
 
-  systemd.services.resilio.serviceConfig.LoadCredential = let
-    credentialFor = dir: perms:
-      "resilio_key_${dir}_${perms}:/persist/credentials/resilio_key_${dir}_${perms}";
-  in builtins.attrValues (builtins.mapAttrs credentialFor resilioDirs);
+  systemd.services.resilio.serviceConfig.LoadCredential =
+    let
+      credentialFor = dir: perms:
+        "resilio_key_${dir}_${perms}:/persist/credentials/resilio_key_${dir}_${perms}";
+    in
+    builtins.attrValues (builtins.mapAttrs credentialFor resilioDirs);
 
   services.resilio = {
     enable = true;
     enableWebUI = false;
     listeningPort = 18776;
     storagePath = "/persist/resilio-sync/";
-    sharedFolders = let
-      configFor = dir: perms: {
-        secretFile = "$CREDENTIALS_DIRECTORY/resilio_key_${dir}_${perms}";
-        directory = "/persist/${dir}";
-        useRelayServer = false;
-        useTracker = true;
-        useDHT = true;
-        searchLAN = true;
-        useSyncTrash = false;
-        knownHosts = [ ];
-      };
-    in builtins.attrValues (builtins.mapAttrs configFor resilioDirs);
+    sharedFolders =
+      let
+        configFor = dir: perms: {
+          secretFile = "$CREDENTIALS_DIRECTORY/resilio_key_${dir}_${perms}";
+          directory = "/persist/${dir}";
+          useRelayServer = false;
+          useTracker = true;
+          useDHT = true;
+          searchLAN = true;
+          useSyncTrash = false;
+          knownHosts = [ ];
+        };
+      in
+      builtins.attrValues (builtins.mapAttrs configFor resilioDirs);
   };
 
   # syncthing
@@ -646,31 +653,33 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
       LoadCredential =
         [ "freedom_imap_password:/persist/credentials/freedom_imap_password" ];
     };
-    script = let
-      fdmConfigFile = pkgs.writeTextFile {
-        name = "fdm.conf";
-        text = ''
-          set lock-file "/var/lib/fdm/fdm.lock"
-          set file-umask 002
+    script =
+      let
+        fdmConfigFile = pkgs.writeTextFile {
+          name = "fdm.conf";
+          text = ''
+            set lock-file "/var/lib/fdm/fdm.lock"
+            set file-umask 002
 
-          account "freedom" imaps
-            server "imap.freedom.nl"
-            port 993
-            user "jwoudenberg@freedom.nl"
-            pass $(${pkgs.coreutils}/bin/cat "$CREDENTIALS_DIRECTORY/freedom_imap_password")
-            folder "INBOX"
-            no-cram-md5
+            account "freedom" imaps
+              server "imap.freedom.nl"
+              port 993
+              user "jwoudenberg@freedom.nl"
+              pass $(${pkgs.coreutils}/bin/cat "$CREDENTIALS_DIRECTORY/freedom_imap_password")
+              folder "INBOX"
+              no-cram-md5
 
-          action "fetch"
-            maildir "/persist/jasper/email/INBOX"
+            action "fetch"
+              maildir "/persist/jasper/email/INBOX"
 
-          match all action "fetch"
-        '';
-      };
-    in ''
-      ${pkgs.fdm}/bin/fdm -vv -f ${fdmConfigFile} fetch
-      ${pkgs.curl}/bin/curl --retry 3 https://hc-ping.com/f4f0e24f-9d45-4191-96b6-914759ef4bb2/$?
-    '';
+            match all action "fetch"
+          '';
+        };
+      in
+      ''
+        ${pkgs.fdm}/bin/fdm -vv -f ${fdmConfigFile} fetch
+        ${pkgs.curl}/bin/curl --retry 3 https://hc-ping.com/f4f0e24f-9d45-4191-96b6-914759ef4bb2/$?
+      '';
   };
 
   # smtprelay
@@ -863,18 +872,20 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
             type = "command";
             timeout = "30s";
             err_is_fatal = false;
-            path = let
-              script = pkgs.writeShellApplication {
-                name = "zrepl-healthchecks-update";
-                text = ''
-                  if [ "$ZREPL_HOOKTYPE" != "post_snapshot" ]; then exit 0; fi
-                  if [ "$ZREPL_DRYRUN" == "true" ]; then exit 0; fi
-                  ${pkgs.curl}/bin/curl -fsS -m 10 --retry 5 \
-                    --data-raw "$ZREPL_FS: $ZREPL_SNAPNAME" \
-                    https://hc-ping.com/97cfd67a-ff76-43d6-bebd-511847e0f6d5
-                '';
-              };
-            in "${script}/bin/zrepl-healthchecks-update";
+            path =
+              let
+                script = pkgs.writeShellApplication {
+                  name = "zrepl-healthchecks-update";
+                  text = ''
+                    if [ "$ZREPL_HOOKTYPE" != "post_snapshot" ]; then exit 0; fi
+                    if [ "$ZREPL_DRYRUN" == "true" ]; then exit 0; fi
+                    ${pkgs.curl}/bin/curl -fsS -m 10 --retry 5 \
+                      --data-raw "$ZREPL_FS: $ZREPL_SNAPNAME" \
+                      https://hc-ping.com/97cfd67a-ff76-43d6-bebd-511847e0f6d5
+                  '';
+                };
+              in
+              "${script}/bin/zrepl-healthchecks-update";
           }];
         };
         pruning = {

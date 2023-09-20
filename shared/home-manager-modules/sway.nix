@@ -46,7 +46,8 @@ let
       --config ${swaylockConfig} \
       --daemonize
   '';
-in {
+in
+{
   home.file.".config/sway/config".text = ''
     xwayland disable
     font pango:FiraCode 12

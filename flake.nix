@@ -43,26 +43,30 @@
         system = system;
         config.allowUnfree = true;
       };
-    in {
+    in
+    {
       overlays = {
         linuxCustomPkgs = final: prev: {
           jwlaunch = inputs.launch.defaultPackage."${system}";
           keepassxc-pass-frontend =
             inputs.keepassxc-pass-frontend.defaultPackage."${system}";
           random-colors = inputs.random-colors.defaultPackage."${system}";
-          rem2html = pkgs.writers.writePerlBin "rem2html" {
-            libraries =
-              [ pkgs.perlPackages.JSONMaybeXS pkgs.perlPackages.GetoptLong ];
-          } (builtins.readFile "${inputs.rem2html}/rem2html/rem2html");
+          rem2html = pkgs.writers.writePerlBin "rem2html"
+            {
+              libraries =
+                [ pkgs.perlPackages.JSONMaybeXS pkgs.perlPackages.GetoptLong ];
+            }
+            (builtins.readFile "${inputs.rem2html}/rem2html/rem2html");
           similar-sort = inputs.similar-sort.defaultPackage."${system}";
           paulus = inputs.paulus.defaultPackage."${system}";
-          python-remind = let pythonPackages = pkgs.python3Packages;
-          in pythonPackages.buildPythonPackage {
-            name = "python-remind";
-            src = inputs.python-remind;
-            propagatedBuildInputs =
-              [ pythonPackages.vobject pythonPackages.python-dateutil ];
-          };
+          python-remind =
+            let pythonPackages = pkgs.python3Packages;
+            in pythonPackages.buildPythonPackage {
+              name = "python-remind";
+              src = inputs.python-remind;
+              propagatedBuildInputs =
+                [ pythonPackages.vobject pythonPackages.python-dateutil ];
+            };
           todo-txt-web = inputs.todo-txt-web.defaultPackage."${system}";
           valeStyles = pkgs.linkFarm "vale-styles" [
             {

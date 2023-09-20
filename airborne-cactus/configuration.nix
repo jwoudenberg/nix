@@ -9,7 +9,8 @@
 let
 
   bridge0Subnet = "10.38.38.1/24";
-in {
+in
+{
   imports = [
     ./hardware-configuration.nix
     ../shared/nixos-modules/nix.nix

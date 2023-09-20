@@ -16,15 +16,17 @@
 
     vimAlias = true;
 
-    extraConfig = let
-      configText = builtins.replaceStrings [ "similar-sort" ]
-        [ "${pkgs.similar-sort}/bin/similar-sort" ]
-        (builtins.readFile ./init.lua);
-    in ''
-      lua << EOF
-      ${configText}
-      EOF
-    '';
+    extraConfig =
+      let
+        configText = builtins.replaceStrings [ "similar-sort" ]
+          [ "${pkgs.similar-sort}/bin/similar-sort" ]
+          (builtins.readFile ./init.lua);
+      in
+      ''
+        lua << EOF
+        ${configText}
+        EOF
+      '';
 
     plugins = with pkgs.vimPlugins; [
       ale

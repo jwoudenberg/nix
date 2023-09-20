@@ -28,18 +28,20 @@
       # Display events for today
       ^echo (remind | where date < (date now) + 1day | get --ignore-errors body | str join "\n")
     '';
-    envFile.text = let
-      # Adapted from similar logic for other shells in home-manager:
-      # https://github.com/nix-community/home-manager/blob/master/modules/lib/shell.nix
+    envFile.text =
+      let
+        # Adapted from similar logic for other shells in home-manager:
+        # https://github.com/nix-community/home-manager/blob/master/modules/lib/shell.nix
 
-      # Produces a nushell export statement
-      export = n: v: ''$env.${n} = $"${toString v}"'';
+        # Produces a nushell export statement
+        export = n: v: ''$env.${n} = $"${toString v}"'';
 
-      # Given an attribute set containing shell variable names and their
-      # assignment, this function produces a string containing an export
-      # statement for each set entry.
-      exportAll = vars:
-        lib.concatStringsSep "\n" (lib.mapAttrsToList export vars);
-    in exportAll config.home.sessionVariables;
+        # Given an attribute set containing shell variable names and their
+        # assignment, this function produces a string containing an export
+        # statement for each set entry.
+        exportAll = vars:
+          lib.concatStringsSep "\n" (lib.mapAttrsToList export vars);
+      in
+      exportAll config.home.sessionVariables;
   };
 }

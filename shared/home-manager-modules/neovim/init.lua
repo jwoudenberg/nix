@@ -93,7 +93,8 @@ vim.g.ale_fixers = {
     ["ruby"] = {"rubocop"},
     ["rust"] = {"rustfmt"},
     ["typescript"] = {"prettier"},
-    ["vue"] = {"prettier"}
+    ["vue"] = {"prettier"},
+    ["zig"] = {"zigfmt"}
 }
 
 vim.g.ale_fix_on_save = true

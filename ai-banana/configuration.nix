@@ -9,13 +9,6 @@ let
   syncthingPort = 8089;
   adguardHomePort = 8090;
   boodschappenPort = 8091;
-  resilioDirs = {
-    "gilles1" = "encrypted";
-    "gilles4" = "encrypted";
-    "gilles5" = "encrypted";
-    "gilles6" = "encrypted";
-    "gilles7" = "encrypted";
-  };
   uids = {
     fdm = 7;
     generate_remind_calendar = 8;
@@ -59,10 +52,8 @@ in
   networking.hostName = "ai-banana";
 
   # Hardware
-  disabledModules = [ "services/networking/resilio.nix" ];
   imports = [
     ../shared/nixos-modules/nix.nix
-    ../shared/nixos-modules/resilio.nix
     ../shared/nixos-modules/users.nix
     ../shared/nixos-modules/zfs.nix
     (modulesPath + "/profiles/qemu-guest.nix")
@@ -131,12 +122,10 @@ in
     enable = true;
     trustedInterfaces = [ "tailscale0" ];
     allowedTCPPorts = [
-      config.services.resilio.listeningPort
       22 # ssh admin
       2022 # ssh printserver
     ];
     allowedUDPPorts = [
-      config.services.resilio.listeningPort
       config.services.tailscale.port
       22 # ssh admin
       2022 # ssh printserver
@@ -159,11 +148,6 @@ in
         ${pkgs.curl}/bin/curl -fsS -m 10 --retry 5 -o /dev/null \
         https://hc-ping.com/8ff8704b-d08e-47eb-b879-02ddb7442fe2
 
-      # Resilio is running
-      systemctl is-active resilio && \
-        ${pkgs.curl}/bin/curl -fsS -m 10 --retry 5 -o /dev/null \
-        https://hc-ping.com/2d0bc35c-d03a-4ef6-8ea2-461e52b9f426
-
       # Enough disk space remaining
       check_free_diskspace () {
         # Taken from https://www.reddit.com/r/selfhosted/comments/fw4gjr/how_to_use_healthchecksio_to_monitor_free_disk/
@@ -176,45 +160,6 @@ in
       check_free_diskspace '/'
       check_free_diskspace '/persist'
     '';
-  };
-
-  # Resilio Sync
-  system.activationScripts.mkResilioSharedFolders =
-    let
-      pathList = pkgs.lib.concatMapStringsSep " " (config: config.directory)
-        config.services.resilio.sharedFolders;
-    in
-    ''
-      mkdir -p ${pathList}
-      chown root:syncdata ${pathList}
-    '';
-
-  systemd.services.resilio.serviceConfig.LoadCredential =
-    let
-      credentialFor = dir: perms:
-        "resilio_key_${dir}_${perms}:/persist/credentials/resilio_key_${dir}_${perms}";
-    in
-    builtins.attrValues (builtins.mapAttrs credentialFor resilioDirs);
-
-  services.resilio = {
-    enable = true;
-    enableWebUI = false;
-    listeningPort = 18776;
-    storagePath = "/persist/resilio-sync/";
-    sharedFolders =
-      let
-        configFor = dir: perms: {
-          secretFile = "$CREDENTIALS_DIRECTORY/resilio_key_${dir}_${perms}";
-          directory = "/persist/${dir}";
-          useRelayServer = false;
-          useTracker = true;
-          useDHT = true;
-          searchLAN = true;
-          useSyncTrash = false;
-          knownHosts = [ ];
-        };
-      in
-      builtins.attrValues (builtins.mapAttrs configFor resilioDirs);
   };
 
   # syncthing

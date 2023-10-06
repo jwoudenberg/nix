@@ -97,6 +97,7 @@ vim.g.ale_fixers = {
     ["zig"] = {"zigfmt"}
 }
 
+vim.g.ale_haskell_ormolu_options = "--stdin-input-file ." -- fix ormolu
 vim.g.ale_fix_on_save = true
 vim.g.ale_sign_error = "✗"
 vim.g.ale_sign_warning = "!"

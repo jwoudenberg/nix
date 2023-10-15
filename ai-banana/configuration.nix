@@ -2,8 +2,6 @@ let
   smtpPort = 8025;
   filesPort = 8080;
   paulusPort = 8081;
-  kobodlPort = 8084;
-  kobodlPort2 = 8085;
   yarrPort = 8086;
   todoTxtWebPort = 8088;
   syncthingPort = 8089;
@@ -295,9 +293,6 @@ in
                   <li><a href="/paulus/">paulus</a></li>
                   <li><a href="/syncthing/">syncthing</a></li>
                   <li><a href="http://${config.networking.hostName}:${
-                    toString kobodlPort2
-                  }">kobo upload</a></li>
-                  <li><a href="http://${config.networking.hostName}:${
                     toString adguardHomePort
                   }">ad-blocking</a></li>
                 </ul>
@@ -373,10 +368,6 @@ in
         handle_path /syncthing/* {
           reverse_proxy localhost:${toString syncthingPort}
         }
-      }
-
-      :${toString kobodlPort2} {
-        reverse_proxy localhost:${toString kobodlPort}
       }
     '';
   };
@@ -767,35 +758,6 @@ in
       dhcp.enabled = false;
       tls.enabled = false;
     };
-  };
-
-  # kobodl
-  virtualisation.oci-containers.containers.kobodl = {
-    # configDir = pkgs.writeTextDir "config/kobodl.json" ''
-    #   {
-    #     "users": [];
-    #     "calibre_web": {
-    #       "enabled" = true,
-    #       "url" = "localhost/books/upload",
-    #       "username" = "",
-    #       "password" = ""
-    #     }
-    #   }
-    # '';
-    image = "ghcr.io/subdavis/kobodl:latest";
-    autoStart = true;
-    extraOptions = [ "--network=host" ];
-    ports = [ "${toString kobodlPort}:${toString kobodlPort}" ];
-    volumes = [ "/persist/kobodl:/kobodl" ];
-    cmd = [
-      "--config"
-      "/kobodl/kobodl.json"
-      "serve"
-      "--host"
-      "0.0.0.0"
-      "--port"
-      "${toString kobodlPort}"
-    ];
   };
 
   # zrepl

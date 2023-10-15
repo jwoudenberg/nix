@@ -611,7 +611,7 @@ in
               port 993
               user "jwoudenberg@freedom.nl"
               pass $(${pkgs.coreutils}/bin/cat "$CREDENTIALS_DIRECTORY/freedom_imap_password")
-              folder "INBOX"
+              folders { "INBOX" "Spam" }
               no-cram-md5
 
             action "fetch"

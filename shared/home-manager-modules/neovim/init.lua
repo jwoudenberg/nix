@@ -79,7 +79,8 @@ vim.g.ale_linters = {
     mail = {"vale"},
     markdown = {"vale"},
     bash = {"shellcheck"},
-    sh = {"shellcheck"}
+    sh = {"shellcheck"},
+    terraform = {"terraform"}
 }
 vim.g.ale_fixers = {
     ['*'] = {"remove_trailing_lines", "trim_whitespace"},
@@ -92,6 +93,7 @@ vim.g.ale_fixers = {
     ["python"] = {"black"},
     ["ruby"] = {"rubocop"},
     ["rust"] = {"rustfmt"},
+    ["terraform"] = {"terraform"},
     ["typescript"] = {"prettier"},
     ["vue"] = {"prettier"},
     ["zig"] = {"zigfmt"}

@@ -53,8 +53,9 @@
     extraConfig = ''
       config.set('content.javascript.enabled', True, 'ai-banana.panther-trout.ts.net')
       config.set('content.javascript.enabled', True, '*.bandcamp.com')
-      config.set('content.javascript.enabled', True, 'search.nixos.org')
+      config.set('content.javascript.enabled', True, 'github.com')
       config.set('content.javascript.enabled', True, 'hachyderm.io')
+      config.set('content.javascript.enabled', True, 'search.nixos.org')
     '';
   };
 

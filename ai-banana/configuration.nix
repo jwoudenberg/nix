@@ -273,51 +273,7 @@ in
       https://ai-banana.panther-trout.ts.net {
         route / {
           header +Content-Type "text/html; charset=utf-8"
-          respond `
-            <!DOCTYPE html>
-              <html>
-              <head>
-                <title>${config.networking.hostName}</title>
-                <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍌</text></svg>">
-                </head>
-              <body>
-                <h1>${config.networking.hostName}</h1>
-                <ul>
-                  <li><a href="/files/">files</a></li>
-                  <li><a href="/music/">music</a></li>
-                  <li><a href="/feeds/">feeds</a></li>
-                  <li><a href="/books/">books</a></li>
-                  <li><a href="/calendar/">calendar</a></li>
-                  <li><a href="/todos/">todos</a></li>
-                  <li><a href="/boodschappen/">boodschappen</a></li>
-                  <li><a href="/paulus/">paulus</a></li>
-                  <li><a href="/syncthing/">syncthing</a></li>
-                  <li><a href="http://${config.networking.hostName}:${
-                    toString adguardHomePort
-                  }">ad-blocking</a></li>
-                </ul>
-                <style>
-                  body {
-                    font-family: arial, sans-serif;
-                    font-size: 1.7em;
-                    background: #FCFAD9;
-                    color: #232323;
-                    text-align: center;
-                  }
-                  ul {
-                    list-style-type: none;
-                    padding: 0;
-                  }
-                  li {
-                    margin: 0.3em 0;
-                  }
-                  a {
-                    color: inherit;
-                  }
-                </style>
-              </body>
-            </html>
-          `
+          respond `${builtins.readFile ./index.html}`
         }
 
         redir /files /files/

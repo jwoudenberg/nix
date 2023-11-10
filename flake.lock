@@ -8,11 +8,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1699641924,
-        "narHash": "sha256-QGLyEwG0g+wdR7cwI30v2pJaWLJVKdvkbUOA76r/05w=",
+        "lastModified": 1699645118,
+        "narHash": "sha256-2zaUfPgZ4Iggo5OiVE8rQ36b9KF2E3zl4J32MfPhsRA=",
         "owner": "jwoudenberg",
         "repo": "agenda.txt",
-        "rev": "2d34ba85846a165c8c6af9fec8c9d388a0ac501f",
+        "rev": "d9fdb1a4c1f22b5bc84d2c54b3fa821c27aea82e",
         "type": "github"
       },
       "original": {

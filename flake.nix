@@ -5,21 +5,18 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
     home-manager.url = "github:nix-community/home-manager/release-23.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    agenda-txt.url = "github:jwoudenberg/agenda.txt";
+    agenda-txt.inputs.nixpkgs.follows = "nixpkgs";
     launch.url = "github:jwoudenberg/launch";
     launch.inputs.nixpkgs.follows = "nixpkgs";
     random-colors.url = "github:jwoudenberg/random-colors";
     random-colors.inputs.nixpkgs.follows = "nixpkgs";
-    rem2html.url =
-      "git+https://git.skoll.ca/Skollsoft-Public/Remind.git?ref=master";
-    rem2html.flake = false;
     similar-sort.url =
       "git+https://git.bytes.zone/brian/similar-sort.git?ref=main";
     keepassxc-pass-frontend.url = "github:jwoudenberg/keepassxc-pass-frontend";
     keepassxc-pass-frontend.inputs.nixpkgs.follows = "nixpkgs";
     paulus.url = "github:jwoudenberg/paulus";
     paulus.inputs.nixpkgs.follows = "nixpkgs";
-    python-remind.url = "github:jspricke/python-remind";
-    python-remind.flake = false;
     smtprelay.url = "github:decke/smtprelay";
     smtprelay.flake = false;
     todo-txt-web.url = "github:jwoudenberg/todo-txt-web";
@@ -47,26 +44,13 @@
     {
       overlays = {
         linuxCustomPkgs = final: prev: {
+          agenda-txt = inputs.agenda-txt.defaultPackage."${system}";
           jwlaunch = inputs.launch.defaultPackage."${system}";
           keepassxc-pass-frontend =
             inputs.keepassxc-pass-frontend.defaultPackage."${system}";
           random-colors = inputs.random-colors.defaultPackage."${system}";
-          rem2html = pkgs.writers.writePerlBin "rem2html"
-            {
-              libraries =
-                [ pkgs.perlPackages.JSONMaybeXS pkgs.perlPackages.GetoptLong ];
-            }
-            (builtins.readFile "${inputs.rem2html}/rem2html/rem2html");
           similar-sort = inputs.similar-sort.defaultPackage."${system}";
           paulus = inputs.paulus.defaultPackage."${system}";
-          python-remind =
-            let pythonPackages = pkgs.python3Packages;
-            in pythonPackages.buildPythonPackage {
-              name = "python-remind";
-              src = inputs.python-remind;
-              propagatedBuildInputs =
-                [ pythonPackages.vobject pythonPackages.python-dateutil ];
-            };
           todo-txt-web = inputs.todo-txt-web.defaultPackage."${system}";
           valeStyles = pkgs.linkFarm "vale-styles" [
             {

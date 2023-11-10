@@ -2,6 +2,7 @@
 
 {
   home.packages = [
+    pkgs.agenda-txt
     pkgs.comma
     pkgs.croc
     pkgs.gotop
@@ -11,7 +12,6 @@
     pkgs.pijul
     pkgs.pulsemixer
     pkgs.random-colors
-    pkgs.rem2html
     pkgs.shellcheck
     pkgs.signal-desktop
     pkgs.perlPackages.vidir

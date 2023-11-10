@@ -2,6 +2,7 @@
 
 {
   home.packages = [
+    pkgs.agenda-txt
     pkgs.comma
     pkgs.croc
     pkgs.gotop

@@ -8,25 +8,11 @@
       alias diary = ${./diary.nu}
 
       def remind [--months (-m): int = 1] {
-        let startOfToday = (date now | date format '%Y/%m/%d' | into datetime)
-        (
-          ${pkgs.remind}/bin/remind $"-ppp($months)" ~/hjgames/agenda/
-            | from json
-            | each { get entries }
-            | flatten
-            | each {
-                |event| {
-                  body: $event.body
-                  date: ($event | get -i eventstart | default $event.date | into datetime)
-                }
-              }
-            | where date >= $startOfToday
-            | sort-by date
-        )
+        cat ~/hjgames/agenda/*agenda.txt | ${pkgs.agenda-txt}/bin/agenda-txt ($"*($months)m")
       }
 
       # Display events for today
-      ^echo (remind | where date < (date now) + 1day | get --ignore-errors body | str join "\n")
+      ^echo (cat ~/hjgames/agenda/*agenda.txt | ${pkgs.agenda-txt}/bin/agenda-txt *1d)
     '';
     envFile.text =
       let

@@ -9,7 +9,7 @@ let
   boodschappenPort = 8091;
   uids = {
     fdm = 7;
-    generate_remind_calendar = 8;
+    generate_agenda = 8;
     rclone_serve_sftp = 9;
     ocrmypdf = 10;
   };
@@ -532,29 +532,29 @@ in
   };
 
   # remind
-  users.users.generate_remind_calendar = {
-    uid = uids.generate_remind_calendar;
+  users.users.generate_agenda = {
+    uid = uids.generate_agenda;
     group = "syncdata";
     isSystemUser = true;
   };
-  systemd.timers.generate_remind_calendar = {
+  systemd.timers.generate_agenda = {
     wantedBy = [ "timers.target" ];
     partOf = [ "simple-timer.service" ];
     timerConfig.OnCalendar = "minutely";
   };
-  systemd.services.generate_remind_calendar = {
+  systemd.services.generate_agenda = {
     serviceConfig = {
       Type = "oneshot";
-      User = uids.generate_remind_calendar;
+      User = uids.generate_agenda;
       UMask = "000";
-      RuntimeDirectory = "generate_remind_calendar";
-      RootDirectory = "/run/generate_remind_calendar";
+      RuntimeDirectory = "generate_agenda";
+      RootDirectory = "/run/generate_agenda";
       BindReadOnlyPaths = [ builtins.storeDir "/persist/hjgames/agenda" ];
       BindPaths = [ "/persist/webcalendar" ];
     };
     script = ''
-      ${pkgs.remind}/bin/remind -pp12 -m -b1 /persist/hjgames/agenda \
-        | ${pkgs.rem2html}/bin/rem2html \
+      cat /persist/hjgames/agenda/*agenda.txt \
+        | ${pkgs.agenda-txt}/bin/agenda-txt --html *12m \
         > /persist/webcalendar/index.html
     '';
   };

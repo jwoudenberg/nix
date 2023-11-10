@@ -197,11 +197,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1698942558,
-        "narHash": "sha256-/UmnB+mEd6Eg3mJBrAgqRcyZX//RSjHphcCO7Ig9Bpk=",
+        "lastModified": 1699291058,
+        "narHash": "sha256-5ggduoaAMPHUy4riL+OrlAZE14Kh7JWX4oLEs22ZqfU=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "621f51253edffa1d6f08d5fce4f08614c852d17e",
+        "rev": "41de143fda10e33be0f47eab2bfe08a50f234267",
         "type": "github"
       },
       "original": {
@@ -326,11 +326,11 @@
     "smtprelay": {
       "flake": false,
       "locked": {
-        "lastModified": 1698514041,
-        "narHash": "sha256-m4x2hucCaRoJUjmJi3OUxsZT8NpPzlWRQjXH/fabecs=",
+        "lastModified": 1699530953,
+        "narHash": "sha256-bFhlYB7B6P7xwpKn6C2fHrUNSF+sCMRhGC/Vd6BjT/A=",
         "owner": "decke",
         "repo": "smtprelay",
-        "rev": "052f6ccc1fa046dd958d2dde16d764e600629a43",
+        "rev": "1a27c4358500ee2bdfd0f3be1ce5b4177d1c57b7",
         "type": "github"
       },
       "original": {

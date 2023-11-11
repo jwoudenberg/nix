@@ -7,12 +7,21 @@
     neededForBoot = true;
   };
 
+  fileSystems."/home/jasper/music" = {
+    device = "/persist/music";
+    fsType = "none";
+    options = [ "bind" ];
+    depends = [ "/persist" ];
+    neededForBoot = false;
+  };
+
   services.gonic = {
     enable = true;
     settings = {
       music-path = [ "/persist/music" ];
       listen-addr = "127.0.0.1:4553";
       proxy-prefix = "/music";
+      # podcast-path is required by the nixos module, though I don't use it.
       podcast-path = "/var/lib/gonic/podcasts";
     };
   };

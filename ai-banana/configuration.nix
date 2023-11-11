@@ -59,6 +59,7 @@ in
     ../shared/nixos-modules/nix.nix
     ../shared/nixos-modules/users.nix
     ../shared/nixos-modules/zfs.nix
+    ./nixos-modules/gonic.nix
     (modulesPath + "/profiles/qemu-guest.nix")
   ];
   boot.loader.grub.device = "/dev/sda";
@@ -70,13 +71,6 @@ in
   fileSystems."/persist" = {
     device = "trunk/volume1";
     fsType = "zfs";
-    neededForBoot = true;
-  };
-  fileSystems."/var/lib/private/gonic" = {
-    device = "/persist/gonic";
-    fsType = "none";
-    options = [ "bind" ];
-    depends = [ "/persist" ];
     neededForBoot = true;
   };
   fileSystems."/var/lib/tailscale" = {
@@ -251,18 +245,6 @@ in
       };
     };
   };
-
-  # gonic
-  services.gonic = {
-    enable = true;
-    settings = {
-      music-path = [ "/persist/music" ];
-      listen-addr = "127.0.0.1:4553";
-      proxy-prefix = "/music";
-      podcast-path = "/var/lib/gonic/podcasts";
-    };
-  };
-  systemd.services.gonic.serviceConfig.SupplementaryGroups = [ "music" ];
 
   # Caddy
   systemd.services.caddy.serviceConfig.BindReadOnlyPaths =

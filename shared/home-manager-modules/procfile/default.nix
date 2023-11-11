@@ -1,4 +1,4 @@
 { pkgs, ... }:
 
-let procfile = pkgs.writeScriptBin "procfile" (builtins.readFile ./procfile.sh);
+let procfile = pkgs.writeScriptBin "procfile" (pkgs.lib.readFile ./procfile.sh);
 in { home.packages = [ procfile ]; }

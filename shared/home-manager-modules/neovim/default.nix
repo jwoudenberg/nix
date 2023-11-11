@@ -18,9 +18,9 @@
 
     extraConfig =
       let
-        configText = builtins.replaceStrings [ "similar-sort" ]
+        configText = pkgs.lib.replaceStrings [ "similar-sort" ]
           [ "${pkgs.similar-sort}/bin/similar-sort" ]
-          (builtins.readFile ./init.lua);
+          (pkgs.lib.readFile ./init.lua);
       in
       ''
         lua << EOF

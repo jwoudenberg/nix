@@ -2,10 +2,10 @@
 
 let
   iso-to-usb =
-    pkgs.writeScriptBin "iso-to-usb" (builtins.readFile ./iso-to-usb.sh);
+    pkgs.writeScriptBin "iso-to-usb" (pkgs.lib.readFile ./iso-to-usb.sh);
   format-usb = pkgs.writeShellApplication {
     name = "format-usb";
-    text = builtins.readFile ./format-usb.sh;
+    text = pkgs.lib.readFile ./format-usb.sh;
     runtimeInputs = [ pkgs.parted pkgs.exfat ];
   };
 in

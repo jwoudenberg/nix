@@ -273,7 +273,7 @@ in
       https://ai-banana.panther-trout.ts.net {
         route / {
           header +Content-Type "text/html; charset=utf-8"
-          respond `${builtins.readFile ./index.html}`
+          respond `${pkgs.lib.readFile ./index.html}`
         }
 
         redir /files /files/

@@ -16,7 +16,14 @@ let
 in
 { pkgs, config, modulesPath, flakeInputs, ... }: {
 
-  users.groups.syncdata.gid = 7;
+  users.groups.syncdata = {
+    gid = 7;
+    members = [ "jasper" ];
+  };
+  users.groups.music = {
+    gid = 8;
+    members = [ "jasper" ];
+  };
 
   systemd.tmpfiles.rules = [
     "d /persist 0700 root root - -"
@@ -35,10 +42,8 @@ in
     "d /persist/books 0770 root syncdata - -"
     "Z /persist/books ~0770 - syncdata - -"
 
-    "d /persist/music 0570 navidrome syncdata - -"
-    "Z /persist/music ~0570 navidrome syncdata - -"
-    "d /persist/navidrome 0700 navidrome navidrome - -"
-    "Z /persist/navidrome ~0700 navidrome navidrome - -"
+    "d /persist/music 0750 jasper music - -"
+    "Z /persist/music ~0750 jasper music - -"
 
     "d /persist/webcalendar 0777 root syncdata - -"
 
@@ -67,8 +72,8 @@ in
     fsType = "zfs";
     neededForBoot = true;
   };
-  fileSystems."/var/lib/private/navidrome" = {
-    device = "/persist/navidrome";
+  fileSystems."/var/lib/private/gonic" = {
+    device = "/persist/gonic";
     fsType = "none";
     options = [ "bind" ];
     depends = [ "/persist" ];
@@ -247,17 +252,17 @@ in
     };
   };
 
-  # navidrome
-  services.navidrome = {
+  # gonic
+  services.gonic = {
     enable = true;
     settings = {
-      MusicFolder = "/persist/music";
-      Port = 4533;
-      BaseUrl = "/music";
-      ReverseProxyUserHeader = "Remote-User";
-      ReverseProxyWhitelist = "127.0.0.1/32";
+      music-path = [ "/persist/music" ];
+      listen-addr = "127.0.0.1:4553";
+      proxy-prefix = "/music";
+      podcast-path = "/var/lib/gonic/podcasts";
     };
   };
+  systemd.services.gonic.serviceConfig.SupplementaryGroups = [ "music" ];
 
   # Caddy
   systemd.services.caddy.serviceConfig.BindReadOnlyPaths =
@@ -292,9 +297,8 @@ in
         }
 
         redir /music /music/
-        reverse_proxy /music/* {
-          to localhost:${toString config.services.navidrome.settings.Port}
-          header_up Remote-User admin
+        handle_path /music/* {
+          reverse_proxy ${toString config.services.gonic.settings.listen-addr}
         }
 
         redir /books /books/

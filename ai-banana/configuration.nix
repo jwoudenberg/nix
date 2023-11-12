@@ -3,7 +3,6 @@ let
   filesPort = 8080;
   paulusPort = 8081;
   yarrPort = 8086;
-  todoTxtWebPort = 8088;
   syncthingPort = 8089;
   adguardHomePort = 8090;
   boodschappenPort = 8091;
@@ -294,11 +293,6 @@ in
         handle_path /calendar/* {
           root * /run/agenda
           file_server
-        }
-
-        redir /todos /todos/
-        reverse_proxy /todos/* {
-          to localhost:${toString todoTxtWebPort}
         }
 
         redir /boodschappen /boodschappen/
@@ -625,29 +619,6 @@ in
       TemporaryFileSystem = "/:ro";
       BindPaths = "/var/lib/yarr";
       BindReadOnlyPaths = "/nix/store";
-    };
-  };
-
-  # todo-txt-web
-  systemd.services.todo-txt-web = {
-    description = "todo.txt web";
-    after = [ "network.target" ];
-    wantedBy = [ "multi-user.target" ];
-    environment = {
-      PORT = toString todoTxtWebPort;
-      TODO_TXT_PATH = "/persist/hjgames/todo.txt";
-      TITLE = "Hiske + Jasper Todos";
-    };
-    serviceConfig = {
-      Type = "simple";
-      DynamicUser = true;
-      Group = "syncdata";
-      ExecStart = "${pkgs.todo-txt-web}/bin/todo-txt-web";
-      Restart = "on-failure";
-      RuntimeDirectory = "todo-txt-web";
-      RootDirectory = "/run/todo-txt-web";
-      BindReadOnlyPaths = [ builtins.storeDir ];
-      BindPaths = [ "/persist/hjgames" ];
     };
   };
 

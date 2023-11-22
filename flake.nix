@@ -7,6 +7,8 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     agenda-txt.url = "github:jwoudenberg/agenda.txt";
     agenda-txt.inputs.nixpkgs.follows = "nixpkgs";
+    cooklang.url = "github:jwoudenberg/cooklang";
+    cooklang.inputs.nixpkgs.follows = "nixpkgs";
     launch.url = "github:jwoudenberg/launch";
     launch.inputs.nixpkgs.follows = "nixpkgs";
     random-colors.url = "github:jwoudenberg/random-colors";
@@ -45,6 +47,7 @@
       overlays = {
         linuxCustomPkgs = final: prev: {
           agenda-txt = inputs.agenda-txt.defaultPackage."${system}";
+          cooklang = inputs.cooklang.defaultPackage."${system}";
           jwlaunch = inputs.launch.defaultPackage."${system}";
           keepassxc-pass-frontend =
             inputs.keepassxc-pass-frontend.defaultPackage."${system}";

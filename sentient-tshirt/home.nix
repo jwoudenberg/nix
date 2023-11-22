@@ -6,6 +6,7 @@
     pkgs.comma
     pkgs.croc
     pkgs.gotop
+    pkgs.cooklang
     pkgs.mosh
     pkgs.nixpkgs-fmt
     pkgs.pdfgrep

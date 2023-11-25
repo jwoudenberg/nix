@@ -29,11 +29,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1700657378,
-        "narHash": "sha256-LEfKjZnditeDYljf+TFJ5fVvEChQoslbBz9jbc6wsxI=",
+        "lastModified": 1700926022,
+        "narHash": "sha256-gCm/v0aAC+M06kuzvhcApSyuOkarFJiWgNhB/Y2ue4I=",
         "owner": "jwoudenberg",
         "repo": "cooklang",
-        "rev": "5d2f65e8087a528bb35330278573fcbe1e6d3a08",
+        "rev": "02b1177ac3ecfb68b431ba96460ec74f48f7300c",
         "type": "github"
       },
       "original": {

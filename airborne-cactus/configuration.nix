@@ -46,7 +46,7 @@ in
   };
   programs.mosh.enable = true;
 
-  system.stateVersion = "23.05";
+  system.stateVersion = "23.11";
 
   # Networking
   networking.hostName = "airborne-cactus";

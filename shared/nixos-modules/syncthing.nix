@@ -29,7 +29,7 @@
     enable = true;
     user = "jasper";
     group = "users";
-    extraOptions = {
+    settings = {
       options = {
         relaysEnabled = false;
         natEnabled = false;
@@ -37,27 +37,27 @@
         localAnnounceEnabled = false;
         urAccepted = -1;
       };
+      folders = {
+        "jasper" = {
+          path = "/persist/jasper";
+          devices = [ "ai-banana" ];
+        };
+        "hjgames" = {
+          path = "/persist/hjgames";
+          devices = [ "ai-banana" ];
+        };
+      };
+      devices = {
+        "ai-banana" = {
+          id = "4IBITW5-V77TJUE-A3DEGT2-C33VXJU-W2GTUE5-BZ3J7MJ-XYVS6PF-7JNVSAB";
+          addresses = [ "tcp://ai-banana" ];
+        };
+      };
     };
     overrideFolders = true;
     overrideDevices = true;
     dataDir = "/persist";
     configDir = "/persist/syncthing";
-    folders = {
-      "jasper" = {
-        path = "/persist/jasper";
-        devices = [ "ai-banana" ];
-      };
-      "hjgames" = {
-        path = "/persist/hjgames";
-        devices = [ "ai-banana" ];
-      };
-    };
-    devices = {
-      "ai-banana" = {
-        id = "4IBITW5-V77TJUE-A3DEGT2-C33VXJU-W2GTUE5-BZ3J7MJ-XYVS6PF-7JNVSAB";
-        addresses = [ "tcp://ai-banana" ];
-      };
-    };
   };
 
   fileSystems."/home/jasper/docs" = {

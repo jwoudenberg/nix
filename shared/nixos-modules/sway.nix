@@ -5,7 +5,7 @@
 
   programs.sway.enable = true;
   programs.xwayland.enable = false;
-  fonts.fonts = [ pkgs.fira-code ];
+  fonts.packages = [ pkgs.fira-code ];
 
   services.greetd = {
     enable = true;

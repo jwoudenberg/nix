@@ -36,7 +36,8 @@
       this-year-time-format = "Mon    01-02 15:04"
       new-message-bell = false
       reverse-msglist-order = false
-      dirlist-format = %n
+      dirlist-left = {{.Folder}}
+      dirlist-right =
 
       [viewer]
       pager = nvim -R -c 'colors noctu | set ft=mail laststatus=0 nomod nolist nonumber'
@@ -47,8 +48,8 @@
       address-book-cmd = "${addressBookCmd} '%s'"
 
       [filters]
-      text/html = ${pkgs.aerc}/share/aerc/filters/html
-      text/* = awk -f ${pkgs.aerc}/share/aerc/filters/plaintext
+      text/html = html
+      text/* = plaintext
     '';
 
   xdg.configFile."aerc/accounts.conf".text = ''

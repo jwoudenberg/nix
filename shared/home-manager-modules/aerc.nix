@@ -60,7 +60,7 @@
     from = "Jasper Woudenberg <mail@jasperwoudenberg.com>"
     source = maildir://~/docs/email
     copy-to = archive
-    outgoing = smtp+none://ai-banana.panther-trout.ts.net:8025
+    outgoing = smtp+insecure+none://ai-banana.panther-trout.ts.net:8025
   '';
 
   xdg.configFile."aerc/binds.conf".text = ''

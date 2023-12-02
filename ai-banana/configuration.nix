@@ -1,6 +1,5 @@
 let
   smtpPort = 8025;
-  filesPort = 8080;
   paulusPort = 8081;
   yarrPort = 8086;
   syncthingPort = 8089;
@@ -49,7 +48,6 @@ in
     "d /persist/syncthing 0700 syncthing syncdata - -"
   ];
 
-  # Nix
   system.stateVersion = "23.11";
   networking.hostName = "ai-banana";
 
@@ -246,10 +244,13 @@ in
   };
 
   # Caddy
-  systemd.services.caddy.serviceConfig.BindReadOnlyPaths =
-    [ "/persist/webcalendar:/run/agenda" ];
+  systemd.services.caddy.serviceConfig.BindReadOnlyPaths = [
+    "/persist/webcalendar:/run/agenda"
+    "/persist/hjgames:/run/hjgames"
+  ];
   services.caddy = {
     enable = true;
+    group = "syncdata";
     email = "letsencrypt@jasperwoudenberg.com";
     extraConfig = ''
       http://${config.networking.hostName}:80 {
@@ -267,8 +268,9 @@ in
         }
 
         redir /files /files/
-        reverse_proxy /files/* {
-          to localhost:${toString filesPort}
+        handle_path /files/* {
+          root * /run/hjgames
+          file_server browse
         }
 
         redir /feeds /feeds/
@@ -348,28 +350,6 @@ in
         --output /persist/hjgames/paulus/results.json \
         --port ${toString paulusPort}
     '';
-  };
-
-  # files
-  systemd.services.rclone-serve-files = {
-    description = "Rclone Serve Files";
-    after = [ "network.target" ];
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      Type = "simple";
-      DynamicUser = true;
-      Group = "syncdata";
-      ExecStart = ''
-        ${pkgs.rclone}/bin/rclone serve http /persist/hjgames \
-          --addr ':${toString filesPort}' \
-          --read-only \
-          --baseurl 'files/'
-      '';
-      Restart = "on-failure";
-      RuntimeDirectory = "rclone_serve_files";
-      RootDirectory = "/run/rclone_serve_files";
-      BindReadOnlyPaths = [ builtins.storeDir "/persist/hjgames" ];
-    };
   };
 
   # scanner sftp

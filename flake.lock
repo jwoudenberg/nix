@@ -150,6 +150,23 @@
         "type": "github"
       }
     },
+    "gonic": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1701383388,
+        "narHash": "sha256-0KmE1tjWMeudNM3ARK5TZGNzjmC6luqYX/7ESvv7xAY=",
+        "owner": "sentriz",
+        "repo": "gonic",
+        "rev": "32e0f30efb16c3bc5324c1c70492ee31041fdfcc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sentriz",
+        "ref": "v0.16.2",
+        "repo": "gonic",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -323,6 +340,7 @@
       "inputs": {
         "agenda-txt": "agenda-txt",
         "cooklang": "cooklang",
+        "gonic": "gonic",
         "home-manager": "home-manager",
         "keepassxc-pass-frontend": "keepassxc-pass-frontend",
         "launch": "launch",

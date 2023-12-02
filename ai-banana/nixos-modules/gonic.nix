@@ -19,6 +19,7 @@
     enable = true;
     settings = {
       music-path = [ "/persist/music" ];
+      playlists-path = "/persist/music/00_playlists";
       listen-addr = "127.0.0.1:4553";
       proxy-prefix = "/music";
       # podcast-path is required by the nixos module, though I don't use it.
@@ -26,4 +27,5 @@
     };
   };
   systemd.services.gonic.serviceConfig.SupplementaryGroups = [ "music" ];
+  systemd.services.gonic.serviceConfig.BindPaths = [ "/persist/music/00_playlists" ];
 }

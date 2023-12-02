@@ -21,6 +21,8 @@
     paulus.inputs.nixpkgs.follows = "nixpkgs";
     todo-txt-web.url = "github:jwoudenberg/todo-txt-web";
     todo-txt-web.inputs.nixpkgs.follows = "nixpkgs";
+    gonic.url = "github:sentriz/gonic/v0.16.2";
+    gonic.flake = false;
     vale-Joblint.flake = false;
     vale-Joblint.url = "github:errata-ai/Joblint";
     vale-alex.flake = false;
@@ -72,6 +74,33 @@
             }
           ];
           vim-spell-nl = "${inputs.vim-spell-nl}";
+          # Adapted from: https://github.com/NixOS/nixpkgs/blob/nixos-23.11/pkgs/servers/gonic/default.nix#L50
+          # Updates gonic to 0.16.2. Once This version is available in Nixpkgs we can
+          # remove this override.
+          gonic = pkgs.buildGoModule rec {
+            pname = "gonic";
+            version = "0.16.2";
+            src = inputs.gonic;
+
+            nativeBuildInputs = [ pkgs.pkg-config ];
+            buildInputs = [ pkgs.taglib pkgs.zlib ];
+            vendorHash = "sha256-0M1vlTt/4OKjn9Ocub+9HpeRcXt6Wf8aGa/ZqCdHh5M=";
+            doCheck = false;
+
+            postPatch = ''
+              substituteInPlace \
+                transcode/transcode.go \
+                --replace \
+                  '`ffmpeg' \
+                  '`${pkgs.lib.getBin pkgs.ffmpeg}/bin/ffmpeg'
+            '' + ''
+              substituteInPlace \
+                jukebox/jukebox.go \
+                --replace \
+                  '"mpv"' \
+                  '"${pkgs.lib.getBin pkgs.mpv}/bin/mpv"'
+            '';
+          };
         };
       };
 

@@ -43,6 +43,8 @@ in
 
     "d /persist/music 0750 jasper music - -"
     "Z /persist/music ~0750 jasper music - -"
+    "d /persist/music/00_playlists 0770 jasper music - -"
+    "Z /persist/music/00_playlists ~0770 jasper music - -"
 
     "d /persist/webcalendar 0777 root syncdata - -"
 

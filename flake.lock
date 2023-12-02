@@ -330,7 +330,6 @@
         "paulus": "paulus",
         "random-colors": "random-colors",
         "similar-sort": "similar-sort",
-        "smtprelay": "smtprelay",
         "todo-txt-web": "todo-txt-web",
         "vale-Joblint": "vale-Joblint",
         "vale-alex": "vale-alex",
@@ -358,22 +357,6 @@
         "ref": "main",
         "type": "git",
         "url": "https://git.bytes.zone/brian/similar-sort.git"
-      }
-    },
-    "smtprelay": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1699530953,
-        "narHash": "sha256-bFhlYB7B6P7xwpKn6C2fHrUNSF+sCMRhGC/Vd6BjT/A=",
-        "owner": "decke",
-        "repo": "smtprelay",
-        "rev": "1a27c4358500ee2bdfd0f3be1ce5b4177d1c57b7",
-        "type": "github"
-      },
-      "original": {
-        "owner": "decke",
-        "repo": "smtprelay",
-        "type": "github"
       }
     },
     "systems": {

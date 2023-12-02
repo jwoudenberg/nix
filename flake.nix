@@ -19,8 +19,6 @@
     keepassxc-pass-frontend.inputs.nixpkgs.follows = "nixpkgs";
     paulus.url = "github:jwoudenberg/paulus";
     paulus.inputs.nixpkgs.follows = "nixpkgs";
-    smtprelay.url = "github:decke/smtprelay";
-    smtprelay.flake = false;
     todo-txt-web.url = "github:jwoudenberg/todo-txt-web";
     todo-txt-web.inputs.nixpkgs.follows = "nixpkgs";
     vale-Joblint.flake = false;
@@ -74,11 +72,6 @@
             }
           ];
           vim-spell-nl = "${inputs.vim-spell-nl}";
-          smtprelay = pkgs.buildGo118Module {
-            name = "smtprelay";
-            src = inputs.smtprelay;
-            vendorSha256 = "sha256-IpNs/W2O5/ivgXOLg6B554HR26MsmdWG2KK7ZvqFAKw=";
-          };
         };
       };
 

@@ -635,8 +635,9 @@ in
     enable = true;
     mutableSettings = false;
     settings = {
-      bind_host = "0.0.0.0";
-      bind_port = adguardHomePort;
+      http = {
+        address = "0.0.0.0:${toString adguardHomePort}";
+      };
       schema_version = 12;
       users = [ ];
       dns = {

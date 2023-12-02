@@ -257,6 +257,10 @@ in
       }
 
       https://ai-banana.panther-trout.ts.net {
+        tls {
+          get_certificate tailscale
+        }
+
         route / {
           header +Content-Type "text/html; charset=utf-8"
           respond `${pkgs.lib.readFile ./index.html}`

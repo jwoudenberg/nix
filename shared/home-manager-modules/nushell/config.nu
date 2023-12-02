@@ -41,13 +41,12 @@ $env.config = {
     event: { until: [{send: MenuDown}] }
   }]
   hooks: {
-    pre_prompt: {
-      code: "
-        let direnv = (direnv export json | from json)
-        let direnv = if ($direnv | length) == 1 { $direnv } else { {} }
-        $direnv | load-env
-      "
-    }
+    pre_prompt: [{ ||
+      if (which direnv | is-empty) {
+        return
+      }
+      direnv export json | from json | default {} | load-env
+    }]
     env_change: {
       PWD: { random-colors }
     }

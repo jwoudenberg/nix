@@ -5,6 +5,7 @@
     pkgs.agenda-txt
     pkgs.comma
     pkgs.croc
+    pkgs.dedrm
     pkgs.gotop
     pkgs.cooklang
     pkgs.mosh

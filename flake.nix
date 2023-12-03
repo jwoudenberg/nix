@@ -48,6 +48,18 @@
         linuxCustomPkgs = final: prev: {
           agenda-txt = inputs.agenda-txt.defaultPackage."${system}";
           cooklang = inputs.cooklang.defaultPackage."${system}";
+          dedrm = prev.writeShellScriptBin "dedrm" ''
+            set -euxo pipefail
+
+            ACSM_FILE=$(realpath "$1")
+            TEMP_DIR=$(mktemp --directory --tmpdir dedrm-XXXXXX)
+            pushd "$TEMP_DIR"
+            ADEPT_DIR="$TEMP_DIR/adept"
+
+            ${pkgs.libgourou}/bin/adept_activate --anonymous --output-dir "$ADEPT_DIR"
+            ${pkgs.libgourou}/bin/acsmdownloader "$ACSM_FILE" --adept-directory "$ADEPT_DIR" --output-file "drm_book.epub"
+            ${pkgs.libgourou}/bin/adept_remove "drm_book.epub" --adept-directory "$ADEPT_DIR" --output-file "book.epub"
+          '';
           jwlaunch = inputs.launch.defaultPackage."${system}";
           keepassxc-pass-frontend =
             inputs.keepassxc-pass-frontend.defaultPackage."${system}";
@@ -137,7 +149,7 @@
         };
 
       devShell."x86_64-linux" = pkgs.mkShell {
-        buildInputs = [ pkgs.luaformatter pkgs.lua53Packages.luacheck ];
+        buildInputs = [ pkgs.libgourou pkgs.luaformatter pkgs.lua53Packages.luacheck ];
       };
 
     };

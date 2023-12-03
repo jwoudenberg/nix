@@ -30,6 +30,7 @@
 
     plugins = with pkgs.vimPlugins; [
       ale
+      comment-nvim
       fzfWrapper
       gitsigns-nvim
       lightline-vim
@@ -38,7 +39,6 @@
       todo-txt-vim
       nvim-treesitter.withAllGrammars
       vim-abolish
-      vim-commentary
       vim-dirvish
       vim-eunuch
       vim-fugitive

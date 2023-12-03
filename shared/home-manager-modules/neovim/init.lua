@@ -363,11 +363,6 @@ require('gitsigns').setup({
     end
 })
 
--- vim-commentary
-vim.api.nvim_create_autocmd({"FileType"}, {
-    desc = "Assume .pl files contain prolog, not perl",
-    pattern = "nix",
-    callback = function(args) vim.opt_local.commentstring = "# %s" end
-})
+require('Comment').setup()
 
 require('illuminate').configure({})

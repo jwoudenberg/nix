@@ -13,7 +13,7 @@
     uid = 1000;
   };
 
-  security.sudo.extraConfig = ''
-    Defaults lecture=never
-  '';
+  security.sudo-rs = {
+    enable = true;
+  };
 }

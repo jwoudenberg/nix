@@ -32,8 +32,8 @@ in
     "d /persist/hjgames 0770 root syncdata - -"
     "Z /persist/hjgames ~0770 - syncdata - -"
     "Z /persist/hjgames/documenten ~0770 syncthing syncdata - -"
-    "d /persist/hjgames/boodschappen 0770 - syncdata - -"
-    "Z /persist/hjgames/boodschappen/groceries.txt 0660 - syncdata - -"
+    "Z /persist/hjgames/boodschappen 0770 - syncdata - -"
+    "Z /persist/hjgames/agenda 0770 - syncdata - -"
 
     "d /persist/hiske 0770 root syncdata - -"
     "Z /persist/hiske ~0770 - syncdata - -"

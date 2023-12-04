@@ -198,6 +198,7 @@ in
         };
         "hjgames" = {
           path = "/persist/hjgames";
+          ignorePerms = true;
           devices = [
             "fragile-walrus"
             "sentient-tshirt"

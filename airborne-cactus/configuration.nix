@@ -34,7 +34,7 @@ in
 
   i18n.defaultLocale = "en_US.UTF-8";
 
-  environment.systemPackages = [ pkgs.neovim pkgs.flashrom ];
+  environment.systemPackages = [ pkgs.neovim pkgs.flashrom pkgs.iw ];
 
   # SSH
   services.openssh = {
@@ -278,29 +278,31 @@ in
   services.resolved.enable = true;
   services.tailscale.enable = true;
 
-  # Some resources for upgrading to a 802.11ac endpoint at some point:
-  # https://wiki.gentoo.org/wiki/Hostapd#802.11a.2Fn.2Fac_with_WPA2-PSK_and_CCMP
-  # https://blog.fraggod.net/2017/04/27/wifi-hostapd-configuration-for-80211ac-networks.html
-  # http://pisarenko.net/blog/2015/02/01/beginners-guide-to-802-dot-11ac-setup/
-  # https://github.com/NixOS/nixpkgs/pull/222536
   services.hostapd = {
     enable = true;
-    interface = "wlan";
-    ssid = "Bergweg";
-    countryCode = "NL";
-    hwMode = "g";
-    wpa = false; # Set in extraConfig below, to be able to use a password file.
-
-    # The hostapd.wpa_psk file should contain lines with the following format:
-    #    ma:ca:dd:re:ss:00 The Passphrase For Device A
-    # The MAC address 00:00:00:00:00:00 works as a wildcard.
-    # More info here: https://s3lph.me/automatically-rotating-guest-wifi-passwords-with-hostapd.html
-    extraConfig = ''
-      wpa=2
-      wpa_key_mgmt=WPA-PSK
-      wpa_psk_file=/persist/credentials/hostapd.wpa_psk
-      bridge=bridge0
-    '';
+    radios.wlan = {
+      wifi4.enable = true;
+      wifi5.enable = true;
+      wifi6.enable = false;
+      wifi7.enable = false;
+      # Channels available in the Netherlands:
+      # https://www.antagonist.nl/blog/wifi-verbeteren/
+      #
+      # Configuring wifi card for 5g:
+      # https://superuser.com/questions/809282/wifi-5ghz-ap-mode-what-does-no-ir-means-and-can-i-bypass-it
+      # https://medium.com/@renaudcerrato/how-to-build-your-own-wireless-router-from-scratch-part-3-d54eecce157f
+      band = "2g";
+      channel = 7;
+      countryCode = "NL";
+      networks.wlan = {
+        ssid = "Bergweg";
+        authentication = {
+          mode = "wpa3-sae";
+          saePasswordsFile = "/persist/credentials/hostapd.wpa_psk";
+        };
+      };
+      settings.bridge = "bridge0";
+    };
   };
 
   # PPPoE

@@ -50,6 +50,7 @@ in
 
   # Networking
   networking.hostName = "airborne-cactus";
+  networking.useNetworkd = true;
 
   boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
 

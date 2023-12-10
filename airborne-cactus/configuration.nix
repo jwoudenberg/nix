@@ -283,7 +283,27 @@ in
     enable = true;
     radios.wlan = {
       wifi4.enable = true;
-      wifi5.enable = true;
+      wifi4.capabilities = [
+        # Available options here:
+        # https://web.mit.edu/freebsd/head/contrib/wpa/hostapd/hostapd.conf
+        # List below contains above options also present in `iw phy` output.
+        "LDPC"
+        "HT40-"
+        "HT40+"
+        "SHORT-GI-40"
+        "TX-STBC"
+        "RC-STBC1"
+        "MAX_AMSDU-7935"
+        "DSSS_CK-40"
+      ];
+      wifi5.enable = false;
+      # wifi5.capabilities = [
+      #   "MAX-MPDU-11545"
+      #   "RXLDPC"
+      #   "SHORT-GI-80"
+      #   "TX-STBC-2BY1"
+      #   "RX-STBC-1"
+      # ];
       wifi6.enable = false;
       wifi7.enable = false;
       # Channels available in the Netherlands:

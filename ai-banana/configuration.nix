@@ -189,6 +189,7 @@ in
       folders = {
         "jasper" = {
           path = "/persist/jasper";
+          ignorePerms = true;
           devices = [
             "fragile-walrus"
             "sentient-tshirt"
@@ -210,6 +211,7 @@ in
         };
         "hiske" = {
           path = "/persist/hiske";
+          ignorePerms = true;
           devices = [ "hiske-macbook" "klarinet" ];
         };
       };

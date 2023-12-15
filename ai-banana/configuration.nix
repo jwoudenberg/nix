@@ -7,7 +7,6 @@ let
   boodschappenPort = 8091;
   uids = {
     fdm = 7;
-    generate_agenda = 8;
     rclone_serve_sftp = 9;
     ocrmypdf = 10;
   };
@@ -26,17 +25,11 @@ in
   systemd.tmpfiles.rules = [
     "d /persist 0700 root root - -"
 
+    # Don't try to set permissions for files inside syncthing directories,
+    # it will lead to an edit war between syncthing clients.
     "d /persist/jasper 0770 root syncdata - -"
-    "Z /persist/jasper ~0770 - syncdata - -"
-
     "d /persist/hjgames 0770 root syncdata - -"
-    "Z /persist/hjgames ~0770 - syncdata - -"
-    "Z /persist/hjgames/documenten ~0770 syncthing syncdata - -"
-    "Z /persist/hjgames/boodschappen 0770 - syncdata - -"
-    "Z /persist/hjgames/agenda 0770 - syncdata - -"
-
     "d /persist/hiske 0770 root syncdata - -"
-    "Z /persist/hiske ~0770 - syncdata - -"
 
     "d /persist/books 0770 root syncdata - -"
     "Z /persist/books ~0770 - syncdata - -"
@@ -100,7 +93,7 @@ in
   # Tailscale
   services.tailscale = {
     enable = true;
-    permitCertUid = "caddy";
+    permitCertUid = "syncthing";
   };
 
   # SSH
@@ -253,7 +246,7 @@ in
   ];
   services.caddy = {
     enable = true;
-    group = "syncdata";
+    user = "syncthing";
     email = "letsencrypt@jasperwoudenberg.com";
     extraConfig = ''
       http://${config.networking.hostName}:80 {
@@ -455,11 +448,6 @@ in
   };
 
   # remind
-  users.users.generate_agenda = {
-    uid = uids.generate_agenda;
-    group = "syncdata";
-    isSystemUser = true;
-  };
   systemd.timers.generate_agenda = {
     wantedBy = [ "timers.target" ];
     partOf = [ "simple-timer.service" ];
@@ -468,8 +456,7 @@ in
   systemd.services.generate_agenda = {
     serviceConfig = {
       Type = "oneshot";
-      User = uids.generate_agenda;
-      UMask = "000";
+      User = "syncthing";
       RuntimeDirectory = "generate_agenda";
       RootDirectory = "/run/generate_agenda";
       BindReadOnlyPaths = [ builtins.storeDir "/persist/hjgames/agenda" ];
@@ -621,8 +608,7 @@ in
     };
     serviceConfig = {
       Type = "simple";
-      DynamicUser = true;
-      Group = "syncdata";
+      User = "syncthing";
       ExecStart = "${pkgs.todo-txt-web}/bin/todo-txt-web";
       Restart = "on-failure";
       RuntimeDirectory = "boodschappen";

@@ -33,10 +33,9 @@
       comment-nvim
       fzfWrapper
       gitsigns-nvim
-      lightline-vim
-      nord-vim
       quickfix-reflector-vim
       todo-txt-vim
+      melange-nvim
       nvim-treesitter.withAllGrammars
       vim-abolish
       vim-dirvish

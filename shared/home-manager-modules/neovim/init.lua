@@ -60,9 +60,8 @@ vim.api.nvim_create_autocmd("VimSuspend", {
 })
 
 -- COLORSCHEME
-vim.o.background = "dark"
-vim.cmd("colorscheme nord")
-vim.g.lightline = {colorscheme = "nord"}
+vim.o.background = "light"
+vim.cmd("colorscheme melange")
 
 -- ALE
 vim.g.ale_use_global_executables = true

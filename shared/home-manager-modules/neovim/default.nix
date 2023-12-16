@@ -44,8 +44,6 @@
       vim-noctu # colorscheme when using Vim as a pager
       vim-repeat
       vim-rhubarb
-      vim-signature
-      vim-speeddating
       vim-surround
       vim-unimpaired
     ];

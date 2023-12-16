@@ -34,7 +34,6 @@
       fzfWrapper
       gitsigns-nvim
       quickfix-reflector-vim
-      todo-txt-vim
       melange-nvim
       nvim-treesitter.withAllGrammars
       vim-abolish

@@ -37,6 +37,13 @@ vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
     end
 })
 vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
+    desc = "Assume .tf files contain terraform code",
+    pattern = "*.tf",
+    callback = function(args)
+        vim.api.nvim_buf_set_option(args.buf, "filetype", "terraform")
+    end
+})
+vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
     desc = "Enable spell-checking on buffers that contain prose",
     pattern = {"*.md", "COMMIT_EDITMSG", "qutebrowser-editor-*"},
     callback = function() vim.api.nvim_win_set_option(0, "spell", true) end

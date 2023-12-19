@@ -7,7 +7,6 @@ let
   boodschappenPort = 8091;
   uids = {
     rclone_serve_sftp = 9;
-    ocrmypdf = 10;
   };
 in
 { pkgs, config, modulesPath, flakeInputs, ... }: {
@@ -331,8 +330,7 @@ in
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Type = "simple";
-      DynamicUser = true;
-      Group = "syncdata";
+      User = "syncthing";
       Restart = "on-failure";
       RuntimeDirectory = "paulus";
       RootDirectory = "/run/paulus";
@@ -381,12 +379,6 @@ in
     };
   };
 
-  # ocrmypdf
-  users.users.ocrmypdf = {
-    uid = uids.ocrmypdf;
-    group = "syncdata";
-    isSystemUser = true;
-  };
   systemd.paths.ocrmypdf = {
     enable = true;
     wantedBy = [ "multi-user.target" ];
@@ -424,7 +416,7 @@ in
     '';
     serviceConfig = {
       Type = "oneshot";
-      User = uids.ocrmypdf;
+      User = "syncthing";
       UMask = "007";
       PrivateTmp = true;
       RuntimeDirectory = "ocrmypdf";

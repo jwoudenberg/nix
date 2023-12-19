@@ -6,7 +6,6 @@ let
   adguardHomePort = 8090;
   boodschappenPort = 8091;
   uids = {
-    fdm = 7;
     rclone_serve_sftp = 9;
     ocrmypdf = 10;
   };
@@ -470,11 +469,6 @@ in
   };
 
   # fdm
-  users.users.fdm = {
-    uid = uids.fdm;
-    group = "syncdata";
-    isSystemUser = true;
-  };
   systemd.timers.fdm = {
     wantedBy = [ "timers.target" ];
     partOf = [ "simple-timer.service" ];
@@ -484,7 +478,7 @@ in
     description = "fdm";
     serviceConfig = {
       Type = "oneshot";
-      User = uids.fdm;
+      User = "syncthing";
       StateDirectory = "fdm";
       WorkingDirectory = "/var/lib/fdm";
       RuntimeDirectory = "fdm";

@@ -268,6 +268,9 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.cmd([[silent! unmap <buffer> <C-P>]])
     end
 })
+-- disable netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 -- FILE SEARCH
 

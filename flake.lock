@@ -77,21 +77,6 @@
     },
     "flake-utils_3": {
       "locked": {
-        "lastModified": 1634851050,
-        "narHash": "sha256-N83GlSGPJJdcqhUxSCS/WwW5pksYf3VP1M13cDRTSVA=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "c91f3de5adaf1de973b797ef7485e441a65b8935",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "flake-utils_4": {
-      "locked": {
         "lastModified": 1659877975,
         "narHash": "sha256-zllb8aq3YO3h8B/U0/J1WBgAL8EX5yWf5pMj3G0NAmc=",
         "owner": "numtide",
@@ -105,7 +90,7 @@
         "type": "github"
       }
     },
-    "flake-utils_5": {
+    "flake-utils_4": {
       "locked": {
         "lastModified": 1622445595,
         "narHash": "sha256-m+JRe6Wc5OZ/mKw2bB3+Tl0ZbtyxxxfnAWln8Q5qs+Y=",
@@ -120,7 +105,7 @@
         "type": "github"
       }
     },
-    "flake-utils_6": {
+    "flake-utils_5": {
       "locked": {
         "lastModified": 1634851050,
         "narHash": "sha256-N83GlSGPJJdcqhUxSCS/WwW5pksYf3VP1M13cDRTSVA=",
@@ -135,7 +120,7 @@
         "type": "github"
       }
     },
-    "flake-utils_7": {
+    "flake-utils_6": {
       "locked": {
         "lastModified": 1649676176,
         "narHash": "sha256-OWKJratjt2RW151VUlJPRALb7OU2S5s+f0vLj4o1bHM=",
@@ -188,30 +173,9 @@
         "type": "github"
       }
     },
-    "keepassxc-pass-frontend": {
-      "inputs": {
-        "flake-utils": "flake-utils_3",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1669929991,
-        "narHash": "sha256-1TiYwJ4P5K8BuwUxLOvlRddoDub4pCQrxQMnumlLhmc=",
-        "owner": "jwoudenberg",
-        "repo": "keepassxc-pass-frontend",
-        "rev": "c7a1e8ae1f6e0b9bde07e9bd6c4038a4824cd3b0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "jwoudenberg",
-        "repo": "keepassxc-pass-frontend",
-        "type": "github"
-      }
-    },
     "launch": {
       "inputs": {
-        "flake-utils": "flake-utils_4",
+        "flake-utils": "flake-utils_3",
         "nixpkgs": [
           "nixpkgs"
         ]
@@ -317,7 +281,7 @@
     },
     "random-colors": {
       "inputs": {
-        "flake-utils": "flake-utils_5",
+        "flake-utils": "flake-utils_4",
         "nixpkgs": [
           "nixpkgs"
         ]
@@ -342,7 +306,6 @@
         "cooklang": "cooklang",
         "gonic": "gonic",
         "home-manager": "home-manager",
-        "keepassxc-pass-frontend": "keepassxc-pass-frontend",
         "launch": "launch",
         "nixpkgs": "nixpkgs",
         "paulus": "paulus",
@@ -358,7 +321,7 @@
     },
     "similar-sort": {
       "inputs": {
-        "flake-utils": "flake-utils_6",
+        "flake-utils": "flake-utils_5",
         "naersk": "naersk",
         "nixpkgs": "nixpkgs_3"
       },
@@ -394,7 +357,7 @@
     },
     "todo-txt-web": {
       "inputs": {
-        "flake-utils": "flake-utils_7",
+        "flake-utils": "flake-utils_6",
         "nixpkgs": [
           "nixpkgs"
         ]

@@ -1,7 +1,7 @@
 { pkgs, config, ... }: {
   home.packages =
     let
-      wrappedPassage = pkgs.writeShellScriptBin "passage" ''
+      wrappedPassage = pkgs.writeShellScriptBin "pass" ''
         export PASSAGE_DIR="${config.home.homeDirectory}/docs/password-store"
         export PASSAGE_IDENTITIES_FILE=${./identities}
         export PASSAGE_RECIPIENTS_FILE=${./recipients}

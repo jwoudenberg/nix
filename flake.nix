@@ -15,8 +15,6 @@
     random-colors.inputs.nixpkgs.follows = "nixpkgs";
     similar-sort.url =
       "git+https://git.bytes.zone/brian/similar-sort.git?ref=main";
-    keepassxc-pass-frontend.url = "github:jwoudenberg/keepassxc-pass-frontend";
-    keepassxc-pass-frontend.inputs.nixpkgs.follows = "nixpkgs";
     paulus.url = "github:jwoudenberg/paulus";
     paulus.inputs.nixpkgs.follows = "nixpkgs";
     todo-txt-web.url = "github:jwoudenberg/todo-txt-web";
@@ -61,8 +59,6 @@
             ${pkgs.libgourou}/bin/adept_remove "drm_book.epub" --adept-directory "$ADEPT_DIR" --output-file "book.epub"
           '';
           jwlaunch = inputs.launch.defaultPackage."${system}";
-          keepassxc-pass-frontend =
-            inputs.keepassxc-pass-frontend.defaultPackage."${system}";
           random-colors = inputs.random-colors.defaultPackage."${system}";
           similar-sort = inputs.similar-sort.defaultPackage."${system}";
           paulus = inputs.paulus.defaultPackage."${system}";

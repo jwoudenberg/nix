@@ -11,35 +11,26 @@ let
 in
 { pkgs, config, modulesPath, flakeInputs, ... }: {
 
-  users.groups.syncdata = {
-    gid = 7;
-    members = [ "jasper" ];
-  };
-  users.groups.music = {
-    gid = 8;
-    members = [ "jasper" ];
-  };
+  users.users.jasper.extraGroups = [ "gonic" "syncthing" ];
 
   systemd.tmpfiles.rules = [
     "d /persist 0700 root root - -"
 
     # Don't try to set permissions for files inside syncthing directories,
     # it will lead to an edit war between syncthing clients.
-    "d /persist/jasper 0770 root syncdata - -"
-    "d /persist/hjgames 0770 root syncdata - -"
-    "d /persist/hiske 0770 root syncdata - -"
+    "d /persist/jasper 0770 root syncthing - -"
+    "d /persist/hjgames 0770 root syncthing - -"
+    "d /persist/hiske 0770 root syncthing - -"
 
-    "d /persist/books 0770 root syncdata - -"
-    "Z /persist/books ~0770 - syncdata - -"
+    "d /persist/books 0770 root syncthing - -"
+    "Z /persist/books ~0770 - syncthing - -"
 
-    "d /persist/music 0750 jasper music - -"
-    "Z /persist/music ~0750 jasper music - -"
-    "d /persist/music/00_playlists 0770 jasper music - -"
-    "Z /persist/music/00_playlists ~0770 jasper music - -"
+    "d /persist/music 0750 gonic gonic - -"
+    "Z /persist/music ~0750 gonic gonic - -"
 
-    "d /persist/webcalendar 0777 root syncdata - -"
+    "d /persist/webcalendar 0777 root syncthing - -"
 
-    "d /persist/syncthing 0700 syncthing syncdata - -"
+    "d /persist/syncthing 0700 syncthing syncthing - -"
   ];
 
   system.stateVersion = "23.11";
@@ -167,7 +158,6 @@ in
   };
   services.syncthing = {
     enable = true;
-    group = "syncdata";
     settings = {
       gui.insecureSkipHostcheck = true;
       options = {
@@ -313,7 +303,7 @@ in
     [ "/persist/books:/run/books" ];
   services.calibre-web = {
     enable = true;
-    group = "syncdata";
+    group = "syncthing";
     listen.port = 8083;
     options.calibreLibrary = "/run/books";
     options.enableBookUploading = true;
@@ -348,7 +338,7 @@ in
   # scanner sftp
   users.users.rclone_serve_sftp = {
     uid = uids.rclone_serve_sftp;
-    group = "syncdata";
+    group = "syncthing";
     isSystemUser = true;
   };
   systemd.services.rclone-serve-sftp = {

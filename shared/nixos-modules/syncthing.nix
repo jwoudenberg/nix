@@ -1,5 +1,8 @@
 { pkgs, ... }: {
-  users.groups.syncdata.gid = 7;
+  users.groups.syncdata = {
+    gid = 7;
+    members = [ "jasper" ];
+  };
 
   systemd.tmpfiles.rules = [
     "d /persist/syncthing 0700 jasper users - -"

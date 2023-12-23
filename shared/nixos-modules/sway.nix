@@ -35,6 +35,11 @@
   # Enable wayland for Chrome and Electron apps.
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
+
+  # Add passwords store path for launcher
+  environment.sessionVariables.PASSAGE_DIR = "/home/jasper/docs/password-store";
+
+
   # Some QT applications like puddletag do not start without this.
   environment.systemPackages = [ pkgs.qt5.qtwayland ];
 }

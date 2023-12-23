@@ -3,8 +3,8 @@
     let
       wrappedPassage = pkgs.writeShellScriptBin "pass" ''
         export PASSAGE_DIR="${config.home.homeDirectory}/docs/password-store"
-        export PASSAGE_IDENTITIES_FILE=${./identities}
-        export PASSAGE_RECIPIENTS_FILE=${./recipients}
+        export PASSAGE_IDENTITIES_FILE="${./identities}"
+        export PASSAGE_RECIPIENTS_FILE="${./recipients}"
         exec ${pkgs.passage}/bin/passage "$@"
       '';
     in

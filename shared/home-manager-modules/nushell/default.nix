@@ -6,6 +6,7 @@
     configFile.source = ./config.nu;
     extraConfig = ''
       alias diary = ${./diary.nu}
+      alias brein = ${./brein.nu}
 
       def remind [--months (-m): int = 1] {
         cat ~/hjgames/agenda/*agenda.txt | ${pkgs.agenda-txt}/bin/agenda-txt ($"*($months)m")

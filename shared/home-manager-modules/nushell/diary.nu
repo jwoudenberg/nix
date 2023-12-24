@@ -1,7 +1,7 @@
 #!/usr/bin/env nu
 
 def main [...subtitle: string] {
-    let date = (date now | date format "%y-%m-%d")
+    let date = (date now | format date "%y-%m-%d")
     mkdir ~/docs/diary
     let entry = ($"~/docs/diary/($date).md" | path expand)
     let title = $"# ($date)"

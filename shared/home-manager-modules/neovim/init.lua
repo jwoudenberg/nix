@@ -86,7 +86,8 @@ vim.g.ale_linters = {
     markdown = {"vale"},
     bash = {"shellcheck"},
     sh = {"shellcheck"},
-    terraform = {"terraform"}
+    terraform = {"terraform"},
+    zig = {"zls"}
 }
 vim.g.ale_fixers = {
     ['*'] = {"remove_trailing_lines", "trim_whitespace"},

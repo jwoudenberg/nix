@@ -56,6 +56,7 @@
       config.set('content.javascript.enabled', True, 'github.com')
       config.set('content.javascript.enabled', True, 'hachyderm.io')
       config.set('content.javascript.enabled', True, 'search.nixos.org')
+      config.set('content.javascript.enabled', True, 'triodos.nl')
     '';
   };
 

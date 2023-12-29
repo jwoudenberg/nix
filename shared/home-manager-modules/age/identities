@@ -5,3 +5,10 @@
 # Touch policy: Always (A physical touch is required for every decryption)
 #    Recipient: age1yubikey1qtsjeh2zjzp80jgnvy8dasc5wljt8ufdrf2mkgug23vu2n5xktvvz4wqrut
 AGE-PLUGIN-YUBIKEY-16F00UQYZMH0VYZGVAFERX
+#       Serial: 23769429, Slot: 1
+#         Name: age identity 01ae97f7
+#      Created: Fri, 29 Dec 2023 14:12:08 +0000
+#   PIN policy: Once   (A PIN is required once per session, if set)
+# Touch policy: Always (A physical touch is required for every decryption)
+#    Recipient: age1yubikey1qwyvmrtx84un8ks5h8l8s5zuk57vaggdgq9v5gzfl7qwas84yy5kqfejewm
+AGE-PLUGIN-YUBIKEY-12KCK5QVZQXHF0ACTRV9S0

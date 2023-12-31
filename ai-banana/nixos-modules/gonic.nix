@@ -26,6 +26,5 @@
       podcast-path = "/var/lib/gonic/podcasts";
     };
   };
-  systemd.services.gonic.serviceConfig.SupplementaryGroups = [ "music" ];
   systemd.services.gonic.serviceConfig.BindPaths = [ "/persist/music/00_playlists" ];
 }

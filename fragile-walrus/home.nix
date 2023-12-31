@@ -39,6 +39,7 @@
     ../shared/home-manager-modules/qrcode.nix
     ../shared/home-manager-modules/qutebrowser.nix
     ../shared/home-manager-modules/readline.nix
+    ../shared/home-manager-modules/read-qrcode.nix
     ../shared/home-manager-modules/ripgrep.nix
     ../shared/home-manager-modules/ssh.nix
     ../shared/home-manager-modules/sway.nix

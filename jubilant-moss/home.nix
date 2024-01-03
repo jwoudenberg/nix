@@ -3,6 +3,7 @@
 {
   home.packages = [
     pkgs.agenda-txt
+    pkgs.age-plugin-yubikey
     pkgs.comma
     pkgs.croc
     pkgs.gotop

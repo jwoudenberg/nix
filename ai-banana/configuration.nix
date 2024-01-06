@@ -5,9 +5,6 @@ let
   syncthingPort = 8089;
   adguardHomePort = 8090;
   boodschappenPort = 8091;
-  uids = {
-    rclone_serve_sftp = 9;
-  };
 in
 { pkgs, config, modulesPath, flakeInputs, ... }: {
 
@@ -336,11 +333,6 @@ in
   };
 
   # scanner sftp
-  users.users.rclone_serve_sftp = {
-    uid = uids.rclone_serve_sftp;
-    group = "syncthing";
-    isSystemUser = true;
-  };
   systemd.services.rclone-serve-sftp = {
     description = "Rclone Serve";
     after = [ "network.target" ];
@@ -355,7 +347,7 @@ in
     '';
     serviceConfig = {
       Type = "simple";
-      User = uids.rclone_serve_sftp;
+      User = "syncthing";
       UMask = "007";
       Restart = "on-failure";
       RuntimeDirectory = "rclone_serve_sftp";

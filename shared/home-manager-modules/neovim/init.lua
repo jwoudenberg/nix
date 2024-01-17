@@ -270,8 +270,13 @@ vim.api.nvim_create_autocmd("FileType", {
     end
 })
 -- disable netrw
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+-- I need this for gx and :GBrowse to work at the moment. Once the following PR
+-- lands in the next Neovim release (probably 0.10.x) it shouldn't be necessary
+-- anymore, though adding a :Browse command might still be needed (vim-fugitive
+-- uses this for :GBrowse).
+-- https://github.com/neovim/neovim/pull/23401
+-- vim.g.loaded_netrw = 1
+-- vim.g.loaded_netrwPlugin = 1
 
 -- FILE SEARCH
 

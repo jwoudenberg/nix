@@ -44,8 +44,8 @@
 
   # Power management and saving
   powerManagement.enable = true;
-  powerManagement.powertop.enable = true;
-  services.tlp.enable = true;
+  services.thermald.enable = true;
+  services.auto-cpufreq.enable = true;
   services.logind.lidSwitch = "hibernate";
 
   networking.hostId = "bbc4755f";

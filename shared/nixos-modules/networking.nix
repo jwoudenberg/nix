@@ -20,6 +20,7 @@
   # };
 
   networking.networkmanager.enable = true;
+  systemd.services.NetworkManager-wait-online.enable = false;
   fileSystems."/etc/NetworkManager/system-connections" = {
     device = "/persist/networkmanager-connections";
     fsType = "none";

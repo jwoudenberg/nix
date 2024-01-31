@@ -3,6 +3,7 @@
 {
   imports = [
     ../shared/nixos-modules/ergodox.nix
+    ../shared/nixos-modules/firefox.nix
     ../shared/nixos-modules/localization.nix
     ../shared/nixos-modules/networking.nix
     ../shared/nixos-modules/nix.nix

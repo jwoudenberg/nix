@@ -21,6 +21,8 @@
     todo-txt-web.inputs.nixpkgs.follows = "nixpkgs";
     gonic.url = "github:sentriz/gonic/v0.16.2";
     gonic.flake = false;
+    update-systemd-resolved.url = "github:jonathanio/update-systemd-resolved";
+    update-systemd-resolved.inputs.nixpkgs.follows = "nixpkgs"; # optional
     vale-Joblint.flake = false;
     vale-Joblint.url = "github:errata-ai/Joblint";
     vale-alex.flake = false;
@@ -115,7 +117,10 @@
       nixosConfigurations.fragile-walrus = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { flakeInputs = inputs; };
-        modules = [ (import ./fragile-walrus/configuration.nix) ];
+        modules = [
+          (import ./fragile-walrus/configuration.nix)
+          inputs.update-systemd-resolved.nixosModules.update-systemd-resolved
+        ];
       };
 
       nixosConfigurations.sentient-tshirt = inputs.nixpkgs.lib.nixosSystem {

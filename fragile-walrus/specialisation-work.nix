@@ -12,7 +12,7 @@
         };
 
         fileSystems."/home/jasper/.mozilla" = {
-          device = "/persist/mozilla";
+          device = "/persist/work/.mozilla";
           fsType = "none";
           options = [ "bind" ];
           depends = [ "/persist" ];
@@ -24,6 +24,13 @@
           options = [ "bind" ];
           depends = [ "/persist" ];
         };
+
+        services.openvpn.servers.work = {
+          config = "config /home/jasper/work/config.ovpn";
+          autoStart = false;
+        };
+
+        programs.update-systemd-resolved.servers.work.includeAutomatically = true;
       };
     in
     lib.mkIf (config.specialisation != { })

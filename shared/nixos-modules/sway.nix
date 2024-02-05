@@ -4,7 +4,6 @@
   hardware.opengl.driSupport32Bit = true;
 
   programs.sway.enable = true;
-  programs.xwayland.enable = false;
   fonts.packages = [ pkgs.fira-code ];
 
   services.greetd = {

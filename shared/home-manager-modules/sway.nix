@@ -49,7 +49,6 @@ let
 in
 {
   home.file.".config/sway/config".text = ''
-    xwayland disable
     font pango:FiraCode 12
     floating_modifier Mod4
     default_border pixel 2

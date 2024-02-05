@@ -31,6 +31,9 @@
         };
 
         programs.update-systemd-resolved.servers.work.includeAutomatically = true;
+
+        # For android-studio
+        programs.xwayland.enable = true;
       };
     in
     lib.mkIf (config.specialisation != { })

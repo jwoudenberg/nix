@@ -52,16 +52,3 @@ $env.config = {
     }
   }
 }
-
-$env.PROMPT_COMMAND = { pwd | path basename }
-$env.PROMPT_COMMAND_RIGHT = {
-  do --ignore-errors { git branch }
-    | complete
-    | get stdout
-    | grep '^* '
-    | str substring 2..
-}
-$env.PROMPT_INDICATOR = " "
-$env.PROMPT_INDICATOR_VI_INSERT = " "
-$env.PROMPT_INDICATOR_VI_NORMAL = " "
-$env.PROMPT_MULTILINE_INDICATOR = " "

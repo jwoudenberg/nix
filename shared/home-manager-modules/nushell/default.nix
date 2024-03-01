@@ -12,6 +12,20 @@
       "brein" = "${./brein.nu}";
       "work" = "${./work.nu}";
     };
+    environmentVariables = {
+      PROMPT_COMMAND = "{ pwd | path basename }";
+      PROMPT_COMMAND_RIGHT = "{
+        do --ignore-errors { git branch }
+          | complete
+          | get stdout
+          | grep '^* '
+          | str substring 2..
+      }";
+      PROMPT_INDICATOR = "' '";
+      PROMPT_INDICATOR_VI_INSERT = "' '";
+      PROMPT_INDICATOR_VI_NORMAL = "' '";
+      PROMPT_MULTILINE_INDICATOR = "' '";
+    };
     extraConfig = ''
       def remind [--months (-m): int = 1] {
         cat ~/hjgames/agenda/*agenda.txt | ${pkgs.agenda-txt}/bin/agenda-txt ($"*($months)m")

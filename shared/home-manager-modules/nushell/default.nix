@@ -4,11 +4,15 @@
   programs.nushell = {
     enable = true;
     configFile.source = ./config.nu;
+    shellAliases = {
+      "ssh" = "kitty +kitten ssh";
+      "todo" = "^$env.EDITOR ~/docs/todo.txt";
+      "agenda" = "^$env.EDITOR ~/hjgames/agenda/agenda.txt";
+      "diary" = "${./diary.nu}";
+      "brein" = "${./brein.nu}";
+      "work" = "${./work.nu}";
+    };
     extraConfig = ''
-      alias diary = ${./diary.nu}
-      alias brein = ${./brein.nu}
-      alias work = ${./work.nu}
-
       def remind [--months (-m): int = 1] {
         cat ~/hjgames/agenda/*agenda.txt | ${pkgs.agenda-txt}/bin/agenda-txt ($"*($months)m")
       }

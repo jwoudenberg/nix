@@ -55,8 +55,17 @@
       config.set('content.javascript.enabled', True, '*.bandcamp.com')
       config.set('content.javascript.enabled', True, 'github.com')
       config.set('content.javascript.enabled', True, 'hachyderm.io')
+      config.set('content.javascript.enabled', True, 'kagi.com')
       config.set('content.javascript.enabled', True, 'search.nixos.org')
       config.set('content.javascript.enabled', True, 'triodos.nl')
+
+
+      # Kagi session link obtained here: https://kagi.com/settings?p=user_details
+      with open('/home/jasper/docs/.kagi-token', 'r') as f:
+        kagi_token = f.read().strip()
+      c.url.searchengines = {
+          'DEFAULT':  f"https://kagi.com/search?token={kagi_token}&q={{}}"
+      }
     '';
   };
 

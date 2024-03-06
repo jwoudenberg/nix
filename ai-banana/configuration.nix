@@ -15,17 +15,17 @@ in
 
     # Don't try to set permissions for files inside syncthing directories,
     # it will lead to an edit war between syncthing clients.
-    "d /persist/jasper 0770 root syncthing - -"
-    "d /persist/hjgames 0770 root syncthing - -"
-    "d /persist/hiske 0770 root syncthing - -"
+    "d /persist/jasper 0770 syncthing syncthing - -"
+    "d /persist/hjgames 0770 syncthing syncthing - -"
+    "d /persist/hiske 0770 syncthing syncthing - -"
 
-    "d /persist/books 0770 root syncthing - -"
-    "Z /persist/books ~0770 - syncthing - -"
+    "d /persist/books 0770 syncthing syncthing - -"
+    "Z /persist/books ~0770 syncthing syncthing - -"
 
     "d /persist/music 0750 gonic gonic - -"
     "Z /persist/music ~0750 gonic gonic - -"
 
-    "d /persist/webcalendar 0777 root syncthing - -"
+    "d /persist/webcalendar 0777 syncthing syncthing - -"
 
     "d /persist/syncthing 0700 syncthing syncthing - -"
   ];

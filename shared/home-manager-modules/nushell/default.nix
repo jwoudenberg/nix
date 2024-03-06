@@ -19,6 +19,7 @@
       "diary" = "${./diary.nu}";
       "brein" = "${./brein.nu}";
       "work" = "${./work.nu}";
+      "surf" = "${./surf.nu}";
     };
     environmentVariables = {
       PROMPT_COMMAND = "{ pwd | path basename }";

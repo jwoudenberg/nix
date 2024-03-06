@@ -1,6 +1,14 @@
 { pkgs, config, lib, ... }:
 
 {
+  # Seed ~/.config/nushell/history.txt with persisted history commands.
+  # Using `home.file.<name.*` would create an unmodifiable symlink.
+  home.activation.initNushellHistory = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    CONFIG_DIR="${config.home.homeDirectory}/.config/nushell"
+    mkdir -p "$CONFIG_DIR"
+    ln -sf "${config.home.homeDirectory}/docs/nushell-history.txt" "$CONFIG_DIR/history.txt"
+  '';
+
   programs.nushell = {
     enable = true;
     configFile.source = ./config.nu;

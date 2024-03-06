@@ -41,6 +41,8 @@ in
     ./nixos-modules/gonic.nix
     (modulesPath + "/profiles/qemu-guest.nix")
   ];
+  nix.optimise.automatic = true;
+  nix.optimise.dates = [ "02:00" ];
   boot.loader.grub.device = "/dev/sda";
   boot.tmp.cleanOnBoot = true;
   fileSystems."/" = {

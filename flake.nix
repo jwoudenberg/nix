@@ -141,14 +141,6 @@
         modules = [ (import ./airborne-cactus/configuration.nix) ];
       };
 
-      homeConfigurations.jubilant-moss =
-        inputs.home-manager.lib.homeManagerConfiguration {
-          pkgs = pkgs;
-          modules = [ ./jubilant-moss/home.nix ];
-          extraSpecialArgs.linuxCustomPkgs =
-            inputs.self.overlays.linuxCustomPkgs;
-        };
-
       devShell."x86_64-linux" = pkgs.mkShell {
         buildInputs = [ pkgs.libgourou pkgs.luaformatter pkgs.lua53Packages.luacheck ];
       };

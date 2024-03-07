@@ -37,6 +37,13 @@ vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
     end
 })
 vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
+    desc = "Assume .roc files contain Roc code",
+    pattern = "*.roc",
+    callback = function(args)
+        vim.api.nvim_buf_set_option(args.buf, "filetype", "roc")
+    end
+})
+vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
     desc = "Assume .tf files contain terraform code",
     pattern = "*.tf",
     callback = function(args)
@@ -98,6 +105,7 @@ vim.g.ale_fixers = {
     ["nim"] = {"nimpretty"},
     ["nix"] = {"nixpkgs-fmt"},
     ["python"] = {"black"},
+    ["roc"] = {"roc-format"},
     ["ruby"] = {"rubocop"},
     ["rust"] = {"rustfmt"},
     ["terraform"] = {"terraform"},
@@ -105,6 +113,15 @@ vim.g.ale_fixers = {
     ["vue"] = {"prettier"},
     ["zig"] = {"zigfmt"}
 }
+
+vim.cmd([[
+function! FormatRoc(buffer) abort
+  return {
+  \   'command': 'roc format --stdin --stdout'
+  \}
+endfunction
+execute ale#fix#registry#Add('roc-format', 'FormatRoc', [], 'roc format')
+]])
 
 vim.g.ale_haskell_ormolu_options = "--stdin-input-file ." -- fix ormolu
 vim.g.ale_fix_on_save = true

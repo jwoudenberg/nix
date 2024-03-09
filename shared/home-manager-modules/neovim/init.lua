@@ -41,6 +41,7 @@ vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
     pattern = "*.roc",
     callback = function(args)
         vim.api.nvim_buf_set_option(args.buf, "filetype", "roc")
+        vim.api.nvim_buf_set_option(args.buf, "commentstring", "# %s")
     end
 })
 vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {

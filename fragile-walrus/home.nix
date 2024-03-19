@@ -4,6 +4,7 @@
   home.packages = [
     pkgs.agenda-txt
     pkgs.comma
+    pkgs.cooklang
     pkgs.croc
     pkgs.gotop
     pkgs.mosh

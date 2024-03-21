@@ -29,27 +29,18 @@ vim.g.editorconfig = false -- Enabling this affects line-length in commit messag
 vim.api.nvim_set_keymap("t", "<C-O>", [[<C-\><C-n><C-O>]], {noremap = true})
 vim.api.nvim_set_keymap("n", "<leader>v", "<c-v>", {noremap = true})
 
-vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
-    desc = "Assume .pl files contain prolog, not perl",
-    pattern = "*.pl",
-    callback = function(args)
-        vim.api.nvim_buf_set_option(args.buf, "filetype", "prolog")
-    end
-})
-vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
-    desc = "Assume .roc files contain Roc code",
-    pattern = "*.roc",
-    callback = function(args)
-        vim.api.nvim_buf_set_option(args.buf, "filetype", "roc")
-        vim.api.nvim_buf_set_option(args.buf, "commentstring", "# %s")
-    end
-})
-vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
-    desc = "Assume .tf files contain terraform code",
-    pattern = "*.tf",
-    callback = function(args)
-        vim.api.nvim_buf_set_option(args.buf, "filetype", "terraform")
-    end
+vim.filetype.add({
+    extension = {
+        pl = "prolog",
+        tf = "terraform",
+        roc = function(path, bufnr)
+            return 'roc', function(bufnr)
+                vim.api.nvim_buf_set_option(bufnr, "commentstring", "# %s")
+                vim.api.nvim_buf_set_option(bufnr, "shiftwidth", 4)
+                vim.api.nvim_buf_set_option(bufnr, "tabstop", 4)
+            end
+        end
+    }
 })
 vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
     desc = "Enable spell-checking on buffers that contain prose",

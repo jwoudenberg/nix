@@ -132,6 +132,14 @@ require'nvim-treesitter.configs'.setup {
     highlight = {enable = true, additional_vim_regex_highlighting = false}
 }
 
+local parsers = require("nvim-treesitter.parsers").get_parser_configs()
+parsers.roc = {
+    install_info = {
+        url = "https://github.com/faldor20/tree-sitter-roc",
+        files = {"src/parser.c", "src/scanner.c"}
+    }
+}
+
 -- FZF
 vim.api.nvim_create_user_command("Rg", function(args)
     vim.fn["fzf#run"]({

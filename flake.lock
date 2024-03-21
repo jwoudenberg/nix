@@ -373,6 +373,7 @@
         "random-colors": "random-colors",
         "similar-sort": "similar-sort",
         "todo-txt-web": "todo-txt-web",
+        "tree-sitter-roc": "tree-sitter-roc",
         "update-systemd-resolved": "update-systemd-resolved",
         "vale-Joblint": "vale-Joblint",
         "vale-alex": "vale-alex",
@@ -465,6 +466,22 @@
       "original": {
         "owner": "jwoudenberg",
         "repo": "todo-txt-web",
+        "type": "github"
+      }
+    },
+    "tree-sitter-roc": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1709981131,
+        "narHash": "sha256-+yMEDMyPozFFY7eLInh9Uexl31uNJI5s/tSThhDgR5c=",
+        "owner": "faldor20",
+        "repo": "tree-sitter-roc",
+        "rev": "14c66eeceb7db2d5c98616036d861863b273bab8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "faldor20",
+        "repo": "tree-sitter-roc",
         "type": "github"
       }
     },

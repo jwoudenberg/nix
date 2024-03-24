@@ -51,19 +51,17 @@
 
         # A bare-minimum neovim plugin containing the neovim queries from the
         # tree-sitter-roc project. The convention seems to be to put queries in
-        # a queries/<lang> subdirectory of the plugin, and then nix and neovim
-        # together will make sure they're loaded.
+        # a queries/<lang> subdirectory of the plugin, and the parser in
+        # parser/<lang>.so. Then nix and neovim will make sure they're loaded.
         roc-plugin = pkgs.runCommand "tree-sitter-roc" { } ''
           mkdir -p $out/queries/roc
           cp ${pkgs.tree-sitter-roc}/neovim/queries/roc/*.scm $out/queries/roc
-        '';
 
-        nvim-treesitter =
-          plugins.nvim-treesitter.withPlugins
-            (_: plugins.nvim-treesitter.allGrammars ++ [ roc-grammar ]);
+          mkdir -p $out/parser
+          cp ${roc-grammar}/parser $out/parser/roc.so
+        '';
       in
       [
-        nvim-treesitter
         roc-plugin
         plugins.ale
         plugins.comment-nvim
@@ -71,6 +69,7 @@
         plugins.gitsigns-nvim
         plugins.quickfix-reflector-vim
         plugins.melange-nvim
+        plugins.nvim-treesitter.withAllGrammars
         plugins.vim-abolish
         plugins.vim-dirvish
         plugins.vim-eunuch

@@ -48,7 +48,7 @@
           "update-systemd-resolved",
           "nixpkgs"
         ],
-        "systems": "systems_3"
+        "systems": "systems_4"
       },
       "locked": {
         "lastModified": 1688380630,
@@ -170,6 +170,24 @@
         "owner": "numtide",
         "repo": "flake-utils",
         "rev": "a4b154ebbdc88c8498a5c7b01589addc9e9cb678",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "flake-utils_7": {
+      "inputs": {
+        "systems": "systems_3"
+      },
+      "locked": {
+        "lastModified": 1694529238,
+        "narHash": "sha256-zsNZZGTGnMOf9YpHKJqMSsa0dXbfmxeoJ7xHlrt+xmY=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "ff7b65b44d01cf9ba6a71320833626af21126384",
         "type": "github"
       },
       "original": {
@@ -448,6 +466,21 @@
         "type": "github"
       }
     },
+    "systems_4": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
     "todo-txt-web": {
       "inputs": {
         "flake-utils": "flake-utils_6",
@@ -470,17 +503,22 @@
       }
     },
     "tree-sitter-roc": {
-      "flake": false,
+      "inputs": {
+        "flake-utils": "flake-utils_7",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
       "locked": {
-        "lastModified": 1709981131,
-        "narHash": "sha256-+yMEDMyPozFFY7eLInh9Uexl31uNJI5s/tSThhDgR5c=",
-        "owner": "faldor20",
+        "lastModified": 1711315330,
+        "narHash": "sha256-ZkaVAnPt2CIoLXjrmvJxzgGYT3X8xIc5NPibzzR/7EI=",
+        "owner": "jwoudenberg",
         "repo": "tree-sitter-roc",
-        "rev": "14c66eeceb7db2d5c98616036d861863b273bab8",
+        "rev": "795e7cef6af74207847b65fd52a157fab8c352b5",
         "type": "github"
       },
       "original": {
-        "owner": "faldor20",
+        "owner": "jwoudenberg",
         "repo": "tree-sitter-roc",
         "type": "github"
       }

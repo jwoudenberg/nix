@@ -32,14 +32,7 @@ vim.api.nvim_set_keymap("n", "<leader>v", "<c-v>", {noremap = true})
 vim.filetype.add({
     extension = {
         pl = "prolog",
-        tf = "terraform",
-        roc = function(path, bufnr)
-            return 'roc', function(bufnr)
-                vim.api.nvim_buf_set_option(bufnr, "commentstring", "# %s")
-                vim.api.nvim_buf_set_option(bufnr, "shiftwidth", 4)
-                vim.api.nvim_buf_set_option(bufnr, "tabstop", 4)
-            end
-        end
+        tf = "terraform"
     }
 })
 vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
@@ -130,14 +123,6 @@ vim.api.nvim_set_keymap("n", "<localleader>e", "<Plug>(ale_detail)",
 -- TREESITTER
 require'nvim-treesitter.configs'.setup {
     highlight = {enable = true, additional_vim_regex_highlighting = false}
-}
-
-local parsers = require("nvim-treesitter.parsers").get_parser_configs()
-parsers.roc = {
-    install_info = {
-        url = "https://github.com/faldor20/tree-sitter-roc",
-        files = {"src/parser.c", "src/scanner.c"}
-    }
 }
 
 -- FZF

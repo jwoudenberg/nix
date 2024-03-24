@@ -31,38 +31,9 @@
     plugins =
       let
         plugins = pkgs.vimPlugins;
-
-        # nvim-treesitter contains configurations for different languages. It
-        # does not bundle the parsers directly, rather it specifies the
-        # (github) urls where tree-sitter parsers can be found. nvim-treesitter
-        # does bundle queries that make use of those parsers.
-        #
-        # To add a custom language to nvim-treesitter you need:
-        # - A parser for the language, added below
-        # - Queries for the language, also added below
-        # - A nvim-treesitter parser configuration entry, added in init.lua
-
-        roc-grammar = pkgs.tree-sitter.buildGrammar {
-          language = "roc";
-          version = "0.0.0";
-          src = pkgs.tree-sitter-roc;
-          meta.homepage = "https://github.com/faldor20/tree-sitter-roc/tree/master";
-        };
-
-        # A bare-minimum neovim plugin containing the neovim queries from the
-        # tree-sitter-roc project. The convention seems to be to put queries in
-        # a queries/<lang> subdirectory of the plugin, and the parser in
-        # parser/<lang>.so. Then nix and neovim will make sure they're loaded.
-        roc-plugin = pkgs.runCommand "tree-sitter-roc" { } ''
-          mkdir -p $out/queries/roc
-          cp ${pkgs.tree-sitter-roc}/neovim/queries/roc/*.scm $out/queries/roc
-
-          mkdir -p $out/parser
-          cp ${roc-grammar}/parser $out/parser/roc.so
-        '';
       in
       [
-        roc-plugin
+        pkgs.nvim-treesitter-roc
         plugins.ale
         plugins.comment-nvim
         plugins.fzfWrapper

@@ -19,8 +19,8 @@
     paulus.inputs.nixpkgs.follows = "nixpkgs";
     todo-txt-web.url = "github:jwoudenberg/todo-txt-web";
     todo-txt-web.inputs.nixpkgs.follows = "nixpkgs";
-    tree-sitter-roc.url = "github:faldor20/tree-sitter-roc";
-    tree-sitter-roc.flake = false;
+    tree-sitter-roc.url = "github:jwoudenberg/tree-sitter-roc";
+    tree-sitter-roc.inputs.nixpkgs.follows = "nixpkgs";
     gonic.url = "github:sentriz/gonic/v0.16.2";
     gonic.flake = false;
     update-systemd-resolved.url = "github:jonathanio/update-systemd-resolved";
@@ -85,7 +85,7 @@
               path = "${inputs.vale-write-good}/write-good";
             }
           ];
-          tree-sitter-roc = inputs.tree-sitter-roc;
+          nvim-treesitter-roc = inputs.tree-sitter-roc.neovimPlugin."${system}";
           vim-spell-nl = "${inputs.vim-spell-nl}";
           # Adapted from: https://github.com/NixOS/nixpkgs/blob/nixos-23.11/pkgs/servers/gonic/default.nix#L50
           # Updates gonic to 0.16.2. Once This version is available in Nixpkgs we can

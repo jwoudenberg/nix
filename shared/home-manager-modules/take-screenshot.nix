@@ -3,9 +3,12 @@
 let
   takeScreenshot = pkgs.writeShellScriptBin "take-screenshot" ''
     mkdir -p ~/screenshots
+    file="${config.home.homeDirectory}/screenshots/screenshot_$(date --iso=seconds).png"
     ${pkgs.grim}/bin/grim \
       -g "$(${pkgs.slurp}/bin/slurp)" \
-      "${config.home.homeDirectory}/screenshots/screenshot_$(date --iso=seconds).png"
+      "$file"
+
+    ${pkgs.wl-clipboard}/bin/wl-copy --foreground < "$file"
   '';
 
 in

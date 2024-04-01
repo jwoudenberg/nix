@@ -45,7 +45,6 @@
         plugins.vim-dirvish
         plugins.vim-eunuch
         plugins.vim-fugitive
-        plugins.vim-illuminate
         plugins.vim-noctu # colorscheme when using Vim as a pager
         plugins.vim-repeat
         plugins.vim-rhubarb

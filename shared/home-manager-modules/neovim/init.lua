@@ -29,12 +29,7 @@ vim.g.editorconfig = false -- Enabling this affects line-length in commit messag
 vim.api.nvim_set_keymap("t", "<C-O>", [[<C-\><C-n><C-O>]], {noremap = true})
 vim.api.nvim_set_keymap("n", "<leader>v", "<c-v>", {noremap = true})
 
-vim.filetype.add({
-    extension = {
-        pl = "prolog",
-        tf = "terraform"
-    }
-})
+vim.filetype.add({extension = {pl = "prolog", tf = "terraform"}})
 vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
     desc = "Enable spell-checking on buffers that contain prose",
     pattern = {"*.md", "COMMIT_EDITMSG", "qutebrowser-editor-*"},
@@ -381,5 +376,3 @@ require('gitsigns').setup({
 })
 
 require('Comment').setup()
-
-require('illuminate').configure({})

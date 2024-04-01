@@ -1,6 +1,5 @@
 { pkgs, ... }: {
   services.xserver.enable = true;
-  services.xserver.desktopManager.lxqt.enable = true;
   services.xserver.displayManager.autoLogin = {
     enable = true;
     user = "jasper";
@@ -21,4 +20,9 @@
   };
 
   programs.steam.enable = true;
+  programs.steam.gamescopeSession.enable = true;
+  programs.gamescope = {
+    enable = true;
+    capSysNice = true;
+  };
 }

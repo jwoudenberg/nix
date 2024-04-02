@@ -8,7 +8,7 @@
     pkgs.croc
     pkgs.gotop
     pkgs.mosh
-    pkgs.nixpkgs-fmt
+    pkgs.nixfmt
     pkgs.pdfgrep
     pkgs.pijul
     pkgs.pulsemixer

@@ -9,7 +9,7 @@
     pkgs.gotop
     pkgs.cooklang
     pkgs.mosh
-    pkgs.nixpkgs-fmt
+    pkgs.nixfmt
     pkgs.pdfgrep
     pkgs.pijul
     pkgs.pulsemixer

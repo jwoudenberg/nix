@@ -16,40 +16,35 @@
 
     vimAlias = true;
 
-    extraConfig =
-      let
-        configText = pkgs.lib.replaceStrings [ "similar-sort" ]
-          [ "${pkgs.similar-sort}/bin/similar-sort" ]
-          (pkgs.lib.readFile ./init.lua);
-      in
-      ''
-        lua << EOF
-        ${configText}
-        EOF
-      '';
+    extraConfig = let
+      configText = pkgs.lib.replaceStrings [ "similar-sort" ]
+        [ "${pkgs.similar-sort}/bin/similar-sort" ]
+        (pkgs.lib.readFile ./init.lua);
+    in ''
+      lua << EOF
+      ${configText}
+      EOF
+    '';
 
-    plugins =
-      let
-        plugins = pkgs.vimPlugins;
-      in
-      [
-        pkgs.nvim-treesitter-roc
-        plugins.ale
-        plugins.comment-nvim
-        plugins.fzfWrapper
-        plugins.gitsigns-nvim
-        plugins.quickfix-reflector-vim
-        plugins.melange-nvim
-        plugins.nvim-treesitter.withAllGrammars
-        plugins.vim-abolish
-        plugins.vim-dirvish
-        plugins.vim-eunuch
-        plugins.vim-fugitive
-        plugins.vim-noctu # colorscheme when using Vim as a pager
-        plugins.vim-repeat
-        plugins.vim-rhubarb
-        plugins.vim-surround
-        plugins.vim-unimpaired
-      ];
+    plugins = let plugins = pkgs.vimPlugins;
+    in [
+      pkgs.nvim-treesitter-roc
+      plugins.ale
+      plugins.comment-nvim
+      plugins.fzfWrapper
+      plugins.gitsigns-nvim
+      plugins.quickfix-reflector-vim
+      plugins.melange-nvim
+      plugins.nvim-treesitter.withAllGrammars
+      plugins.vim-abolish
+      plugins.vim-dirvish
+      plugins.vim-eunuch
+      plugins.vim-fugitive
+      plugins.vim-noctu # colorscheme when using Vim as a pager
+      plugins.vim-repeat
+      plugins.vim-rhubarb
+      plugins.vim-surround
+      plugins.vim-unimpaired
+    ];
   };
 }

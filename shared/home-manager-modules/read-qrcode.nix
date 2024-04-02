@@ -11,8 +11,7 @@ let
       | ${pkgs.wl-clipboard}/bin/wl-copy --foreground
   '';
 
-in
-{
+in {
   xdg.desktopEntries.read-qrcode = {
     name = "Read QR-code";
     exec = "${readQrcode}/bin/read-qrcode";

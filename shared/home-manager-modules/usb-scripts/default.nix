@@ -8,5 +8,4 @@ let
     text = pkgs.lib.readFile ./format-usb.sh;
     runtimeInputs = [ pkgs.parted pkgs.exfat ];
   };
-in
-{ home.packages = [ iso-to-usb format-usb ]; }
+in { home.packages = [ iso-to-usb format-usb ]; }

@@ -46,8 +46,7 @@ let
       --config ${swaylockConfig} \
       --daemonize
   '';
-in
-{
+in {
   home.file.".config/sway/config".text = ''
     font pango:FiraCode 12
     floating_modifier Mod4

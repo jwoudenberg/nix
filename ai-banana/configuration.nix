@@ -5,8 +5,7 @@ let
   syncthingPort = 8089;
   adguardHomePort = 8090;
   boodschappenPort = 8091;
-in
-{ pkgs, config, modulesPath, flakeInputs, ... }: {
+in { pkgs, config, modulesPath, flakeInputs, ... }: {
 
   users.users.jasper.extraGroups = [ "gonic" "syncthing" ];
 
@@ -194,27 +193,33 @@ in
       };
       devices = {
         "fragile-walrus" = {
-          id = "ZKTWYFA-UHXFVSQ-J2NVTBT-PFQQUBE-DLRMWUG-3DVNWQK-LMSGYKB-ZEIAOQ7";
+          id =
+            "ZKTWYFA-UHXFVSQ-J2NVTBT-PFQQUBE-DLRMWUG-3DVNWQK-LMSGYKB-ZEIAOQ7";
           addresses = [ "tcp://fragile-walrus" ];
         };
         "sentient-tshirt" = {
-          id = "NQANURT-2P4WV4U-J72CBNC-2PB2NTQ-3TIA7RE-W222D6W-4UN7UTF-225KBAZ";
+          id =
+            "NQANURT-2P4WV4U-J72CBNC-2PB2NTQ-3TIA7RE-W222D6W-4UN7UTF-225KBAZ";
           addresses = [ "tcp://sentient-tshirt" ];
         };
         "fragile-walrus-popos" = {
-          id = "6PKKRT3-RPXREZA-ACMHNLY-SID2S7W-NRUKKOW-NUMT2FZ-7ZKWJ24-X7HHOA6";
+          id =
+            "6PKKRT3-RPXREZA-ACMHNLY-SID2S7W-NRUKKOW-NUMT2FZ-7ZKWJ24-X7HHOA6";
           addresses = [ "tcp://fragile-walrus-popos" ];
         };
         "sentient-tshirt-popos" = {
-          id = "QFOYAFG-SUFCHOW-RK7MEKB-5FBY7OE-DSDFLGR-UMVHI6O-HBMMBD3-HA4X3A4";
+          id =
+            "QFOYAFG-SUFCHOW-RK7MEKB-5FBY7OE-DSDFLGR-UMVHI6O-HBMMBD3-HA4X3A4";
           addresses = [ "tcp://sentient-tshirt-popos" ];
         };
         "hiske-macbook" = {
-          id = "X6P3C6P-RTXOTRN-SVAPQ3T-4ZFB6FM-TTZVYJF-ZKDE3PG-5JAFJ6L-VYBRHQC";
+          id =
+            "X6P3C6P-RTXOTRN-SVAPQ3T-4ZFB6FM-TTZVYJF-ZKDE3PG-5JAFJ6L-VYBRHQC";
           addresses = [ "tcp://hiske-macbook" ];
         };
         "klarinet" = {
-          id = "W3G65QI-CEWVZ4R-ZBBH4R4-2IF4WZS-WWEOAS3-WWC2UCR-JRITAEG-XHTAIAK";
+          id =
+            "W3G65QI-CEWVZ4R-ZBBH4R4-2IF4WZS-WWEOAS3-WWC2UCR-JRITAEG-XHTAIAK";
           addresses = [ "tcp://klarinet" ];
         };
       };
@@ -227,10 +232,8 @@ in
   };
 
   # Caddy
-  systemd.services.caddy.serviceConfig.BindReadOnlyPaths = [
-    "/persist/webcalendar:/run/agenda"
-    "/persist/hjgames:/run/hjgames"
-  ];
+  systemd.services.caddy.serviceConfig.BindReadOnlyPaths =
+    [ "/persist/webcalendar:/run/agenda" "/persist/hjgames:/run/hjgames" ];
   services.caddy = {
     enable = true;
     user = "syncthing";
@@ -469,33 +472,31 @@ in
       LoadCredential =
         [ "freedom_imap_password:/persist/credentials/freedom_imap_password" ];
     };
-    script =
-      let
-        fdmConfigFile = pkgs.writeTextFile {
-          name = "fdm.conf";
-          text = ''
-            set lock-file "/var/lib/fdm/fdm.lock"
-            set file-umask 002
+    script = let
+      fdmConfigFile = pkgs.writeTextFile {
+        name = "fdm.conf";
+        text = ''
+          set lock-file "/var/lib/fdm/fdm.lock"
+          set file-umask 002
 
-            account "freedom" imaps
-              server "imap.freedom.nl"
-              port 993
-              user "jwoudenberg@freedom.nl"
-              pass $(${pkgs.coreutils}/bin/cat "$CREDENTIALS_DIRECTORY/freedom_imap_password")
-              folders { "INBOX" "Spam" }
-              no-cram-md5
+          account "freedom" imaps
+            server "imap.freedom.nl"
+            port 993
+            user "jwoudenberg@freedom.nl"
+            pass $(${pkgs.coreutils}/bin/cat "$CREDENTIALS_DIRECTORY/freedom_imap_password")
+            folders { "INBOX" "Spam" }
+            no-cram-md5
 
-            action "fetch"
-              maildir "/persist/jasper/email/INBOX"
+          action "fetch"
+            maildir "/persist/jasper/email/INBOX"
 
-            match all action "fetch"
-          '';
-        };
-      in
-      ''
-        ${pkgs.fdm}/bin/fdm -vv -f ${fdmConfigFile} fetch
-        ${pkgs.curl}/bin/curl --retry 3 https://hc-ping.com/f4f0e24f-9d45-4191-96b6-914759ef4bb2/$?
-      '';
+          match all action "fetch"
+        '';
+      };
+    in ''
+      ${pkgs.fdm}/bin/fdm -vv -f ${fdmConfigFile} fetch
+      ${pkgs.curl}/bin/curl --retry 3 https://hc-ping.com/f4f0e24f-9d45-4191-96b6-914759ef4bb2/$?
+    '';
   };
 
   # smtprelay
@@ -593,9 +594,7 @@ in
     enable = true;
     mutableSettings = false;
     settings = {
-      http = {
-        address = "0.0.0.0:${toString adguardHomePort}";
-      };
+      http = { address = "0.0.0.0:${toString adguardHomePort}"; };
       schema_version = 12;
       users = [ ];
       dns = {
@@ -636,20 +635,18 @@ in
             type = "command";
             timeout = "30s";
             err_is_fatal = false;
-            path =
-              let
-                script = pkgs.writeShellApplication {
-                  name = "zrepl-healthchecks-update";
-                  text = ''
-                    if [ "$ZREPL_HOOKTYPE" != "post_snapshot" ]; then exit 0; fi
-                    if [ "$ZREPL_DRYRUN" == "true" ]; then exit 0; fi
-                    ${pkgs.curl}/bin/curl -fsS -m 10 --retry 5 \
-                      --data-raw "$ZREPL_FS: $ZREPL_SNAPNAME" \
-                      https://hc-ping.com/97cfd67a-ff76-43d6-bebd-511847e0f6d5
-                  '';
-                };
-              in
-              "${script}/bin/zrepl-healthchecks-update";
+            path = let
+              script = pkgs.writeShellApplication {
+                name = "zrepl-healthchecks-update";
+                text = ''
+                  if [ "$ZREPL_HOOKTYPE" != "post_snapshot" ]; then exit 0; fi
+                  if [ "$ZREPL_DRYRUN" == "true" ]; then exit 0; fi
+                  ${pkgs.curl}/bin/curl -fsS -m 10 --retry 5 \
+                    --data-raw "$ZREPL_FS: $ZREPL_SNAPNAME" \
+                    https://hc-ping.com/97cfd67a-ff76-43d6-bebd-511847e0f6d5
+                '';
+              };
+            in "${script}/bin/zrepl-healthchecks-update";
           }];
         };
         pruning = {

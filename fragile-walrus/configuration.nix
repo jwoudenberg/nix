@@ -21,8 +21,11 @@
   specialisation.gaming.configuration =
     import ./specialisation-gaming.nix { pkgs = pkgs; };
 
-  specialisation.work.configuration =
-    import ./specialisation-work.nix { pkgs = pkgs; lib = lib; config = config; };
+  specialisation.work.configuration = import ./specialisation-work.nix {
+    pkgs = pkgs;
+    lib = lib;
+    config = config;
+  };
 
   hardware.cpu.amd.updateMicrocode = true;
   hardware.system76.enableAll = true;

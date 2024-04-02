@@ -11,8 +11,7 @@ let
     ${pkgs.wl-clipboard}/bin/wl-copy --foreground < "$file"
   '';
 
-in
-{
+in {
   xdg.desktopEntries.take-screenshot = {
     name = "Take Screenshot";
     exec = "${takeScreenshot}/bin/take-screenshot";

@@ -44,8 +44,7 @@
         system = system;
         config.allowUnfree = true;
       };
-    in
-    {
+    in {
       overlays = {
         linuxCustomPkgs = final: prev: {
           agenda-txt = inputs.agenda-txt.defaultPackage."${system}";
@@ -145,7 +144,8 @@
       };
 
       devShell."x86_64-linux" = pkgs.mkShell {
-        buildInputs = [ pkgs.libgourou pkgs.luaformatter pkgs.lua53Packages.luacheck ];
+        buildInputs =
+          [ pkgs.libgourou pkgs.luaformatter pkgs.lua53Packages.luacheck ];
       };
 
     };

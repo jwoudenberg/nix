@@ -6,51 +6,49 @@
   xdg.mimeApps.defaultApplications."x-scheme-handler/mailto" =
     [ "aerc.desktop" ];
 
-  xdg.configFile."aerc/aerc.conf".text =
-    let
-      addressBook = "${config.home.homeDirectory}/hjgames/agenda/mensen.ini";
-      addressBookCmd = pkgs.writers.writePython3 "address-book-cmd" { } ''
-        import configparser
-        import sys
+  xdg.configFile."aerc/aerc.conf".text = let
+    addressBook = "${config.home.homeDirectory}/hjgames/agenda/mensen.ini";
+    addressBookCmd = pkgs.writers.writePython3 "address-book-cmd" { } ''
+      import configparser
+      import sys
 
-        config = configparser.ConfigParser()
-        config.read('${addressBook}')
-        needle = ' '.join(sys.argv[1:]).lower().strip()
+      config = configparser.ConfigParser()
+      config.read('${addressBook}')
+      needle = ' '.join(sys.argv[1:]).lower().strip()
 
-        for key in config:
-            email = config[key].get('email')
-            if email is None:
-                continue
-            if needle in key.lower() or needle in email.lower():
-                print(f'{email}\t{key}')
-      '';
-    in
-    ''
-      [general]
-      unsafe-accounts-conf = true
-
-      [ui]
-      timestamp-format = "Mon 06-01-02 15:04"
-      this-day-time-format = "             15:04"
-      this-week-time-format = "Mon          15:04"
-      this-year-time-format = "Mon    01-02 15:04"
-      new-message-bell = false
-      reverse-msglist-order = false
-      dirlist-left = {{.Folder}}
-      dirlist-right =
-
-      [viewer]
-      pager = nvim -R -c 'colors noctu | set ft=mail laststatus=0 nomod nolist nonumber'
-
-      [compose]
-      reply-to-self = false
-      editor = nvim
-      address-book-cmd = "${addressBookCmd} '%s'"
-
-      [filters]
-      text/html = html
-      text/* = plaintext
+      for key in config:
+          email = config[key].get('email')
+          if email is None:
+              continue
+          if needle in key.lower() or needle in email.lower():
+              print(f'{email}\t{key}')
     '';
+  in ''
+    [general]
+    unsafe-accounts-conf = true
+
+    [ui]
+    timestamp-format = "Mon 06-01-02 15:04"
+    this-day-time-format = "             15:04"
+    this-week-time-format = "Mon          15:04"
+    this-year-time-format = "Mon    01-02 15:04"
+    new-message-bell = false
+    reverse-msglist-order = false
+    dirlist-left = {{.Folder}}
+    dirlist-right =
+
+    [viewer]
+    pager = nvim -R -c 'colors noctu | set ft=mail laststatus=0 nomod nolist nonumber'
+
+    [compose]
+    reply-to-self = false
+    editor = nvim
+    address-book-cmd = "${addressBookCmd} '%s'"
+
+    [filters]
+    text/html = html
+    text/* = plaintext
+  '';
 
   xdg.configFile."aerc/accounts.conf".text = ''
     [jasper]

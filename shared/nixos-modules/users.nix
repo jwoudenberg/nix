@@ -15,7 +15,5 @@
     uid = 1000;
   };
 
-  security.sudo-rs = {
-    enable = true;
-  };
+  security.sudo-rs = { enable = true; };
 }

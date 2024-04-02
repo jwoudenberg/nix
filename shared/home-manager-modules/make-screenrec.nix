@@ -8,5 +8,4 @@ let
       --file "${config.home.homeDirectory}/screenshots/screenrec_$(date --iso=seconds).mkv" \
       --geometry "$(${pkgs.slurp}/bin/slurp)"
   '';
-in
-{ home.packages = [ makeScreenrec ]; }
+in { home.packages = [ makeScreenrec ]; }

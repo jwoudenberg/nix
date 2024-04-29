@@ -220,11 +220,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1712386041,
-        "narHash": "sha256-dA82pOMQNnCJMAsPG7AXG35VmCSMZsJHTFlTHizpKWQ=",
+        "lastModified": 1714043624,
+        "narHash": "sha256-Xn2r0Jv95TswvPlvamCC46wwNo8ALjRCMBJbGykdhcM=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "d6bb9f934f2870e5cbc5b94c79e9db22246141ff",
+        "rev": "86853e31dc1b62c6eeed11c667e8cdd0285d4411",
         "type": "github"
       },
       "original": {
@@ -275,11 +275,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1713344939,
-        "narHash": "sha256-jpHkAt0sG2/J7ueKnG7VvLLkBYUMQbXQ2L8OBpVG53s=",
+        "lastModified": 1714272655,
+        "narHash": "sha256-3/ghIWCve93ngkx5eNPdHIKJP/pMzSr5Wc4rNKE1wOc=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "e402c3eb6d88384ca6c52ef1c53e61bdc9b84ddd",
+        "rev": "12430e43bd9b81a6b4e79e64f87c624ade701eaf",
         "type": "github"
       },
       "original": {
@@ -409,16 +409,15 @@
       "locked": {
         "lastModified": 1710174009,
         "narHash": "sha256-zTT2fA7AlEpg912j60kd2H2upWlkxBKT4GwoQWubkeM=",
-        "ref": "main",
+        "owner": "BrianHicks",
+        "repo": "similar-sort",
         "rev": "c850114cac9b9df89223d84d8bce90f01aad2c8d",
-        "revCount": 49,
-        "type": "git",
-        "url": "https://git.bytes.zone/brian/similar-sort.git"
+        "type": "github"
       },
       "original": {
-        "ref": "main",
-        "type": "git",
-        "url": "https://git.bytes.zone/brian/similar-sort.git"
+        "owner": "BrianHicks",
+        "repo": "similar-sort",
+        "type": "github"
       }
     },
     "systems": {
@@ -554,11 +553,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1695907856,
-        "narHash": "sha256-YNB+RrVoYix89HiFZCzd9FsdaP/iJsDuoht5v0e+gK4=",
+        "lastModified": 1713750311,
+        "narHash": "sha256-T9wHcnp1tAMY6K+KHcuYrHcZ2TdomQUWJG6Geq1blwk=",
         "owner": "jonathanio",
         "repo": "update-systemd-resolved",
-        "rev": "4deeab48ad94936320be1e840a7d0fb094379466",
+        "rev": "174171996f3abf116cdcff855d4a1e36af6e1aa3",
         "type": "github"
       },
       "original": {

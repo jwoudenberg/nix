@@ -13,8 +13,7 @@
     launch.inputs.nixpkgs.follows = "nixpkgs";
     random-colors.url = "github:jwoudenberg/random-colors";
     random-colors.inputs.nixpkgs.follows = "nixpkgs";
-    similar-sort.url =
-      "git+https://git.bytes.zone/brian/similar-sort.git?ref=main";
+    similar-sort.url = "github:BrianHicks/similar-sort";
     paulus.url = "github:jwoudenberg/paulus";
     paulus.inputs.nixpkgs.follows = "nixpkgs";
     todo-txt-web.url = "github:jwoudenberg/todo-txt-web";

@@ -11,6 +11,16 @@
     cooklang.inputs.nixpkgs.follows = "nixpkgs";
     launch.url = "github:jwoudenberg/launch";
     launch.inputs.nixpkgs.follows = "nixpkgs";
+    lix = {
+      url =
+        "git+https://git@git.lix.systems/lix-project/lix?ref=refs/tags/2.90-beta.1";
+      flake = false;
+    };
+    lix-module = {
+      url = "git+https://git.lix.systems/lix-project/nixos-module";
+      inputs.lix.follows = "lix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     random-colors.url = "github:jwoudenberg/random-colors";
     random-colors.inputs.nixpkgs.follows = "nixpkgs";
     similar-sort.url = "github:BrianHicks/similar-sort";
@@ -121,25 +131,35 @@
         modules = [
           (import ./fragile-walrus/configuration.nix)
           inputs.update-systemd-resolved.nixosModules.update-systemd-resolved
+          inputs.lix-module.nixosModules.default
         ];
       };
 
       nixosConfigurations.sentient-tshirt = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { flakeInputs = inputs; };
-        modules = [ (import ./sentient-tshirt/configuration.nix) ];
+        modules = [
+          (import ./sentient-tshirt/configuration.nix)
+          inputs.lix-module.nixosModules.default
+        ];
       };
 
       nixosConfigurations.ai-banana = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { flakeInputs = inputs; };
-        modules = [ (import ./ai-banana/configuration.nix) ];
+        modules = [
+          (import ./ai-banana/configuration.nix)
+          inputs.lix-module.nixosModules.default
+        ];
       };
 
       nixosConfigurations.airborne-cactus = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { flakeInputs = inputs; };
-        modules = [ (import ./airborne-cactus/configuration.nix) ];
+        modules = [
+          (import ./airborne-cactus/configuration.nix)
+          inputs.lix-module.nixosModules.default
+        ];
       };
 
       devShell."x86_64-linux" = pkgs.mkShell {

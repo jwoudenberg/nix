@@ -128,7 +128,7 @@
     D = :delete<Enter>
     A = :archive flat<Enter>q
 
-    f = :forward<Enter>
+    f = :forward -A<Enter>
     rr = :reply -a<Enter>
     rq = :reply -aq<Enter>
     Rr = :reply<Enter>

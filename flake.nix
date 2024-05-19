@@ -3,10 +3,11 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager/release-23.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     agenda-txt.url = "github:jwoudenberg/agenda.txt";
-    agenda-txt.inputs.nixpkgs.follows = "nixpkgs";
+    agenda-txt.inputs.nixpkgs.follows = "nixpkgs-unstable";
     cooklang.url = "github:jwoudenberg/cooklang";
     cooklang.inputs.nixpkgs.follows = "nixpkgs";
     launch.url = "github:jwoudenberg/launch";
@@ -56,7 +57,9 @@
     in {
       overlays = {
         linuxCustomPkgs = final: prev: {
-          agenda-txt = inputs.agenda-txt.defaultPackage."${system}";
+          agenda-txt = inputs.agenda-txt.packages."${system}".agenda-txt;
+          ics-to-agenda-txt =
+            inputs.agenda-txt.packages."${system}".ics-to-agenda-txt;
           cooklang = inputs.cooklang.defaultPackage."${system}";
           dedrm = prev.writeShellScriptBin "dedrm" ''
             set -euxo pipefail

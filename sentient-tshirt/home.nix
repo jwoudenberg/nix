@@ -3,6 +3,7 @@
 {
   home.packages = [
     pkgs.agenda-txt
+    pkgs.ics-to-agenda-txt
     pkgs.comma
     pkgs.croc
     pkgs.dedrm

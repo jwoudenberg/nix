@@ -1,5 +1,6 @@
 # Support for flashing my Ergodox firmware.
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   hardware.keyboard.zsa.enable = true;
   environment.systemPackages = [ pkgs.wally-cli ];
 }

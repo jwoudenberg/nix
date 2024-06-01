@@ -1,4 +1,5 @@
-{ pkgs, flakeInputs, ... }: {
+{ pkgs, flakeInputs, ... }:
+{
   nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = [ flakeInputs.self.overlays.linuxCustomPkgs ];
   nix.registry.nixpkgs.flake = flakeInputs.nixpkgs;

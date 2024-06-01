@@ -13,8 +13,7 @@
     launch.url = "github:jwoudenberg/launch";
     launch.inputs.nixpkgs.follows = "nixpkgs";
     lix = {
-      url =
-        "git+https://git@git.lix.systems/lix-project/lix?ref=refs/tags/2.90-beta.1";
+      url = "git+https://git@git.lix.systems/lix-project/lix?ref=refs/tags/2.90-beta.1";
       flake = false;
     };
     lix-module = {
@@ -47,19 +46,20 @@
     vim-spell-nl.flake = false;
   };
 
-  outputs = inputs:
+  outputs =
+    inputs:
     let
       system = "x86_64-linux";
       pkgs = import inputs.nixpkgs {
         system = system;
         config.allowUnfree = true;
       };
-    in {
+    in
+    {
       overlays = {
         linuxCustomPkgs = final: prev: {
           agenda-txt = inputs.agenda-txt.packages."${system}".agenda-txt;
-          ics-to-agenda-txt =
-            inputs.agenda-txt.packages."${system}".ics-to-agenda-txt;
+          ics-to-agenda-txt = inputs.agenda-txt.packages."${system}".ics-to-agenda-txt;
           cooklang = inputs.cooklang.defaultPackage."${system}";
           dedrm = prev.writeShellScriptBin "dedrm" ''
             set -euxo pipefail
@@ -103,7 +103,9 @@
 
       nixosConfigurations.fragile-walrus = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = { flakeInputs = inputs; };
+        specialArgs = {
+          flakeInputs = inputs;
+        };
         modules = [
           (import ./fragile-walrus/configuration.nix)
           inputs.update-systemd-resolved.nixosModules.update-systemd-resolved
@@ -113,7 +115,9 @@
 
       nixosConfigurations.sentient-tshirt = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = { flakeInputs = inputs; };
+        specialArgs = {
+          flakeInputs = inputs;
+        };
         modules = [
           (import ./sentient-tshirt/configuration.nix)
           inputs.lix-module.nixosModules.default
@@ -122,7 +126,9 @@
 
       nixosConfigurations.ai-banana = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = { flakeInputs = inputs; };
+        specialArgs = {
+          flakeInputs = inputs;
+        };
         modules = [
           (import ./ai-banana/configuration.nix)
           inputs.lix-module.nixosModules.default
@@ -131,7 +137,9 @@
 
       nixosConfigurations.airborne-cactus = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = { flakeInputs = inputs; };
+        specialArgs = {
+          flakeInputs = inputs;
+        };
         modules = [
           (import ./airborne-cactus/configuration.nix)
           inputs.lix-module.nixosModules.default
@@ -139,9 +147,11 @@
       };
 
       devShell."x86_64-linux" = pkgs.mkShell {
-        buildInputs =
-          [ pkgs.libgourou pkgs.luaformatter pkgs.lua53Packages.luacheck ];
+        buildInputs = [
+          pkgs.libgourou
+          pkgs.luaformatter
+          pkgs.lua53Packages.luacheck
+        ];
       };
-
     };
 }

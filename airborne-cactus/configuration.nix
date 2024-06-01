@@ -9,7 +9,8 @@
 let
 
   bridge0Subnet = "10.38.38.1/24";
-in {
+in
+{
   imports = [
     ./hardware-configuration.nix
     ../shared/nixos-modules/nix.nix
@@ -26,14 +27,17 @@ in {
   '';
 
   boot.loader.grub.enable = true;
-  boot.loader.grub.device =
-    "/dev/disk/by-id/ata-SSE064GMLCC-SBC-2S_C295072701DE00012853";
+  boot.loader.grub.device = "/dev/disk/by-id/ata-SSE064GMLCC-SBC-2S_C295072701DE00012853";
 
   time.timeZone = "Europe/Amsterdam";
 
   i18n.defaultLocale = "en_US.UTF-8";
 
-  environment.systemPackages = [ pkgs.neovim pkgs.flashrom pkgs.iw ];
+  environment.systemPackages = [
+    pkgs.neovim
+    pkgs.flashrom
+    pkgs.iw
+  ];
 
   # SSH
   services.openssh = {
@@ -64,12 +68,16 @@ in {
         MACAddress = "00:0d:b9:5f:c8:f8";
         Type = "ether";
       };
-      linkConfig = { Name = "opt"; };
+      linkConfig = {
+        Name = "opt";
+      };
     };
     networks."10-opt" = {
       matchConfig.Name = "opt";
       linkConfig.RequiredForOnline = "no";
-      networkConfig = { LinkLocalAddressing = "no"; };
+      networkConfig = {
+        LinkLocalAddressing = "no";
+      };
     };
 
     links."10-lan0" = {
@@ -77,7 +85,9 @@ in {
         MACAddress = "00:0d:b9:5f:c8:f9";
         Type = "ether";
       };
-      linkConfig = { Name = "lan0"; };
+      linkConfig = {
+        Name = "lan0";
+      };
     };
     networks."10-lan0" = {
       matchConfig.Name = "lan0";
@@ -92,7 +102,9 @@ in {
         MACAddress = "00:0d:b9:5f:c8:fa";
         Type = "ether";
       };
-      linkConfig = { Name = "lan1"; };
+      linkConfig = {
+        Name = "lan1";
+      };
     };
     networks."10-lan1" = {
       matchConfig.Name = "lan1";
@@ -108,7 +120,9 @@ in {
         MACAddress = "00:0d:b9:5f:c8:fb";
         Type = "ether";
       };
-      linkConfig = { Name = "lan2"; };
+      linkConfig = {
+        Name = "lan2";
+      };
     };
     networks."10-lan2" = {
       matchConfig.Name = "lan2";
@@ -124,7 +138,9 @@ in {
         MACAddress = "04:f0:21:b2:61:c5";
         Type = "wlan";
       };
-      linkConfig = { Name = "wlan"; };
+      linkConfig = {
+        Name = "wlan";
+      };
     };
     networks."10-wlan" = {
       matchConfig.Name = "wlan";
@@ -188,7 +204,9 @@ in {
 
     # The wan interface is created by pppd.
     networks."10-wan" = {
-      matchConfig = { Name = "wan"; };
+      matchConfig = {
+        Name = "wan";
+      };
       networkConfig = {
         LinkLocalAddressing = "ipv6";
         DHCP = "no";
@@ -210,7 +228,6 @@ in {
         TCPAdvertisedMaximumSegmentSize=1448
       '';
     };
-
   };
 
   # Resources for configuring nftables:

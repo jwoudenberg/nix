@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   programs.kitty = {
     enable = true;
 
@@ -14,9 +15,7 @@
       tab_separator = " | ";
       macos_quit_when_last_window_closed = true;
       shell_integration = "enabled";
-      scrollback_pager =
-        "nvim -R -c 'colors noctu | set laststatus=0 nonumber | silent write! /tmp/kitty_scrollback_buffer | te cat /tmp/kitty_scrollback_buffer -'";
-
+      scrollback_pager = "nvim -R -c 'colors noctu | set laststatus=0 nonumber | silent write! /tmp/kitty_scrollback_buffer | te cat /tmp/kitty_scrollback_buffer -'";
     };
 
     keybindings = {

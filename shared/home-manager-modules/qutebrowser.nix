@@ -1,4 +1,10 @@
-{ pkgs, lib, config, ... }: {
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+{
   xdg.mimeApps.defaultApplications = {
     "x-www-browser" = [ "qutebrowser.desktop" ];
     "x-scheme-handler/http" = [ "qutebrowser.desktop" ];
@@ -31,7 +37,11 @@
       content.pdfjs = true;
       content.notifications.enabled = false;
       content.register_protocol_handler = false;
-      editor.command = [ "kitty" "nvim" "{file}" ];
+      editor.command = [
+        "kitty"
+        "nvim"
+        "{file}"
+      ];
       url.start_pages = [ "http://ai-banana" ];
 
       # Fingerprinting protection, see: https://coveryourtracks.eff.org
@@ -40,8 +50,7 @@
       content.javascript.enabled = false;
       # User-Agent lifted from Firefox with `privacy.resistFingerprinting`
       # enabled in about:config
-      content.headers.user_agent =
-        "Mozilla/5.0 (Windows NT 10.0; rv:113.0) Gecko/20100101 Firefox/113.0";
+      content.headers.user_agent = "Mozilla/5.0 (Windows NT 10.0; rv:113.0) Gecko/20100101 Firefox/113.0";
       content.headers.do_not_track = null;
       content.canvas_reading = false;
       content.webgl = false;
@@ -71,19 +80,21 @@
     '';
   };
 
-  home.activation.writeStateFile = let
-    initialStateFile = pkgs.writeTextFile {
-      name = "state";
-      text = ''
-        [general]
-        quickstart-done = 1
-      '';
-    };
-  in lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    QUTEBROWSER_STATE_PATH="${config.home.homeDirectory}/.local/share/qutebrowser/state"
-    if [ ! -f "$QUTEBROWSER_STATE_PATH" ]; then
-      $DRY_RUN_CMD mkdir -p $(dirname "$QUTEBROWSER_STATE_PATH")
-      $DRY_RUN_CMD cat ${initialStateFile} > "$QUTEBROWSER_STATE_PATH"
-    fi
-  '';
+  home.activation.writeStateFile =
+    let
+      initialStateFile = pkgs.writeTextFile {
+        name = "state";
+        text = ''
+          [general]
+          quickstart-done = 1
+        '';
+      };
+    in
+    lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      QUTEBROWSER_STATE_PATH="${config.home.homeDirectory}/.local/share/qutebrowser/state"
+      if [ ! -f "$QUTEBROWSER_STATE_PATH" ]; then
+        $DRY_RUN_CMD mkdir -p $(dirname "$QUTEBROWSER_STATE_PATH")
+        $DRY_RUN_CMD cat ${initialStateFile} > "$QUTEBROWSER_STATE_PATH"
+      fi
+    '';
 }

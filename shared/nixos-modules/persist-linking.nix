@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   fileSystems."/home/jasper/dev" = {
     device = "/persist/dev";
     fsType = "none";

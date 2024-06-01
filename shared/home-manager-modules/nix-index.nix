@@ -1,1 +1,6 @@
-{ pkgs, ... }: { programs.nix-index = { enable = true; }; }
+{ pkgs, ... }:
+{
+  programs.nix-index = {
+    enable = true;
+  };
+}

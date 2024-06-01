@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   fileSystems."/var/lib/private/gonic" = {
     device = "/persist/gonic";
     fsType = "none";
@@ -26,6 +27,5 @@
       podcast-path = "/var/lib/gonic/podcasts";
     };
   };
-  systemd.services.gonic.serviceConfig.BindPaths =
-    [ "/persist/music/00_playlists" ];
+  systemd.services.gonic.serviceConfig.BindPaths = [ "/persist/music/00_playlists" ];
 }

@@ -1,4 +1,5 @@
-{ pkgs, config, ... }: {
+{ pkgs, config, ... }:
+{
   # # Not sure why, but iwd isn't working anymore as of latest home wifi setup.
   # # I'm hopeful to return to it in the future.
   #

@@ -1,4 +1,11 @@
-{ pkgs, config, lib, home-manager, flakeInputs, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  home-manager,
+  flakeInputs,
+  ...
+}:
 
 {
   imports = [
@@ -17,8 +24,11 @@
     flakeInputs.home-manager.nixosModules.home-manager
   ];
 
-  hardware.opengl.extraPackages =
-    [ pkgs.vaapiIntel pkgs.libvdpau-va-gl pkgs.intel-media-driver ];
+  hardware.opengl.extraPackages = [
+    pkgs.vaapiIntel
+    pkgs.libvdpau-va-gl
+    pkgs.intel-media-driver
+  ];
   hardware.enableRedistributableFirmware = true;
   environment.variables.VDPAU_DRIVER = lib.mkDefault "va_gl";
 

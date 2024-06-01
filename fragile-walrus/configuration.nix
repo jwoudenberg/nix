@@ -1,4 +1,10 @@
-{ pkgs, config, lib, flakeInputs, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  flakeInputs,
+  ...
+}:
 
 {
   imports = [
@@ -18,8 +24,7 @@
     flakeInputs.home-manager.nixosModules.home-manager
   ];
 
-  specialisation.gaming.configuration =
-    import ./specialisation-gaming.nix { pkgs = pkgs; };
+  specialisation.gaming.configuration = import ./specialisation-gaming.nix { pkgs = pkgs; };
 
   specialisation.work.configuration = import ./specialisation-work.nix {
     pkgs = pkgs;
@@ -52,26 +57,30 @@
   services.zrepl = {
     enable = true;
     settings = {
-      jobs = [{
-        type = "snap";
-        name = "backup_persist";
-        filesystems = {
-          "trunk" = false;
-          "trunk/encrypted/persist" = true;
-        };
-        snapshotting = {
-          type = "periodic";
-          prefix = "zrepl_";
-          interval = "10m";
-        };
-        pruning = {
-          keep = [{
-            type = "grid";
-            regex = "zrepl_.*";
-            grid = "1x1h(keep=all) | 24x1h | 6x1d | 4x7d | 120x30d";
-          }];
-        };
-      }];
+      jobs = [
+        {
+          type = "snap";
+          name = "backup_persist";
+          filesystems = {
+            "trunk" = false;
+            "trunk/encrypted/persist" = true;
+          };
+          snapshotting = {
+            type = "periodic";
+            prefix = "zrepl_";
+            interval = "10m";
+          };
+          pruning = {
+            keep = [
+              {
+                type = "grid";
+                regex = "zrepl_.*";
+                grid = "1x1h(keep=all) | 24x1h | 6x1d | 4x7d | 120x30d";
+              }
+            ];
+          };
+        }
+      ];
     };
   };
 

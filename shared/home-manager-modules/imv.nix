@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   home.packages = [ pkgs.imv ];
 
   xdg.mimeApps.defaultApplications = {

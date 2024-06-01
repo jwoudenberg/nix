@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   services.xserver.enable = true;
   services.displayManager.autoLogin = {
     enable = true;

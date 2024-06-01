@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   users.groups.syncdata = {
     gid = 7;
     members = [ "jasper" ];
@@ -25,7 +26,10 @@
     ];
   };
   systemd.services.syncthing-init.serviceConfig = {
-    BindPaths = [ "/run/syncthing-init:/persist" "/persist/syncthing" ];
+    BindPaths = [
+      "/run/syncthing-init:/persist"
+      "/persist/syncthing"
+    ];
     UMask = "0007";
   };
   services.syncthing = {
@@ -52,8 +56,7 @@
       };
       devices = {
         "ai-banana" = {
-          id =
-            "4IBITW5-V77TJUE-A3DEGT2-C33VXJU-W2GTUE5-BZ3J7MJ-XYVS6PF-7JNVSAB";
+          id = "4IBITW5-V77TJUE-A3DEGT2-C33VXJU-W2GTUE5-BZ3J7MJ-XYVS6PF-7JNVSAB";
           addresses = [ "tcp://ai-banana" ];
         };
       };

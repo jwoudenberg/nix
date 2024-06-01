@@ -10,7 +10,7 @@
     pkgs.gotop
     pkgs.cooklang
     pkgs.mosh
-    pkgs.nixfmt
+    pkgs.nixfmt-rfc-style
     pkgs.pdfgrep
     pkgs.pijul
     pkgs.pulsemixer

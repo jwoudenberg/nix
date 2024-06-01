@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   services.xserver.enable = true;
-  services.xserver.displayManager.autoLogin = {
+  services.displayManager.autoLogin = {
     enable = true;
     user = "jasper";
   };

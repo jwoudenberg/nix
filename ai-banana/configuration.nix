@@ -29,7 +29,7 @@ in { pkgs, config, modulesPath, flakeInputs, ... }: {
     "d /persist/syncthing 0700 syncthing syncthing - -"
   ];
 
-  system.stateVersion = "23.11";
+  system.stateVersion = "24.05";
   networking.hostName = "ai-banana";
 
   # Hardware

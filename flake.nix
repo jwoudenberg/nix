@@ -2,9 +2,9 @@
   description = "Jaspers Nix configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager/release-23.11";
+    home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     agenda-txt.url = "github:jwoudenberg/agenda.txt";
     agenda-txt.inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -98,33 +98,6 @@
           ];
           nvim-treesitter-roc = inputs.tree-sitter-roc.neovimPlugin."${system}";
           vim-spell-nl = "${inputs.vim-spell-nl}";
-          # Adapted from: https://github.com/NixOS/nixpkgs/blob/nixos-23.11/pkgs/servers/gonic/default.nix#L50
-          # Updates gonic to 0.16.2. Once This version is available in Nixpkgs we can
-          # remove this override.
-          gonic = pkgs.buildGoModule rec {
-            pname = "gonic";
-            version = "0.16.2";
-            src = inputs.gonic;
-
-            nativeBuildInputs = [ pkgs.pkg-config ];
-            buildInputs = [ pkgs.taglib pkgs.zlib ];
-            vendorHash = "sha256-0M1vlTt/4OKjn9Ocub+9HpeRcXt6Wf8aGa/ZqCdHh5M=";
-            doCheck = false;
-
-            postPatch = ''
-              substituteInPlace \
-                transcode/transcode.go \
-                --replace \
-                  '`ffmpeg' \
-                  '`${pkgs.lib.getBin pkgs.ffmpeg}/bin/ffmpeg'
-            '' + ''
-              substituteInPlace \
-                jukebox/jukebox.go \
-                --replace \
-                  '"mpv"' \
-                  '"${pkgs.lib.getBin pkgs.mpv}/bin/mpv"'
-            '';
-          };
         };
       };
 

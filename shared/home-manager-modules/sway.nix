@@ -59,6 +59,7 @@ in {
     mouse_warping output
     workspace_layout default
     workspace 1
+    primary_selection disabled
 
     set $clight #f6f5f5
     set $cdull #2f313d

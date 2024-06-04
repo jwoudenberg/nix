@@ -14,7 +14,7 @@ $env.config = {
     modifier: control
     keycode: char_t
     mode: [emacs, vi_insert, vi_normal]
-    event: { send: ExecuteHostCommand, cmd: "commandline --insert (fzf)" }
+    event: { send: ExecuteHostCommand, cmd: "commandline edit --insert (fzf)" }
   }, {
     name: menu-left
     modifier: control

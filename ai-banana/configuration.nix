@@ -284,7 +284,7 @@ in
 
         redir /music /music/
         handle_path /music/* {
-          reverse_proxy ${toString config.services.gonic.settings.listen-addr}
+          reverse_proxy localhost:4553
         }
 
         redir /books /books/

@@ -4,14 +4,7 @@
     ephemeral = true;
     autoStart = true;
     enableTun = true;
-    privateNetwork = false;
-    # forwardPorts = [
-    #   {
-    #     hostPort = 4553;
-    #     containerPort = 4553;
-    #     protocol = "tcp";
-    #   }
-    # ];
+    privateNetwork = true;
     bindMounts = {
       "/var/lib/private/gonic" = {
         hostPath = "/persist/gonic";
@@ -25,9 +18,13 @@
         hostPath = "/persist/music/00_playlists";
         isReadOnly = false;
       };
+      "/persist/credentials" = {
+        hostPath = "/persist/credentials";
+        isReadOnly = true;
+      };
     };
     config =
-      { ... }:
+      { pkgs, ... }:
       {
         system.stateVersion = "24.05";
         services.gonic = {
@@ -40,6 +37,34 @@
             # podcast-path is required by the nixos module, though I don't use it.
             podcast-path = "/var/lib/gonic/podcasts";
           };
+        };
+
+        systemd.services.tailscale-authenticate = {
+          serviceConfig = {
+            Type = "oneshot";
+            EnvironmentFile = "/persist/credentials/freedom_imap_password";
+            RuntimeDirectory = "tailscale-authenticate";
+          };
+          wantedBy = [ "tailscaled.service" ];
+          script = ''
+            set -eux
+
+            GOMODCACHE="$RUNTIME_DIRECTORY/gomodcache"
+
+            ${pkgs.go}/bin/go run tailscale.com/cmd/get-authkey@main \
+              -tags tag:gonic \
+              -preauth \
+              > "/tailscale-authkey"
+          '';
+        };
+
+        services.tailscale = {
+          enable = true;
+          authKeyFile = "/tailscale-authkey";
+          extraUpFlags = [
+            "--hostname"
+            "gonic"
+          ];
         };
       };
   };

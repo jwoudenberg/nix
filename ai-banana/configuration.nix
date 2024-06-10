@@ -43,6 +43,11 @@ in
   system.stateVersion = "24.05";
   networking.hostName = "ai-banana";
 
+  # Allow nixos-containers access to the internet.
+  networking.nat.enable = true;
+  networking.nat.internalInterfaces = [ "ve-+" ];
+  networking.nat.externalInterface = "eth0";
+
   # Hardware
   imports = [
     ../shared/nixos-modules/nix.nix

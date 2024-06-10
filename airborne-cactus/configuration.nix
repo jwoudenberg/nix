@@ -6,6 +6,9 @@
 # https://francis.begyn.be/blog/ipv6-nixos-router
 # https://www.jjpdev.com/posts/home-router-nixos/
 # https://dataswamp.org/~solene/2022-08-03-nixos-with-live-usb-router.html
+#
+# BIOS releases: https://pcengines.github.io/
+# BIOS installed: `sudo dmidecode -t bios -q`
 let
 
   bridge0Subnet = "10.38.38.1/24";

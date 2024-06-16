@@ -7,7 +7,7 @@
 
 {
   # Seed ~/.config/nushell/history.txt with persisted history commands.
-  # Using `home.file.<name.*` would create an unmodifiable symlink.
+  # Using `home.file.<name>.*` would create an unmodifiable symlink.
   home.activation.initNushellHistory = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     CONFIG_DIR="${config.home.homeDirectory}/.config/nushell"
     mkdir -p "$CONFIG_DIR"
@@ -42,8 +42,6 @@
       PROMPT_MULTILINE_INDICATOR = "' '";
     };
     extraConfig = ''
-      # plugin use ${pkgs.nushellPlugins.formats}/bin/nu_plugin_formats
-
       def remind [--months (-m): int = 1] {
         cat ~/hjgames/agenda/*agenda.txt | ${pkgs.agenda-txt}/bin/agenda-txt ($"*($months)m")
       }

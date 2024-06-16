@@ -19,7 +19,7 @@
     ../shared/nixos-modules/systemd-boot.nix
     ../shared/nixos-modules/users.nix
     ../shared/nixos-modules/wifi.nix
-    ../shared/nixos-modules/yubikey.nix
+    ../shared/nixos-modules/ssh.nix
     ./hardware-configuration.nix
     flakeInputs.home-manager.nixosModules.home-manager
   ];

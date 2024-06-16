@@ -26,6 +26,9 @@
       pull.rebase = false;
       init.defaultBranch = "main";
       push.useForceIfIncludes = true;
+      commit.gpgsign = true;
+      gpg.format = "ssh";
+      user.signingkey = "key::sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAICX1KxUJWwIscXsNGnb778Q/nhbg8ir8K0iXZFDsQEzkAAAADnNzaDpZdWJpa2V5U1NI jasper@sentient-tshirt";
     };
   };
 }

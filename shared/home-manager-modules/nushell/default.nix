@@ -42,7 +42,7 @@
       PROMPT_MULTILINE_INDICATOR = "' '";
     };
     extraConfig = ''
-      plugin use ${pkgs.nushellPlugins.formats}/bin/nu_plugin_formats
+      # plugin use ${pkgs.nushellPlugins.formats}/bin/nu_plugin_formats
 
       def remind [--months (-m): int = 1] {
         cat ~/hjgames/agenda/*agenda.txt | ${pkgs.agenda-txt}/bin/agenda-txt ($"*($months)m")

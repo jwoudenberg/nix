@@ -5,7 +5,6 @@
     compression = true; # Needed by tmate
     extraConfig = ''
       VisualHostKey yes
-      IdentityAgent none
     '';
     userKnownHostsFile =
       let

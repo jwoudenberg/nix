@@ -12,10 +12,6 @@
     cooklang.inputs.nixpkgs.follows = "nixpkgs";
     launch.url = "github:jwoudenberg/launch";
     launch.inputs.nixpkgs.follows = "nixpkgs";
-    lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.90.0-rc1.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     random-colors.url = "github:jwoudenberg/random-colors";
     random-colors.inputs.nixpkgs.follows = "nixpkgs";
     similar-sort.url = "github:BrianHicks/similar-sort";
@@ -104,7 +100,6 @@
         modules = [
           (import ./fragile-walrus/configuration.nix)
           inputs.update-systemd-resolved.nixosModules.update-systemd-resolved
-          inputs.lix-module.nixosModules.default
         ];
       };
 
@@ -113,10 +108,7 @@
         specialArgs = {
           flakeInputs = inputs;
         };
-        modules = [
-          (import ./sentient-tshirt/configuration.nix)
-          inputs.lix-module.nixosModules.default
-        ];
+        modules = [ (import ./sentient-tshirt/configuration.nix) ];
       };
 
       nixosConfigurations.ai-banana = inputs.nixpkgs.lib.nixosSystem {
@@ -124,10 +116,7 @@
         specialArgs = {
           flakeInputs = inputs;
         };
-        modules = [
-          (import ./ai-banana/configuration.nix)
-          inputs.lix-module.nixosModules.default
-        ];
+        modules = [ (import ./ai-banana/configuration.nix) ];
       };
 
       nixosConfigurations.airborne-cactus = inputs.nixpkgs.lib.nixosSystem {
@@ -135,10 +124,7 @@
         specialArgs = {
           flakeInputs = inputs;
         };
-        modules = [
-          (import ./airborne-cactus/configuration.nix)
-          inputs.lix-module.nixosModules.default
-        ];
+        modules = [ (import ./airborne-cactus/configuration.nix) ];
       };
 
       devShell."x86_64-linux" = pkgs.mkShell {

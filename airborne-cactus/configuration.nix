@@ -6,6 +6,7 @@
 # https://francis.begyn.be/blog/ipv6-nixos-router
 # https://www.jjpdev.com/posts/home-router-nixos/
 # https://dataswamp.org/~solene/2022-08-03-nixos-with-live-usb-router.html
+# https://teklager.se/en/knowledge-base/installing-ubuntu-over-serial-console-apu-board/
 #
 # BIOS releases: https://pcengines.github.io/
 # BIOS installed: `sudo dmidecode -t bios -q`

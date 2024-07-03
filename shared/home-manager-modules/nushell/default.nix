@@ -21,8 +21,7 @@
       "ssh" = "kitty +kitten ssh";
       "todo" = "^$env.EDITOR ~/docs/todo.txt";
       "agenda" = "^$env.EDITOR ~/hjgames/agenda/agenda.txt";
-      "diary" = "${./diary.nu}";
-      "brein" = "${./brein.nu}";
+      "zet" = "${./zet.nu}";
       "work" = "${./work.nu}";
       "surf" = "${./surf.nu}";
     };

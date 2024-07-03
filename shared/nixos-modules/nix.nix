@@ -1,6 +1,6 @@
 { pkgs, flakeInputs, ... }:
 {
-  environment.systemPackages = [ pkgs.lix ];
+  nix.package = pkgs.lix;
   nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = [ flakeInputs.self.overlays.linuxCustomPkgs ];
   nix.registry.nixpkgs.flake = flakeInputs.nixpkgs;

@@ -34,6 +34,10 @@
           config = "config /home/jasper/work/config.ovpn";
           autoStart = false;
         };
+        services.openvpn.servers.work-breakglass = {
+          config = "config /home/jasper/work/config.breakglass.ovpn";
+          autoStart = false;
+        };
 
         programs.update-systemd-resolved.servers.work.includeAutomatically = true;
 

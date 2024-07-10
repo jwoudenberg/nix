@@ -52,6 +52,7 @@
     ../shared/home-manager-modules/whipper/default.nix
     ../shared/home-manager-modules/wlsunset.nix
     ../shared/home-manager-modules/zathura.nix
+    ../shared/home-manager-modules/zed.nix
   ];
 
   xdg.configFile."nixpkgs/config.nix".text = ''

@@ -7,7 +7,7 @@
     home-manager.url = "github:nix-community/home-manager/release-24.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     agenda-txt.url = "github:jwoudenberg/agenda.txt";
-    agenda-txt.inputs.nixpkgs.follows = "nixpkgs-unstable";
+    agenda-txt.inputs.nixpkgs.follows = "nixpkgs";
     cooklang.url = "github:jwoudenberg/cooklang";
     cooklang.inputs.nixpkgs.follows = "nixpkgs";
     launch.url = "github:jwoudenberg/launch";
@@ -89,6 +89,7 @@
           ];
           nvim-treesitter-roc = inputs.tree-sitter-roc.neovimPlugin."${system}";
           vim-spell-nl = "${inputs.vim-spell-nl}";
+          zed-editor = inputs.nixpkgs-unstable.legacyPackages."x86_64-linux".zed-editor;
         };
       };
 

@@ -1,9 +1,17 @@
 { pkgs, ... }:
 {
-  home.packages = [ pkgs.zed-editor ];
+  home.packages =
+    let
+      zed-fhs = pkgs.buildFHSUserEnv {
+        name = "zed";
+        targetPkgs = p: [ p.zed-editor ];
+        runScript = "zed";
+      };
+    in
+    [ zed-fhs ];
 
   home.file.".config/zed/settings.json".text = builtins.toJSON {
-    auto_installed_extensions = {
+    auto_install_extensions = {
       nix = true;
       ruby = true;
     };
@@ -11,6 +19,21 @@
     buffer_font_size = 14;
     buffer_font_weight = 100;
     hour_format = "hour24";
+    languages = {
+      Ruby = {
+        language_servers = [
+          "ruby-lsp"
+          "!solargraph"
+        ];
+      };
+    };
+    lsp = {
+      ruby-lsp = {
+        initialization_options = {
+          diagnostics = false;
+        };
+      };
+    };
     restore_on_startup = "none";
     tab_bar = {
       show_nav_history_buttons = false;

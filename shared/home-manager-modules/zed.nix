@@ -5,6 +5,7 @@
   home.file.".config/zed/settings.json".text = builtins.toJSON {
     auto_installed_extensions = {
       nix = true;
+      ruby = true;
     };
     auto_update = false;
     buffer_font_size = 14;

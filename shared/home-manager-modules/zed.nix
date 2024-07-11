@@ -11,6 +11,9 @@
     [ zed-fhs ];
 
   home.file.".config/zed/settings.json".text = builtins.toJSON {
+    assistant = {
+      enabled = false;
+    };
     auto_install_extensions = {
       nix = true;
       ruby = true;
@@ -18,7 +21,16 @@
     auto_update = false;
     buffer_font_size = 14;
     buffer_font_weight = 100;
-    hour_format = "hour24";
+    gutter = {
+      folds = false;
+      code_actions = false;
+    };
+    indent_guides = {
+      enabled = false;
+    };
+    journal = {
+      hour_format = "hour24";
+    };
     languages = {
       Ruby = {
         language_servers = [
@@ -45,7 +57,9 @@
     toolbar = {
       breadcrumbs = false;
       quick_actions = false;
+      selections_menu = false;
     };
+    use_autoclose = false;
     vim_mode = true;
   };
 }

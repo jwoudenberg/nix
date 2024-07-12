@@ -46,6 +46,11 @@
         };
       };
     };
+    preview_tabs = {
+      enabled = true;
+      enable_preview_from_file_finder = true;
+      enable_preview_from_code_navigation = true;
+    };
     restore_on_startup = "none";
     tab_bar = {
       show_nav_history_buttons = false;

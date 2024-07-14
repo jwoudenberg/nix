@@ -101,7 +101,7 @@
     <Enter> = :view<Enter>
     d = :prompt 'Really delete this message?' 'delete-message'<Enter>
     D = :delete<Enter>
-    A = :archive flat<Enter>
+    A = :flag -x Seen<Enter>:archive flat<Enter>
 
     C = :compose<Enter>
 
@@ -128,7 +128,7 @@
     S = :save<space>
     | = :pipe<space>
     D = :delete<Enter>
-    A = :archive flat<Enter>q
+    A = :flag -x Seen<Enter>:archive flat<Enter>q
 
     f = :forward -A<Enter>
     rr = :reply -a<Enter>

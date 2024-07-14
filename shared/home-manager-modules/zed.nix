@@ -17,6 +17,7 @@
     auto_install_extensions = {
       nix = true;
       ruby = true;
+      zig = true;
     };
     auto_update = false;
     buffer_font_size = 14;

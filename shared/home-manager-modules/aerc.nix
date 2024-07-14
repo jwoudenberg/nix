@@ -49,6 +49,7 @@
       [filters]
       text/html = html
       text/* = plaintext
+      application/ics = ${pkgs.ics-to-agenda-txt}/bin/ics-to-agenda-txt
     '';
 
   xdg.configFile."aerc/accounts.conf".text = ''

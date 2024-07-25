@@ -24,6 +24,12 @@
     flakeInputs.home-manager.nixosModules.home-manager
   ];
 
+  specialisation.work.configuration = import ./specialisation-work.nix {
+    pkgs = pkgs;
+    lib = lib;
+    config = config;
+  };
+
   hardware.opengl.extraPackages = [
     pkgs.vaapiIntel
     pkgs.libvdpau-va-gl

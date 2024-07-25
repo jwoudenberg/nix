@@ -109,7 +109,10 @@
         specialArgs = {
           flakeInputs = inputs;
         };
-        modules = [ (import ./sentient-tshirt/configuration.nix) ];
+        modules = [
+          (import ./sentient-tshirt/configuration.nix)
+          inputs.update-systemd-resolved.nixosModules.update-systemd-resolved
+        ];
       };
 
       nixosConfigurations.ai-banana = inputs.nixpkgs.lib.nixosSystem {

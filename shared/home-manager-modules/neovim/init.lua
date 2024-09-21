@@ -57,7 +57,7 @@ vim.api.nvim_create_autocmd("VimSuspend", {
 })
 
 -- COLORSCHEME
-vim.o.background = "light"
+vim.o.background = "dark"
 vim.cmd("colorscheme melange")
 
 -- ALE

@@ -12,6 +12,7 @@
     ../shared/nixos-modules/home.nix
     ../shared/nixos-modules/localization.nix
     ../shared/nixos-modules/pipewire.nix
+    ../shared/nixos-modules/neovim.nix
     ../shared/nixos-modules/networking.nix
     ../shared/nixos-modules/nix.nix
     ../shared/nixos-modules/persist-linking.nix

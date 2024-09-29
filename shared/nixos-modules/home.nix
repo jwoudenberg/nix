@@ -1,25 +1,58 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 let
-  home = pkgs.runCommand "home" { } ''
-    mkdir -p "$out/.config/nvim/spell"
-    ln -s "${../home-manager-modules/neovim/init.lua}" "$out/.config/nvim/init.lua"
-    ln -s "${pkgs.vim-spell-nl}" "$out/.config/nvim/spell/nl.utf-8.spl"
+  linkCommands = builtins.map (
+    homepath:
+    let
+      sourcepath = builtins.getAttr homepath config.homedir.files;
+    in
+    ''
+      mkdir -p "$out/${builtins.dirOf homepath}"
+      ln -s "${sourcepath}" "$out/${homepath}"
+    ''
+  ) (builtins.attrNames config.homedir.files);
+  homedir = pkgs.runCommand "homedir" { } ''
+    mkdir $out;
+    ${builtins.concatStringsSep "\n" linkCommands}
   '';
 in
 {
-  fileSystems."/home/test" = {
-    fsType = "overlay";
-    options = [ "volatile" ];
-    overlay = {
-      lowerdir = [ "${home}" ];
-      upperdir = "/tmp/home-upper";
-      workdir = "/tmp/home-work";
-    };
+  options.homedir.files = lib.mkOption {
+    default = { };
+    type = lib.types.attrsOf (
+      lib.types.oneOf [
+        lib.types.str
+        lib.types.pathInStore
+      ]
+    );
+    example = lib.literalExpression ''
+      {
+        ".config/nvim/init.lua" = ./init.lua;
+        ".config/git/ignore" = ./gitignore";
+      }
+    '';
+    description = "Files to be linked into the homedirectory.";
   };
 
-  systemd.tmpfiles.rules = [
-    "z /home/test 0700 jasper users - -"
-    "z /tmp/home-upper 0700 jasper users - -"
-    "z /tmp/home-work 0700 jasper users - -"
-  ];
+  config = {
+    fileSystems."/home/test" = {
+      fsType = "overlay";
+      options = [ "volatile" ];
+      overlay = {
+        lowerdir = [ "${homedir}" ];
+        upperdir = "/tmp/home-upper";
+        workdir = "/tmp/home-work";
+      };
+    };
+
+    systemd.tmpfiles.rules = [
+      "z /home/test 0700 jasper users - -"
+      "z /tmp/home-upper 0700 jasper users - -"
+      "z /tmp/home-work 0700 jasper users - -"
+    ];
+  };
 }

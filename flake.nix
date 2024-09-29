@@ -21,8 +21,6 @@
     todo-txt-web.inputs.nixpkgs.follows = "nixpkgs";
     tree-sitter-roc.url = "github:jwoudenberg/tree-sitter-roc";
     tree-sitter-roc.inputs.nixpkgs.follows = "nixpkgs";
-    gonic.url = "github:sentriz/gonic/v0.16.2";
-    gonic.flake = false;
     update-systemd-resolved.url = "github:jonathanio/update-systemd-resolved";
     update-systemd-resolved.inputs.nixpkgs.follows = "nixpkgs"; # optional
     vale-Joblint.flake = false;

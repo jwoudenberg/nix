@@ -44,15 +44,15 @@ in
       options = [ "volatile" ];
       overlay = {
         lowerdir = [ "${homedir}" ];
-        upperdir = "/tmp/home-upper";
-        workdir = "/tmp/home-work";
+        upperdir = "/home/.test.upperdir";
+        workdir = "/home/.test.workdir";
       };
     };
 
     systemd.tmpfiles.rules = [
       "z /home/test 0700 jasper users - -"
-      "z /tmp/home-upper 0700 jasper users - -"
-      "z /tmp/home-work 0700 jasper users - -"
+      "z /home/.test.upperdir 0700 jasper users - -"
+      "z /home/.test.workdir 0700 jasper users - -"
     ];
   };
 }

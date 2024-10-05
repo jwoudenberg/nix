@@ -41,7 +41,6 @@ in
   config = {
     fileSystems."/home/test" = {
       fsType = "overlay";
-      options = [ "volatile" ];
       overlay = {
         lowerdir = [ "${homedir}" ];
         upperdir = "/home/.test.upperdir";

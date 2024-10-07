@@ -45,8 +45,6 @@
   '';
   networking.hostId = "f1e5b37a";
 
-  services.keybase.enable = true;
-
   networking.hostName = "fragile-walrus";
 
   programs.command-not-found.enable = false;

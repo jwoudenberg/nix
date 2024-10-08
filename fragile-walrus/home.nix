@@ -28,7 +28,6 @@
   imports = [
     ../shared/home-manager-modules/aerc.nix
     ../shared/home-manager-modules/age/default.nix
-    ../shared/home-manager-modules/brightness.nix
     ../shared/home-manager-modules/direnv.nix
     ../shared/home-manager-modules/fzf.nix
     ../shared/home-manager-modules/git.nix

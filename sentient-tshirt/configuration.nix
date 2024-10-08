@@ -9,6 +9,7 @@
 
 {
   imports = [
+    ../shared/nixos-modules/git.nix
     ../shared/nixos-modules/home.nix
     ../shared/nixos-modules/localization.nix
     ../shared/nixos-modules/pipewire.nix

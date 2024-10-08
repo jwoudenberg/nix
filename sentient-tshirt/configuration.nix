@@ -11,6 +11,7 @@
   imports = [
     ../shared/nixos-modules/aerc.nix
     ../shared/nixos-modules/age.nix
+    ../shared/nixos-modules/direnv.nix
     ../shared/nixos-modules/git.nix
     ../shared/nixos-modules/home.nix
     ../shared/nixos-modules/localization.nix

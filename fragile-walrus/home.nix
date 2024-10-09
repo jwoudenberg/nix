@@ -30,7 +30,6 @@
     ../shared/home-manager-modules/git.nix
     ../shared/home-manager-modules/kitty.nix
     ../shared/home-manager-modules/neovim/default.nix
-    ../shared/home-manager-modules/nix-index.nix
     ../shared/home-manager-modules/nushell/default.nix
     ../shared/home-manager-modules/procfile/default.nix
     ../shared/home-manager-modules/qrcode.nix

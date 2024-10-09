@@ -28,6 +28,7 @@
     ../shared/nixos-modules/syncthing.nix
     ../shared/nixos-modules/systemd-boot.nix
     ../shared/nixos-modules/users.nix
+    ../shared/nixos-modules/screengrab.nix
     ../shared/nixos-modules/ssh.nix
     ../shared/nixos-modules/zfs.nix
     ./hardware-configuration.nix

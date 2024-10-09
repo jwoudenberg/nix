@@ -18,7 +18,6 @@
     ../shared/nixos-modules/imv.nix
     ../shared/nixos-modules/kitty.nix
     ../shared/nixos-modules/localization.nix
-    ../shared/nixos-modules/make-screenrec.nix
     ../shared/nixos-modules/nushell.nix
     ../shared/nixos-modules/pipewire.nix
     ../shared/nixos-modules/neovim.nix
@@ -27,6 +26,7 @@
     ../shared/nixos-modules/persist-linking.nix
     ../shared/nixos-modules/qrcode.nix
     ../shared/nixos-modules/readline.nix
+    ../shared/nixos-modules/screengrab.nix
     ../shared/nixos-modules/sway.nix
     ../shared/nixos-modules/syncthing.nix
     ../shared/nixos-modules/systemd-boot.nix

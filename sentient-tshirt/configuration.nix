@@ -19,6 +19,7 @@
     ../shared/nixos-modules/kitty.nix
     ../shared/nixos-modules/localization.nix
     ../shared/nixos-modules/make-screenrec.nix
+    ../shared/nixos-modules/nushell.nix
     ../shared/nixos-modules/pipewire.nix
     ../shared/nixos-modules/neovim.nix
     ../shared/nixos-modules/networking.nix

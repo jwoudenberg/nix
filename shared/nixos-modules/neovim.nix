@@ -24,6 +24,11 @@
     ".local/share/nvim/site/pack/plugins/start/vim-unimpaired" = pkgs.vimPlugins.vim-unimpaired;
   };
 
+  environment.variables = {
+    EDITOR = "nvim";
+    MANPAGER = "nvim -c 'colors noctu | set laststatus=0 nonumber' +Man!";
+  };
+
   programs.neovim = {
     enable = true;
     withPython3 = false;

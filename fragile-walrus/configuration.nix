@@ -20,6 +20,7 @@
     ../shared/nixos-modules/localization.nix
     ../shared/nixos-modules/networking.nix
     ../shared/nixos-modules/nix.nix
+    ../shared/nixos-modules/nushell.nix
     ../shared/nixos-modules/persist-linking.nix
     ../shared/nixos-modules/pipewire.nix
     ../shared/nixos-modules/syncthing.nix

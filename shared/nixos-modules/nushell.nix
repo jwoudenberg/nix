@@ -95,6 +95,7 @@
       alias surf = ${../home-manager-modules/nushell/surf.nu}
       alias work = ${../home-manager-modules/nushell/work.nu}
       alias zet = ${../home-manager-modules/nushell/zet.nu}
+      alias procfile = ${../home-manager-modules/procfile/procfile.sh}
     '';
   };
 }

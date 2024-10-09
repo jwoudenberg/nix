@@ -2,7 +2,7 @@
 {
   environment.systemPackages = [ pkgs.fzf ];
 
-  environment.variables = {
+  homedir.sessionVariables = {
     FZF_DEFAULT_COMMAND = "${pkgs.ripgrep}/bin/rg --hidden --iglob !.git --files";
   };
 }

@@ -54,4 +54,15 @@ in
       "z /home/.test.workdir 0700 jasper users - -"
     ];
   };
+
+  options.homedir.sessionVariables = lib.mkOption {
+    default = { };
+    type = lib.types.attrsOf lib.types.str;
+    example = lib.literalExpression ''
+      {
+        "EDITOR" = "nvim";
+      }
+    '';
+    description = "Variables to set in the shell session";
+  };
 }

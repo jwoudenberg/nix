@@ -15,6 +15,7 @@
     ../shared/nixos-modules/fzf.nix
     ../shared/nixos-modules/git.nix
     ../shared/nixos-modules/home.nix
+    ../shared/nixos-modules/imv.nix
     ../shared/nixos-modules/localization.nix
     ../shared/nixos-modules/pipewire.nix
     ../shared/nixos-modules/neovim.nix

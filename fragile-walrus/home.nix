@@ -27,13 +27,8 @@
 
   imports = [
     ../shared/home-manager-modules/aerc.nix
-    ../shared/home-manager-modules/age/default.nix
-    ../shared/home-manager-modules/direnv.nix
-    ../shared/home-manager-modules/fzf.nix
     ../shared/home-manager-modules/git.nix
-    ../shared/home-manager-modules/imv.nix
     ../shared/home-manager-modules/kitty.nix
-    ../shared/home-manager-modules/make-screenrec.nix
     ../shared/home-manager-modules/neovim/default.nix
     ../shared/home-manager-modules/nix-index.nix
     ../shared/home-manager-modules/nushell/default.nix

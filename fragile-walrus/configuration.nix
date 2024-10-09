@@ -23,6 +23,7 @@
     ../shared/nixos-modules/nushell.nix
     ../shared/nixos-modules/persist-linking.nix
     ../shared/nixos-modules/pipewire.nix
+    ../shared/nixos-modules/qrcode.nix
     ../shared/nixos-modules/syncthing.nix
     ../shared/nixos-modules/systemd-boot.nix
     ../shared/nixos-modules/users.nix

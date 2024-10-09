@@ -25,6 +25,7 @@
     ../shared/nixos-modules/networking.nix
     ../shared/nixos-modules/nix.nix
     ../shared/nixos-modules/persist-linking.nix
+    ../shared/nixos-modules/qrcode.nix
     ../shared/nixos-modules/sway.nix
     ../shared/nixos-modules/syncthing.nix
     ../shared/nixos-modules/systemd-boot.nix

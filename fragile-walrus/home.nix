@@ -32,7 +32,6 @@
     ../shared/home-manager-modules/neovim/default.nix
     ../shared/home-manager-modules/nushell/default.nix
     ../shared/home-manager-modules/procfile/default.nix
-    ../shared/home-manager-modules/qrcode.nix
     ../shared/home-manager-modules/qutebrowser.nix
     ../shared/home-manager-modules/readline.nix
     ../shared/home-manager-modules/read-qrcode.nix

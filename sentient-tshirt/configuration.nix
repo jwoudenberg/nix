@@ -18,24 +18,25 @@
     ../shared/nixos-modules/imv.nix
     ../shared/nixos-modules/kitty.nix
     ../shared/nixos-modules/localization.nix
-    ../shared/nixos-modules/nushell.nix
-    ../shared/nixos-modules/pipewire.nix
     ../shared/nixos-modules/neovim.nix
     ../shared/nixos-modules/networking.nix
     ../shared/nixos-modules/nix.nix
+    ../shared/nixos-modules/nushell.nix
     ../shared/nixos-modules/persist-linking.nix
+    ../shared/nixos-modules/pipewire.nix
     ../shared/nixos-modules/qrcode.nix
     ../shared/nixos-modules/qutebrowser.nix
     ../shared/nixos-modules/readline.nix
     ../shared/nixos-modules/ripgrep.nix
     ../shared/nixos-modules/screengrab.nix
+    ../shared/nixos-modules/ssh.nix
     ../shared/nixos-modules/sway.nix
     ../shared/nixos-modules/syncthing.nix
     ../shared/nixos-modules/systemd-boot.nix
     ../shared/nixos-modules/usb-scripts/default.nix
     ../shared/nixos-modules/users.nix
+    ../shared/nixos-modules/vale.nix
     ../shared/nixos-modules/wifi.nix
-    ../shared/nixos-modules/ssh.nix
     ./hardware-configuration.nix
     flakeInputs.home-manager.nixosModules.home-manager
   ];

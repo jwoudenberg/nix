@@ -35,6 +35,7 @@
     ../shared/nixos-modules/users.nix
     ../shared/nixos-modules/vale.nix
     ../shared/nixos-modules/whipper.nix
+    ../shared/nixos-modules/zathura.nix
     ../shared/nixos-modules/zfs.nix
     ./hardware-configuration.nix
     ./specialisation-default.nix

@@ -38,6 +38,7 @@
     ../shared/nixos-modules/vale.nix
     ../shared/nixos-modules/whipper.nix
     ../shared/nixos-modules/wifi.nix
+    ../shared/nixos-modules/zathura.nix
     ./hardware-configuration.nix
     flakeInputs.home-manager.nixosModules.home-manager
   ];

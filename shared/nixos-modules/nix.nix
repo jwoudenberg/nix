@@ -15,4 +15,7 @@
     experimental-features = nix-command flakes
   '';
   nix.settings.trusted-users = [ "@wheel" ];
+  homedir.files.".config/nixpkgs/config.nix" = pkgs.writeText "config.nix" ''
+    { allowUnfree = true; }
+  '';
 }

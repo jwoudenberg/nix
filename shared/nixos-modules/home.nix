@@ -9,9 +9,12 @@ let
     homepath:
     let
       sourcepath = builtins.getAttr homepath config.homedir.files;
+      gendirs = script: path: if path == "." || path == "/" then script else gendirs "mkdir -p -m 0777 \"$out/${builtins.dirOf path}\"\n${script}" (builtins.dirOf path);
     in
     ''
-      mkdir -p "$out/${builtins.dirOf homepath}"
+      mkdir -p "$out"
+      touch $out/foo
+      ${gendirs "" homepath}
       ln -s "${sourcepath}" "$out/${homepath}"
     ''
   ) (builtins.attrNames config.homedir.files);
@@ -45,25 +48,25 @@ in
     # path as its source, and we use a regular bind mount to put the home
     # derivation there. When we change the home derivation it's the bind mount
     # that updates, and NixOS deals with that fine.
-    fileSystems."/home/.test.source" = {
+    fileSystems."/home/.jasper.source" = {
       device = "${homedir}";
       fsType = "none";
       options = [ "bind" ];
     };
-    fileSystems."/home/test" = {
+    fileSystems."/home/jasper" = {
       fsType = "overlay";
       overlay = {
-        lowerdir = [ "/home/.test.source" ];
-        upperdir = "/home/.test.upperdir";
-        workdir = "/home/.test.workdir";
+        lowerdir = [ "/home/.jasper.source" ];
+        upperdir = "/home/.jasper.upperdir";
+        workdir = "/home/.jasper.workdir";
       };
-      depends = [ "/persist/.test.source" ];
+      depends = [ "/persist/.jasper.source" ];
     };
 
     systemd.tmpfiles.rules = [
-      "z /home/test 0700 jasper users - -"
-      "z /home/.test.upperdir 0700 jasper users - -"
-      "z /home/.test.workdir 0700 jasper users - -"
+      "z /home/jasper 0700 jasper users - -"
+      "z /home/.jasper.upperdir 0700 jasper users - -"
+      "z /home/.jasper.workdir 0700 jasper users - -"
     ];
   };
 

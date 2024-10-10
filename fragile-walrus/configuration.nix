@@ -18,6 +18,7 @@
     ../shared/nixos-modules/imv.nix
     ../shared/nixos-modules/kitty.nix
     ../shared/nixos-modules/localization.nix
+    ../shared/nixos-modules/neovim.nix
     ../shared/nixos-modules/networking.nix
     ../shared/nixos-modules/nix.nix
     ../shared/nixos-modules/nushell.nix
@@ -31,7 +32,7 @@
     ../shared/nixos-modules/ssh.nix
     ../shared/nixos-modules/syncthing.nix
     ../shared/nixos-modules/systemd-boot.nix
-    ../shared/nixos-modules/usb-scripts/default.nix
+    ../shared/nixos-modules/usb-scripts.nix
     ../shared/nixos-modules/users.nix
     ../shared/nixos-modules/vale.nix
     ../shared/nixos-modules/whipper.nix
@@ -39,7 +40,6 @@
     ../shared/nixos-modules/zfs.nix
     ./hardware-configuration.nix
     ./specialisation-default.nix
-    flakeInputs.home-manager.nixosModules.home-manager
   ];
 
   specialisation.gaming.configuration = import ./specialisation-gaming.nix { pkgs = pkgs; };
@@ -99,10 +99,6 @@
       ];
     };
   };
-
-  home-manager.useUserPackages = true;
-  home-manager.useGlobalPkgs = true;
-  home-manager.users.jasper = (import ./home.nix);
 
   system.stateVersion = "24.05";
   system.autoUpgrade.enable = false;

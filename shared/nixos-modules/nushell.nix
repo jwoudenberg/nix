@@ -112,10 +112,10 @@
         alias agenda = ^$env.EDITOR ~/hjgames/agenda/agenda.txt
         alias ssh = kitty +kitten ssh
         alias todo = ^$env.EDITOR ~/docs/todo.txt
-        alias surf = ${../home-manager-modules/nushell/surf.nu}
-        alias work = ${../home-manager-modules/nushell/work.nu}
-        alias zet = ${../home-manager-modules/nushell/zet.nu}
-        alias procfile = ${../home-manager-modules/procfile/procfile.sh}
+        alias surf = ${./nushell/surf.nu}
+        alias work = ${./nushell/work.nu}
+        alias zet = ${./nushell/zet.nu}
+        alias procfile = ${./nushell/procfile.sh}
       '';
     };
 }

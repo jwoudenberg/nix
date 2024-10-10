@@ -1,7 +1,7 @@
 { pkgs, config, ... }:
 {
   homedir.files = {
-    ".config/nvim/init.lua" = ../home-manager-modules/neovim/init.lua;
+    ".config/nvim/init.lua" = ./neovim/init.lua;
     ".config/nvim/spell/nl.utf-8.spl" = pkgs.vim-spell-nl;
     ".local/share/nvim/site/pack/plugins/start/ale" = pkgs.vimPlugins.ale;
     ".local/share/nvim/site/pack/plugins/start/comment-nvim" = pkgs.vimPlugins.comment-nvim;

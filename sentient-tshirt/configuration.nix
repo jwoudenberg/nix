@@ -33,14 +33,13 @@
     ../shared/nixos-modules/sway.nix
     ../shared/nixos-modules/syncthing.nix
     ../shared/nixos-modules/systemd-boot.nix
-    ../shared/nixos-modules/usb-scripts/default.nix
+    ../shared/nixos-modules/usb-scripts.nix
     ../shared/nixos-modules/users.nix
     ../shared/nixos-modules/vale.nix
     ../shared/nixos-modules/whipper.nix
     ../shared/nixos-modules/wifi.nix
     ../shared/nixos-modules/zathura.nix
     ./hardware-configuration.nix
-    flakeInputs.home-manager.nixosModules.home-manager
   ];
 
   specialisation.work.configuration = import ./specialisation-work.nix {
@@ -92,10 +91,6 @@
 
   services.fwupd.enable = true;
   services.udisks2.enable = true;
-
-  home-manager.useUserPackages = true;
-  home-manager.useGlobalPkgs = true;
-  home-manager.users.jasper = (import ./home.nix);
 
   system.stateVersion = "24.05";
   system.autoUpgrade.enable = false;

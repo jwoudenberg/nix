@@ -4,22 +4,6 @@
   lib,
   ...
 }:
-let
-  linkCommands = builtins.map (
-    homepath:
-    let
-      sourcepath = builtins.getAttr homepath config.homedir.files;
-    in
-    ''
-      mkdir -p "$out/${builtins.dirOf homepath}"
-      ln -s "${sourcepath}" "$out/${homepath}"
-    ''
-  ) (builtins.attrNames config.homedir.files);
-  homedir = pkgs.runCommand "homedir" { } ''
-    mkdir $out;
-    ${builtins.concatStringsSep "\n" linkCommands}
-  '';
-in
 {
   options.homedir.files = lib.mkOption {
     default = { };
@@ -39,32 +23,45 @@ in
   };
 
   config = {
-    # We mount the home derivation at as an overlay file system. Because NixOS
-    # currently creates an error when changing the source of an overlay mount,
-    # we add a layer indirection where the overlay file system users a static
-    # path as its source, and we use a regular bind mount to put the home
-    # derivation there. When we change the home derivation it's the bind mount
-    # that updates, and NixOS deals with that fine.
-    fileSystems."/home/.test.source" = {
-      device = "${homedir}";
-      fsType = "none";
-      options = [ "bind" ];
-    };
-    fileSystems."/home/test" = {
-      fsType = "overlay";
-      overlay = {
-        lowerdir = [ "/home/.test.source" ];
-        upperdir = "/home/.test.upperdir";
-        workdir = "/home/.test.workdir";
-      };
-      depends = [ "/persist/.test.source" ];
-    };
+    # Script adapted from home-manager.
+    systemd.services.init-home = {
+      description = "Initialization of home directory";
+      wantedBy = [ "multi-user.target" ];
+      wants = [ "nix-daemon.socket" ];
+      after = [ "nix-daemon.socket" ];
+      before = [ "systemd-user-sessions.service" ];
 
-    systemd.tmpfiles.rules = [
-      "z /home/test 0700 jasper users - -"
-      "z /home/.test.upperdir 0700 jasper users - -"
-      "z /home/.test.workdir 0700 jasper users - -"
-    ];
+      unitConfig = {
+        RequiresMountsFor = "/home/jasper";
+      };
+
+      stopIfChanged = false;
+
+      serviceConfig = {
+        User = "jasper";
+        Type = "oneshot";
+        RemainAfterExit = "yes";
+        TimeoutStartSec = "5m";
+
+        ExecStart =
+          let
+            linkCommands = builtins.map (
+              homepath:
+              let
+                sourcepath = builtins.getAttr homepath config.homedir.files;
+              in
+              ''
+                mkdir -p "/home/jasper/${builtins.dirOf homepath}"
+                ln -Tsf "${sourcepath}" "/home/jasper/${homepath}"
+              ''
+            ) (builtins.attrNames config.homedir.files);
+          in
+          pkgs.writeScript "init-home" ''
+            #! ${pkgs.runtimeShell} -el
+            ${builtins.concatStringsSep "\n" linkCommands}
+          '';
+      };
+    };
   };
 
   options.homedir.sessionVariables = lib.mkOption {

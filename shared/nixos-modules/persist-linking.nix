@@ -4,35 +4,35 @@
     device = "/persist/dev";
     fsType = "none";
     options = [ "bind" ];
-    depends = [ "/persist" ];
+    depends = [ "/persist" "/home/jasper" ];
   };
 
   fileSystems."/home/jasper/.config/random-colors" = {
     device = "/persist/random-colors";
     fsType = "none";
     options = [ "bind" ];
-    depends = [ "/persist" ];
+    depends = [ "/persist" "/home/jasper" ];
   };
 
   fileSystems."/home/jasper/.config/Signal" = {
     device = "/persist/signal";
     fsType = "none";
     options = [ "bind" ];
-    depends = [ "/persist" ];
+    depends = [ "/persist" "/home/jasper" ];
   };
 
   fileSystems."/home/jasper/.config/pijul" = {
     device = "/persist/pijul";
     fsType = "none";
     options = [ "bind" ];
-    depends = [ "/persist" ];
+    depends = [ "/persist" "/home/jasper" ];
   };
 
   fileSystems."/home/jasper/.cache/nix-index" = {
     device = "/persist/nix-index";
     fsType = "none";
     options = [ "bind" ];
-    depends = [ "/persist" ];
+    depends = [ "/persist" "/home/jasper" ];
   };
 
   systemd.tmpfiles.rules = [

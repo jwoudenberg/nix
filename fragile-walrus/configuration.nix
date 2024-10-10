@@ -24,6 +24,7 @@
     ../shared/nixos-modules/persist-linking.nix
     ../shared/nixos-modules/pipewire.nix
     ../shared/nixos-modules/qrcode.nix
+    ../shared/nixos-modules/qutebrowser.nix
     ../shared/nixos-modules/readline.nix
     ../shared/nixos-modules/syncthing.nix
     ../shared/nixos-modules/systemd-boot.nix

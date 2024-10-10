@@ -12,7 +12,7 @@ let
   };
 in
 {
-  home.packages = [
+  environment.systemPackages = [
     iso-to-usb
     format-usb
   ];

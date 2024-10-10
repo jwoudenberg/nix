@@ -27,6 +27,7 @@
     ../shared/nixos-modules/qrcode.nix
     ../shared/nixos-modules/qutebrowser.nix
     ../shared/nixos-modules/readline.nix
+    ../shared/nixos-modules/ripgrep.nix
     ../shared/nixos-modules/screengrab.nix
     ../shared/nixos-modules/sway.nix
     ../shared/nixos-modules/syncthing.nix

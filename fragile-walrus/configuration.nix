@@ -26,6 +26,7 @@
     ../shared/nixos-modules/qrcode.nix
     ../shared/nixos-modules/qutebrowser.nix
     ../shared/nixos-modules/readline.nix
+    ../shared/nixos-modules/ripgrep.nix
     ../shared/nixos-modules/syncthing.nix
     ../shared/nixos-modules/systemd-boot.nix
     ../shared/nixos-modules/usb-scripts/default.nix

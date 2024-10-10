@@ -36,6 +36,7 @@
     ../shared/nixos-modules/usb-scripts/default.nix
     ../shared/nixos-modules/users.nix
     ../shared/nixos-modules/vale.nix
+    ../shared/nixos-modules/whipper.nix
     ../shared/nixos-modules/wifi.nix
     ./hardware-configuration.nix
     flakeInputs.home-manager.nixosModules.home-manager

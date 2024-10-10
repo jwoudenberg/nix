@@ -231,4 +231,10 @@ in
     wants = [ "graphical-session-pre.target" ];
     after = [ "graphical-session-pre.target" ];
   };
+
+  systemd.user.services.wlsunset = {
+    description = "Day/night gamma adjustments for Wayland compositors.";
+    partOf = [ "graphical-session.target" ];
+    script = "${pkgs.wlsunset}/bin/wlsunset -l 52.4 -L 4.9 -t 4000";
+  };
 }

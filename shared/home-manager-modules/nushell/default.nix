@@ -18,6 +18,7 @@
       "surf" = "${./surf.nu}";
     };
     environmentVariables = {
+      FZF_DEFAULT_COMMAND = "$\"${pkgs.ripgrep}/bin/rg --hidden --iglob !.git --files\"";
       PROMPT_COMMAND = "{ pwd | path basename }";
       PROMPT_COMMAND_RIGHT = ''
         {

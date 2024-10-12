@@ -2,6 +2,9 @@
 {
   nix.package = pkgs.lix;
   programs.nix-index.enable = true;
+  programs.nix-index.enableZshIntegration = false;
+  programs.nix-index.enableBashIntegration = false;
+  programs.nix-index.enableFishIntegration = false;
   nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = [ flakeInputs.self.overlays.linuxCustomPkgs ];
   nix.registry.nixpkgs.flake = flakeInputs.nixpkgs;

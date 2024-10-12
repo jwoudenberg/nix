@@ -17,6 +17,7 @@ in
 {
   imports = [
     ./hardware-configuration.nix
+    ../shared/nixos-modules/home.nix
     ../shared/nixos-modules/nix.nix
     ../shared/nixos-modules/users.nix
   ];

@@ -45,6 +45,7 @@ in
 
   # Hardware
   imports = [
+    ../shared/nixos-modules/home.nix
     ../shared/nixos-modules/nix.nix
     ../shared/nixos-modules/users.nix
     ../shared/nixos-modules/zfs.nix

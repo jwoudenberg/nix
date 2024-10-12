@@ -39,13 +39,25 @@ in
   };
 
   config = {
+    # We mount the home derivation at as an overlay file system. Because NixOS
+    # currently creates an error when changing the source of an overlay mount,
+    # we add a layer indirection where the overlay file system users a static
+    # path as its source, and we use a regular bind mount to put the home
+    # derivation there. When we change the home derivation it's the bind mount
+    # that updates, and NixOS deals with that fine.
+    fileSystems."/home/.test.source" = {
+      device = "${homedir}";
+      fsType = "none";
+      options = [ "bind" ];
+    };
     fileSystems."/home/test" = {
       fsType = "overlay";
       overlay = {
-        lowerdir = [ "${homedir}" ];
+        lowerdir = [ "/home/.test.source" ];
         upperdir = "/home/.test.upperdir";
         workdir = "/home/.test.workdir";
       };
+      depends = [ "/persist/.test.source" ];
     };
 
     systemd.tmpfiles.rules = [

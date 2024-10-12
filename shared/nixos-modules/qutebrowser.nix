@@ -67,10 +67,5 @@
           'DEFAULT':  f"https://kagi.com/search?token={kagi_token}&q={{}}"
       }
     '';
-
-    ".local/share/qutebrowser/state" = pkgs.writeText "state" ''
-      [general]
-      quickstart-done = 1
-    '';
   };
 }

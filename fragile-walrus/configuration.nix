@@ -16,6 +16,7 @@
     ../shared/nixos-modules/git.nix
     ../shared/nixos-modules/home.nix
     ../shared/nixos-modules/imv.nix
+    ../shared/nixos-modules/jujutsu.nix
     ../shared/nixos-modules/kitty.nix
     ../shared/nixos-modules/localization.nix
     ../shared/nixos-modules/networking.nix

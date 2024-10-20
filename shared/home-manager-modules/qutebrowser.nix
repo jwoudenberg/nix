@@ -69,6 +69,7 @@
       config.set('content.javascript.enabled', True, 'roc.zulipchat.com')
       config.set('content.javascript.enabled', True, 'search.nixos.org')
       config.set('content.javascript.enabled', True, 'triodos.nl')
+      config.set('content.javascript.enabled', True, 'ziglang.org')
 
 
       # Kagi session link obtained here: https://kagi.com/settings?p=user_details

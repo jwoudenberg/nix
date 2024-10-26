@@ -8,6 +8,7 @@
     pkgs.comma
     pkgs.cooklang
     pkgs.croc
+    pkgs.dedrm
     pkgs.gotop
     pkgs.mosh
     pkgs.nixfmt-rfc-style

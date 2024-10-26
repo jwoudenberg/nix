@@ -37,4 +37,5 @@
     vimAlias = true;
   };
 
+  environment.systemPackages = [ pkgs.similar-sort ];
 }

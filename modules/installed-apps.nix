@@ -19,4 +19,26 @@
     pkgs.wl-clipboard
     pkgs.xdg_utils
   ];
+
+  imports = [
+    ../modules/aerc.nix
+    ../modules/age.nix
+    ../modules/direnv.nix
+    ../modules/fzf.nix
+    ../modules/git.nix
+    ../modules/imv.nix
+    ../modules/jujutsu.nix
+    ../modules/kitty.nix
+    ../modules/neovim.nix
+    ../modules/nushell.nix
+    ../modules/qrcode.nix
+    ../modules/qutebrowser.nix
+    ../modules/readline.nix
+    ../modules/ripgrep.nix
+    ../modules/screengrab.nix
+    ../modules/usb-scripts.nix
+    ../modules/vale.nix
+    ../modules/whipper.nix
+    ../modules/zathura.nix
+  ];
 }

@@ -9,38 +9,19 @@
 
 {
   imports = [
-    ../modules/aerc.nix
-    ../modules/age.nix
-    ../modules/direnv.nix
-    ../modules/fzf.nix
-    ../modules/git.nix
     ../modules/home.nix
-    ../modules/imv.nix
     ../modules/installed-apps.nix
-    ../modules/jujutsu.nix
-    ../modules/kitty.nix
     ../modules/localization.nix
-    ../modules/neovim.nix
     ../modules/networking.nix
     ../modules/nix.nix
-    ../modules/nushell.nix
     ../modules/persist-linking.nix
     ../modules/pipewire.nix
-    ../modules/qrcode.nix
-    ../modules/qutebrowser.nix
-    ../modules/readline.nix
-    ../modules/ripgrep.nix
-    ../modules/screengrab.nix
     ../modules/ssh.nix
     ../modules/sway.nix
     ../modules/syncthing.nix
     ../modules/systemd-boot.nix
-    ../modules/usb-scripts.nix
     ../modules/users.nix
-    ../modules/vale.nix
-    ../modules/whipper.nix
     ../modules/wifi.nix
-    ../modules/zathura.nix
     ./hardware-configuration.nix
   ];
 

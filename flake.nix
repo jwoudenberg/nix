@@ -8,6 +8,8 @@
     agenda-txt.inputs.nixpkgs.follows = "nixpkgs";
     cooklang.url = "github:jwoudenberg/cooklang";
     cooklang.inputs.nixpkgs.follows = "nixpkgs";
+    jujutsu.url = "github:bnjmnt4n/jj/ssh-openssh";
+    jujutsu.inputs.nixpkgs.follows = "nixpkgs-unstable";
     launch.url = "github:jwoudenberg/launch";
     launch.inputs.nixpkgs.follows = "nixpkgs";
     random-colors.url = "github:jwoudenberg/random-colors";
@@ -85,7 +87,7 @@
           ];
           nvim-treesitter-roc = inputs.tree-sitter-roc.neovimPlugin."${system}";
           vim-spell-nl = "${inputs.vim-spell-nl}";
-          jujutsu = inputs.nixpkgs-unstable.legacyPackages."x86_64-linux".jujutsu;
+          jujutsu = inputs.jujutsu.packages."${system}".jujutsu;
         };
       };
 

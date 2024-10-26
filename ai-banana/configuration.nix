@@ -45,11 +45,11 @@ in
 
   # Hardware
   imports = [
-    ../shared/nixos-modules/home.nix
-    ../shared/nixos-modules/nix.nix
-    ../shared/nixos-modules/users.nix
-    ../shared/nixos-modules/zfs.nix
-    ./nixos-modules/gonic.nix
+    ../modules/home.nix
+    ../modules/nix.nix
+    ../modules/users.nix
+    ../modules/zfs.nix
+    ./gonic.nix
     (modulesPath + "/profiles/qemu-guest.nix")
   ];
   nix.optimise.automatic = true;

@@ -8,7 +8,7 @@
 {
   config =
     let
-      modules = [ ../shared/nixos-modules/sway.nix ];
+      modules = [ ../modules/sway.nix ];
       otherConfig = {
         system.nixos.tags = [ "sway" ];
 

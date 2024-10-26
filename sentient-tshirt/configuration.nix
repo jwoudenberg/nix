@@ -9,38 +9,38 @@
 
 {
   imports = [
-    ../shared/nixos-modules/aerc.nix
-    ../shared/nixos-modules/age.nix
-    ../shared/nixos-modules/direnv.nix
-    ../shared/nixos-modules/fzf.nix
-    ../shared/nixos-modules/git.nix
-    ../shared/nixos-modules/home.nix
-    ../shared/nixos-modules/imv.nix
-    ../shared/nixos-modules/installed-apps.nix
-    ../shared/nixos-modules/jujutsu.nix
-    ../shared/nixos-modules/kitty.nix
-    ../shared/nixos-modules/localization.nix
-    ../shared/nixos-modules/neovim.nix
-    ../shared/nixos-modules/networking.nix
-    ../shared/nixos-modules/nix.nix
-    ../shared/nixos-modules/nushell.nix
-    ../shared/nixos-modules/persist-linking.nix
-    ../shared/nixos-modules/pipewire.nix
-    ../shared/nixos-modules/qrcode.nix
-    ../shared/nixos-modules/qutebrowser.nix
-    ../shared/nixos-modules/readline.nix
-    ../shared/nixos-modules/ripgrep.nix
-    ../shared/nixos-modules/screengrab.nix
-    ../shared/nixos-modules/ssh.nix
-    ../shared/nixos-modules/sway.nix
-    ../shared/nixos-modules/syncthing.nix
-    ../shared/nixos-modules/systemd-boot.nix
-    ../shared/nixos-modules/usb-scripts.nix
-    ../shared/nixos-modules/users.nix
-    ../shared/nixos-modules/vale.nix
-    ../shared/nixos-modules/whipper.nix
-    ../shared/nixos-modules/wifi.nix
-    ../shared/nixos-modules/zathura.nix
+    ../modules/aerc.nix
+    ../modules/age.nix
+    ../modules/direnv.nix
+    ../modules/fzf.nix
+    ../modules/git.nix
+    ../modules/home.nix
+    ../modules/imv.nix
+    ../modules/installed-apps.nix
+    ../modules/jujutsu.nix
+    ../modules/kitty.nix
+    ../modules/localization.nix
+    ../modules/neovim.nix
+    ../modules/networking.nix
+    ../modules/nix.nix
+    ../modules/nushell.nix
+    ../modules/persist-linking.nix
+    ../modules/pipewire.nix
+    ../modules/qrcode.nix
+    ../modules/qutebrowser.nix
+    ../modules/readline.nix
+    ../modules/ripgrep.nix
+    ../modules/screengrab.nix
+    ../modules/ssh.nix
+    ../modules/sway.nix
+    ../modules/syncthing.nix
+    ../modules/systemd-boot.nix
+    ../modules/usb-scripts.nix
+    ../modules/users.nix
+    ../modules/vale.nix
+    ../modules/whipper.nix
+    ../modules/wifi.nix
+    ../modules/zathura.nix
     ./hardware-configuration.nix
   ];
 

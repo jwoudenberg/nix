@@ -17,9 +17,9 @@ in
 {
   imports = [
     ./hardware-configuration.nix
-    ../shared/nixos-modules/home.nix
-    ../shared/nixos-modules/nix.nix
-    ../shared/nixos-modules/users.nix
+    ../modules/home.nix
+    ../modules/nix.nix
+    ../modules/users.nix
   ];
 
   # Allow serial-console connection using a program like minicom. Instrutions:

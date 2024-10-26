@@ -85,7 +85,7 @@
           ];
           nvim-treesitter-roc = inputs.tree-sitter-roc.neovimPlugin."${system}";
           vim-spell-nl = "${inputs.vim-spell-nl}";
-          zed-editor = inputs.nixpkgs-unstable.legacyPackages."x86_64-linux".zed-editor;
+          jujutsu = inputs.nixpkgs-unstable.legacyPackages."x86_64-linux".jujutsu;
         };
       };
 

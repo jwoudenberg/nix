@@ -30,7 +30,7 @@ vim.api.nvim_set_keymap("t", "<C-O>", [[<C-\><C-n><C-O>]], {noremap = true})
 vim.api.nvim_set_keymap("n", "<leader>v", "<c-v>", {noremap = true})
 
 vim.filetype.add({
-    extension = {pl = "prolog", tf = "terraform"},
+    extension = {pl = "prolog", tf = "terraform", jjdescription = "gitcommit"},
     pattern = {['.*/zettel/.*'] = 'markdown'}
 })
 vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {

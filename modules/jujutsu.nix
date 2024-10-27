@@ -7,6 +7,9 @@
       [user]
       name = "Jasper Woudenberg"
       email = "mail@jasperwoudenberg.com"
+
+      [ui]
+      pager = "less -FRX" # the jujutsu default, set explicitly to overrule $PAGER.
     '';
   };
 }

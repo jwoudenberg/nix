@@ -6,7 +6,6 @@
     ".local/share/nvim/site/pack/plugins/start/ale" = pkgs.vimPlugins.ale;
     ".local/share/nvim/site/pack/plugins/start/comment-nvim" = pkgs.vimPlugins.comment-nvim;
     ".local/share/nvim/site/pack/plugins/start/fzfWrapper" = pkgs.vimPlugins.fzfWrapper;
-    ".local/share/nvim/site/pack/plugins/start/gitsigns-nvim" = pkgs.vimPlugins.gitsigns-nvim;
     ".local/share/nvim/site/pack/plugins/start/melange-nvim" = pkgs.vimPlugins.melange-nvim;
     ".local/share/nvim/site/pack/plugins/start/nvim-treesitter" =
       pkgs.vimPlugins.nvim-treesitter.withAllGrammars;

@@ -49,7 +49,7 @@ in
     ../modules/nix.nix
     ../modules/users.nix
     ../modules/zfs.nix
-    ./gonic.nix
+    ./nixos-modules/gonic.nix
     (modulesPath + "/profiles/qemu-guest.nix")
   ];
   nix.optimise.automatic = true;

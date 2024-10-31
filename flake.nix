@@ -8,7 +8,7 @@
     agenda-txt.inputs.nixpkgs.follows = "nixpkgs";
     cooklang.url = "github:jwoudenberg/cooklang";
     cooklang.inputs.nixpkgs.follows = "nixpkgs";
-    jujutsu.url = "github:bnjmnt4n/jj/ssh-openssh";
+    jujutsu.url = "github:bnjmnt4n/jj/0332e18932d040effd9704433070f122adc0ed40";
     jujutsu.inputs.nixpkgs.follows = "nixpkgs-unstable";
     launch.url = "github:jwoudenberg/launch";
     launch.inputs.nixpkgs.follows = "nixpkgs";

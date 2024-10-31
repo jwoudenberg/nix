@@ -10,6 +10,10 @@
 
       [ui]
       pager = "less -FRX" # the jujutsu default, set explicitly to overrule $PAGER.
+      default-command = "log"
+
+      [revset-aliases]
+      "immutable_heads()" = "trunk()"
     '';
   };
 }

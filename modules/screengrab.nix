@@ -18,18 +18,24 @@ let
 
     ${pkgs.wl-clipboard}/bin/wl-copy --foreground < "$file"
   '';
+
+  takeScreenshotDesktop = pkgs.writeTextDir "share/applications/take-screenshot.desktop" ''
+    [Desktop Entry]
+    Type=Application
+    Name=Take Screenshot
+    Exec=${takeScreenshot}/bin/take-screenshot
+  '';
+
+  makeScreenrecDesktop = pkgs.writeTextDir "share/applications/record-screen.desktop" ''
+    [Desktop Entry]
+    Type=Application
+    Name=Make Screen Recording
+    Exec=${makeScreenrec}/bin/record-screen
+  '';
 in
 {
-  homedir.files = {
-    ".local/share/applications/take-screenshot.desktop" = pkgs.writeText "read-qrcode.desktop" ''
-      Type=Application
-      Name=Take Screenshot
-      Exec=${takeScreenshot}/bin/take-screenshot
-    '';
-    ".local/share/applications/record-screen.desktop" = pkgs.writeText "record-screen.desktop" ''
-      Type=Application
-      Name=Make Screen Recording
-      Exec=${makeScreenrec}/bin/record-screen
-    '';
-  };
+  environment.systemPackages = [
+    takeScreenshotDesktop
+    makeScreenrecDesktop
+  ];
 }

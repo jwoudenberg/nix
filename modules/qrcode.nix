@@ -15,15 +15,17 @@ let
       | ${pkgs.wl-clipboard}/bin/wl-copy --foreground
   '';
 
+  readQrcodeDesktop = pkgs.writeTextDir "share/applications/read-qrcode.desktop" ''
+    [Desktop Entry]
+    Type=Application
+    Name=Read QR-code
+    Exec=${readQrcode}/bin/read-qrcode
+  '';
+
 in
 {
-  environment.systemPackages = [ qrcode ];
-
-  homedir.files = {
-    ".local/share/applications/read-qrcode.desktop" = pkgs.writeText "read-qrcode.desktop" ''
-      Type=Application
-      Name=Read QR-code
-      Exec=${readQrcode}/bin/read-qrcode
-    '';
-  };
+  environment.systemPackages = [
+    qrcode
+    readQrcodeDesktop
+  ];
 }

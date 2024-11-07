@@ -16,6 +16,7 @@
     ../modules/nix.nix
     ../modules/persist-linking.nix
     ../modules/pipewire.nix
+    ../modules/screengrab.nix
     ../modules/ssh.nix
     ../modules/syncthing.nix
     ../modules/systemd-boot.nix

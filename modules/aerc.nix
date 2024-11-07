@@ -1,56 +1,66 @@
 { pkgs, config, ... }:
+let
+  aercDesktop = pkgs.writeTextDir "share/applications/aerc.desktop" ''
+    [Desktop Entry]
+    Type=Application
+    Name=aerc
+    Exec=${pkgs.kitty}/bin/kitty ${pkgs.aerc}/bin/aerc %F;
+    Terminal=true
+  '';
+
+  addressBook = "/home/jasper/hjgames/agenda/mensen.ini";
+  addressBookCmd = pkgs.writers.writePython3 "address-book-cmd" { } ''
+    import configparser
+    import sys
+
+    config = configparser.ConfigParser()
+    config.read('${addressBook}')
+    needle = ' '.join(sys.argv[1:]).lower().strip()
+
+    for key in config:
+        email = config[key].get('email')
+        if email is None:
+            continue
+        if needle in key.lower() or needle in email.lower():
+            print(f'{email}\t{key}')
+  '';
+in
 {
-  environment.systemPackages = [ pkgs.aerc ];
+  environment.systemPackages = [
+    pkgs.aerc
+    aercDesktop
+  ];
 
   xdg.mime.defaultApplications."x-scheme-handler/mailto" = [ "aerc.desktop" ];
 
   homedir.files = {
-    ".config/aerc/aerc.conf" =
-      let
-        addressBook = "/home/jasper/hjgames/agenda/mensen.ini";
-        addressBookCmd = pkgs.writers.writePython3 "address-book-cmd" { } ''
-          import configparser
-          import sys
+    ".config/aerc/aerc.conf" = pkgs.writeText "aerc.conf" ''
+      [general]
+      unsafe-accounts-conf = true
 
-          config = configparser.ConfigParser()
-          config.read('${addressBook}')
-          needle = ' '.join(sys.argv[1:]).lower().strip()
+      [ui]
+      timestamp-format = "Mon 06-01-02 15:04"
+      this-day-time-format = "             15:04"
+      this-week-time-format = "Mon          15:04"
+      this-year-time-format = "Mon    01-02 15:04"
+      new-message-bell = false
+      reverse-msglist-order = false
+      dirlist-left = {{.Folder}}
+      dirlist-right =
 
-          for key in config:
-              email = config[key].get('email')
-              if email is None:
-                  continue
-              if needle in key.lower() or needle in email.lower():
-                  print(f'{email}\t{key}')
-        '';
-      in
-      pkgs.writeText "aerc.conf" ''
-        [general]
-        unsafe-accounts-conf = true
+      [viewer]
+      pager = nvim -R -c 'colors noctu | set ft=mail laststatus=0 nomod nolist nonumber'
 
-        [ui]
-        timestamp-format = "Mon 06-01-02 15:04"
-        this-day-time-format = "             15:04"
-        this-week-time-format = "Mon          15:04"
-        this-year-time-format = "Mon    01-02 15:04"
-        new-message-bell = false
-        reverse-msglist-order = false
-        dirlist-left = {{.Folder}}
-        dirlist-right =
+      [compose]
+      reply-to-self = false
+      editor = nvim
+      address-book-cmd = "${addressBookCmd} '%s'"
 
-        [viewer]
-        pager = nvim -R -c 'colors noctu | set ft=mail laststatus=0 nomod nolist nonumber'
-
-        [compose]
-        reply-to-self = false
-        editor = nvim
-        address-book-cmd = "${addressBookCmd} '%s'"
-
-        [filters]
-        text/html = html
-        text/* = plaintext
-        application/ics = ${pkgs.ics-to-agenda-txt}/bin/ics-to-agenda-txt
-      '';
+      [filters]
+      text/html = html
+      text/* = plaintext
+      application/ics = ${pkgs.ics-to-agenda-txt}/bin/ics-to-agenda-txt
+    '';
 
     ".config/aerc/accounts.conf" = pkgs.writeText "accounts.conf" ''
       [jasper]
@@ -180,14 +190,6 @@
 
       <C-p> = :prev-tab<Enter>
       <C-n> = :next-tab<Enter>
-    '';
-
-    ".local/share/applications/aerc.desktop" = pkgs.writeText "aerc.desktop" ''
-      [Desktop Entry]
-      Type=Application
-      Name=aerc
-      Exec=${pkgs.kitty}/bin/kitty ${pkgs.aerc}/bin/aerc %F;
-      Terminal=true
     '';
   };
 }

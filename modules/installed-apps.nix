@@ -14,6 +14,7 @@
     pkgs.pdfgrep
     pkgs.pulsemixer
     pkgs.random-colors
+    pkgs.samply
     pkgs.shellcheck
     pkgs.signal-desktop
     pkgs.wl-clipboard

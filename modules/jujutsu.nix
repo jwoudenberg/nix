@@ -17,6 +17,9 @@
 
       [revset-aliases]
       "immutable_heads()" = "trunk()"
+
+      [git]
+      push-branch-prefix = "jwoudenberg/"
     '';
   };
 }

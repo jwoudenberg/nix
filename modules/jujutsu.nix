@@ -19,7 +19,7 @@
       "immutable_heads()" = "trunk()"
 
       [git]
-      push-branch-prefix = "jwoudenberg/"
+      push-bookmark-prefix = "jwoudenberg/"
     '';
   };
 }

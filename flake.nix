@@ -2,8 +2,7 @@
   description = "Jaspers Nix configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     agenda-txt.url = "github:jwoudenberg/agenda.txt";
     agenda-txt.inputs.nixpkgs.follows = "nixpkgs";
     cooklang.url = "github:jwoudenberg/cooklang";

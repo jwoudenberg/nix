@@ -32,7 +32,7 @@
     config = config;
   };
 
-  hardware.opengl.extraPackages = [
+  hardware.graphics.extraPackages = [
     pkgs.vaapiIntel
     pkgs.libvdpau-va-gl
     pkgs.intel-media-driver
@@ -76,6 +76,6 @@
   services.fwupd.enable = true;
   services.udisks2.enable = true;
 
-  system.stateVersion = "24.05";
+  system.stateVersion = "24.11";
   system.autoUpgrade.enable = false;
 }

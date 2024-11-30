@@ -49,10 +49,7 @@ let
   '';
 in
 {
-  hardware.opengl.enable = true;
-  hardware.opengl.driSupport = true;
-  hardware.opengl.driSupport32Bit = true;
-
+  hardware.graphics.enable = true;
   programs.sway.enable = true;
   fonts.packages = [ pkgs.fira-code ];
 

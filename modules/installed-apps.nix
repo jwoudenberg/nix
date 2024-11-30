@@ -18,7 +18,7 @@
     pkgs.shellcheck
     pkgs.signal-desktop
     pkgs.wl-clipboard
-    pkgs.xdg_utils
+    pkgs.xdg-utils
   ];
 
   imports = [

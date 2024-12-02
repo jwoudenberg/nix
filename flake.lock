@@ -48,7 +48,7 @@
           "update-systemd-resolved",
           "nixpkgs"
         ],
-        "systems": "systems_6"
+        "systems": "systems_5"
       },
       "locked": {
         "lastModified": 1688380630,
@@ -191,24 +191,6 @@
         "owner": "numtide",
         "repo": "flake-utils",
         "rev": "a4b154ebbdc88c8498a5c7b01589addc9e9cb678",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "flake-utils_8": {
-      "inputs": {
-        "systems": "systems_5"
-      },
-      "locked": {
-        "lastModified": 1694529238,
-        "narHash": "sha256-zsNZZGTGnMOf9YpHKJqMSsa0dXbfmxeoJ7xHlrt+xmY=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "ff7b65b44d01cf9ba6a71320833626af21126384",
         "type": "github"
       },
       "original": {
@@ -408,7 +390,6 @@
         "random-colors": "random-colors",
         "similar-sort": "similar-sort",
         "todo-txt-web": "todo-txt-web",
-        "tree-sitter-roc": "tree-sitter-roc",
         "update-systemd-resolved": "update-systemd-resolved",
         "vale-Joblint": "vale-Joblint",
         "vale-alex": "vale-alex",
@@ -533,21 +514,6 @@
         "type": "github"
       }
     },
-    "systems_6": {
-      "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default",
-        "type": "github"
-      }
-    },
     "todo-txt-web": {
       "inputs": {
         "flake-utils": "flake-utils_7",
@@ -566,27 +532,6 @@
       "original": {
         "owner": "jwoudenberg",
         "repo": "todo-txt-web",
-        "type": "github"
-      }
-    },
-    "tree-sitter-roc": {
-      "inputs": {
-        "flake-utils": "flake-utils_8",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1711315330,
-        "narHash": "sha256-ZkaVAnPt2CIoLXjrmvJxzgGYT3X8xIc5NPibzzR/7EI=",
-        "owner": "jwoudenberg",
-        "repo": "tree-sitter-roc",
-        "rev": "795e7cef6af74207847b65fd52a157fab8c352b5",
-        "type": "github"
-      },
-      "original": {
-        "owner": "jwoudenberg",
-        "repo": "tree-sitter-roc",
         "type": "github"
       }
     },

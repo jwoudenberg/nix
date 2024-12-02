@@ -17,8 +17,6 @@
     paulus.inputs.nixpkgs.follows = "nixpkgs";
     todo-txt-web.url = "github:jwoudenberg/todo-txt-web";
     todo-txt-web.inputs.nixpkgs.follows = "nixpkgs";
-    tree-sitter-roc.url = "github:jwoudenberg/tree-sitter-roc";
-    tree-sitter-roc.inputs.nixpkgs.follows = "nixpkgs";
     update-systemd-resolved.url = "github:jonathanio/update-systemd-resolved";
     update-systemd-resolved.inputs.nixpkgs.follows = "nixpkgs"; # optional
     vale-Joblint.flake = false;
@@ -83,7 +81,6 @@
               path = "${inputs.vale-write-good}/write-good";
             }
           ];
-          nvim-treesitter-roc = inputs.tree-sitter-roc.neovimPlugin."${system}";
           vim-spell-nl = "${inputs.vim-spell-nl}";
           jujutsu = inputs.jujutsu.packages."${system}".jujutsu;
         };

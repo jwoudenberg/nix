@@ -120,7 +120,11 @@ vim.api.nvim_set_keymap("n", "<localleader>e", "<Plug>(ale_detail)",
 
 -- TREESITTER
 require'nvim-treesitter.configs'.setup {
-    highlight = {enable = true, additional_vim_regex_highlighting = false}
+    highlight = {
+        enable = true,
+        disable = {"roc"},
+        additional_vim_regex_highlighting = false
+    }
 }
 
 -- FZF

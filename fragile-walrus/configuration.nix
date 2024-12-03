@@ -42,9 +42,23 @@
   boot.kernel.sysctl."fs.inotify.max_user_watches" = 524288;
 
   # Reset root filesystem at boot
-  boot.initrd.postDeviceCommands = lib.mkAfter ''
+  boot.initrd.postResumeCommands = lib.mkAfter ''
     zfs rollback -r trunk/encrypted/root@blank
   '';
+  # TODO: figure out how to get this working with initrd.systemd
+  # boot.initrd.systemd.enable = true;
+  # boot.initrd.systemd.services.rollback = {
+  #   description = "Rollback ZFS datasets to a pristine state";
+  #   wantedBy = [ "initrd.target" ];
+  #   after = [ "zfs-import-zroot.service" ];
+  #   before = [ "sysroot.mount" ];
+  #   path = [ pkgs.zfs ];
+  #   unitConfig.DefaultDependencies = "no";
+  #   serviceConfig.Type = "oneshot";
+  #   script = ''
+  #     zfs rollback -r trunk/encrypted/root@blank && echo "rollback complete"
+  #   '';
+  # };
   networking.hostId = "f1e5b37a";
 
   networking.hostName = "fragile-walrus";

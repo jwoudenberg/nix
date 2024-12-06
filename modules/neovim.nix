@@ -9,6 +9,7 @@
     ".local/share/nvim/site/pack/plugins/start/melange-nvim" = pkgs.vimPlugins.melange-nvim;
     ".local/share/nvim/site/pack/plugins/start/nvim-treesitter" =
       pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
+    ".local/share/nvim/site/pack/plugins/start/nvim-treesitter-roc" = pkgs.nvim-treesitter-roc;
     ".local/share/nvim/site/pack/plugins/start/quickfix-reflector-vim" =
       pkgs.vimPlugins.quickfix-reflector-vim;
     ".local/share/nvim/site/pack/plugins/start/vim-abolish" = pkgs.vimPlugins.vim-abolish;

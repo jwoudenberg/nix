@@ -27,7 +27,7 @@
     vale-proselint.url = "github:errata-ai/proselint";
     vale-write-good.flake = false;
     vale-write-good.url = "github:errata-ai/write-good";
-    vim-spell-nl.url = "http://ftp.vim.org/vim/runtime/spell/nl.utf-8.spl";
+    vim-spell-nl.url = "https://ftp.nluug.nl/pub/vim/runtime/spell/nl.utf-8.spl";
     vim-spell-nl.flake = false;
   };
 

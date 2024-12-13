@@ -215,9 +215,6 @@ in
       }
 
       exec "systemctl --user import-environment; systemctl --user start sway-session.target"
-
-      # Start in workspace 1
-      workspace 1
     '';
   };
 

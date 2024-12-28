@@ -7,6 +7,7 @@
     agenda-txt.inputs.nixpkgs.follows = "nixpkgs";
     cooklang.url = "github:jwoudenberg/cooklang";
     cooklang.inputs.nixpkgs.follows = "nixpkgs";
+    ghostty.url = "github:ghostty-org/ghostty";
     jujutsu.url = "github:bnjmnt4n/jj/ssh-openssh";
     launch.url = "github:jwoudenberg/launch";
     launch.inputs.nixpkgs.follows = "nixpkgs";
@@ -60,6 +61,7 @@
             ${pkgs.libgourou}/bin/acsmdownloader "$ACSM_FILE" --adept-directory "$ADEPT_DIR" --output-file "drm_book.epub"
             ${pkgs.libgourou}/bin/adept_remove "drm_book.epub" --adept-directory "$ADEPT_DIR" --output-file "book.epub"
           '';
+          ghostty = inputs.ghostty.packages."${system}".ghostty;
           jwlaunch = inputs.launch.defaultPackage."${system}";
           random-colors = inputs.random-colors.defaultPackage."${system}";
           similar-sort = inputs.similar-sort.defaultPackage."${system}";

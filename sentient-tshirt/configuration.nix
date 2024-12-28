@@ -11,6 +11,7 @@
   imports = [
     ../modules/home.nix
     ../modules/installed-apps.nix
+    ../modules/ghostty.nix
     ../modules/localization.nix
     ../modules/networking.nix
     ../modules/nix.nix

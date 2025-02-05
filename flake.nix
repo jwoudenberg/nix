@@ -8,7 +8,7 @@
     cooklang.url = "github:jwoudenberg/cooklang";
     cooklang.inputs.nixpkgs.follows = "nixpkgs";
     ghostty.url = "github:ghostty-org/ghostty";
-    jujutsu.url = "github:bnjmnt4n/jj/ssh-openssh";
+    jujutsu.url = "github:martinvonz/jj";
     launch.url = "github:jwoudenberg/launch";
     launch.inputs.nixpkgs.follows = "nixpkgs";
     random-colors.url = "github:jwoudenberg/random-colors";

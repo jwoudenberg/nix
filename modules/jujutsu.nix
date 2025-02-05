@@ -20,6 +20,7 @@
 
       [git]
       push-bookmark-prefix = "jwoudenberg/"
+      subprocess = true
     '';
   };
 }

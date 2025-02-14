@@ -29,6 +29,7 @@
     ../modules/git.nix
     ../modules/imv.nix
     ../modules/jujutsu.nix
+    ../modules/ki-editor.nix
     ../modules/kitty.nix
     ../modules/neovim.nix
     ../modules/nushell.nix

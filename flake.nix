@@ -11,6 +11,8 @@
     jujutsu.url = "github:martinvonz/jj";
     launch.url = "github:jwoudenberg/launch";
     launch.inputs.nixpkgs.follows = "nixpkgs";
+    ki-editor.url = "github:ki-editor/ki-editor";
+    ki-editor.inputs.nixpkgs.follows = "nixpkgs";
     random-colors.url = "github:jwoudenberg/random-colors";
     random-colors.inputs.nixpkgs.follows = "nixpkgs";
     similar-sort.url = "github:BrianHicks/similar-sort";
@@ -63,6 +65,7 @@
           '';
           ghostty = inputs.ghostty.packages."${system}".ghostty;
           jwlaunch = inputs.launch.defaultPackage."${system}";
+          ki-editor = inputs.ki-editor.packages."${system}".default;
           random-colors = inputs.random-colors.defaultPackage."${system}";
           similar-sort = inputs.similar-sort.defaultPackage."${system}";
           paulus = inputs.paulus.defaultPackage."${system}";

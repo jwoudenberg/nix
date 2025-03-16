@@ -14,12 +14,12 @@
     ../modules/ghostty.nix
     ../modules/localization.nix
     ../modules/networking.nix
+    ../modules/niri.nix
     ../modules/nix.nix
     ../modules/persist-linking.nix
     ../modules/pipewire.nix
     ../modules/screengrab.nix
     ../modules/ssh.nix
-    ../modules/sway.nix
     ../modules/syncthing.nix
     ../modules/systemd-boot.nix
     ../modules/users.nix

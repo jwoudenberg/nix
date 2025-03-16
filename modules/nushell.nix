@@ -5,7 +5,10 @@
   ...
 }:
 {
-  environment.systemPackages = [ pkgs.nushell ];
+  environment.systemPackages = [
+    pkgs.nushell
+    pkgs.agenda-txt
+  ];
 
   # Seed ~/.config/nushell/history.txt with persisted history commands.
   # Using `home.file.<name>.*` would create an unmodifiable symlink.
@@ -111,7 +114,7 @@
         }
 
         # Display events for today
-        ^echo (cat ~/hjgames/agenda/*agenda.txt | ${pkgs.agenda-txt}/bin/agenda-txt *1d)
+        ${./nushell/info.nu}
 
         alias agenda = ^$env.EDITOR ~/hjgames/agenda/agenda.txt
         alias ssh = kitty +kitten ssh
@@ -119,6 +122,7 @@
         alias surf = ${./nushell/surf.nu}
         alias work = ${./nushell/work.nu}
         alias zet = ${./nushell/zet.nu}
+        alias i = ${./nushell/info.nu}
         alias procfile = ${./nushell/procfile.sh}
       '';
     };

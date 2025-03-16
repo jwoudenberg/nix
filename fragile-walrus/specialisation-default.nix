@@ -8,9 +8,9 @@
 {
   config =
     let
-      modules = [ ../modules/sway.nix ];
+      modules = [ ../modules/niri.nix ];
       otherConfig = {
-        system.nixos.tags = [ "sway" ];
+        system.nixos.tags = [ "niri" ];
       };
     in
     lib.mkIf (config.specialisation != { }) (

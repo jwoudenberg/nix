@@ -7,7 +7,6 @@
     extraGroups = [
       "wheel"
       "syncdata"
-      "sway"
       "ic2"
     ];
     hashedPassword = "$y$j9T$lhBW.HPXfrhWgqf6V5yoi/$j5O92DHx/DNk4TjwXP4N1SDOzdt1n0T8ALeRdJki2QD";

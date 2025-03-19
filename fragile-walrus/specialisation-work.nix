@@ -12,10 +12,6 @@
       otherConfig = {
         system.nixos.tags = [ "niri" ];
 
-        programs.firefox = {
-          enable = true;
-        };
-
         fileSystems."/home/jasper/.mozilla" = {
           device = "/persist/work/.mozilla";
           fsType = "none";

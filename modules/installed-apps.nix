@@ -7,6 +7,7 @@
     pkgs.comma
     pkgs.croc
     pkgs.dedrm
+    pkgs.firefox
     pkgs.gotop
     pkgs.cooklang
     pkgs.mosh

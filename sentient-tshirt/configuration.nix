@@ -27,12 +27,6 @@
     ./hardware-configuration.nix
   ];
 
-  specialisation.work.configuration = import ./specialisation-work.nix {
-    pkgs = pkgs;
-    lib = lib;
-    config = config;
-  };
-
   hardware.graphics.extraPackages = [
     pkgs.vaapiIntel
     pkgs.libvdpau-va-gl

@@ -7,7 +7,6 @@
     pkgs.comma
     pkgs.croc
     pkgs.dedrm
-    pkgs.firefox
     pkgs.gotop
     pkgs.cooklang
     pkgs.mosh
@@ -26,6 +25,7 @@
     ../modules/aerc.nix
     ../modules/age.nix
     ../modules/direnv.nix
+    ../modules/firefox.nix
     ../modules/fzf.nix
     ../modules/git.nix
     ../modules/imv.nix

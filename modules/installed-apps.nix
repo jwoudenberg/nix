@@ -19,6 +19,7 @@
     pkgs.signal-desktop
     pkgs.wl-clipboard
     pkgs.xdg-utils
+    pkgs.xwayland-run
   ];
 
   imports = [

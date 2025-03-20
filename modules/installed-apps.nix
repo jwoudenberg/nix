@@ -39,7 +39,6 @@
     ../modules/qutebrowser.nix
     ../modules/readline.nix
     ../modules/ripgrep.nix
-    ../modules/screengrab.nix
     ../modules/usb-scripts.nix
     ../modules/vale.nix
     ../modules/whipper.nix

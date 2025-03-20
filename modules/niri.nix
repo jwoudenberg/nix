@@ -91,6 +91,14 @@ in
             active-color "#ffc87f"
             inactive-color "#505050"
         }
+
+        default-column-display "tabbed"
+        tab-indicator {
+            hide-when-single-tab
+            place-within-column
+            gap 0
+            length total-proportion=1.0
+        }
     }
 
     hotkey-overlay {
@@ -99,10 +107,6 @@ in
 
     prefer-no-csd
     screenshot-path "~/screenshots/%Y-%m-%d %H-%M-%S.png"
-
-    // Window rules let you adjust behavior for individual windows.
-    // Find more information on the wiki:
-    // https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
 
     binds {
         Mod+Slash { show-hotkey-overlay; }
@@ -122,15 +126,20 @@ in
 
         Mod+Q { close-window; }
 
-        Mod+H     { focus-column-left; }
-        Mod+J     { focus-window-down; }
-        Mod+K     { focus-window-up; }
-        Mod+L     { focus-column-right; }
+        Mod+H { focus-column-left; }
+        Mod+J { focus-window-down; }
+        Mod+K { focus-window-up; }
+        Mod+L { focus-column-right; }
 
-        Mod+Shift+H     { move-column-left; }
-        Mod+Shift+J     { move-window-down; }
-        Mod+Shift+K     { move-window-up; }
-        Mod+Shift+L     { move-column-right; }
+        Mod+Shift+H { move-column-left; }
+        Mod+Shift+J { move-column-to-workspace-down; }
+        Mod+Shift+K { move-column-to-workspace-up; }
+        Mod+Shift+L { move-column-right; }
+
+        Mod+Ctrl+Shift+H { consume-or-expel-window-left; }
+        Mod+Ctrl+Shift+J { move-window-down; }
+        Mod+Ctrl+Shift+K { move-window-up; }
+        Mod+Ctrl+Shift+L { consume-or-expel-window-right; }
 
         Mod+1 { focus-workspace 1; }
         Mod+2 { focus-workspace 2; }

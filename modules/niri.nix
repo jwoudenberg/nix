@@ -106,7 +106,7 @@ in
 
     binds {
         Mod+Slash { show-hotkey-overlay; }
-        Mod+Return { spawn "${pkgs.kitty}/bin/kitty"; }
+        Mod+Return { spawn "${pkgs.kitty}/bin/kitty" "--single-instance"; }
         Mod+P { spawn "kitty" "--single-instance" "--class=launcher" "--" "${pkgs.jwlaunch}/bin/launch"; }
 
         XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }

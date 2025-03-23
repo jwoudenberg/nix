@@ -43,12 +43,16 @@ in
   systemd.user.services.swaybg = {
     description = "Set background for Wayland compositors.";
     partOf = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
+    wantedBy = [ "graphical-session.target" ];
     script = "${pkgs.swaybg}/bin/swaybg -m fill -i '${wallpaper}'";
   };
 
   systemd.user.services.wlsunset = {
     description = "Day/night gamma adjustments for Wayland compositors.";
     partOf = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
+    wantedBy = [ "graphical-session.target" ];
     script = "${pkgs.wlsunset}/bin/wlsunset -l 52.4 -L 4.9 -t 4000";
   };
 

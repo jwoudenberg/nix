@@ -20,9 +20,6 @@
       tab_separator  |
 
       map ctrl+c copy_and_clear_or_interrupt
-      map ctrl+shift+j previous_tab
-      map ctrl+shift+k next_tab
-      map ctrl+shift+t new_tab_with_cwd
       map ctrl+v paste_from_clipboard
 
       mouse_map left click ungrabbed mouse_click_url_or_select

@@ -10,7 +10,6 @@
     pkgs.gotop
     pkgs.cooklang
     pkgs.mosh
-    pkgs.nixfmt-rfc-style
     pkgs.pdfgrep
     pkgs.pulsemixer
     pkgs.random-colors

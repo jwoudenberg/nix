@@ -41,15 +41,15 @@ in
   systemd.services.greetd.serviceConfig.Type = "idle";
 
   systemd.user.services.swaybg = {
-    unitConfig = {
-      PartOf = "graphical-session.target";
-      After = "graphical-session.target";
-      Requisite = "graphical-session.target";
-    };
-    serviceConfig = {
-      ExecStart = "${pkgs.swaybg}/bin/swaybg -m fill -i '${wallpaper}'";
-      Restart = "on-failure";
-    };
+    description = "Set background for Wayland compositors.";
+    partOf = [ "graphical-session.target" ];
+    script = "${pkgs.swaybg}/bin/swaybg -m fill -i '${wallpaper}'";
+  };
+
+  systemd.user.services.wlsunset = {
+    description = "Day/night gamma adjustments for Wayland compositors.";
+    partOf = [ "graphical-session.target" ];
+    script = "${pkgs.wlsunset}/bin/wlsunset -l 52.4 -L 4.9 -t 4000";
   };
 
   # Enable wayland for Chrome and Electron apps.

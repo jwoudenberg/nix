@@ -336,15 +336,15 @@
         "rust-overlay": "rust-overlay_2"
       },
       "locked": {
-        "lastModified": 1742975322,
+        "lastModified": 1742986592,
         "narHash": "sha256-6fcGX/7gB2qsJMOi+QiKqNT1PIY/MagTtzvCsbdXPpo=",
-        "owner": "jwoudenberg",
+        "owner": "ki-editor",
         "repo": "ki-editor",
-        "rev": "954059dd364dc698e86f8461d347575323961e95",
+        "rev": "ab5c37ad00e92759b7843f2109548858e5ba639c",
         "type": "github"
       },
       "original": {
-        "owner": "jwoudenberg",
+        "owner": "ki-editor",
         "repo": "ki-editor",
         "type": "github"
       }

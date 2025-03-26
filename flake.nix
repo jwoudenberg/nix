@@ -11,7 +11,7 @@
     jujutsu.url = "github:martinvonz/jj";
     launch.url = "github:jwoudenberg/launch";
     launch.inputs.nixpkgs.follows = "nixpkgs";
-    ki-editor.url = "github:jwoudenberg/ki-editor";
+    ki-editor.url = "github:ki-editor/ki-editor";
     ki-editor.inputs.nixpkgs.follows = "nixpkgs";
     random-colors.url = "github:jwoudenberg/random-colors";
     random-colors.inputs.nixpkgs.follows = "nixpkgs";

@@ -336,11 +336,11 @@
         "rust-overlay": "rust-overlay_2"
       },
       "locked": {
-        "lastModified": 1742939893,
-        "narHash": "sha256-HHfVEDSEfMY9KBx39CG357b8clJIefKy4Qu/sBxtm88=",
+        "lastModified": 1742975322,
+        "narHash": "sha256-6fcGX/7gB2qsJMOi+QiKqNT1PIY/MagTtzvCsbdXPpo=",
         "owner": "jwoudenberg",
         "repo": "ki-editor",
-        "rev": "c8bc63c310b88742f16b40b18e3b1e2a0fedc8b6",
+        "rev": "954059dd364dc698e86f8461d347575323961e95",
         "type": "github"
       },
       "original": {

@@ -65,7 +65,7 @@
           '';
           ghostty = inputs.ghostty.packages."${system}".ghostty;
           jwlaunch = inputs.launch.defaultPackage."${system}";
-          ki-editor = inputs.ki-editor.packages."${system}".default;
+          ki-editor = inputs.ki-editor.packages."${system}".ki-editor-wayland;
           random-colors = inputs.random-colors.defaultPackage."${system}";
           similar-sort = inputs.similar-sort.defaultPackage."${system}";
           paulus = inputs.paulus.defaultPackage."${system}";

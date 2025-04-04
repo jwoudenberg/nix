@@ -4,7 +4,6 @@
     pkgs.agenda-txt
     pkgs.annotator
     pkgs.ics-to-agenda-txt
-    pkgs.comma
     pkgs.croc
     pkgs.dedrm
     pkgs.gotop
@@ -20,6 +19,8 @@
     pkgs.xdg-utils
     pkgs.xwayland-run
   ];
+
+  programs.nix-index-database.comma.enable = true;
 
   imports = [
     ../modules/aerc.nix

@@ -112,6 +112,16 @@ in
     prefer-no-csd
     screenshot-path "~/screenshots/%Y-%m-%d %H-%M-%S.png"
 
+    window-rule {
+    	match app-id="launcher"
+    	open-floating true
+    	open-focused true
+    	min-width 500
+    	max-width 500
+    	min-height 500
+    	max-height 500
+    }
+
     binds {
         Mod+Slash { show-hotkey-overlay; }
         Mod+Return { spawn "${pkgs.kitty}/bin/kitty" "--single-instance"; }

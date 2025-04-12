@@ -122,6 +122,12 @@ in
     	max-height 500
     }
 
+    window-rule {
+    	match title="OpenSSH Authentication Passphrase request"
+    	open-floating true
+    	open-focused true
+    }
+
     binds {
         Mod+Slash { show-hotkey-overlay; }
         Mod+Return { spawn "${pkgs.kitty}/bin/kitty" "--single-instance"; }

@@ -10,7 +10,6 @@
     ghostty.url = "github:ghostty-org/ghostty";
     jujutsu.url = "github:martinvonz/jj";
     launch.url = "github:jwoudenberg/launch";
-    launch.inputs.nixpkgs.follows = "nixpkgs";
     ki-editor.url = "github:ki-editor/ki-editor";
     ki-editor.inputs.nixpkgs.follows = "nixpkgs";
     nix-index-database.url = "github:nix-community/nix-index-database";
@@ -66,7 +65,7 @@
             ${pkgs.libgourou}/bin/adept_remove "drm_book.epub" --adept-directory "$ADEPT_DIR" --output-file "book.epub"
           '';
           ghostty = inputs.ghostty.packages."${system}".ghostty;
-          jwlaunch = inputs.launch.defaultPackage."${system}";
+          jwlaunch = inputs.launch.packages."${system}".default;
           ki-editor = inputs.ki-editor.packages."${system}".ki-editor-wayland;
           random-colors = inputs.random-colors.defaultPackage."${system}";
           similar-sort = inputs.similar-sort.defaultPackage."${system}";

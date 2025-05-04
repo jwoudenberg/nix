@@ -19,20 +19,15 @@ in
     ./hardware-configuration.nix
     ../modules/home.nix
     ../modules/nix.nix
+    ../modules/systemd-boot.nix
     ../modules/users.nix
   ];
 
   # Allow serial-console connection using a program like minicom. Instrutions:
   # https://www.centennialsoftwaresolutions.com/post/configure-minicom-for-a-usb-to-serial-converter
   boot.kernelParams = [ "console=ttyS0,115200n8" ];
-  boot.loader.grub.extraConfig = ''
-    serial --speed=115200 --unit=0 --word=8 --parity=no --stop=1
-    terminal_input serial
-    terminal_output serial
-  '';
-
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/disk/by-id/ata-SSE064GMLCC-SBC-2S_C295072701DE00012853";
+  systemd.tpm2.enable = false;
+  boot.initrd.systemd.tpm2.enable = false;
 
   time.timeZone = "Europe/Amsterdam";
 

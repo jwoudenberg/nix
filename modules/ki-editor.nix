@@ -18,4 +18,8 @@
   systemd.tmpfiles.rules = [
     "d /persist/ki 0700 jasper users - -"
   ];
+
+  homedir.sessionVariables = {
+    EDITOR = "ki";
+  };
 }

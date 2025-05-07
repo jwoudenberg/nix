@@ -24,7 +24,6 @@
   };
 
   homedir.sessionVariables = {
-    EDITOR = "nvim";
     MANPAGER = "nvim -c 'colors noctu | set laststatus=0 nonumber' +Man!";
   };
 

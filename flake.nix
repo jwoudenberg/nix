@@ -16,7 +16,6 @@
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     random-colors.url = "github:jwoudenberg/random-colors";
     random-colors.inputs.nixpkgs.follows = "nixpkgs";
-    similar-sort.url = "github:BrianHicks/similar-sort";
     paulus.url = "github:jwoudenberg/paulus";
     paulus.inputs.nixpkgs.follows = "nixpkgs";
     todo-txt-web.url = "github:jwoudenberg/todo-txt-web";
@@ -68,7 +67,6 @@
           jwlaunch = inputs.launch.packages."${system}".default;
           ki-editor = inputs.ki-editor.packages."${system}".ki-editor-wayland;
           random-colors = inputs.random-colors.defaultPackage."${system}";
-          similar-sort = inputs.similar-sort.defaultPackage."${system}";
           paulus = inputs.paulus.defaultPackage."${system}";
           todo-txt-web = inputs.todo-txt-web.defaultPackage."${system}";
           valeStyles = pkgs.linkFarm "vale-styles" [

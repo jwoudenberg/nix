@@ -170,7 +170,7 @@ vim.api.nvim_set_keymap("n", "<C-P>", "", {
     callback = function()
         vim.fn["fzf#run"]({
             source = vim.env.FZF_DEFAULT_COMMAND .. " | grep -v '^" ..
-                vim.fn.expand('%') .. "$' | similar-sort " .. vim.fn.expand('%'),
+                vim.fn.expand('%') .. "$'",
             sink = "edit",
             window = "enew",
             options = {"--tiebreak=index", "--no-height"}

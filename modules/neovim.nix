@@ -32,8 +32,5 @@
     withPython3 = false;
     withRuby = false;
     withNodeJs = false;
-    vimAlias = true;
   };
-
-  environment.systemPackages = [ pkgs.similar-sort ];
 }

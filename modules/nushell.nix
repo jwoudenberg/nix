@@ -104,7 +104,7 @@
               direnv export json | from json | default {} | load-env
             }]
             env_change: {
-              PWD: { random-colors }
+              PWD: [{ random-colors }]
             }
           }
         }

@@ -40,7 +40,7 @@ in
     "d /persist/syncthing 0700 syncthing syncthing - -"
   ];
 
-  system.stateVersion = "24.11";
+  system.stateVersion = "25.05";
   networking.hostName = "ai-banana";
 
   # Hardware

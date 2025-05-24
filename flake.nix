@@ -2,13 +2,11 @@
   description = "Jaspers Nix configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     agenda-txt.url = "github:jwoudenberg/agenda.txt";
     agenda-txt.inputs.nixpkgs.follows = "nixpkgs";
     cooklang.url = "github:jwoudenberg/cooklang";
     cooklang.inputs.nixpkgs.follows = "nixpkgs";
-    ghostty.url = "github:ghostty-org/ghostty";
-    jujutsu.url = "github:martinvonz/jj";
     launch.url = "github:jwoudenberg/launch";
     ki-editor.url = "github:ki-editor/ki-editor";
     ki-editor.inputs.nixpkgs.follows = "nixpkgs";
@@ -20,8 +18,6 @@
     paulus.inputs.nixpkgs.follows = "nixpkgs";
     todo-txt-web.url = "github:jwoudenberg/todo-txt-web";
     todo-txt-web.inputs.nixpkgs.follows = "nixpkgs";
-    tree-sitter-roc.url = "github:jwoudenberg/tree-sitter-roc";
-    tree-sitter-roc.inputs.nixpkgs.follows = "nixpkgs";
     update-systemd-resolved.url = "github:jonathanio/update-systemd-resolved";
     update-systemd-resolved.inputs.nixpkgs.follows = "nixpkgs"; # optional
     vale-Joblint.flake = false;
@@ -63,7 +59,6 @@
             ${pkgs.libgourou}/bin/acsmdownloader "$ACSM_FILE" --adept-directory "$ADEPT_DIR" --output-file "drm_book.epub"
             ${pkgs.libgourou}/bin/adept_remove "drm_book.epub" --adept-directory "$ADEPT_DIR" --output-file "book.epub"
           '';
-          ghostty = inputs.ghostty.packages."${system}".ghostty;
           jwlaunch = inputs.launch.packages."${system}".default;
           ki-editor = inputs.ki-editor.packages."${system}".ki-editor-wayland;
           random-colors = inputs.random-colors.defaultPackage."${system}";
@@ -87,9 +82,7 @@
               path = "${inputs.vale-write-good}/write-good";
             }
           ];
-          nvim-treesitter-roc = inputs.tree-sitter-roc.neovimPlugin."${system}";
           vim-spell-nl = "${inputs.vim-spell-nl}";
-          jujutsu = inputs.jujutsu.packages."${system}".jujutsu;
         };
       };
 

@@ -11,7 +11,6 @@
   imports = [
     ../modules/home.nix
     ../modules/installed-apps.nix
-    ../modules/ghostty.nix
     ../modules/localization.nix
     ../modules/networking.nix
     ../modules/niri.nix
@@ -70,6 +69,6 @@
   services.fwupd.enable = true;
   services.udisks2.enable = true;
 
-  system.stateVersion = "24.11";
+  system.stateVersion = "25.05";
   system.autoUpgrade.enable = false;
 }

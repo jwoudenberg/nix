@@ -1,6 +1,0 @@
-#!/usr/bin/env nu
-
-def main [host: string] {
-  $env.NIX_SSHOPTS = '-t'
-  nixos-rebuild switch --flake $'.#($host)' --target-host $host --use-remote-sudo --use-substitutes
-}
